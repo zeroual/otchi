@@ -1,0 +1,9 @@
+###### Please add here any file you dont want to commit it #########
+        ##    generated file (bower,grunt,npm,mvn ..) .. ##
+
+#idea files
+.idea
+.iml
+
+#mvn targer directory
+target
