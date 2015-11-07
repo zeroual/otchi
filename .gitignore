@@ -3,7 +3,7 @@
 
 #idea files
 .idea
-.iml
+*.iml
 
 #mvn targer directory
 target
