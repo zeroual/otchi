@@ -27,7 +27,7 @@ public class RecipeResource {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public  @ResponseBody List<Recipe> fetchAllRecipe(){
+    public  @ResponseBody Iterable<Recipe> fetchAllRecipe(){
         return recipeRepository.findAll();
     }
 

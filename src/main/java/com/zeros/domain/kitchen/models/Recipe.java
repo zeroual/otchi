@@ -1,10 +1,21 @@
 package com.zeros.domain.kitchen.models;
 
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "RECIPE")
 public class Recipe{
 
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+
+    @Column(name = "DESCRIPTION")
     private String description;
-    protected Long id;
+
 
     public Recipe() {
     }
