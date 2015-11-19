@@ -1,4 +1,4 @@
-package com.zeros.starter;
+package com.zeros.domain.kitchen.models;
 
 import com.zeros.config.ApplicationConfig;
 import org.springframework.boot.SpringApplication;
