@@ -1,0 +1,26 @@
+{
+  "name": "angularJS-getStarted",
+  "version": "1.0.0",
+  "description": "test project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mjaifar/angularJS-getStarted.git"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/mjaifar/angularJS-getStarted/issues"
+  },
+  "devDependencies": {
+    "bower": "~1.6.5",
+    "jasmine-core": "^2.3.4",
+    "karma": "~0.13.14",
+    "karma-chrome-launcher": "~0.2.1",
+    "karma-cli": "~0.1.1",
+    "karma-jasmine": "~0.3.6"
+  }
+}

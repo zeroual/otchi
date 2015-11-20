@@ -7,3 +7,14 @@
 
 #mvn targer directory
 target
+
+.classpath
+.project
+.settings
+bin
+*.log
+
+# static dependencies
+bower_components
+#node modules
+node_modules
