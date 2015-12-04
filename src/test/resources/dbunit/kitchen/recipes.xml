@@ -1,4 +1,20 @@
 <dataset>
+
+    <instruction ID="2"
+                      RECIPE_ID="1"
+                      CONTENT="CONTENT_SAMPLE"/>
+
+    <ingredient ID="1"
+                NAME="ingredient_name"
+                QUANTITY="2.2"
+                UNIT="KG"/>
+    <recipe_ingredient
+                       RECIPE_ID="1"
+                       INGREDIENT_ID="1"/>
     <recipe ID="1"
-            DESCRIPTION="toto"/>
+            TITLE="TITLE_SAMPLE"
+            DESCRIPTION="toto"
+            COOK_TIME="12"
+            PREPARATION_TIME="20"/>
+
 </dataset>

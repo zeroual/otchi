@@ -4,6 +4,7 @@
     /**
      * Run test once and exit
      */
+    //TODO make browserSyn use server proxy
     gulp.task('test', function (done) {
         new Server({
             configFile: __dirname + '/src/test/javascript/karma.conf.js',

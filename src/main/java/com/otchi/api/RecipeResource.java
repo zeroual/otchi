@@ -5,10 +5,9 @@ import com.otchi.domain.kitchen.models.Recipe;
 import com.otchi.domain.kitchen.repositories.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping(value = ResourcesPath.RECIPE)
 public class RecipeResource {
 
@@ -25,7 +24,7 @@ public class RecipeResource {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public  @ResponseBody Iterable<Recipe> fetchAllRecipe(){
+    public Iterable<Recipe> fetchAllRecipe(){
         return recipeRepository.findAll();
     }
 
