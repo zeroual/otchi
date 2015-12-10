@@ -17,10 +17,13 @@
   },
   "devDependencies": {
     "bower": "~1.6.5",
+    "browser-sync": "^2.10.0",
+    "gulp": "^3.9.0",
     "jasmine-core": "^2.3.4",
     "karma": "~0.13.14",
-    "karma-chrome-launcher": "~0.2.1",
     "karma-cli": "~0.1.1",
-    "karma-jasmine": "~0.3.6"
+    "karma-jasmine": "~0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.19"
   }
 }
