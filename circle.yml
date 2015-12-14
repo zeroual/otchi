@@ -1,0 +1,7 @@
+# use this file to configure the continus integration plateforme
+# Now whe use https://circleci.com/
+# Please feel free if you want to chgange it
+# its free and it's allow us to test our private repository in github
+machine:
+  java:
+    version: oraclejdk8

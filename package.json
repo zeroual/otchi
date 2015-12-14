@@ -1,20 +1,12 @@
 {
-  "name": "angularJS-getStarted",
+  "name": "otchi",
   "version": "1.0.0",
-  "description": "test project",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "description": "social network for food",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mjaifar/angularJS-getStarted.git"
+    "url": "https://github.com/zeroual/otchi.git"
   },
-  "author": "",
-  "license": "BSD-2-Clause",
-  "bugs": {
-    "url": "https://github.com/mjaifar/angularJS-getStarted/issues"
-  },
+  "author": "Amin & Reda & Abdellah",
   "devDependencies": {
     "bower": "~1.6.5",
     "browser-sync": "^2.10.0",
