@@ -6,173 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Otchi</title>
+    <title>Otchi Beta</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 50px;
-        }
-        .starter-template {
-            padding: 40px 15px;
-        }
-    </style>
+    <link href="assets/css/main.css" rel="stylesheet">
+
+
 </head>
 
 <body ng-app="otchi">
 
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Otchi Beta</a>
+<ng-include src="'partials/header.html'"></ng-include>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-2">
+            <ng-include src="'partials/left-rail.html'"/>
         </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="index.html">Kitchen</a></li>
-                <li><a href="feed.html">Feed</a></li>
-            </ul>
+        <div class="col-md-7">
+            <div ui-view></div>
+        </div>
+        <div class="col-md-3">
+            <ng-include src="'partials/right-rail.html'"/>
         </div>
     </div>
+
+
 </div>
 
-<div class="container" ng-controller="RecipeController">
-
-    <div class="starter-template">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"> Create new recipe</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-8">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">General information</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <form class="form-horizontal">
-                                            <div class="form-group">
-                                                <label for="title" class="col-md-3 control-label">Title</label>
-                                                <div class="col-md-9">
-                                                    <input ng-model="recipe.title" type="text" class="form-control" id="title" placeholder="Title">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="description" class="col-md-3 control-label">Description</label>
-
-                                                <div class="col-md-9">
-                                                    <input ng-model="recipe.description" type="text" class="form-control" id="description" placeholder="Description">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cookTime" class="col-md-3 control-label">cookTime</label>
-
-                                                <div class="col-md-9">
-                                                    <input ng-model="recipe.cookTime" type="text" class="form-control" id="cookTime" placeholder="cookTime">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="preparationTime" class="col-md-3 control-label">preparationTime</label>
-                                                <div class="col-md-9">
-                                                    <input ng-model="recipe.preparationTime" type="text" class="form-control" id="preparationTime" placeholder="preparationTime">
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-8">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            Ingredients
-                                            <button class="btn btn-sm btn-success pull-right"  ng-click="addIngredient()">
-                                                <i class="glyphicon glyphicon-plus"></i>
-                                            </button>
-                                            <span class="clearfix"></span>
-                                        </h3>
-
-                                    </div>
-                                    <div class="panel-body">
-                                        <form class="form-horizontal">
-                                            <div class="form-group" ng-repeat="ingredient in recipe.ingredients">
-                                                <div class="col-md-6">
-                                                    <input ng-model="ingredient.name" type="text" class="form-control"  placeholder="name">
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <input ng-model="ingredient.quantity" type="text" class="form-control"  placeholder="quantity">
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <input ng-model="ingredient.unit" type="text" class="form-control"  placeholder="unit">
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <button class="btn btn-sm btn-danger pull-right" ng-click="removeIngredient($index)">
-                                                        <i class="glyphicon glyphicon-remove"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-8">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">
-                                            Instructions
-                                            <button class="btn btn-sm btn-success pull-right"  ng-click="addInstruction()">
-                                                <i class="glyphicon glyphicon-plus"></i>
-                                            </button>
-                                            <span class="clearfix"></span>
-                                        </h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <form class="form-horizontal">
-                                            <div class="form-group" ng-repeat="instruction in recipe.instructions">
-                                                <div class="col-md-9 col-md-offset-2">
-                                                    <input ng-model="instruction.content" type="text" class="form-control"  placeholder="name">
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <button class="btn btn-sm btn-danger pull-right" ng-click="removeInstruction($index)">
-                                                        <i class="glyphicon glyphicon-remove"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-12">
-                                <button type="button" class="btn btn-labeled btn-primary pull-right" ng-click="createRecipe(s)">
-                                    <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script type="text/javascript" src="app/app.js"></script>
+<script type="text/javascript" src="app/app-config.js"></script>
 <script type="text/javascript" src="app/kitchen/controllers/recipe.controller.js"></script>
 <script type="text/javascript" src="app/kitchen/services/recipe.service.js"></script>
 </body>

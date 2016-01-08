@@ -1,0 +1,103 @@
+<div class="card timeline">
+    <div class="card">
+        <div class="panel panel-default">
+            <div class="panel-heading panel-heading-gray">
+                <i class="glyphicon glyphicon-share"></i> What do you want to share?
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tabbable-panel">
+                            <div class="tabbable-line">
+                                <ul class="nav nav-tabs ">
+                                    <li class="active">
+                                        <a href="#tab_default_1" data-toggle="tab"> Status </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab_default_2" data-toggle="tab"> Recipe </a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab_default_3" data-toggle="tab"> Ask for recommendation </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_default_1">
+                                        <p>
+                                            <textarea class="form-control input--textbox"placeholder="what in your mind ?"></textarea>
+                                        </p>
+                                    </div>
+                                    <div class="tab-pane" id="tab_default_2">
+                                        <p>
+                                            <ng-include src="'app/kitchen/views/kitchen.html'"/>
+                                        </p>
+                                    </div>
+                                    <div class="tab-pane" id="tab_default_3">
+                                        <p>
+                                            Howdy, I'm in Tab 3.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer" align="right">
+                        <span>
+                             <a class="btn btn-follow">Post</a>
+                        </span>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-default" ng-repeat="recipe in recipesList">
+        <div class="panel-heading panel-heading-gray">
+            <i class="glyphicon glyphicon-retweet"></i> Reda Jaifar
+            <time class="bullet text-gray">3 hours ago</time>
+        </div>
+        <div class="panel-body">
+            <h2 class="card-title">
+                {{recipe.title}}
+            </h2>
+
+            <div class="card-content-summary">
+                <div>
+                    {{recipe.description}}
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer" align="right">
+                    <span>
+                         <a class="button-link">Like</a>
+                    </span>
+                     <span>
+                         <a class="button-link">Share</a>
+                    </span>
+        </div>
+    </div>
+    <!--FIXME TO remove this block -->
+    <div class="panel panel-default" ng-repeat="item in ['1','2','3','4','5','6','7']">
+        <div class="panel-heading panel-heading-gray">
+            <i class="glyphicon glyphicon-retweet"></i> Reda Jaifar
+            <time class="bullet text-gray">3 hours ago</time>
+        </div>
+        <div class="panel-body">
+            <h2 class="card-title">
+                Melt-in-Your-Mouth Broiled Salmon
+            </h2>
+            <div class="card-content-summary">
+                <div>
+                    Fresh salmon with butter and herbs melts in your mouth; it's truly the best. Serve it with
+                    wild rice pilaf and fresh string beans
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer" align="right">
+                    <span>
+                         <a class="button-link">Like</a>
+                    </span>
+                     <span>
+                         <a class="button-link">Share</a>
+                    </span>
+        </div>
+    </div>
+</div>
