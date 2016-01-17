@@ -1,8 +1,8 @@
 package com.otchi.api;
 
-import com.otchi.config.ResourcesPath;
-import com.otchi.domain.kitchen.models.Recipe;
-import com.otchi.domain.kitchen.repositories.RecipeRepository;
+import com.otchi.domaine.kitchen.models.Recipe;
+import com.otchi.domaine.kitchen.repositories.RecipeRepository;
+import com.otchi.infrastructure.config.ResourcesPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

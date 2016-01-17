@@ -18,7 +18,7 @@ module.exports = function (config) {
       'main/webapp/bower_components/angular-resource/angular-resource.js',
       'main/webapp/app/app.js',
       'main/webapp/app/**/*.js',
-      'main/webapp/app/**/*.js',
+      'main/webapp/app/**/*.html',
       'test/javascript/**/!(karma.conf).js'
     ],
 
@@ -27,8 +27,19 @@ module.exports = function (config) {
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {},
+    preprocessors: {
+      'main/webapp/app/**/*.html': ['ng-html2js']
+    },
 
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'main/webapp/',
+      moduleName: 'directives.templates'
+    },
+    plugins: [
+      'karma-jasmine',
+      'karma-phantomjs-launcher',
+      'karma-ng-html2js-preprocessor'
+    ],
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter

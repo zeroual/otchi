@@ -1,0 +1,16 @@
+<dataset>
+
+    <recipe ID="2"
+            TITLE="TITLE_SAMPLE_2"/>
+
+    <POSTER ID="2"
+            FIRST_NAME="FOO"
+            LAST_NAME="BAR"/>
+
+    <POST ID="1"
+          CREATED_AT="2015-02-28"
+          AUTHOR_ID="2"
+          RECIPE_ID="2"
+            />
+
+</dataset>
