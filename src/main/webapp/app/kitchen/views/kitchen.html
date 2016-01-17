@@ -1,0 +1,107 @@
+<div class="row">
+    <div class="col-md-12">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input ng-model="recipe.title" type="text" class="form-control input--textbox" id="title"
+                           placeholder="Recipe title">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <textarea ng-model="recipe.description" class="form-control" id="description"
+                              placeholder="Description"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-sm-12">
+                    <input ng-model="recipe.cookTime" type="text" class="form-control" id="cookTime"
+                           placeholder="Cook time">
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <input ng-model="recipe.preparationTime" type="text" class="form-control" id="preparationTime"
+                           placeholder="Preparation time">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Ingredients
+                    <button class="btn  btn-link pull-right" ng-click="addIngredient()">
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </button>
+                    <span class="clearfix"></span>
+                </h3>
+
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-repeat="ingredient in recipe.ingredients">
+                        <div class="col-md-6">
+                            <input ng-model="ingredient.name" type="text" class="form-control"
+                                   placeholder="Put your ingredien here">
+                        </div>
+                        <div class="col-md-2">
+                            <input ng-model="ingredient.quantity" type="text" class="form-control"
+                                   placeholder="quantity">
+                        </div>
+                        <div class="col-md-2">
+                            <input ng-model="ingredient.unit" type="text" class="form-control" placeholder="unit">
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-sm btn-warning btn-circle pull-right"
+                                    ng-click="removeIngredient($index)">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Instructions
+                    <button class="btn btn-link pull-right" ng-click="addInstruction()">
+                        <i class="glyphicon glyphicon-plus"></i>
+                    </button>
+                    <span class="clearfix"></span>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="form-group" ng-repeat="instruction in recipe.instructions">
+                        <div class="col-md-11">
+                                <textarea ng-model="instruction.content" type="text" class="form-control"
+                                          placeholder="Put direction to follow hre "/>
+                        </div>
+                        <div class="col-md-1">
+                            <button class="btn btn-sm btn-warning btn-circle pull-right"
+                                    ng-click="removeInstruction($index)">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-12">
+        <button type="button" class="btn btn-labeled btn-primary pull-right" ng-click="createRecipe(s)">
+            <span class="btn-label"><i class="glyphicon glyphicon-ok"></i></span> Save to remove
+        </button>
+    </div>
+</div>
+</div>
