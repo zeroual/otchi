@@ -7,6 +7,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('feed', {
             url: "/feed",
-            templateUrl: app_dir + "social/stream/views/feed.html"
+            templateUrl: app_dir + "social/stream/views/feed.html",
+            controller: 'FeedsLoaderController'
         });
 });

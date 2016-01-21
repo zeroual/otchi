@@ -29,6 +29,10 @@ public class Ingredient {
         this.unit = unit;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }

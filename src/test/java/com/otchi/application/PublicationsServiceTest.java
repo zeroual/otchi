@@ -5,6 +5,7 @@ import com.otchi.domaine.kitchen.models.Recipe;
 import com.otchi.domaine.social.models.Post;
 import com.otchi.domaine.social.repositories.PostRepository;
 import com.otchi.domaine.social.repositories.mocks.MockPostRepository;
+import com.otchi.utils.mocks.MockCrudRepository;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +18,7 @@ public class PublicationsServiceTest {
 
     @Before
     public void setUp() {
+        MockCrudRepository.clearDatabase();
         postRepository = new MockPostRepository();
         publicationsService = new PublicationsServiceImpl(postRepository);
     }

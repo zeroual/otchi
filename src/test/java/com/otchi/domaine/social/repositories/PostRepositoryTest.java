@@ -20,9 +20,6 @@ public class PostRepositoryTest extends AbstractRepositoryTest {
         Post savedPost = postRepository.findOne(1L);
         assertThat(savedPost).isNotNull();
         assertThat(savedPost.getCreationDate().toString()).isEqualTo("2015-02-28");
-        assertThat(savedPost.getAuthor()).isNotNull();
-        assertThat(savedPost.getAuthor().firstName()).isEqualTo("FOO");
-        assertThat(savedPost.getAuthor().lastName()).isEqualTo("BAR");
 
         assertThat(savedPost.getRecipe()).isNotNull();
         assertThat(savedPost.getRecipe().getTitle()).isEqualTo("TITLE_SAMPLE_2");

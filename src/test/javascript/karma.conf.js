@@ -16,6 +16,8 @@ module.exports = function (config) {
       'main/webapp/bower_components/angular/angular.js',
       'main/webapp/bower_components/angular-mocks/angular-mocks.js',
       'main/webapp/bower_components/angular-resource/angular-resource.js',
+      'main/webapp/bower_components/moment/moment.js',
+      'main/webapp/bower_components/moment/locale/fr.js',
       'main/webapp/app/app.js',
       'main/webapp/app/**/*.js',
       'main/webapp/app/**/*.html',

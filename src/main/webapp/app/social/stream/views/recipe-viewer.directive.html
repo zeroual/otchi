@@ -1,0 +1,60 @@
+<h2 class="card-title">
+    {{recipe.title}}
+</h2>
+
+<div class="card-content-summary">
+    <div>
+        {{recipe.description}}
+    </div>
+</div>
+<div class="row recipe-info">
+    <div class="col-md-2 col-sm-6">
+        <div class="widget-panel widget-style-2 white-bg">
+            <h3 class="m-0 counter">{{recipe.preparationTime}} </h3>
+
+            <div class="text-muted"> Prep time</div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6">
+        <div class="widget-panel widget-style-2 white-bg">
+            <h3 class="m-0 counter"> {{recipe.cookTime}} </h3>
+
+            <div class="text-muted"> Cook time</div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6 col-md-offset-4">
+        <div class="widget-panel widget-style-2 white-bg">
+            <h3 class="m-0 counter">1268</h3>
+
+            <div class="text-muted">Likes</div>
+        </div>
+    </div>
+    <div class="col-md-2 col-sm-6">
+        <div class="widget-panel widget-style-2 white-bg">
+            <h3 class="m-0 counter">145</h3>
+
+            <div class="text-muted">Made by</div>
+        </div>
+    </div>
+</div>
+<div class="recipe-ingredients">
+    <h5 class="page-header">Ingredients : </h5>
+
+    <div>
+        <p ng-repeat="ingredient in recipe.ingredients">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            {{ingredient.name}} - {{ingredient.quantity}} {{ingredient.unit}}
+        </p>
+    </div>
+</div>
+
+<div class="recipe-instructions">
+    <h5 class="page-header">Instructions : </h5>
+
+    <div>
+        <p ng-repeat="instruction in recipe.instructions">
+            <span class="step_index">1</span>
+            {{instruction.content}}
+        </p>
+    </div>
+</div>
