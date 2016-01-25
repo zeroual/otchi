@@ -11,6 +11,14 @@
             singleRun: true
         }, done).start();
     });
+
+    gulp.task('test-watch', function (done) {
+        new Server({
+            configFile: __dirname + '/src/test/javascript/karma.conf.js',
+            singleRun: false
+        }, done).start();
+    });
+
     // Static Server + watching js/css/html files
     gulp.task('serve', function () {
         browserSync.init({

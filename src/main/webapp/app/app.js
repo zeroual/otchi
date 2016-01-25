@@ -1,3 +1,4 @@
 
 angular.module('kitchen',['ngResource']);
-var app=angular.module("otchi", ['kitchen','ui.router']);
+angular.module('publisher', ['ngResource']);
+var app = angular.module("otchi", ['publisher', 'ui.router']);

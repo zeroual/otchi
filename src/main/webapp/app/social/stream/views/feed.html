@@ -1,0 +1,57 @@
+<div class="card timeline">
+    <div class="card">
+        <publisher/>
+    </div>
+    <div class="panel panel-default" ng-repeat="recipe in recipesList">
+        <div class="panel-heading panel-heading-gray">
+            <i class="glyphicon glyphicon-retweet"></i> Reda Jaifar
+            <time class="bullet text-gray">3 hours ago</time>
+        </div>
+        <div class="panel-body">
+            <h2 class="card-title">
+                {{recipe.title}}
+            </h2>
+
+            <div class="card-content-summary">
+                <div>
+                    {{recipe.description}}
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer" align="right">
+                    <span>
+                         <a class="button-link">Like</a>
+                    </span>
+                     <span>
+                         <a class="button-link">Share</a>
+                    </span>
+        </div>
+    </div>
+    <!--FIXME TO remove this block -->
+    <div class="panel panel-default" ng-repeat="item in ['1','2','3','4','5','6','7']">
+        <div class="panel-heading panel-heading-gray">
+            <i class="glyphicon glyphicon-retweet"></i> Reda Jaifar
+            <time class="bullet text-gray">3 hours ago</time>
+        </div>
+        <div class="panel-body">
+            <h2 class="card-title">
+                Melt-in-Your-Mouth Broiled Salmon
+            </h2>
+
+            <div class="card-content-summary">
+                <div>
+                    Fresh salmon with butter and herbs melts in your mouth; it's truly the best. Serve it with
+                    wild rice pilaf and fresh string beans
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer" align="right">
+                    <span>
+                         <a class="button-link">Like</a>
+                    </span>
+                     <span>
+                         <a class="button-link">Share</a>
+                    </span>
+        </div>
+    </div>
+</div>
