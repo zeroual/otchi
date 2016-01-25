@@ -1,9 +1,13 @@
 package com.otchi.domaine.social.models;
 
 import com.otchi.domaine.kitchen.models.Recipe;
+import org.h2.mvstore.ConcurrentArrayList;
+import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -21,8 +25,15 @@ public class Post {
 
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "RECIPE_ID")
-
     private Recipe recipe;
+
+    @ElementCollection
+    @CollectionTable(
+            name = "POST_LIKES",
+            joinColumns=@JoinColumn(name = "POST_ID")
+    )
+    @Column(name="USER_ID")
+    private Set<Long> likers = new HashSet<>();
 
     public Post(Date creationDate) {
         this.creationDate=creationDate;
@@ -32,10 +43,17 @@ public class Post {
 
     }
 
+    public void addLike(Long userId){
+        this.likers.add(userId);
+    }
+
     public Date getCreationDate() {
         return creationDate;
     }
 
+    public Set<Long> getLikers() {
+        return likers;
+    }
 
     public Recipe getRecipe() {
         return recipe;

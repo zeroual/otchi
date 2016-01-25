@@ -2,13 +2,12 @@ package com.otchi.api;
 
 import com.otchi.api.facades.dto.PostDTO;
 import com.otchi.application.FeedFetcherService;
+import com.otchi.application.FeedService;
+import com.otchi.application.PublicationsService;
 import com.otchi.infrastructure.config.ResourcesPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,6 +16,9 @@ import static java.util.stream.Collectors.toList;
 @RestController
 @RequestMapping(value = ResourcesPath.FEED)
 public class FeedResource {
+
+    @Autowired
+    private FeedService feedService;
 
     @Autowired
     private FeedFetcherService feedFetcherService;
@@ -30,4 +32,10 @@ public class FeedResource {
                 .collect(toList());
     }
 
+    @RequestMapping(value = "/{postId}/like", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void likePost(@PathVariable(value = "postId") Long postId){
+        Long userId = 1L;
+        feedService.likePost(postId, userId);
+    }
 }

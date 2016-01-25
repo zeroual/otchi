@@ -29,4 +29,6 @@ public class PostResource {
         Post savedPost = publicationsService.createNewPost(newPost);
         return new PostDTO(savedPost);
     }
+
+
 }

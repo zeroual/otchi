@@ -4,7 +4,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.otchi.api.facades.serializers.CustomDateSerializer;
 import com.otchi.domaine.social.models.Post;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class PostDTO implements DTO<Post> {
     private Long id;
@@ -14,6 +16,8 @@ public class PostDTO implements DTO<Post> {
     private Date postingDate;
 
     private AbstractPostContent content;
+
+    private List<Long> likers = new ArrayList<>();
 
     private PostDTO() {
 
@@ -26,7 +30,7 @@ public class PostDTO implements DTO<Post> {
     public Long getId() {
         return id;
     }
-
+    public int getLikes(){ return likers.size(); }
 
     public Date getPostingDate() {
         return postingDate;
@@ -38,6 +42,10 @@ public class PostDTO implements DTO<Post> {
 
     public AuthorDTO getAuthor() {
         return author;
+    }
+
+    public List<Long> getLikers() {
+        return likers;
     }
 
     @Override
@@ -52,5 +60,6 @@ public class PostDTO implements DTO<Post> {
         this.author = new AuthorDTO(1L, "Abdellah", "ZEROUAL");
         this.postingDate = post.getCreationDate();
         this.content = new RecipeDTO(post.getRecipe());
+        this.likers=new ArrayList<>(post.getLikers());
     }
 }
