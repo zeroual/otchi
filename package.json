@@ -2,6 +2,9 @@
   "name": "otchi",
   "version": "1.0.0",
   "description": "social network for food",
+  "scripts": {
+    "start": "gulp serve"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/zeroual/otchi.git"
