@@ -1,6 +1,6 @@
 package com.otchi.api;
 
-import com.otchi.api.facades.RecipeDTO;
+import com.otchi.api.facades.dto.RecipeDTO;
 import com.otchi.application.utils.DateFactory;
 import com.otchi.domaine.social.models.Post;
 import com.otchi.domaine.social.repositories.PostRepository;

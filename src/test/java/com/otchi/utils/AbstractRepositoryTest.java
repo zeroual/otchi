@@ -13,10 +13,10 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = DomainConfig.class)
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
-        DbUnitTestExecutionListener.class })
+        DbUnitTestExecutionListener.class})
 
 public class AbstractRepositoryTest {
 }

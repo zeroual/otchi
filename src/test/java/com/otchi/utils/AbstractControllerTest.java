@@ -1,5 +1,6 @@
 package com.otchi.utils;
 
+import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.otchi.config.TestConfiguration;
 import com.otchi.infrastructure.config.ApplicationConfig;
 import org.junit.Before;
@@ -12,7 +13,11 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.mock.http.MockHttpOutputMessage;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
+import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -27,6 +32,10 @@ import java.nio.charset.Charset;
 @WebAppConfiguration()
 @IntegrationTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+@TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
+        DirtiesContextTestExecutionListener.class,
+        TransactionalTestExecutionListener.class,
+        DbUnitTestExecutionListener.class})
 public class AbstractControllerTest {
 
     protected MockMvc mockMvc;

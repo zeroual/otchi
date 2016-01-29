@@ -20,10 +20,6 @@ public class Post {
     @Temporal(TemporalType.DATE)
     private Date creationDate;
 
-    @ManyToOne()
-    @JoinColumn(name = "AUTHOR_ID")
-    private Poster author;
-
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "RECIPE_ID")
 
@@ -41,9 +37,6 @@ public class Post {
         return creationDate;
     }
 
-    public Poster getAuthor() {
-        return author;
-    }
 
     public Recipe getRecipe() {
         return recipe;
@@ -58,7 +51,4 @@ public class Post {
         return id;
     }
 
-    public void assignToAuthor(Poster author) {
-        this.author = author;
-    }
 }

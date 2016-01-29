@@ -2,48 +2,20 @@
     <div class="card">
         <publisher/>
     </div>
-    <div class="panel panel-default" ng-repeat="recipe in recipesList">
-        <div class="panel-heading panel-heading-gray">
-            <i class="glyphicon glyphicon-retweet"></i> Reda Jaifar
-            <time class="bullet text-gray">3 hours ago</time>
-        </div>
-        <div class="panel-body">
-            <h2 class="card-title">
-                {{recipe.title}}
-            </h2>
-
-            <div class="card-content-summary">
-                <div>
-                    {{recipe.description}}
-                </div>
-            </div>
-        </div>
-        <div class="panel-footer" align="right">
-                    <span>
-                         <a class="button-link">Like</a>
-                    </span>
-                     <span>
-                         <a class="button-link">Share</a>
-                    </span>
-        </div>
+    <div class="alert alert-warning" ng-if="feeds.length==0">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <span>
+            <strong>Notice : </strong>
+            No feeds found . You must be new. Or quiet  >_<
+        </span>
     </div>
-    <!--FIXME TO remove this block -->
-    <div class="panel panel-default" ng-repeat="item in ['1','2','3','4','5','6','7']">
+    <div class="panel panel-default" ng-repeat="feed in feeds">
         <div class="panel-heading panel-heading-gray">
-            <i class="glyphicon glyphicon-retweet"></i> Reda Jaifar
-            <time class="bullet text-gray">3 hours ago</time>
+            <i class="glyphicon glyphicon-retweet"></i> {{feed.author.firstName}} - {{feed.author.lastName}}
+            <time class="bullet text-gray">{{feed.postingDate |timeAgo}}</time>
         </div>
-        <div class="panel-body">
-            <h2 class="card-title">
-                Melt-in-Your-Mouth Broiled Salmon
-            </h2>
-
-            <div class="card-content-summary">
-                <div>
-                    Fresh salmon with butter and herbs melts in your mouth; it's truly the best. Serve it with
-                    wild rice pilaf and fresh string beans
-                </div>
-            </div>
+        <div class="panel-body" ng-init="recipe=feed.content">
+            <recipe-viewer/>
         </div>
         <div class="panel-footer" align="right">
                     <span>
