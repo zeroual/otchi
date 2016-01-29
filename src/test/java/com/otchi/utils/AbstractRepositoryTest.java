@@ -1,7 +1,7 @@
 package com.otchi.utils;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
-import com.otchi.infrastructure.config.DomainConfig;
+import com.otchi.infrastructure.config.DatabaseConfig;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -12,7 +12,7 @@ import org.springframework.test.context.transaction.TransactionalTestExecutionLi
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = DomainConfig.class)
+@ContextConfiguration(classes = DatabaseConfig.class)
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,

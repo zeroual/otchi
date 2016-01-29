@@ -18,6 +18,21 @@ describe('FeedLoaderController', function () {
         it('should load all feeds from the server to show them', function () {
             expect($scope.feeds).toEqualData(posts);
         });
+
+        it('should listen if new post is published', function () {
+            spyOn($scope, 'loadNewPublishedPost');
+            var newFeed = {id: 1, data: 'newFeed'};
+            $scope.$broadcast('NEW_POST_PUBLISHED_EVENT', newFeed);
+            expect($scope.loadNewPublishedPost).toHaveBeenCalledWith(newFeed);
+        });
+
+        describe('add new post to feed loader', function () {
+            it('should add the new feed in the top', function () {
+                var newFeed = {id: 1, data: 'newFeed'};
+                $scope.loadNewPublishedPost(newFeed);
+                expect($scope.feeds[0]).toEqual(newFeed);
+            });
+        });
     });
 
 });

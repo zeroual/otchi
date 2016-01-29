@@ -42,6 +42,18 @@ describe('Recipe publisher directive', function () {
             $scope.shareRecipe();
             $httpBackend.flush();
         });
+
+        it('should notify the feed loader that a new post is published', function () {
+            spyOn($scope, '$broadcast');
+            $scope.recipe = {description: 'toto'};
+            var newPost = {id: 12};
+            $httpBackend.expectPOST('/rest/v1/post/recipe', $scope.recipe).respond(newPost);
+            $scope.shareRecipe();
+            $httpBackend.flush();
+
+            jasmine.addCustomEqualityTester(angular.equals);
+            expect($scope.$broadcast).toHaveBeenCalledWith("NEW_POST_PUBLISHED_EVENT", newPost);
+        });
     });
 
     describe("add ingredient action", function () {

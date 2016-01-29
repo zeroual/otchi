@@ -11,7 +11,9 @@ angular.module("publisher")
                 });
 
                 $scope.shareRecipe = function () {
-                    PostService.publishRecipe($scope.recipe);
+                    PostService.publishRecipe($scope.recipe).$promise.then(function (data) {
+                        $scope.$broadcast('NEW_POST_PUBLISHED_EVENT', data);
+                    });
                     $scope.recipe = {};
                 };
 

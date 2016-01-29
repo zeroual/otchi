@@ -15,9 +15,8 @@ public class Post {
     @Column(name = "ID")
     private Long id;
 
-    //FIXME use LocalDate
     @Column(name = "CREATED_AT")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
