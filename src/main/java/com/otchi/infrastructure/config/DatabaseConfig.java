@@ -20,7 +20,9 @@ import javax.sql.DataSource;
 @EnableJpaRepositories("com.otchi.domaine")
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableTransactionManagement
-public class DomainConfig {
+public class DatabaseConfig {
+
+    private final String H2_SERVE_PORT = "8082";
 
     @Bean
     public DataSource dataSource() {
@@ -52,4 +54,18 @@ public class DomainConfig {
         emf.setJpaVendorAdapter(jpaVendorAdapter);
         return emf;
     }
+
+    //FIXME Make severH2 available only in dev
+//    @Bean
+//    public Server serverH2() throws SQLException {
+//        // start a Web server : either before or after opening the database
+//        System.out.println("\n>>>>> serverH2 : démarre ..............\n" +
+//                "   URL      : http://localhost:" + H2_SERVE_PORT + "/ \n" +
+//                "   URL JDBC : jdbc:h2:mem:testdb  \n" +
+//                "   USER     : sa \n" +
+//                "   PASSWORD : \n" +
+//                " \n");
+//        return Server.createWebServer("-webAllowOthers", "-webPort", H2_SERVE_PORT).start();
+//    }
+
 }

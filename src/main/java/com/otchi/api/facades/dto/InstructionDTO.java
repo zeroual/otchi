@@ -8,8 +8,12 @@ public class InstructionDTO implements DTO<Instruction> {
     private Long id;
     private String content;
 
-    InstructionDTO(Instruction instruction) {
+    public InstructionDTO(Instruction instruction) {
         extractFromDomain(instruction);
+    }
+
+    public InstructionDTO() {
+
     }
 
     @Override

@@ -51,9 +51,10 @@
 <div class="recipe-instructions">
     <h5 class="page-header">Instructions : </h5>
 
-    <div>
-        <p ng-repeat="instruction in recipe.instructions">
-            <span class="step_index">1</span>
+    <div ng-repeat="instruction in recipe.instructions">
+        <span class="step_index col-md-1"> {{index +1 }}</span>
+
+        <p class="col-md-11">
             {{instruction.content}}
         </p>
     </div>

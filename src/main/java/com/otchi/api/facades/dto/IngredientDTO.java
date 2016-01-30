@@ -13,6 +13,10 @@ public class IngredientDTO implements DTO<Ingredient> {
         extractFromDomain(ingredient);
     }
 
+    public IngredientDTO() {
+
+    }
+
 
     public Long getId() {
         return id;
