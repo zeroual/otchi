@@ -3,10 +3,12 @@ describe('FeedLoaderController', function () {
     beforeEach(module('stream'));
 
     var $scope;
+    var $rootScope;
     var $httpBackend;
     var posts = [{data: 'foo'}, {data: 'bar'}];
 
-    beforeEach(inject(function ($controller, $rootScope, _$httpBackend_) {
+    beforeEach(inject(function ($controller, _$rootScope_, _$httpBackend_) {
+        $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         $httpBackend = _$httpBackend_;
         $httpBackend.expectGET('/rest/v1/feed').respond(posts);
@@ -22,7 +24,7 @@ describe('FeedLoaderController', function () {
         it('should listen if new post is published', function () {
             spyOn($scope, 'loadNewPublishedPost');
             var newFeed = {id: 1, data: 'newFeed'};
-            $scope.$broadcast('NEW_POST_PUBLISHED_EVENT', newFeed);
+            $rootScope.$broadcast('NEW_POST_PUBLISHED_EVENT', newFeed);
             expect($scope.loadNewPublishedPost).toHaveBeenCalledWith(newFeed);
         });
 

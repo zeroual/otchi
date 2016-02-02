@@ -7,36 +7,19 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="tabbable-panel">
-                        <div class="tabbable-line">
-                            <ul class="nav nav-tabs ">
-                                <li class="active">
-                                    <a href="#tab_default_1" data-toggle="tab" ng-click="changePublisher('STATUS')">
-                                        Status
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#tab_default_2" data-toggle="tab" ng-click="changePublisher('RECIPE')">
-                                        Recipe
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#tab_default_3" data-toggle="tab"> Ask for recommendation </a>
-                                </li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="tab_default_1">
-                                    <status-publisher/>
-                                </div>
-                                <div class="tab-pane" id="tab_default_2">
-                                    <recipe-publisher/>
-                                </div>
-                                <div class="tab-pane" id="tab_default_3">
-                                    <p>
-                                        Howdy, I'm in Tab 3.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        <uib-tabset class="tabbable-line">
+                            <uib-tab heading="Status" active="true" ng-click="changePublisher('STATUS')">
+                                <status-publisher/>
+                            </uib-tab>
+                            <uib-tab heading="Recipe" ng-click="changePublisher('RECIPE')">
+                                <recipe-publisher/>
+                            </uib-tab>
+                            <uib-tab heading="Ask for recommendation">
+                                <p>
+                                    Howdy, I'm in Tab 3.
+                                </p>
+                            </uib-tab>
+                        </uib-tabset>
                     </div>
                 </div>
             </div>

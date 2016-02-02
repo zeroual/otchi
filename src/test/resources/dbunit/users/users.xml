@@ -1,0 +1,11 @@
+<dataset>
+    <!--password for test "zeros"-->
+    <USER
+            ID="1"
+            EMAIL="zeroual.abde@gmail.com"
+            PASSWORD="$2a$10$9m.et2mcPSzA4RdS1AOGPemNLOCerTkyEC99BUdqMSNL.4F9HUtbW"
+            FIRST_NAME="Abdellah"
+            LAST_NAME="ZEROUAL"
+            ACTIVATED="1"
+            />
+</dataset>

@@ -1,0 +1,35 @@
+package com.otchi.api;
+
+import com.github.springtestdbunit.annotation.DatabaseSetup;
+import com.otchi.infrastructure.config.ResourcesPath;
+import com.otchi.utils.AbstractControllerTest;
+import org.junit.Test;
+
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+public class CurrentUserResourceTest extends AbstractControllerTest {
+
+    @Test
+    @DatabaseSetup("/dbunit/users/users.xml")
+    public void shouldReturnAccountInfoOfAuthenticatedUser() throws Exception {
+        mockMvc.perform(get(ResourcesPath.ME).with(user("zeroual.abde@gmail.com"))
+                .contentType(contentType))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(content().json("{\"email\":\"zeroual.abde@gmail.com\",\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"}"));
+    }
+
+    @Test
+    @DatabaseSetup("/dbunit/users/users.xml")
+    public void shouldReturnBadRequestIfTheCurrentUserIsNotFound() throws Exception {
+        mockMvc.perform(get(ResourcesPath.ME).with(user("toto@gmail.com"))
+                .contentType(contentType))
+                .andExpect(status().isBadRequest());
+    }
+
+
+}

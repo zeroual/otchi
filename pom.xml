@@ -27,6 +27,7 @@
 		<dbunit.version>2.5.0</dbunit.version>
 		<mockito.version>1.9.5</mockito.version>
 		<skyscreamer.jsonassert>1.2.3</skyscreamer.jsonassert>
+		<spring-security-test.version>4.0.3.RELEASE</spring-security-test.version>
 	</properties>
 
 	<dependencies>
@@ -39,6 +40,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<version>${spring-security-test.version}</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>com.h2database</groupId>
