@@ -17,6 +17,8 @@ import java.util.Arrays;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -42,7 +44,7 @@ public class PostResourceTest extends AbstractControllerTest {
         instructionDTO.setContent("instruction");
 
         recipeToSave.setIngredients(Arrays.asList(ingredientDTO));
-        mockMvc.perform(post(ResourcesPath.POST + "/recipe")
+        mockMvc.perform(post(ResourcesPath.POST + "/recipe").with(user("user")).with(csrf())
                 .content(json(recipeToSave))
                 .contentType(contentType)).andExpect(status().isCreated());
         Post savedPost = postRepository.findOne(1L);
@@ -57,7 +59,7 @@ public class PostResourceTest extends AbstractControllerTest {
         Date now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse("2015-02-28 12:15:22.8");
         ((MockDateFactory) dateFactory).setNow(now);
         RecipeDTO recipeToSave = new RecipeDTO("recipe_title", "recipe_desc");
-        mockMvc.perform(post(ResourcesPath.POST + "/recipe")
+        mockMvc.perform(post(ResourcesPath.POST + "/recipe").with(user("user")).with(csrf())
                 .content(json(recipeToSave))
                 .contentType(contentType)).andExpect(status().isCreated());
         Post savedPost = postRepository.findOne(1L);

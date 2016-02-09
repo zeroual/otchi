@@ -4,9 +4,11 @@ describe('Recipe publisher directive', function () {
     var $httpBackend;
     beforeEach(module('publisher'));
     beforeEach(module('directives.templates'));
+    var $rootScope;
 
-    beforeEach(inject(function ($rootScope, $compile, _$httpBackend_) {
+    beforeEach(inject(function (_$rootScope_, $compile, _$httpBackend_) {
         $httpBackend = _$httpBackend_;
+        $rootScope = _$rootScope_;
         $scope = $rootScope.$new();
         var element = angular.element('<recipe-publisher/>');
         $compile(element)($scope);
@@ -44,7 +46,7 @@ describe('Recipe publisher directive', function () {
         });
 
         it('should notify the feed loader that a new post is published', function () {
-            spyOn($scope, '$broadcast');
+            spyOn($rootScope, '$broadcast');
             $scope.recipe = {description: 'toto'};
             var newPost = {id: 12};
             $httpBackend.expectPOST('/rest/v1/post/recipe', $scope.recipe).respond(newPost);
@@ -53,6 +55,16 @@ describe('Recipe publisher directive', function () {
 
             jasmine.addCustomEqualityTester(angular.equals);
             expect($scope.$broadcast).toHaveBeenCalledWith("NEW_POST_PUBLISHED_EVENT", newPost);
+        });
+
+        it('should reset the old recipe after sharing', function () {
+            $scope.recipe = {description: 'toto'};
+            $httpBackend.expectPOST('/rest/v1/post/recipe', $scope.recipe).respond(201);
+            $scope.shareRecipe();
+            $httpBackend.flush();
+            expect($scope.recipe).toBeDefined();
+            expect($scope.recipe.ingredients.length).toEqual(0);
+            expect($scope.recipe.instructions.length).toEqual(0);
         });
     });
 

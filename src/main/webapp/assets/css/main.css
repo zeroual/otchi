@@ -304,3 +304,33 @@ a, button {
 .recipe-ingredients p {
     padding: 10px;
 }
+
+/*--------------------------------- Login -----------------------------*/
+.signup {
+    border-radius: 3px;
+    padding: 8px 12px;
+    background: #2e9fff;
+    color: #fff;
+    border: 1px solid #2e9fff;
+    box-shadow: none;
+    width: 47.5%;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+}
+
+.btn-secondary {
+    width: 47.5%;
+    display: inline-block;
+    font-size: 14px;
+    padding: 8px 12px;
+    text-align: center;
+    border-radius: 3px;
+    color: #2e9fff;
+    -webkit-transition: all 0.2s ease 0s;
+    -moz-transition: all 0.2s ease 0s;
+    -ms-transition: all 0.2s ease 0s;
+    -o-transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s;
+    border: 1px solid rgba(46, 159, 255, 0.5);
+}
