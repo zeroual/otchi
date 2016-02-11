@@ -37,4 +37,23 @@ describe('FeedLoaderController', function () {
         });
     });
 
+    describe('like post', function () {
+        var post = {id: 1, likes: 0};
+        it('should increment the like count by one', function () {
+            $scope.likePost(post);
+            expect(post.likes).toEqual(1);
+        });
+
+        it('should ask the server to perform post like', function () {
+            $httpBackend.expectPOST('/rest/v1/feed/1/like').respond(200);
+            $scope.likePost(post);
+            $httpBackend.flush();
+        });
+        it('should not increment the like count if is already liked', function () {
+            $scope.likePost(post);
+            $scope.likePost(post);
+            expect(post.likes).toEqual(1);
+        });
+    });
+
 });

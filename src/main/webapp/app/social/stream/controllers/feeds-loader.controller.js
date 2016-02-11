@@ -2,6 +2,11 @@ angular.module("stream")
     .controller("FeedsLoaderController", function ($scope, $rootScope, FeedsService) {
         $scope.feeds = FeedsService.fetchAllFeeds();
 
+        $scope.likePost = function (post){
+            FeedsService.likePost(post);
+
+        };
+
         //FIXME CHANGE the name of this method
         $scope.loadNewPublishedPost = function (feed) {
             $scope.feeds.unshift(feed);
