@@ -6,9 +6,11 @@ describe('FeedLoaderController', function () {
     var $rootScope;
     var posts = [{data: 'foo'}, {data: 'bar'}];
     var FeedsService;
+    var $httpBackend;
     beforeEach(inject(function ($controller, _$rootScope_, _$httpBackend_, _FeedsService_, Principal) {
         FeedsService = _FeedsService_;
         $rootScope = _$rootScope_;
+        $httpBackend = _$httpBackend_;
         $scope = $rootScope.$new();
         spyOn(Principal, 'identity').and.callFake(function () {
             return {
@@ -81,5 +83,23 @@ describe('FeedLoaderController', function () {
         });
     });
 
+    describe('comment on post', function () {
+
+        var post;
+        beforeEach(function () {
+            post = {id: 1, comments: []};
+            $httpBackend.expectPOST('/rest/v1/feed/1/comment', 'comment content').respond(200, {id: 2, data: 'foo'});
+        });
+
+        it('should ask the server to add save comment', function () {
+            $scope.commentOnPost(post, "comment content");
+            $httpBackend.flush();
+        });
+        it('should add the new comment to comments list in feed', function () {
+            $scope.commentOnPost(post, "comment content");
+            $httpBackend.flush();
+            expect(post.comments).toEqualData([{id: 2, data: 'foo'}]);
+        });
+    });
 
 });

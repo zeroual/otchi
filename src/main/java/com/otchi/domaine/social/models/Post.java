@@ -4,9 +4,7 @@ import com.otchi.domaine.kitchen.models.Recipe;
 import com.otchi.domaine.users.models.User;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -30,6 +28,10 @@ public class Post {
     @JoinColumn(name = "AUTHOR_ID")
     private User author;
 
+    public Post(Date createdTime) {
+        this.createdTime = createdTime;
+    }
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "POST_LIKES",
             joinColumns = {@JoinColumn(name = "POST_ID", referencedColumnName = "ID")},
@@ -37,9 +39,11 @@ public class Post {
     )
     private Set<User> likes = new HashSet<>();
 
-    public Post(Date createdTime) {
-        this.createdTime = createdTime;
-    }
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "POST_ID")
+    private Collection<Comment> comments = new ArrayList<>();
+
+
 
     public Post() {
 
@@ -47,6 +51,9 @@ public class Post {
 
     public void addLike(User user) {
         this.likes.add(user);
+    }
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
     }
 
     public void unLike(User user) {
@@ -56,7 +63,6 @@ public class Post {
     public Date getCreatedTime() {
         return createdTime;
     }
-
 
     public Recipe getRecipe() {
         return recipe;
@@ -82,4 +88,9 @@ public class Post {
     public Set<User> getLikes() {
         return likes;
     }
+
+    public Collection<Comment> getComments() {
+        return comments;
+    }
+
 }

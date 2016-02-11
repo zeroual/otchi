@@ -334,3 +334,10 @@ a, button {
     transition: all 0.2s ease 0s;
     border: 1px solid rgba(46, 159, 255, 0.5);
 }
+/****************MARGIN ET PADDING*********/
+.margin-top-none{
+    margin-top: 0px;
+}
+.margin-bottom-none{
+    margin-bottom: 0px;
+}

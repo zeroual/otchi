@@ -20,6 +20,7 @@ public class PostDTO implements DTO<Post> {
     private AbstractPostContent content;
 
     private List<UserDTO> likes = new ArrayList<>();
+    private List<CommentDTO> comments = new ArrayList<>();
 
     private PostDTO() {
 
@@ -50,6 +51,10 @@ public class PostDTO implements DTO<Post> {
     }
 
 
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
     @Override
     public Post toDomain() {
         throw new RuntimeException("this function is not implemented yet");
@@ -62,5 +67,6 @@ public class PostDTO implements DTO<Post> {
         this.createdTime = post.getCreatedTime();
         this.content = new RecipeDTO(post.getRecipe());
         this.likes = post.getLikes().stream().map(UserDTO::new).collect(toList());
+        this.comments = post.getComments().stream().map(CommentDTO::new).collect(toList());
     }
 }

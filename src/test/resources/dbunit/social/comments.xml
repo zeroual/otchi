@@ -1,0 +1,18 @@
+<dataset>
+
+    <USER
+            ID="1"
+            EMAIL="mr.jaifar@gmail.com"
+            FIRST_NAME="reda"
+            LAST_NAME="jaifar"
+    />
+
+    <recipe ID="2"
+            TITLE="TITLE_SAMPLE_2"/>
+
+    <POST ID="1"
+          CREATED_AT="2016-02-17"
+          RECIPE_ID="2"
+          AUTHOR_ID="1"
+    />
+</dataset>

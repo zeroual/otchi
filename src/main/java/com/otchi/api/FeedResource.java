@@ -1,8 +1,10 @@
 package com.otchi.api;
 
+import com.otchi.api.facades.dto.CommentDTO;
 import com.otchi.api.facades.dto.PostDTO;
 import com.otchi.application.FeedFetcherService;
 import com.otchi.application.FeedService;
+import com.otchi.domaine.social.models.Comment;
 import com.otchi.infrastructure.config.ResourcesPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,4 +48,15 @@ public class FeedResource {
         String username = principal.getName();
         feedService.unlikePost(postId, username);
     }
+
+    @RequestMapping(value = "/{postId}/comment", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public CommentDTO commentOnPost(@PathVariable(value = "postId") Long postId, @RequestBody String commentContent,
+                                    @AuthenticationPrincipal Principal principal) {
+        String username = principal.getName();
+        Comment savedComment = feedService.commentOnPost(postId, commentContent, username);
+        return new CommentDTO(savedComment);
+    }
+
+
 }
