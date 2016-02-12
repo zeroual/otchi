@@ -3,11 +3,11 @@ package com.otchi.domaine.users.models;
 
 import org.hibernate.validator.constraints.Email;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "USER")
@@ -15,24 +15,20 @@ public class User {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    @Size(min = 60, max = 60)
-    @Column(name = "PASSWORD", length = 60)
-    private String password;
+
     @Size(max = 50)
     @Column(name = "FIRST_NAME", length = 50)
     private String firstName;
+
     @Size(max = 50)
     @Column(name = "LAST_NAME", length = 50)
     private String lastName;
+
     @Email
     @Size(max = 100)
     @Column(name = "EMAIL", length = 100, unique = true)
     private String email;
-    @Column(name = "ACTIVATED", nullable = false)
-    private boolean activated = false;
 
     public User(String email) {
         this.email = email;
@@ -50,13 +46,6 @@ public class User {
     }
 
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getFirstName() {
         return firstName;
@@ -80,14 +69,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public boolean isActivated() {
-        return activated;
-    }
-
-    public void setActivated(boolean activated) {
-        this.activated = activated;
     }
 
 
@@ -120,7 +101,6 @@ public class User {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", activated='" + activated + '\'' +
                 "}";
     }
 }
