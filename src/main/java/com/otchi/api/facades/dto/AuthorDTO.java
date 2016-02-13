@@ -1,16 +1,18 @@
 package com.otchi.api.facades.dto;
 
 
+import com.otchi.domaine.users.models.User;
+
 public class AuthorDTO {
     private Long id;
     private String firstName;
     private String lastName;
 
-    public AuthorDTO(Long id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
 
+    public AuthorDTO(User author) {
+        this.id = author.getId();
+        this.firstName = author.getFirstName();
+        this.lastName = author.getLastName();
     }
 
     public Long getId() {

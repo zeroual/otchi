@@ -23,6 +23,8 @@ public class PostRepositoryTest extends AbstractRepositoryTest {
 
         assertThat(savedPost.getRecipe()).isNotNull();
         assertThat(savedPost.getRecipe().getTitle()).isEqualTo("TITLE_SAMPLE_2");
+        assertThat(savedPost.getAuthor()).isNotNull();
+        assertThat(savedPost.getAuthor().getFirstName()).isEqualTo("Abdellah");
     }
 
     @Test

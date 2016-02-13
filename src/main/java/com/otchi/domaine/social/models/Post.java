@@ -1,8 +1,7 @@
 package com.otchi.domaine.social.models;
 
 import com.otchi.domaine.kitchen.models.Recipe;
-import org.h2.mvstore.ConcurrentArrayList;
-import org.hibernate.validator.constraints.Email;
+import com.otchi.domaine.users.models.User;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -34,6 +33,10 @@ public class Post {
     )
     @Column(name="USER_ID")
     private Set<Long> likers = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "AUTHOR_ID")
+    private User author;
 
     public Post(Date creationDate) {
         this.creationDate=creationDate;
@@ -68,4 +71,11 @@ public class Post {
         return id;
     }
 
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
+    }
 }

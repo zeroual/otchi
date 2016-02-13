@@ -56,8 +56,7 @@ public class PostDTO implements DTO<Post> {
     @Override
     public void extractFromDomain(Post post) {
         this.id = post.getId();
-        //TODO change with the real author when the authentication system is available
-        this.author = new AuthorDTO(1L, "Abdellah", "ZEROUAL");
+        this.author = new AuthorDTO(post.getAuthor());
         this.postingDate = post.getCreationDate();
         this.content = new RecipeDTO(post.getRecipe());
         this.likers=new ArrayList<>(post.getLikers());
