@@ -1,20 +1,17 @@
 package com.otchi.api;
 
+import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.otchi.api.facades.dto.IngredientDTO;
 import com.otchi.api.facades.dto.InstructionDTO;
 import com.otchi.api.facades.dto.RecipeDTO;
-import com.otchi.application.utils.DateFactory;
 import com.otchi.domaine.social.models.Post;
 import com.otchi.domaine.social.repositories.PostRepository;
 import com.otchi.infrastructure.config.ResourcesPath;
 import com.otchi.utils.AbstractControllerTest;
-import com.otchi.utils.mocks.MockDateFactory;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -28,10 +25,8 @@ public class PostResourceTest extends AbstractControllerTest {
     @Autowired
     private PostRepository postRepository;
 
-    @Autowired
-    private DateFactory dateFactory;
-
     @Test
+    @DatabaseSetup("/dbunit/users/users.xml")
     public void shouldCreateNewRecipeAsPost() throws Exception {
         RecipeDTO recipeToSave = new RecipeDTO("recipe_title", "recipe_desc");
 
@@ -44,25 +39,28 @@ public class PostResourceTest extends AbstractControllerTest {
         instructionDTO.setContent("instruction");
 
         recipeToSave.setIngredients(Arrays.asList(ingredientDTO));
-        mockMvc.perform(post(ResourcesPath.POST + "/recipe").with(user("user")).with(csrf())
+        mockMvc.perform(post(ResourcesPath.POST + "/recipe")
+                .with(user("zeroual.abde@gmail.com")).with(csrf())
                 .content(json(recipeToSave))
                 .contentType(contentType)).andExpect(status().isCreated());
         Post savedPost = postRepository.findOne(1L);
         assertThat(savedPost).isNotNull();
         assertThat(savedPost.getRecipe().getTitle()).isEqualTo("recipe_title");
         assertThat(savedPost.getRecipe().getIngredients()).isNotEmpty();
-        assertThat(savedPost.getRecipe().getIngredients()).isNotEmpty();
+        assertThat(savedPost.getRecipe().getInstructions()).isEmpty();
     }
 
     @Test
-    public void shouldAssignPostCreationDateToNow() throws Exception {
-        Date now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse("2015-02-28 12:15:22.8");
-        ((MockDateFactory) dateFactory).setNow(now);
+    @DatabaseSetup("/dbunit/users/users.xml")
+    public void shouldAssignPostToCurrentUser() throws Exception {
         RecipeDTO recipeToSave = new RecipeDTO("recipe_title", "recipe_desc");
-        mockMvc.perform(post(ResourcesPath.POST + "/recipe").with(user("user")).with(csrf())
+        mockMvc.perform(post(ResourcesPath.POST + "/recipe")
+                .with(user("zeroual.abde@gmail.com")).with(csrf())
                 .content(json(recipeToSave))
-                .contentType(contentType)).andExpect(status().isCreated());
+                .contentType(contentType))
+                .andExpect(status().isCreated());
         Post savedPost = postRepository.findOne(1L);
-        assertThat(savedPost.getCreationDate().toInstant()).isEqualTo(now.toInstant());
+        assertThat(savedPost.getAuthor()).isNotNull();
+        assertThat(savedPost.getAuthor().getFirstName()).isEqualTo("Abdellah");
     }
 }

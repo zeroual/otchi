@@ -1,7 +1,6 @@
 package com.otchi.utils;
 
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
-import com.otchi.config.TestConfiguration;
 import com.otchi.infrastructure.config.ApplicationConfig;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -29,7 +28,7 @@ import java.nio.charset.Charset;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationConfig.class, TestConfiguration.class})
+@ContextConfiguration(classes = {ApplicationConfig.class})
 @WebAppConfiguration()
 @IntegrationTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -43,13 +42,11 @@ public class AbstractControllerTest {
 
     @Autowired
     protected WebApplicationContext webApplicationContext;
-
-    @Autowired
-    private Filter springSecurityFilterChain;
     protected MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
             Charset.forName("utf8"));
-
+    @Autowired
+    private Filter springSecurityFilterChain;
     private HttpMessageConverter mappingJackson2HttpMessageConverter=new MappingJackson2HttpMessageConverter();
 
     @Before
