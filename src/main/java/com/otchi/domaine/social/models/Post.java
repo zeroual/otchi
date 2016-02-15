@@ -2,40 +2,29 @@ package com.otchi.domaine.social.models;
 
 import com.otchi.domaine.kitchen.models.Recipe;
 import com.otchi.domaine.users.models.User;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 
-@Entity
-@Table(name = "POST")
+@Document(collection = "posts")
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
     private Long id;
 
-    @Column(name = "CREATED_AT")
-    @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "RECIPE_ID")
+    @DBRef
     private Recipe recipe;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "POST_LIKES",
-            joinColumns=@JoinColumn(name = "POST_ID")
-    )
-    @Column(name="USER_ID")
     private Set<Long> likers = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "AUTHOR_ID")
+    @DBRef
     private User author;
 
     public Post(Date creationDate) {

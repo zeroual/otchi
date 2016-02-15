@@ -1,17 +1,14 @@
 package com.otchi.domaine.kitchen.models;
 
 
-import javax.persistence.*;
-@Entity
-@Table( name = "INSTRUCTION" )
+import org.springframework.data.annotation.Id;
+
+
 public class Instruction {
 
     @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column( name = "CONTENT" )
     private String content;
 
     public Instruction() {

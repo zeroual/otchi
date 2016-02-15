@@ -1,43 +1,31 @@
 package com.otchi.domaine.kitchen.models;
 
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "RECIPE")
+@Document(collection = "recipes")
 public class Recipe{
 
     @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-
-    @Column(name = "DESCRIPTION")
     private String description;
 
-
-    @Column(name = "COOK_TIME")
     private Integer cookTime;
 
-    @Column(name = "PREPARATION_TIME")
     private Integer preparationTime;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "RECIPE_INGREDIENT",
-            joinColumns = {@JoinColumn(name = "RECIPE_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "INGREDIENT_ID")})
+    @DBRef
     private List<Ingredient> ingredients = new ArrayList<>();
 
-            @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "RECIPE_ID")
     private List<Instruction> instructions=new ArrayList<>();
 
-    @Column(name = "TITLE")
+
     private String title;
 
     public Recipe(String title, String description, Integer cookTime, Integer preparationTime) {

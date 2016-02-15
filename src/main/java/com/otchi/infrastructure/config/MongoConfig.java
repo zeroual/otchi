@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
  */
 
 @Configuration
-@EnableMongoRepositories("com.otchi.domaine")
+@EnableMongoRepositories(basePackages = "com.otchi.domaine")
 public class MongoConfig extends AbstractMongoConfiguration{
 
 
