@@ -22,10 +22,8 @@ public class UserRepositoryTest extends AbstractRepositoryTest {
         User savedUser = userRepository.findOne(1L);
         assertThat(savedUser).isNotNull();
         assertThat(savedUser.getEmail()).isEqualTo("zeroual.abde@gmail.com");
-        assertThat(savedUser.getPassword()).isEqualTo("$2a$10$9m.et2mcPSzA4RdS1AOGPemNLOCerTkyEC99BUdqMSNL.4F9HUtbW");
         assertThat(savedUser.getFirstName()).isEqualTo("Abdellah");
         assertThat(savedUser.getLastName()).isEqualTo("ZEROUAL");
-        assertThat(savedUser.isActivated()).isTrue();
     }
 
     @Test
