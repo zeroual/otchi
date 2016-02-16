@@ -19,7 +19,7 @@ public class UserRepositoryTest extends AbstractRepositoryTest {
     @DatabaseSetup("/dbunit/users/users.xml")
     @Transactional
     public void shouldMapWithDatabase() {
-        User savedUser = userRepository.findOne(1L);
+        User savedUser = userRepository.findOne("1");
         assertThat(savedUser).isNotNull();
         assertThat(savedUser.getEmail()).isEqualTo("zeroual.abde@gmail.com");
         assertThat(savedUser.getFirstName()).isEqualTo("Abdellah");

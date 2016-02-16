@@ -12,7 +12,7 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class MockCrudRepository<T, ID extends Long> implements CrudRepository<T, ID> {
+public class MockCrudRepository<T, ID extends String> implements CrudRepository<T, ID> {
 
     private static final Map<Class<?>, Set<Object>> objectRecords = new HashMap<>();
 

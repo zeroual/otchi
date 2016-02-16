@@ -43,7 +43,7 @@ public class PostResourceTest extends AbstractControllerTest {
                 .with(user("zeroual.abde@gmail.com")).with(csrf())
                 .content(json(recipeToSave))
                 .contentType(contentType)).andExpect(status().isCreated());
-        Post savedPost = postRepository.findOne(1L);
+        Post savedPost = postRepository.findOne("1");
         assertThat(savedPost).isNotNull();
         assertThat(savedPost.getRecipe().getTitle()).isEqualTo("recipe_title");
         assertThat(savedPost.getRecipe().getIngredients()).isNotEmpty();
@@ -59,7 +59,7 @@ public class PostResourceTest extends AbstractControllerTest {
                 .content(json(recipeToSave))
                 .contentType(contentType))
                 .andExpect(status().isCreated());
-        Post savedPost = postRepository.findOne(1L);
+        Post savedPost = postRepository.findOne("1");
         assertThat(savedPost.getAuthor()).isNotNull();
         assertThat(savedPost.getAuthor().getFirstName()).isEqualTo("Abdellah");
     }

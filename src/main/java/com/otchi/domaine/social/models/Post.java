@@ -15,14 +15,14 @@ import java.util.Set;
 public class Post {
 
     @Id
-    private Long id;
+    private String id;
 
     private Date creationDate;
 
     @DBRef
     private Recipe recipe;
 
-    private Set<Long> likers = new HashSet<>();
+    private Set<String> likers = new HashSet<>();
 
     @DBRef
     private User author;
@@ -35,7 +35,7 @@ public class Post {
 
     }
 
-    public void addLike(Long userId){
+    public void addLike(String userId){
         this.likers.add(userId);
     }
 
@@ -43,7 +43,7 @@ public class Post {
         return creationDate;
     }
 
-    public Set<Long> getLikers() {
+    public Set<String> getLikers() {
         return likers;
     }
 
@@ -56,7 +56,7 @@ public class Post {
         return this;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
