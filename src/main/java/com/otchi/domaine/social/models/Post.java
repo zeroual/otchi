@@ -47,6 +47,8 @@ public class Post {
         this.likers.add(userId);
     }
 
+    public void unLike (Long userId){ this.likers.remove(userId);}
+
     public Date getCreationDate() {
         return creationDate;
     }

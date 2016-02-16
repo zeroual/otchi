@@ -42,4 +42,11 @@ public class FeedServiceImplTest {
         feedService.likePost(1L, 1L);
         assertThat(post.getLikers()).hasSize(1);
     }
+
+    @Test
+    public void shouldUnlikePostIfAlreadyLiked() throws Exception{
+        Post post = postRepository.findOne(1L);
+        feedService.unlikePost(1L,1L);
+        assertThat(post.getLikers()).hasSize(0);
+    }
 }

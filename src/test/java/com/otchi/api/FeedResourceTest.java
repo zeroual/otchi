@@ -45,4 +45,16 @@ public class FeedResourceTest extends AbstractControllerTest {
         Post post = postRepository.findOne(1L);
         Assertions.assertThat(post.getLikers()).hasSize(1);
     }
+
+    @Test
+    @DatabaseSetup("/dbunit/social/stream-feeds.xml")
+    @Transactional
+    public  void shouldUnlikeAPost() throws Exception{
+        mockMvc.perform(post(ResourcesPath.FEED + "/1/unlike")
+                .with(user("user"))
+                .with(csrf()).contentType(contentType))
+                .andExpect(status().isOk());
+        Post post = postRepository.findOne(1L);
+        Assertions.assertThat(post.getLikers()).hasSize(0);
+    }
 }
