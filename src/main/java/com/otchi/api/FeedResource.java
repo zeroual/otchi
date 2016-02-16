@@ -38,4 +38,11 @@ public class FeedResource {
         Long userId = 1L;
         feedService.likePost(postId, userId);
     }
+
+    @RequestMapping(value = "/{postId}/unlike", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void unLikePost(@PathVariable(value = "postId") Long postId){
+        Long userId = 1L;
+        feedService.unlikePost(postId, userId);
+    }
 }

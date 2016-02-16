@@ -1,7 +1,6 @@
 package com.otchi.application.impl;
 
 import com.otchi.application.FeedService;
-import com.otchi.application.PublicationsService;
 import com.otchi.domaine.social.models.Post;
 import com.otchi.domaine.social.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +22,16 @@ public class FeedServiceImpl implements FeedService {
         Post p = postRepository.findOne(postId);
         p.addLike(userId);
         postRepository.save(p);
+    }
+
+    @Override
+    public void unlikePost(long postId, long userId) {
+        Post p = postRepository.findOne(postId);
+        if(p!=null){
+            if(p.getLikers().contains(userId)){
+                p.unLike(userId);
+                postRepository.save(p);
+            }
+        }
     }
 }
