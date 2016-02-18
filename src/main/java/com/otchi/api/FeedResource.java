@@ -3,7 +3,6 @@ package com.otchi.api;
 import com.otchi.api.facades.dto.PostDTO;
 import com.otchi.application.FeedFetcherService;
 import com.otchi.application.FeedService;
-import com.otchi.application.PublicationsService;
 import com.otchi.infrastructure.config.ResourcesPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

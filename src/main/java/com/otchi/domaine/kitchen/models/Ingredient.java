@@ -1,23 +1,18 @@
 package com.otchi.domaine.kitchen.models;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "INGREDIENT")
+@Document(collection = "ingredients")
 public class Ingredient {
 
     @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column( name = "NAME" )
     private String name;
 
-    @Column(name = "QUANTITY")
     private Double quantity;
 
-    @Column(name = "UNIT")
     private String unit;
 
     public Ingredient() {

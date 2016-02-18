@@ -31,6 +31,7 @@ public class PublicationsServiceImpl implements PublicationsService {
     public Post publishRecipe(Recipe recipe, String username) {
         Optional<User> user = userRepository.findOneByEmail(username);
         Post post = new Post(dateFactory.now());
+        post.setId();
         post.withRecipe(recipe);
         post.setAuthor(user.get());
         return postRepository.save(post);
