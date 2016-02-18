@@ -17,7 +17,7 @@ public class PostRepositoryTest extends AbstractRepositoryTest {
     @Test
     @DatabaseSetup(value = {"/dbunit/social/publications.xml"})
     public void shouldMapWithDatabase() {
-        Post savedPost = postRepository.findOne("1");
+        Post savedPost = postRepository.findOne(1L);
         assertThat(savedPost).isNotNull();
         assertThat(savedPost.getCreationDate().toString()).isEqualTo("2015-02-28 00:00:00.0");
 
@@ -33,7 +33,7 @@ public class PostRepositoryTest extends AbstractRepositoryTest {
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
         postToSave.withRecipe(recipe);
         postRepository.save(postToSave);
-        Post savedPost = postRepository.findOne("1");
+        Post savedPost = postRepository.findOne(1L);
         assertThat(savedPost.getId()).isNotNull();
         assertThat(savedPost.getRecipe().getId()).isNotNull();
 

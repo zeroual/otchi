@@ -4,7 +4,7 @@ import com.otchi.domaine.social.models.Post;
 import com.otchi.domaine.social.repositories.PostRepository;
 import com.otchi.utils.mocks.MockCrudRepository;
 
-public class MockPostRepository extends MockCrudRepository<Post, String> implements PostRepository {
+public class MockPostRepository extends MockCrudRepository<Post, Long> implements PostRepository {
     public MockPostRepository() {
         super(Post.class);
     }

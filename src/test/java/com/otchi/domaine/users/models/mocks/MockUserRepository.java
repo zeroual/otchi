@@ -7,7 +7,7 @@ import com.otchi.utils.mocks.MockCrudRepository;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
-public class MockUserRepository extends MockCrudRepository<User, String> implements UserRepository {
+public class MockUserRepository extends MockCrudRepository<User, Long> implements UserRepository {
     public MockUserRepository() {
         super(User.class);
     }

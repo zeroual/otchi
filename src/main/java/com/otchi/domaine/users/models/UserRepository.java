@@ -10,7 +10,7 @@ import java.util.Optional;
  * Spring Data  repository for the User entity.
  */
 @Repository
-public interface UserRepository extends CrudRepository<User, String> {
+public interface UserRepository extends CrudRepository<User, Long> {
 
     Optional<User> findOneByEmail(String email);
 }

@@ -17,7 +17,7 @@ public class FeedServiceImpl implements FeedService {
     }
 
     @Override
-    public void likePost(String postId, String userId) {
+    public void likePost(Long postId, Long userId) {
         Post p = postRepository.findOne(postId);
         p.addLike(userId);
         postRepository.save(p);

@@ -33,8 +33,8 @@ public class FeedResource {
 
     @RequestMapping(value = "/{postId}/like", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void likePost(@PathVariable(value = "postId") String postId){
-        String userId = "1";
+    public void likePost(@PathVariable(value = "postId") Long postId){
+        Long userId = 1L;
         feedService.likePost(postId, userId);
     }
 }

@@ -1,7 +1,9 @@
 package com.otchi.domaine.social.models;
 
+import com.otchi.domaine.Helper.SequenceDao;
 import com.otchi.domaine.kitchen.models.Recipe;
 import com.otchi.domaine.users.models.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,15 +16,22 @@ import java.util.Set;
 @Document(collection = "posts")
 public class Post {
 
+    @Autowired
+    private SequenceDao sequenceDao;
+
+    public void setId() {
+        this.id = 1L;//sequenceDao.getNextSequenceId("posting");
+    }
+
     @Id
-    private String id;
+    private Long id;
 
     private Date creationDate;
 
     @DBRef
     private Recipe recipe;
 
-    private Set<String> likers = new HashSet<>();
+    private Set<Long> likers = new HashSet<>();
 
     @DBRef
     private User author;
@@ -35,7 +44,7 @@ public class Post {
 
     }
 
-    public void addLike(String userId){
+    public void addLike(Long userId){
         this.likers.add(userId);
     }
 
@@ -43,7 +52,7 @@ public class Post {
         return creationDate;
     }
 
-    public Set<String> getLikers() {
+    public Set<Long> getLikers() {
         return likers;
     }
 
@@ -56,7 +65,7 @@ public class Post {
         return this;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 

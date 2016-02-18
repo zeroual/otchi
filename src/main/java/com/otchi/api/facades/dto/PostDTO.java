@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public class PostDTO implements DTO<Post> {
-    private String id;
+    private Long id;
     private AuthorDTO author;
 
     @JsonSerialize(using = CustomDateSerializer.class)
@@ -17,7 +17,7 @@ public class PostDTO implements DTO<Post> {
 
     private AbstractPostContent content;
 
-    private List<String> likers = new ArrayList<>();
+    private List<Long> likers = new ArrayList<>();
 
     private PostDTO() {
 
@@ -27,7 +27,7 @@ public class PostDTO implements DTO<Post> {
         extractFromDomain(post);
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
     public int getLikes(){ return likers.size(); }
@@ -44,7 +44,7 @@ public class PostDTO implements DTO<Post> {
         return author;
     }
 
-    public List<String> getLikers() {
+    public List<Long> getLikers() {
         return likers;
     }
 

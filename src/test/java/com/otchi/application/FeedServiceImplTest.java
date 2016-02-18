@@ -29,17 +29,17 @@ public class FeedServiceImplTest {
 
     @Test
     public void shouldAddNewLikeToPost() throws Exception {
-        feedService.likePost("1", "2");
-        Post post = postRepository.findOne("1");
+        feedService.likePost(1L, 2L);
+        Post post = postRepository.findOne(1L);
         assertThat(post.getLikers()).hasSize(1);
-        assertThat(post.getLikers()).containsExactly("2");
+        assertThat(post.getLikers()).containsExactly(2L);
     }
 
     @Test
     public void shouldNotAddLikeToPostIfAlreadyLiked() throws Exception {
-        feedService.likePost("1", "1");
-        Post post = postRepository.findOne("1");
-        feedService.likePost("1", "1");
+        feedService.likePost(1L, 1L);
+        Post post = postRepository.findOne(1L);
+        feedService.likePost(1L, 1L);
         assertThat(post.getLikers()).hasSize(1);
     }
 }
