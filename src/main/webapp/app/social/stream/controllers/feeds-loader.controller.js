@@ -6,7 +6,10 @@ angular.module("stream")
             FeedsService.likePost(post);
 
         };
+        $scope.unLikePost = function (post){
+            FeedsService.unLikePost(post);
 
+        };
         //FIXME CHANGE the name of this method
         $scope.loadNewPublishedPost = function (feed) {
             $scope.feeds.unshift(feed);

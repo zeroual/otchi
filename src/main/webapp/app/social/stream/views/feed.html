@@ -25,7 +25,8 @@
                 <div class="panel-footer" align="right">
                     <span>
                         <span class="label label-info">{{feed.likes}}</span>
-                         <a href="" class="button-link"  ng-click="likePost(feed)">Like</a>
+                         <a href="" class="button-link" ng-if="feed.liked == undefined || feed.liked == false" ng-click="likePost(feed)">Like</a>
+                        <a href="" class="button-link" ng-if="feed.liked == true" ng-click="unLikePost(feed)">Unlike</a>
                     </span>
                      <span>
                          <a class="button-link">Share</a>
