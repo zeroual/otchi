@@ -56,4 +56,25 @@ describe('FeedLoaderController', function () {
         });
     });
 
+
+    describe('unlike post', function () {
+        var post = {id: 1, likes: 1, liked:true};
+        it('should decrement the like count by one', function () {
+            $scope.unLikePost(post);
+            expect(post.likes).toEqual(0);
+        });
+
+        it('should ask the server to perform post unlike', function () {
+            $httpBackend.expectPOST('/rest/v1/feed/1/unlike').respond(200);
+            $scope.unLikePost(post);
+            $httpBackend.flush();
+        });
+        it('should not decrement the like count if is already unliked', function () {
+            $scope.unLikePost(post);
+            $scope.unLikePost(post);
+            expect(post.likes).toEqual(0);
+        });
+    });
+
+
 });
