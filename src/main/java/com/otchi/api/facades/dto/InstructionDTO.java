@@ -5,7 +5,7 @@ import com.otchi.domaine.kitchen.models.Instruction;
 
 public class InstructionDTO implements DTO<Instruction> {
 
-    private Long id;
+    private String id;
     private String content;
 
     public InstructionDTO(Instruction instruction) {
@@ -27,7 +27,7 @@ public class InstructionDTO implements DTO<Instruction> {
         this.content = instruction.getContent();
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

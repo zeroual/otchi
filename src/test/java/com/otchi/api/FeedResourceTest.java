@@ -42,7 +42,7 @@ public class FeedResourceTest extends AbstractControllerTest {
                 .with(user("user"))
                 .with(csrf()).contentType(contentType))
                 .andExpect(status().isOk());
-        Post post = postRepository.findOne(1L);
+        Post post = postRepository.findOne("1");
         Assertions.assertThat(post.getLikers()).hasSize(1);
     }
 }

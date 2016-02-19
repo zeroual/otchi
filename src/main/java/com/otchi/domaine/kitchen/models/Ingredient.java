@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Ingredient {
 
     @Id
-    private Long id;
+    private String id;
 
     private String name;
 
@@ -24,7 +24,7 @@ public class Ingredient {
         this.unit = unit;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

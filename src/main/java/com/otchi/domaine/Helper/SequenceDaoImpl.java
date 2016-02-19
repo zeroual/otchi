@@ -12,14 +12,12 @@ import org.springframework.stereotype.Repository;
  * Created by MJR2 on 2/18/2016.
  */
 
-@Repository
-class SequenceDaoImpl implements SequenceDao {
+class SequenceDaoImpl {
 
     @Autowired
-    private MongoOperations mongoOperation;
+    private static MongoOperations mongoOperation;
 
-    @Override
-    public Long getNextSequenceId(String key) throws SequenceException {
+    public static Long getNextSequenceId(String key) throws SequenceException {
        // Get Sequence Id
         Query query = new Query(Criteria.where("_id").is(key));
 

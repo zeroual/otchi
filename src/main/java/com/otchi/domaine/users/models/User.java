@@ -15,7 +15,7 @@ public class User {
 
     @Id
     @Column(name = "ID")
-    private Long id;
+    private String id;
 
     @Size(max = 50)
     @Column(name = "FIRST_NAME", length = 50)
@@ -43,11 +43,11 @@ public class User {
     private User() {
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

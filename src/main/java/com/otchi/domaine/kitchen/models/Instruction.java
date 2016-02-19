@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 public class Instruction {
 
     @Id
-    private Long id;
+    private String id;
 
     private String content;
 
@@ -22,7 +22,7 @@ public class Instruction {
         return content;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 }

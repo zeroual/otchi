@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.toList;
 
 public class RecipeDTO extends AbstractPostContent implements DTO<Recipe> {
 
-    private Long id;
+    private String id;
     private String description;
     private Integer cookTime;
     private Integer preparationTime;
@@ -37,7 +37,7 @@ public class RecipeDTO extends AbstractPostContent implements DTO<Recipe> {
 
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

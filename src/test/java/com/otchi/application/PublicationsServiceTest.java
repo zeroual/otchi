@@ -42,7 +42,7 @@ public class PublicationsServiceTest {
     public void shouldCreateNewPostWithRecipeAsContent() {
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
         publicationsService.publishRecipe(recipe, "email@gmail.com");
-        Post savedPost = postRepository.findOne(1L);
+        Post savedPost = postRepository.findOne("1");
         assertThat(savedPost).isNotNull();
         assertThat(savedPost.getRecipe()).isNotNull();
         assertThat(savedPost.getRecipe().getTitle()).isEqualTo("recipe_title");
@@ -52,7 +52,7 @@ public class PublicationsServiceTest {
     public void shouldAssignRecipeToHisAuthor() {
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
         publicationsService.publishRecipe(recipe, "email@gmail.com");
-        Post savedPost = postRepository.findOne(1L);
+        Post savedPost = postRepository.findOne("1");
         assertThat(savedPost).isNotNull();
         assertThat(savedPost.getAuthor()).isNotNull();
         assertThat(savedPost.getAuthor().getFirstName()).isEqualTo("abde");
@@ -66,7 +66,7 @@ public class PublicationsServiceTest {
 
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
         publicationsService.publishRecipe(recipe, "email@gmail.com");
-        Post savedPost = postRepository.findOne(1L);
+        Post savedPost = postRepository.findOne("1");
         assertThat(savedPost.getCreationDate()).isEqualTo(now);
     }
 }

@@ -4,7 +4,7 @@ import com.otchi.domaine.kitchen.models.Ingredient;
 
 public class IngredientDTO implements DTO<Ingredient> {
 
-    private Long id;
+    private String id;
     private String name;
     private Double quantity;
     private String unit;
@@ -18,7 +18,7 @@ public class IngredientDTO implements DTO<Ingredient> {
     }
 
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

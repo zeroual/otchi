@@ -4,7 +4,7 @@ package com.otchi.api.facades.dto;
 import com.otchi.domaine.users.models.User;
 
 public class AuthorDTO {
-    private Long id;
+    private String id;
     private String firstName;
     private String lastName;
 
@@ -15,7 +15,7 @@ public class AuthorDTO {
         this.lastName = author.getLastName();
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

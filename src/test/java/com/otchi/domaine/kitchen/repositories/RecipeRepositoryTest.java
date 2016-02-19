@@ -19,7 +19,7 @@ public class RecipeRepositoryTest extends AbstractRepositoryTest {
     @Test
     @DatabaseSetup("/dbunit/kitchen/recipes.xml")
     public void shouldMapWithDataBase() {
-        Recipe recipe = recipeRepository.findOne(1L);
+        Recipe recipe = recipeRepository.findOne("1");
         assertThat(recipe.getDescription()).isEqualTo("toto");
         assertThat(recipe.getTitle()).isEqualTo("TITLE_SAMPLE");
         assertThat(recipe.getCookTime()).isEqualTo(12);
@@ -50,7 +50,7 @@ public class RecipeRepositoryTest extends AbstractRepositoryTest {
         recipe.addInstruction(instruction);
         recipeRepository.save(recipe);
 
-        Recipe savedRecipe = recipeRepository.findOne(1L);
+        Recipe savedRecipe = recipeRepository.findOne("1");
         assertThat(savedRecipe).isNotNull();
         assertThat(savedRecipe.getInstructions()).isNotEmpty();
         assertThat(savedRecipe.getInstructions()).isNotEmpty();

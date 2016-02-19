@@ -12,7 +12,7 @@ import java.util.List;
 public class Recipe{
 
     @Id
-    private Long id;
+    private String id;
 
     private String description;
 
@@ -59,7 +59,7 @@ public class Recipe{
         this.description = description;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
