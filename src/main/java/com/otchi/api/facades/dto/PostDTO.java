@@ -8,16 +8,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 public class PostDTO implements DTO<Post> {
     private Long id;
     private AuthorDTO author;
 
     @JsonSerialize(using = CustomDateSerializer.class)
-    private Date postingDate;
+    private Date createdTime;
 
     private AbstractPostContent content;
 
-    private List<Long> likers = new ArrayList<>();
+    private List<UserDTO> likes = new ArrayList<>();
 
     private PostDTO() {
 
@@ -30,10 +32,13 @@ public class PostDTO implements DTO<Post> {
     public Long getId() {
         return id;
     }
-    public int getLikes(){ return likers.size(); }
 
-    public Date getPostingDate() {
-        return postingDate;
+    public List<UserDTO> getLikes() {
+        return likes;
+    }
+
+    public Date getCreatedTime() {
+        return createdTime;
     }
 
     public AbstractPostContent getContent() {
@@ -44,9 +49,6 @@ public class PostDTO implements DTO<Post> {
         return author;
     }
 
-    public List<Long> getLikers() {
-        return likers;
-    }
 
     @Override
     public Post toDomain() {
@@ -57,8 +59,8 @@ public class PostDTO implements DTO<Post> {
     public void extractFromDomain(Post post) {
         this.id = post.getId();
         this.author = new AuthorDTO(post.getAuthor());
-        this.postingDate = post.getCreationDate();
+        this.createdTime = post.getCreatedTime();
         this.content = new RecipeDTO(post.getRecipe());
-        this.likers=new ArrayList<>(post.getLikers());
+        this.likes = post.getLikes().stream().map(UserDTO::new).collect(toList());
     }
 }

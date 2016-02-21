@@ -25,7 +25,7 @@ public class FeedFetcherServiceImpl implements FeedFetcherService {
     public List<Post> fetchAllFeeds() {
         return StreamSupport
                 .stream(postRepository.findAll().spliterator(), true)
-                .sorted((o1, o2) -> o2.getCreationDate().compareTo(o1.getCreationDate()))
+                .sorted((o1, o2) -> o2.getCreatedTime().compareTo(o1.getCreatedTime()))
                 .collect(toList());
     }
 }

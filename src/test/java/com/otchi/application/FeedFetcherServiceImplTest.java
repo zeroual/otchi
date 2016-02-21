@@ -31,7 +31,7 @@ public class FeedFetcherServiceImplTest {
         List<Post> foundPosts = feedFetcherService.fetchAllFeeds();
         assertThat(foundPosts).hasSize(2);
         assertThat(foundPosts)
-                .extracting(Post::getCreationDate)
+                .extracting(Post::getCreatedTime)
                 .containsExactly(parse("2016-02-28"), parse("2016-02-27"))
                 .isSortedAccordingTo((o1, o2) -> o2.compareTo(o1));
     }

@@ -17,20 +17,27 @@
             <div class="panel panel-default" ng-repeat="feed in feeds">
                 <div class="panel-heading panel-heading-gray">
                     <i class="glyphicon glyphicon-retweet"></i> {{feed.author.firstName}} - {{feed.author.lastName}}
-                    <time class="bullet text-gray">{{feed.postingDate |timeAgo}}</time>
+                    <time class="bullet text-gray">{{feed.createdTime |timeAgo}}</time>
                 </div>
                 <div class="panel-body" ng-init="recipe=feed.content">
                     <recipe-viewer/>
                 </div>
-                <div class="panel-footer" align="right">
-                    <span>
-                        <span class="label label-info">{{feed.likes}}</span>
-                         <a href="" class="button-link" ng-if="feed.liked == undefined || feed.liked == false" ng-click="likePost(feed)">Like</a>
-                        <a href="" class="button-link" ng-if="feed.liked == true" ng-click="unLikePost(feed)">Unlike</a>
-                    </span>
-                     <span>
-                         <a class="button-link">Share</a>
-                    </span>
+                <div class="panel-footer">
+                    <div class="pull-left" ng-if="feed.likes.length > 0">
+                        <a href="" class="button-link text-muted" ng-click="showLikes(feed)">
+                            {{feed.likes.length}} person like this
+                        </a>
+
+                    </div>
+                    <div align="right">
+                        <span ng-switch="feed.liked">
+                            <a href="" class="button-link" ng-switch-when="false" ng-click="likePost(feed)">Like</a>
+                            <a href="" class="button-link" ng-switch-when="true" ng-click="unLikePost(feed)">Unlike</a>
+                        </span>
+                         <span>
+                             <a class="button-link">Share</a>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>

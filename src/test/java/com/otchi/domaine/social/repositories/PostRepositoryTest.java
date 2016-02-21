@@ -19,7 +19,11 @@ public class PostRepositoryTest extends AbstractRepositoryTest {
     public void shouldMapWithDatabase() {
         Post savedPost = postRepository.findOne(1L);
         assertThat(savedPost).isNotNull();
-        assertThat(savedPost.getCreationDate().toString()).isEqualTo("2015-02-28 00:00:00.0");
+        assertThat(savedPost.getCreatedTime().toString()).isEqualTo("2015-02-28 00:00:00.0");
+        assertThat(savedPost.getLikes()).isNotEmpty();
+        assertThat(savedPost.getLikes())
+                .extracting(user -> user.getFirstName())
+                .contains("Abdellah");
 
         assertThat(savedPost.getRecipe()).isNotNull();
         assertThat(savedPost.getRecipe().getTitle()).isEqualTo("TITLE_SAMPLE_2");

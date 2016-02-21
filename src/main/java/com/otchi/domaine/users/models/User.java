@@ -34,7 +34,7 @@ public class User {
         this.email = email;
     }
 
-    public User(String firstName, String lastName, String email) {
+    public User(String email, String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

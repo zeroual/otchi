@@ -1,36 +1,30 @@
 package com.otchi.api.facades.dto;
 
 import com.otchi.domaine.users.models.User;
-import org.hibernate.validator.constraints.Email;
-
-import javax.validation.constraints.Size;
 
 public class UserDTO {
 
-    @Email
-    @Size(min = 5, max = 100)
-    private String email;
-
-    @Size(max = 50)
+    private Long id;
     private String firstName;
-
-    @Size(max = 50)
     private String lastName;
 
     public UserDTO() {
     }
 
     public UserDTO(User user) {
-        this(user.getEmail(), user.getFirstName(), user.getLastName());
+        this(user.getId(), user.getFirstName(), user.getLastName());
     }
 
-    public UserDTO(String email, String firstName, String lastName) {
+    public UserDTO(Long id, String firstName, String lastName) {
+        this.id = id;
 
-        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
+    public Long getId() {
+        return id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -40,14 +34,10 @@ public class UserDTO {
         return lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     @Override
     public String toString() {
         return "UserDTO{" +
-                ", email='" + email + '\'' +
+                ", id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 "}";

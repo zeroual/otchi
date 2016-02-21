@@ -3,12 +3,13 @@ package com.otchi.api;
 import com.otchi.api.facades.dto.PostDTO;
 import com.otchi.application.FeedFetcherService;
 import com.otchi.application.FeedService;
-import com.otchi.application.PublicationsService;
 import com.otchi.infrastructure.config.ResourcesPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -34,15 +35,15 @@ public class FeedResource {
 
     @RequestMapping(value = "/{postId}/like", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void likePost(@PathVariable(value = "postId") Long postId){
-        Long userId = 1L;
-        feedService.likePost(postId, userId);
+    public void likePost(@PathVariable(value = "postId") Long postId, @AuthenticationPrincipal Principal principal) {
+        String username = principal.getName();
+        feedService.likePost(postId, username);
     }
 
     @RequestMapping(value = "/{postId}/unlike", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void unLikePost(@PathVariable(value = "postId") Long postId){
-        Long userId = 1L;
-        feedService.unlikePost(postId, userId);
+    public void unLikePost(@PathVariable(value = "postId") Long postId, @AuthenticationPrincipal Principal principal) {
+        String username = principal.getName();
+        feedService.unlikePost(postId, username);
     }
 }

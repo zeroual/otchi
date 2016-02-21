@@ -2,7 +2,7 @@ package com.otchi.application;
 
 
 public interface FeedService {
-    void likePost(Long postId, Long userId);
+    void likePost(Long postId, String username);
 
-    void unlikePost(long postId, long userId);
+    void unlikePost(long postId, String username);
 }
