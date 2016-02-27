@@ -27,7 +27,7 @@ public class CustomUserDetailsService implements org.springframework.security.co
         log.debug("Authenticating {}", email);
         Optional<Account> userFromDatabase = userRepository.findOneByEmail(email);
         return userFromDatabase.map(user -> {
-            if (!user.isActivated()) {
+            if (!user.isEnabled()) {
                 throw new UserNotActivatedException("User " + email + " was not activated");
             }
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();

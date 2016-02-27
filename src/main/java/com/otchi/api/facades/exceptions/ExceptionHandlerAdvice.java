@@ -1,5 +1,6 @@
 package com.otchi.api.facades.exceptions;
 
+import com.otchi.domaine.users.exceptions.AccountAlreadyExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -37,5 +38,11 @@ public class ExceptionHandlerAdvice {
     public ResponseEntity constraintError(ConstraintViolationException e) {
         LOGGER.warn("Wrong arguments given to request", e);
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AccountAlreadyExistsException.class)
+    public ResponseEntity accountAlreadyExist(AccountAlreadyExistsException e) {
+        LOGGER.warn("Account already exists:", e);
+        return new ResponseEntity(HttpStatus.CONFLICT);
     }
 }

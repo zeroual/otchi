@@ -30,7 +30,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {WebConfig.class, DatabaseConfig.class, ServicesConfig.class, SecurityConfig.class})
+@ContextConfiguration(classes = {ApplicationConfig.class})
 @WebAppConfiguration()
 @IntegrationTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -106,4 +106,9 @@ public class AuthenticationTest {
                 .andExpect(status().isOk());
     }
 
+    @Test
+    public void shouldAllowUserToRegister() throws Exception {
+        mockMvc.perform(post(ResourcesPath.REGISTER).with(csrf()))
+                .andExpect(status().isBadRequest());
+    }
 }

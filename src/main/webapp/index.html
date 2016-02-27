@@ -12,12 +12,15 @@
     <!-- Bootstrap core CSS -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet">
+    <link rel="stylesheet" href="bower_components/ngToast/dist/ngToast.css">
+
     <link href="assets/css/main.css" rel="stylesheet">
 
 
 </head>
 
 <body ng-app="otchi">
+<toast></toast>
 <div ui-view="navbar"></div>
 <div class="container">
     <div ui-view="content">
@@ -36,8 +39,14 @@
 <script src="bower_components/moment/locale/fr.js"></script>
 <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/ngToast/dist/ngToast.js"></script>
 
 <script type="text/javascript" src="app/authentication/authentication.js"></script>
+<script type="text/javascript" src="app/components/toaster/toaster.js"></script>
 <script type="text/javascript" src="app/app.js"></script>
 <script type="text/javascript" src="app/app-config.js"></script>
 
@@ -54,11 +63,15 @@
 
 <script type="text/javascript" src="app/authentication/services/auth.session.service.js"></script>
 <script type="text/javascript" src="app/authentication/services/account.service.js"></script>
+<script type="text/javascript" src="app/authentication/services/identity.service.js"></script>
 <script type="text/javascript" src="app/authentication/services/principal.service.js"></script>
 <script type="text/javascript" src="app/authentication/services/auth.service.js"></script>
 <script type="text/javascript" src="app/authentication/controllers/login.controller.js"></script>
+<script type="text/javascript" src="app/authentication/controllers/register.controller.js"></script>
 <script type="text/javascript" src="app/authentication/interceptors/auth.interceptor.js"></script>
 
 <script type="text/javascript" src="app/components/navbar/navbar.controller.js"></script>
+<script type="text/javascript" src="app/components/toaster/toaster.js"></script>
+<script type="text/javascript" src="app/components/toaster/services/toaster.service.js"></script>
 </body>
 </html>
