@@ -7,14 +7,10 @@
             LAST_NAME="ZEROUAL"
     />
 
-    <recipe ID="2"
-            TITLE="TITLE_SAMPLE_2"/>
-
     <POST ID="1"
           CREATED_AT="2015-02-28"
-          RECIPE_ID="2"
           AUTHOR_ID="1"
-            />
+    />
     <POST_LIKES USER_ID="1"
                 POST_ID="1"/>
 </dataset>

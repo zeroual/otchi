@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h3 class="modal-title"> People Who Like This </h3>
+</div>
+<div class="modal-body">
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="like in likes">
+            <div class="media">
+                <div class="media-left media-middle">
+                    <a href="#">
+                        <img class="media-object"
+                             src="http://themekit.aws.ipv4.ro/dist/themes/music/images/50/singing-woman.jpg" width="35"
+                             alt="...">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a ui-sref="user/{{like.id}}" class="media-heading">{{like.firstName}} - {{like.lastName}}</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-default" type="button" ng-click="close()">Close</button>
+</div>

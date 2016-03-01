@@ -15,4 +15,7 @@
           AUTHOR_ID="1"
             />
 
+    <POST_LIKES USER_ID="1"
+                POST_ID="1"
+    />
 </dataset>

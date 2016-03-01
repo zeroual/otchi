@@ -33,7 +33,7 @@ public class PublicationsServiceTest {
         postRepository = new MockPostRepository();
         userRepository = new MockUserRepository();
 
-        userRepository.save(new User("abde", "zeros", "email@gmail.com"));
+        userRepository.save(new User("email@gmail.com", "abde", "zeros"));
         publicationsService = new PublicationsServiceImpl(postRepository, userRepository, dateFactory);
 
     }
@@ -67,6 +67,6 @@ public class PublicationsServiceTest {
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
         publicationsService.publishRecipe(recipe, "email@gmail.com");
         Post savedPost = postRepository.findOne(1L);
-        assertThat(savedPost.getCreationDate()).isEqualTo(now);
+        assertThat(savedPost.getCreatedTime()).isEqualTo(now);
     }
 }

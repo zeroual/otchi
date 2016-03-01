@@ -20,7 +20,7 @@ public class CurrentUserResourceTest extends AbstractControllerTest {
                 .contentType(contentType))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(content().json("{\"email\":\"zeroual.abde@gmail.com\",\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"}"));
+                .andExpect(content().json("{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"}"));
     }
 
     @Test

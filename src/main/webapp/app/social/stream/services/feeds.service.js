@@ -1,5 +1,29 @@
 angular.module("stream")
-    .service("FeedsService", function ($resource) {
+    .service("FeedsService", function ($resource, Principal) {
+
+        function _markFeedAsLikedOrNo(feed) {
+            Principal.identity().then(function (account) {
+                feed.liked = feed.likes.some(function (like) {
+                    return account.id == like.id;
+                });
+            });
+            return feed;
+        };
+
+        function _addMyLikeTo(post) {
+            Principal.identity().then(function (account) {
+                post.likes.push(account);
+            });
+        }
+
+        function _removeMyLikeFrom(post) {
+            Principal.identity().then(function (account) {
+                post.likes.splice(post.likes.indexOf(function (like) {
+                    return like === account.id;
+                }), 1);
+            });
+        }
+
         var service = $resource('/rest/v1/feed/:id', {id: '@id'},
             {
                 like: {
@@ -14,23 +38,22 @@ angular.module("stream")
         );
 
         this.fetchAllFeeds = function () {
-            return service.query();
+            return service.query(function (feeds) {
+                return feeds.map(_markFeedAsLikedOrNo);
+            });
         };
 
         this.likePost = function (post) {
             service.like({'id': post.id});
-            if (post.liked == undefined || post.liked == false) {
-                post.likes++;
-                post.liked = true;
-            }
+            _addMyLikeTo(post);
+            post.liked = true;
         };
+
 
         this.unLikePost = function (post) {
             service.unLike({'id': post.id});
-            if (post.liked !=undefined && post.liked == true) {
-                post.likes--;
-                post.liked = false;
-            }
+            _removeMyLikeFrom(post);
+            post.liked = false;
         };
 
     });

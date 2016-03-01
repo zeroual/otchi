@@ -20,45 +20,43 @@ public class Post {
 
     @Column(name = "CREATED_AT")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date creationDate;
+    private Date createdTime;
 
     @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinColumn(name = "RECIPE_ID")
     private Recipe recipe;
 
-    @ElementCollection
-    @CollectionTable(
-            name = "POST_LIKES",
-            joinColumns=@JoinColumn(name = "POST_ID")
-    )
-    @Column(name="USER_ID")
-    private Set<Long> likers = new HashSet<>();
-
     @ManyToOne
     @JoinColumn(name = "AUTHOR_ID")
     private User author;
 
-    public Post(Date creationDate) {
-        this.creationDate=creationDate;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "POST_LIKES",
+            joinColumns = {@JoinColumn(name = "POST_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")}
+    )
+    private Set<User> likes = new HashSet<>();
+
+    public Post(Date createdTime) {
+        this.createdTime = createdTime;
     }
 
     public Post() {
 
     }
 
-    public void addLike(Long userId){
-        this.likers.add(userId);
+    public void addLike(User user) {
+        this.likes.add(user);
     }
 
-    public void unLike (Long userId){ this.likers.remove(userId);}
-
-    public Date getCreationDate() {
-        return creationDate;
+    public void unLike(User user) {
+        this.likes.remove(user);
     }
 
-    public Set<Long> getLikers() {
-        return likers;
+    public Date getCreatedTime() {
+        return createdTime;
     }
+
 
     public Recipe getRecipe() {
         return recipe;
@@ -79,5 +77,9 @@ public class Post {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public Set<User> getLikes() {
+        return likes;
     }
 }
