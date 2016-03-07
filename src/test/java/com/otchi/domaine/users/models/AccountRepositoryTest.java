@@ -23,7 +23,7 @@ public class AccountRepositoryTest extends AbstractRepositoryTest {
         assertThat(savedAccount).isNotNull();
         assertThat(savedAccount.getEmail()).isEqualTo("zeroual.abde@gmail.com");
         assertThat(savedAccount.getPassword()).isEqualTo("$2a$10$9m.et2mcPSzA4RdS1AOGPemNLOCerTkyEC99BUdqMSNL.4F9HUtbW");
-        assertThat(savedAccount.isActivated()).isTrue();
+        assertThat(savedAccount.isEnabled()).isTrue();
         assertThat(savedAccount.getUser()).isNotNull();
     }
 

@@ -1,5 +1,5 @@
 angular.module('authentication')
-    .factory('Principal', function Principal($q, Account) {
+    .factory('Principal', function Principal($q, IdentityService) {
         var _identity,
             _authenticated = false;
 
@@ -16,21 +16,17 @@ angular.module('authentication')
             },
             identity: function (force) {
                 var deferred = $q.defer();
-
                 if (force === true) {
                     _identity = undefined;
                 }
-
                 // check and see if we have retrieved the identity data from the server.
                 // if we have, reuse it by immediately resolving
                 if (angular.isDefined(_identity)) {
                     deferred.resolve(_identity);
-
                     return deferred.promise;
                 }
-
                 // retrieve the identity data from the server, update the identity object, and then resolve.
-                Account.get().$promise
+                IdentityService.get().$promise
                     .then(function (account) {
                         _identity = account.data;
                         _authenticated = true;

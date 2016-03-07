@@ -3,10 +3,7 @@ package com.otchi.domaine.users.models;
 
 import org.hibernate.validator.constraints.Email;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -15,6 +12,7 @@ public class User {
 
     @Id
     @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Size(max = 50)
@@ -50,7 +48,6 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
-
 
 
     public String getFirstName() {
@@ -104,6 +101,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
+                "id:" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

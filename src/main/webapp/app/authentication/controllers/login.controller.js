@@ -1,5 +1,5 @@
 angular.module('authentication')
-    .controller('LoginController', function ($rootScope, $scope, $state, $timeout, Auth) {
+    .controller('LoginController', function ($rootScope, $scope, $state, Auth) {
         $scope.user = {};
         $scope.errors = {};
 
