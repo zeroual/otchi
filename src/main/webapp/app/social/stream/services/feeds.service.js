@@ -33,6 +33,10 @@ angular.module("stream")
                 unLike: {
                     method: 'POST',
                     url: '/rest/v1/feed/:id/unlike'
+                },
+                comment: {
+                    method: 'POST',
+                    url: '/rest/v1/feed/:id/comment'
                 }
             }
         );
@@ -54,6 +58,13 @@ angular.module("stream")
             service.unLike({'id': post.id});
             _removeMyLikeFrom(post);
             post.liked = false;
+        };
+
+        this.commentOnPost = function (feed, comment) {
+            return service.comment({'id': feed.id}, comment).$promise
+                .then(function (response) {
+                    feed.comments.push(response);
+                });
         };
 
     });

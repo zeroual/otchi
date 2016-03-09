@@ -1,7 +1,9 @@
 package com.otchi.application;
 
 import com.otchi.application.impl.FeedServiceImpl;
+import com.otchi.application.utils.DateFactory;
 import com.otchi.domaine.social.exceptions.PostNotFoundException;
+import com.otchi.domaine.social.models.Comment;
 import com.otchi.domaine.social.models.Post;
 import com.otchi.domaine.social.repositories.PostRepository;
 import com.otchi.domaine.social.repositories.mocks.MockPostRepository;
@@ -11,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
@@ -21,14 +24,17 @@ public class FeedServiceImplTest {
 
     private PostRepository postRepository = new MockPostRepository();
     private UserService userService = Mockito.mock(UserService.class);
-    private FeedService feedService = new FeedServiceImpl(postRepository, userService);
+    private DateFactory dateFactory = Mockito.mock(DateFactory.class);
+    private FeedService feedService = new FeedServiceImpl(postRepository, userService,dateFactory);
     private User user = new User("email@fofo.com", "firstName_sample", "lastName");
 
     @Before
     public void setUp() {
         MockCrudRepository.clearDatabase();
+        // Create new Post;
         Post post = new Post(new Date());
         postRepository.save(post);
+        //mock user service
         when(userService.findUserByEmail("email@fofo.com")).thenReturn(Optional.of(user));
     }
 
@@ -43,7 +49,7 @@ public class FeedServiceImplTest {
     }
 
     @Test(expected = PostNotFoundException.class)
-    public void shouldNotAllowToLikeUnExistingPost(){
+    public void shouldNotAllowToLikeUnExistingPost() {
         feedService.likePost(123L, "email@fofo.com");
     }
 
@@ -56,6 +62,29 @@ public class FeedServiceImplTest {
     }
 
     @Test
+    public void shouldAddCommentToPost() throws Exception {
+        String commentContent = "What a delicious meal";
+        feedService.commentOnPost(1L, commentContent, "email@fofo.com");
+        Post post = postRepository.findOne(1L);
+        assertThat(post.getComments()).hasSize(1).extracting(Comment::getContent).containsExactly(commentContent);
+        assertThat(post.getComments()).extracting(comment -> comment.getAuthor().getEmail()).containsExactly("email@fofo.com");
+    }
+
+    @Test
+    public void shouldSetCommentCreationOnDateToNow() throws Exception {
+        Date now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse("2015-02-28 12:15:22.8");
+        Mockito.when(dateFactory.now()).thenReturn(now);
+        feedService.commentOnPost(1L, "What a delicious meal", "email@fofo.com");
+        Post post = postRepository.findOne(1L);
+        assertThat(post.getComments()).extracting(Comment::getCreatedOn).containsExactly(now);
+    }
+
+    @Test(expected = PostNotFoundException.class)
+    public void shouldNotAllowToCommentUnExistingPost() {
+        feedService.commentOnPost(123L,"comment","email@fofo.com");
+    }
+
+    @Test
     public void shouldUnlikePostIfAlreadyLiked() throws Exception {
         Post post = postRepository.findOne(1L);
         feedService.likePost(1L, "email@fofo.com");
@@ -63,8 +92,9 @@ public class FeedServiceImplTest {
         feedService.unlikePost(1L, "email@fofo.com");
         assertThat(post.getLikes()).hasSize(0);
     }
+
     @Test(expected = PostNotFoundException.class)
-    public void shouldNotAllowToDesLikeUnExistingPost(){
+    public void shouldNotAllowToDesLikeUnExistingPost() {
         feedService.unlikePost(123L, "email@fofo.com");
     }
 }

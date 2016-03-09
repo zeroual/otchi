@@ -18,4 +18,12 @@
     <POST_LIKES USER_ID="1"
                 POST_ID="1"
     />
+
+    <POST_COMMENT
+            ID="1"
+            POST_ID="1"
+            AUTHOR_ID="1"
+            CONTENT="It is very delicious"
+            CREATED_ON="2016-02-22"
+    />
 </dataset>

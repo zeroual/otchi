@@ -15,6 +15,16 @@
           RECIPE_ID="2"
           AUTHOR_ID="1"
             />
+
     <POST_LIKES USER_ID="1"
                 POST_ID="1"/>
+    <POST_COMMENT
+            ID="1"
+            AUTHOR_ID="1"
+            POST_ID="1"
+            CONTENT="what a delicious meal"
+            CREATED_ON="2016-02-22"
+
+    />
+
 </dataset>

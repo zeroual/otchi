@@ -2,8 +2,10 @@ package com.otchi.domaine.social.repositories;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.otchi.domaine.kitchen.models.Recipe;
+import com.otchi.domaine.social.models.Comment;
 import com.otchi.domaine.social.models.Post;
 import com.otchi.utils.AbstractRepositoryTest;
+import org.assertj.core.groups.Tuple;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,8 +29,14 @@ public class PostRepositoryTest extends AbstractRepositoryTest {
 
         assertThat(savedPost.getRecipe()).isNotNull();
         assertThat(savedPost.getRecipe().getTitle()).isEqualTo("TITLE_SAMPLE_2");
+
         assertThat(savedPost.getAuthor()).isNotNull();
         assertThat(savedPost.getAuthor().getFirstName()).isEqualTo("Abdellah");
+
+        assertThat(savedPost.getComments()).hasSize(1).extracting(Comment::getContent,comment -> comment.getCreatedOn().toString())
+                .containsExactly(new Tuple("It is very delicious", "2016-02-22 00:00:00.0"));
+        assertThat(savedPost.getComments()).hasSize(1).extracting(comment -> comment.getAuthor().getFirstName())
+                .containsExactly("Abdellah");
     }
 
     @Test

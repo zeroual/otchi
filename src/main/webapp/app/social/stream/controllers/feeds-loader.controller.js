@@ -24,6 +24,10 @@ angular.module("stream")
             });
         };
 
+        $scope.commentOnPost = function (feed, commentContent) {
+            FeedsService.commentOnPost(feed, commentContent);
+        };
+
         //FIXME CHANGE the name of this method
         $scope.loadNewPublishedPost = function (feed) {
             feed.likes = [];
