@@ -2,8 +2,8 @@ package com.otchi.api;
 
 import com.otchi.api.facades.dto.AccountDTO;
 import com.otchi.application.AccountService;
-import com.otchi.domaine.users.exceptions.AccountAlreadyExistsException;
-import com.otchi.domaine.users.models.Account;
+import com.otchi.domain.users.exceptions.AccountAlreadyExistsException;
+import com.otchi.domain.users.models.Account;
 import com.otchi.infrastructure.config.ResourcesPath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

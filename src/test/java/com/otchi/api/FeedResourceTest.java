@@ -2,8 +2,8 @@ package com.otchi.api;
 
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.otchi.domaine.social.models.Post;
-import com.otchi.domaine.social.repositories.PostRepository;
+import com.otchi.domain.social.models.Post;
+import com.otchi.domain.social.repositories.PostRepository;
 import com.otchi.infrastructure.config.ResourcesPath;
 import com.otchi.utils.AbstractControllerTest;
 import org.junit.Test;

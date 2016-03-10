@@ -1,7 +1,7 @@
 package com.otchi.application;
 
-import com.otchi.domaine.users.exceptions.AccountAlreadyExistsException;
-import com.otchi.domaine.users.models.Account;
+import com.otchi.domain.users.exceptions.AccountAlreadyExistsException;
+import com.otchi.domain.users.models.Account;
 
 public interface AccountService {
 

@@ -1,7 +1,7 @@
 package com.otchi.api.facades.dto;
 
 
-import com.otchi.domaine.users.models.User;
+import com.otchi.domain.users.models.User;
 
 public class AuthorDTO {
     private Long id;

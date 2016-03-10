@@ -2,11 +2,11 @@ package com.otchi.application.impl;
 
 import com.otchi.application.PublicationsService;
 import com.otchi.application.utils.DateFactory;
-import com.otchi.domaine.kitchen.models.Recipe;
-import com.otchi.domaine.social.models.Post;
-import com.otchi.domaine.social.repositories.PostRepository;
-import com.otchi.domaine.users.models.User;
-import com.otchi.domaine.users.models.UserRepository;
+import com.otchi.domain.kitchen.models.Recipe;
+import com.otchi.domain.social.models.Post;
+import com.otchi.domain.social.repositories.PostRepository;
+import com.otchi.domain.users.models.User;
+import com.otchi.domain.users.models.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

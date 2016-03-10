@@ -3,9 +3,9 @@ package com.otchi.application.impl;
 
 import com.otchi.application.AccountService;
 import com.otchi.application.MailService;
-import com.otchi.domaine.users.exceptions.AccountAlreadyExistsException;
-import com.otchi.domaine.users.models.Account;
-import com.otchi.domaine.users.models.AccountRepository;
+import com.otchi.domain.users.exceptions.AccountAlreadyExistsException;
+import com.otchi.domain.users.models.Account;
+import com.otchi.domain.users.models.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

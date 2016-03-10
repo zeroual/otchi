@@ -1,6 +1,6 @@
 package com.otchi.api.facades.dto;
 
-import com.otchi.domaine.users.models.Account;
+import com.otchi.domain.users.models.Account;
 import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.NotNull;

@@ -2,7 +2,7 @@ package com.otchi.api.facades.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.otchi.api.facades.serializers.CustomDateSerializer;
-import com.otchi.domaine.social.models.Post;
+import com.otchi.domain.social.models.Post;
 
 import java.util.ArrayList;
 import java.util.Date;

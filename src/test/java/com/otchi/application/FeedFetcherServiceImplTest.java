@@ -1,9 +1,9 @@
 package com.otchi.application;
 
 import com.otchi.application.impl.FeedFetcherServiceImpl;
-import com.otchi.domaine.social.models.Post;
-import com.otchi.domaine.social.repositories.PostRepository;
-import com.otchi.domaine.social.repositories.mocks.MockPostRepository;
+import com.otchi.domain.social.models.Post;
+import com.otchi.domain.social.repositories.PostRepository;
+import com.otchi.domain.social.repositories.mocks.MockPostRepository;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,6 +1,6 @@
 package com.otchi.api.facades.dto;
 
-import com.otchi.domaine.kitchen.models.Ingredient;
+import com.otchi.domain.kitchen.models.Ingredient;
 
 public class IngredientDTO implements DTO<Ingredient> {
 

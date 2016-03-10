@@ -1,12 +1,13 @@
 package com.otchi.api.facades.dto;
 
-import com.otchi.domaine.users.models.User;
+import com.otchi.domain.users.models.User;
 
 public class UserDTO {
 
     private Long id;
     private String firstName;
     private String lastName;
+
 
     public UserDTO() {
     }
@@ -17,7 +18,6 @@ public class UserDTO {
 
     public UserDTO(Long id, String firstName, String lastName) {
         this.id = id;
-
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -42,4 +42,5 @@ public class UserDTO {
                 ", lastName='" + lastName + '\'' +
                 "}";
     }
+
 }
