@@ -65,17 +65,28 @@ describe('FeedViewer Directive', function () {
         var post;
         beforeEach(function () {
             post = {id: 1, comments: []};
+            $scope.feed = {id: 1, comments: []};
             $httpBackend.expectPOST('/rest/v1/feed/1/comment', 'comment content').respond(200, {id: 2, data: 'foo'});
         });
 
         it('should ask the server to add save comment', function () {
-            $scope.commentOnPost(post, "comment content");
+            $scope.commentContent = "comment content";
+            $scope.commentOnPost(post);
             $httpBackend.flush();
         });
+
         it('should add the new comment to comments list in feed', function () {
-            $scope.commentOnPost(post, "comment content");
+            $scope.commentContent = "comment content";
+            $scope.commentOnPost(post);
             $httpBackend.flush();
             expect(post.comments).toEqualData([{id: 2, data: 'foo'}]);
+        });
+
+        it('should reset the comment content input after commenting', function () {
+            $scope.commentContent = "comment content";
+            $scope.commentOnPost(post);
+            $httpBackend.flush();
+            expect($scope.commentContent).toEqual('');
         });
     });
 

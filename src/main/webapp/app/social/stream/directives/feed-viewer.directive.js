@@ -13,8 +13,10 @@ angular.module("stream")
 
                 };
 
-                $scope.commentOnPost = function (feed, commentContent) {
-                    FeedsService.commentOnPost(feed, commentContent);
+                $scope.commentOnPost = function (feed) {
+                    FeedsService.commentOnPost(feed, $scope.commentContent).then(function () {
+                        $scope.commentContent = '';
+                    });
                 };
 
                 $scope.showLikes = function (feed) {
