@@ -12,6 +12,6 @@ angular.module("publisher")
                 $scope.changePublisher = function (publisherToSelect) {
                     $scope.selectedPublisher = publisherToSelect;
                 };
-            },
+            }
         };
     });

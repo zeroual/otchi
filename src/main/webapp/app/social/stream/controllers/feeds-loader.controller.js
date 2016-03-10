@@ -1,32 +1,6 @@
 angular.module("stream")
-    .controller("FeedsLoaderController", function ($scope, $rootScope, $uibModal, FeedsService) {
+    .controller("FeedsLoaderController", function ($scope, $rootScope, FeedsService) {
         $scope.feeds = FeedsService.fetchAllFeeds();
-
-        $scope.likePost = function (post){
-            FeedsService.likePost(post);
-
-        };
-        $scope.unLikePost = function (post){
-            FeedsService.unLikePost(post);
-
-        };
-
-        $scope.showLikes = function (feed) {
-            $uibModal.open({
-                animation: true,
-                templateUrl: 'app/social/stream/views/feed-likes-modal.html',
-                controller: 'FeedLikesViewerController',
-                resolve: {
-                    likes: function () {
-                        return feed.likes;
-                    }
-                }
-            });
-        };
-
-        $scope.commentOnPost = function (feed, commentContent) {
-            FeedsService.commentOnPost(feed, commentContent);
-        };
 
         //FIXME CHANGE the name of this method
         $scope.loadNewPublishedPost = function (feed) {

@@ -15,67 +15,7 @@
         </span>
             </div>
             <div class="panel panel-default" ng-repeat="feed in feeds">
-                <div class="panel-heading panel-heading-gray">
-                    <i class="glyphicon glyphicon-retweet"></i> {{feed.author.firstName}} - {{feed.author.lastName}}
-                    <time class="bullet text-gray">{{feed.createdTime |timeAgo}}</time>
-                </div>
-                <div class="panel-body" ng-init="recipe=feed.content">
-                    <recipe-viewer/>
-                </div>
-                <div>
-                    <div class="pull-left" ng-if="feed.likes.length > 0">
-                        <a href="" class="button-link text-muted" ng-click="showLikes(feed)">
-                            {{feed.likes.length}} person like this
-                        </a>
-
-                    </div>
-                    <div align="right">
-                        <span ng-switch="feed.liked">
-                            <a href="" class="button-link" ng-switch-when="false" ng-click="likePost(feed)">Like</a>
-                            <a href="" class="button-link" ng-switch-when="true" ng-click="unLikePost(feed)">Unlike</a>
-                        </span>
-                         <span>
-                             <a class="button-link">Share</a>
-                        </span>
-                    </div>
-                </div>
-                <div class="panel-footer">
-                   <form  ng-submit="commentOnPost(feed, commentContent)">
-                       <div class="form-group">
-                           <div class="input-group">
-                               <input type="text" name="commentContent" ng-model="commentContent" class="form-control"
-                                      placeholder="Your comment" required/>
-                            <span class="input-group-btn">
-                              <button class="btn btn-default" type="submit">
-                                  Send <i class="glyphicon glyphicon-send"></i>
-                              </button>
-                            </span>
-                           </div>
-                       </div>
-                   </form>
-                    <div>
-                        <div class="panel panel-default" ng-repeat="comment in feed.comments |orderBy:'-createdOn'">
-                            <div class="panel-body">
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="">
-                                            <img class="media-object" src="/assets/images/facke-user-image.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <div>
-                                            <small class="pull-right text-muted">{{comment.createdOn | timeAgo }}</small>
-                                            <h5 class="margin-top-none">
-                                                {{comment.author.firstName}} {{comment.author.lastName}}
-                                            </h5>
-                                        </div>
-                                        <p class="margin-none">{{comment.content}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <feed-viewer/>
             </div>
         </div>
     </div>
