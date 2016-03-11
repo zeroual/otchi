@@ -1,0 +1,26 @@
+<div class="card" ng-if="followingUsers.length">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title"><i class="glyphicon glyphicon glyphicon-heart-empty"></i> Suggestions</h4>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="user in followingUsers">
+                <div class="media">
+                    <div class="media-left">
+                        <a>
+                            <img src="/assets/images/facke-user-image.jpg" alt="cover" class="media-object" width="45">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <div class="pull-right">
+                            <button class="btn btn-follow" ng-click="followUser(user)">
+                                Follow
+                            </button>
+                        </div>
+                        <h5>{{user.firstName}} {{user.lastName}}</h5>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
