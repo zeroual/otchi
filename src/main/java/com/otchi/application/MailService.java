@@ -1,6 +1,6 @@
 package com.otchi.application;
 
-import com.otchi.domaine.users.models.User;
+import com.otchi.domain.users.models.User;
 
 public interface MailService {
 

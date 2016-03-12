@@ -4,7 +4,7 @@ import com.otchi.api.facades.dto.CommentDTO;
 import com.otchi.api.facades.dto.PostDTO;
 import com.otchi.application.FeedFetcherService;
 import com.otchi.application.FeedService;
-import com.otchi.domaine.social.models.Comment;
+import com.otchi.domain.social.models.Comment;
 import com.otchi.infrastructure.config.ResourcesPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

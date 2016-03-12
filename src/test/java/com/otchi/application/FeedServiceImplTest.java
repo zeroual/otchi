@@ -2,12 +2,12 @@ package com.otchi.application;
 
 import com.otchi.application.impl.FeedServiceImpl;
 import com.otchi.application.utils.DateFactory;
-import com.otchi.domaine.social.exceptions.PostNotFoundException;
-import com.otchi.domaine.social.models.Comment;
-import com.otchi.domaine.social.models.Post;
-import com.otchi.domaine.social.repositories.PostRepository;
-import com.otchi.domaine.social.repositories.mocks.MockPostRepository;
-import com.otchi.domaine.users.models.User;
+import com.otchi.domain.social.exceptions.PostNotFoundException;
+import com.otchi.domain.social.models.Comment;
+import com.otchi.domain.social.models.Post;
+import com.otchi.domain.social.repositories.PostRepository;
+import com.otchi.domain.social.repositories.mocks.MockPostRepository;
+import com.otchi.domain.users.models.User;
 import com.otchi.utils.mocks.MockCrudRepository;
 import org.junit.Before;
 import org.junit.Test;

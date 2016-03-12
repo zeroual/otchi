@@ -1,9 +1,9 @@
 package com.otchi.application;
 
 import com.otchi.application.impl.UserServiceImpl;
-import com.otchi.domaine.users.models.User;
-import com.otchi.domaine.users.models.UserRepository;
-import com.otchi.domaine.users.models.mocks.MockUserRepository;
+import com.otchi.domain.users.models.User;
+import com.otchi.domain.users.models.UserRepository;
+import com.otchi.domain.users.models.mocks.MockUserRepository;
 import org.junit.Before;
 import org.junit.Test;
 

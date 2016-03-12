@@ -1,8 +1,8 @@
 package com.otchi.application.impl;
 
 import com.otchi.application.UserService;
-import com.otchi.domaine.users.models.User;
-import com.otchi.domaine.users.models.UserRepository;
+import com.otchi.domain.users.models.User;
+import com.otchi.domain.users.models.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

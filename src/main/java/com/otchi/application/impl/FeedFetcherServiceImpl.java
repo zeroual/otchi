@@ -1,8 +1,8 @@
 package com.otchi.application.impl;
 
 import com.otchi.application.FeedFetcherService;
-import com.otchi.domaine.social.models.Post;
-import com.otchi.domaine.social.repositories.PostRepository;
+import com.otchi.domain.social.models.Post;
+import com.otchi.domain.social.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

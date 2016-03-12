@@ -1,6 +1,6 @@
 package com.otchi.application;
 
-import com.otchi.domaine.social.models.Comment;
+import com.otchi.domain.social.models.Comment;
 
 public interface FeedService {
 

@@ -1,11 +1,10 @@
 package com.otchi.api;
 
 import com.otchi.api.facades.dto.AccountDTO;
-import com.otchi.domaine.users.models.Account;
-import com.otchi.domaine.users.models.AccountRepository;
+import com.otchi.domain.users.models.Account;
+import com.otchi.domain.users.models.AccountRepository;
 import com.otchi.infrastructure.config.ResourcesPath;
 import com.otchi.utils.AbstractControllerTest;
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

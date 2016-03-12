@@ -1,0 +1,35 @@
+<dataset>
+    <!--password for test "zeros"-->
+    <USER
+            ID="1"
+            EMAIL="zeroual.abde@gmail.com"
+            FIRST_NAME="Abdellah"
+            LAST_NAME="ZEROUAL"
+    />
+
+    <ACCOUNT
+            ID="1"
+            USER_ID="1"
+            EMAIL="zeroual.abde@gmail.com"
+            PASSWORD="$2a$10$9m.et2mcPSzA4RdS1AOGPemNLOCerTkyEC99BUdqMSNL.4F9HUtbW"
+            ENABLED="1"
+            LANG_KEY="en"
+    />
+
+    <USER
+            ID="2"
+            EMAIL="mr.jaifar@gmail.com"
+            FIRST_NAME="Reda"
+            LAST_NAME="JAIFAR"
+    />
+
+    <ACCOUNT
+            ID="2"
+            USER_ID="2"
+            EMAIL="mr.jaifar@gmail.com"
+            PASSWORD="$2a$10$9m.et2mcPSzA4RdS1AOGPemNLOCerTkyEC99BUdqMSNL.4F9HUtbW"
+            ENABLED="1"
+            LANG_KEY="en"
+    />
+
+</dataset>

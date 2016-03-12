@@ -1,6 +1,6 @@
 package com.otchi.api.facades.dto;
 
-import com.otchi.domaine.kitchen.models.Instruction;
+import com.otchi.domain.kitchen.models.Instruction;
 
 
 public class InstructionDTO implements DTO<Instruction> {
