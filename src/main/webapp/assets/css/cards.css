@@ -1,0 +1,44 @@
+.card .panel {
+    border: 1px solid #e0e3e9;
+    border-radius: 2px;
+    background: #fff;
+    margin-bottom: 7.5px;
+    font-size: 15px;
+    line-height: 1.45em;
+    color: #546673;
+}
+
+.card .panel-heading {
+    border-bottom: 1px solid #eff3fa;
+    padding-bottom: 10px;
+    background: #fff;
+}
+
+.card .panel-footer {
+    border-top: 1px solid #eff3fa;
+    background-color: #fafcfc;
+}
+
+.card .card-title {
+    font-size: 22px;
+    line-height: 1.25em;
+    word-wrap: break-word;
+    font-weight: 600;
+    color: #353a3d;
+    margin: 0px;
+}
+
+.card-content-summary {
+    margin: 5px 0;
+    word-wrap: break-word
+}
+
+.card-content__summary p {
+    margin-top: 7.5px;
+    margin-bottom: 7.5px
+}
+
+.card .card-action {
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+    padding: 5px;
+}
