@@ -8,7 +8,8 @@ body {
     background-color: #fff;
     border-bottom: 1px solid #c2c9d4;
 }
-.clear-padding{
+
+.no-padding {
     padding: 0px;
 }
 .timeline{
@@ -26,249 +27,6 @@ body {
     font-size: 12px;
     position: relative;
     top: -1px
-}
-/*----------- Nav aside -----------------*/
-
-.nav-aside {
-    list-style: none;
-    border-top: 1px solid #e0e3e9;
-    line-height: 1.4em;
-    padding: 0px;
-    margin:0px;
-}
-
-.nav-aside .nav-item {
-    border-top: none;
-}
-.nav-item {
-    transition: all 250ms ease-in;
-    cursor: pointer;
-    border: 1px solid #e0e3e9;
-    font-size: 15px;
-    background-color: #fff;
-}
-.nav-aside .nav-item.active {
-    background-color: #f8fafd;
-}
-.nav-lnk {
-    padding: 7px 10px 8px;
-    font-weight: 500;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-
-}
-/*------------------- Card -------------------*/
-.card {
-
-}
-
-.card .panel {
-    border: 1px solid #e0e3e9;
-    border-radius: 2px;
-    background: #fff;
-    margin-bottom: 7.5px;
-    font-size: 15px;
-    line-height: 1.45em;
-    color: #546673;
-}
-
-.card .panel-heading {
-    border-bottom: 1px solid #eff3fa;
-    padding-bottom: 10px;
-    background: #fff;
-}
-.card .panel-footer{
-    border-top: 1px solid #eff3fa;
-    background-color: #fafcfc;
-}
-
-.card .card-title {
-    font-size: 22px;
-    line-height: 1.25em;
-    word-wrap: break-word;
-    font-weight: 600;
-    color: #353a3d;
-    margin: 0px;
-}
-.card-content-summary {
-    margin: 5px 0;
-    word-wrap: break-word
-}
-
-.card-content__summary p {
-    margin-top: 7.5px;
-    margin-bottom: 7.5px
-}
-/*---------buttons ----------*/
-
-a, button {
-    text-decoration: none;
-    color: #2e9fff;
-}
-.a:hover{
-    color: #2e87e7
-}
-.btn-follow {
-    border-radius: 3px;
-    border: 0;
-    font-size: 14px;
-    line-height: 1.4em;
-    font-weight: 500;
-    padding: 6px 11px 7px;
-    min-width: 36px;
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    height: auto;
-    transition: all 250ms ease-in-out;
-    background-color: #2e9fff;
-    color: #fff;
-}
-.btn-follow:hover {
-    background-color: #2e87e7;
-    color: #fff;
-    transition: all 250ms ease-in-out
-}
-.button--like {
-    border-radius: 3px;
-    text-align: center;
-    padding: 8px 10px 9px;
-    position: relative;
-    z-index: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 100%;
-    border: 1px solid #cce9ff;
-    color: #2e9fff;
-    background: #fff;
-    transition: border-color 400ms,color 400ms;
-    transition-timing-function: cubic-bezier(.2,1,.3,1);
-}
-
-.button-link {
-    color: #2e9fff;
-    font-size: inherit;
-    border-radius: 3px;
-    border: 1px solid transparent;
-    line-height: 1.1em;
-    font-weight: 500;
-    padding: 8px 10px 9px;
-    display: inline-block;
-}
-
-.button-link:hover {
-    color: #546673
-}
-
-.btn-circle {
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    padding: 6px 0;
-    font-size: 12px;
-    line-height: 1.428571429;
-    border-radius: 15px;
-}
-
-/* ----- input -------------- */
-.input--textbox {
-    border: 1px solid #c2c9d4;
-    border-radius: 3px;
-    background-color: #fff;
-    padding: 7.5px;
-    width: 100%;
-}
-/*--------- tabs -------------*/
-/* Tabs panel */
-.tabbable-panel {
-    border:1px solid #eee;
-    padding: 10px;
-}
-
-/* Default mode */
-.tabbable-line > .nav-tabs {
-    border: none;
-    margin: 0px;
-}
-.tabbable-line > .nav-tabs > li {
-    margin-right: 2px;
-}
-.tabbable-line > .nav-tabs > li > a {
-    border: 0;
-    margin-right: 0;
-    color: #737373;
-}
-.tabbable-line > .nav-tabs > li > a > i {
-    color: #a6a6a6;
-}
-.tabbable-line > .nav-tabs > li.open, .tabbable-line > .nav-tabs > li:hover {
-    border-bottom: 4px solid #7f919e;
-}
-.tabbable-line > .nav-tabs > li.open > a, .tabbable-line > .nav-tabs > li:hover > a {
-    border: 0;
-    background: none !important;
-    color: #333333;
-}
-.tabbable-line > .nav-tabs > li.open > a > i, .tabbable-line > .nav-tabs > li:hover > a > i {
-    color: #a6a6a6;
-}
-.tabbable-line > .nav-tabs > li.open .dropdown-menu, .tabbable-line > .nav-tabs > li:hover .dropdown-menu {
-    margin-top: 0px;
-}
-.tabbable-line > .nav-tabs > li.active {
-    border-bottom: 4px solid #2e9fff;
-    position: relative;
-}
-.tabbable-line > .nav-tabs > li.active > a {
-    border: 0;
-    color: #333333;
-}
-.tabbable-line > .nav-tabs > li.active > a > i {
-    color: #404040;
-}
-.tabbable-line > .tab-content {
-    margin-top: -3px;
-    background-color: #fff;
-    border: 0;
-    border-top: 1px solid #eee;
-    padding: 15px 0;
-}
-.portlet .tabbable-line > .tab-content {
-    padding-bottom: 0;
-}
-
-/* Below tabs mode */
-
-.tabbable-line.tabs-below > .nav-tabs > li {
-    border-top: 4px solid transparent;
-}
-.tabbable-line.tabs-below > .nav-tabs > li > a {
-    margin-top: 0;
-}
-.tabbable-line.tabs-below > .nav-tabs > li:hover {
-    border-bottom: 0;
-    border-top: 4px solid #fbcdcf;
-}
-.tabbable-line.tabs-below > .nav-tabs > li.active {
-    margin-bottom: -2px;
-    border-bottom: 0;
-    border-top: 4px solid #2e9fff;
-}
-.tabbable-line.tabs-below > .tab-content {
-    margin-top: -10px;
-    border-top: 0;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
 }
 
 /*Recipe viewer*/
@@ -305,39 +63,16 @@ a, button {
     padding: 10px;
 }
 
-/*--------------------------------- Login -----------------------------*/
-.signup {
-    border-radius: 3px;
-    padding: 8px 12px;
-    background: #2e9fff;
-    color: #fff;
-    border: 1px solid #2e9fff;
-    box-shadow: none;
-    width: 47.5%;
-    text-align: center;
-    font-weight: 600;
-    position: relative;
-}
-
-.btn-secondary {
-    width: 47.5%;
-    display: inline-block;
-    font-size: 14px;
-    padding: 8px 12px;
-    text-align: center;
-    border-radius: 3px;
-    color: #2e9fff;
-    -webkit-transition: all 0.2s ease 0s;
-    -moz-transition: all 0.2s ease 0s;
-    -ms-transition: all 0.2s ease 0s;
-    -o-transition: all 0.2s ease 0s;
-    transition: all 0.2s ease 0s;
-    border: 1px solid rgba(46, 159, 255, 0.5);
-}
 /****************MARGIN ET PADDING*********/
 .margin-top-none{
     margin-top: 0px;
 }
 .margin-bottom-none{
     margin-bottom: 0px;
+}
+
+/* FEED COMMENTS*/
+.comments .panel-body {
+    padding-top: 6px;
+    padding-bottom: 4px;
 }

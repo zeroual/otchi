@@ -6,7 +6,7 @@
     <div class="panel-body" ng-init="recipe=feed.content">
         <recipe-viewer/>
     </div>
-    <div>
+    <div class="card-action">
         <div class="pull-left" ng-if="feed.likes.length > 0">
             <a href="" class="button-link text-muted" ng-click="showLikes(feed)">
                 {{feed.likes.length}} person like this
@@ -14,13 +14,14 @@
 
         </div>
         <div align="right">
-                        <span ng-switch="feed.liked">
-                            <a href="" class="button-link" ng-switch-when="false" ng-click="likePost(feed)">Like</a>
-                            <a href="" class="button-link" ng-switch-when="true" ng-click="unLikePost(feed)">Unlike</a>
-                        </span>
-                         <span>
-                             <a class="button-link">Share</a>
-                        </span>
+            <div ng-switch="feed.liked">
+                <a href="" class="btn btn-like" ng-switch-when="false" ng-click="likePost(feed)">
+                    <i class="glyphicon glyphicon-heart-empty"></i> Like
+                </a>
+                <a href="" class="btn btn-unLike" ng-switch-when="true" ng-click="unLikePost(feed)">
+                    <i class="glyphicon glyphicon-heart"></i> Unlike
+                </a>
+            </div>
         </div>
     </div>
     <div class="panel-footer">
@@ -37,7 +38,7 @@
                 </div>
             </div>
         </form>
-        <div>
+        <div class="comments">
             <div class="panel panel-default" ng-repeat="comment in feed.comments |orderBy:'-createdOn'">
                 <div class="panel-body">
                     <div class="media">

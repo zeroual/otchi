@@ -1,0 +1,112 @@
+a, button {
+    text-decoration: none;
+    color: #2e9fff;
+}
+
+.a:hover {
+    color: #2e87e7
+}
+
+.btn-follow {
+    border-radius: 3px;
+    border: 0;
+    font-size: 14px;
+    line-height: 1.4em;
+    font-weight: 500;
+    padding: 6px 11px 7px;
+    min-width: 36px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    height: auto;
+    transition: all 250ms ease-in-out;
+    background-color: #2e9fff;
+    color: #fff;
+}
+
+.btn-follow:hover {
+    background-color: #2e87e7;
+    color: #fff;
+    transition: all 250ms ease-in-out
+}
+
+.button-link {
+    color: #2e9fff;
+    font-size: inherit;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    line-height: 1.1em;
+    font-weight: 500;
+    padding: 8px 10px 9px;
+    display: inline-block;
+}
+
+.button-link:hover {
+    color: #546673
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+
+.signup {
+    border-radius: 3px;
+    padding: 8px 12px;
+    background: #2e9fff;
+    color: #fff;
+    border: 1px solid #2e9fff;
+    box-shadow: none;
+    width: 47.5%;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+}
+
+.btn-secondary {
+    width: 47.5%;
+    display: inline-block;
+    font-size: 14px;
+    padding: 8px 12px;
+    text-align: center;
+    border-radius: 3px;
+    color: #2e9fff;
+    -webkit-transition: all 0.2s ease 0s;
+    -moz-transition: all 0.2s ease 0s;
+    -ms-transition: all 0.2s ease 0s;
+    -o-transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s;
+    border: 1px solid rgba(46, 159, 255, 0.5);
+}
+
+.btn-like {
+    background-color: #5cb767;
+    border-color: #5cb767;
+    color: #fff;
+    text-align: left;
+}
+
+.btn-like:hover {
+    color: #fff;
+    background-color: #5e9164;
+    box-shadow: none;
+    transition: all 250ms ease-in-out
+}
+
+.btn-unLike {
+    background-color: #f05f70;
+    border-color: #f05f70;
+    color: #fff;
+    text-align: left;
+}
+
+.btn-unLike:hover {
+    background-color: #f05f70;
+    border-color: #f05f70;
+    color: #fff
+}
