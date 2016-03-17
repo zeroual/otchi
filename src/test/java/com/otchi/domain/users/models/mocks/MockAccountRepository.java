@@ -13,9 +13,9 @@ public class MockAccountRepository extends MockCrudRepository<Account, Long> imp
     }
 
     @Override
-    public Optional<Account> findOneByEmail(String email) {
+    public Optional<Account> findOneByUsername(String username) {
         return StreamSupport.stream(findAll().spliterator(), true)
-                .filter(account -> account.getEmail().equals(email))
+                .filter(account -> account.getUsername().equals(username))
                 .findFirst();
     }
 }

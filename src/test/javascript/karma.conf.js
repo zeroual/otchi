@@ -24,6 +24,7 @@ module.exports = function (config) {
       'main/webapp/bower_components/angular-ui-router/release/angular-ui-router.js',
       'main/webapp/bower_components/ngToast/dist/ngToast.js',
       'main/webapp/app/components/toaster/toaster.js',
+      'main/webapp/app/social-authentication/social-authentication.js',
       'main/webapp/app/app.js',
       'main/webapp/app/**/*.js',
       'main/webapp/app/**/*.html',

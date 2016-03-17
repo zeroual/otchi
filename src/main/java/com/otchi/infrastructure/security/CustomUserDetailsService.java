@@ -23,18 +23,18 @@ public class CustomUserDetailsService implements org.springframework.security.co
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(final String email) {
-        log.debug("Authenticating {}", email);
-        Optional<Account> userFromDatabase = userRepository.findOneByEmail(email);
+    public UserDetails loadUserByUsername(final String username) {
+        log.debug("Authenticating {}", username);
+        Optional<Account> userFromDatabase = userRepository.findOneByUsername(username);
         return userFromDatabase.map(user -> {
             if (!user.isEnabled()) {
-                throw new UserNotActivatedException("User " + email + " was not activated");
+                throw new UserNotActivatedException("User " + username + " was not activated");
             }
             List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-            return new org.springframework.security.core.userdetails.User(email,
+            return new org.springframework.security.core.userdetails.User(username,
                     user.getPassword(),
                     grantedAuthorities);
-        }).orElseThrow(() -> new UsernameNotFoundException("User " + email + " was not found in the " +
+        }).orElseThrow(() -> new UsernameNotFoundException("User " + username + " was not found in the " +
                 "database"));
     }
 }

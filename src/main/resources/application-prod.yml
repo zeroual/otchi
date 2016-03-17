@@ -1,0 +1,16 @@
+spring:
+    social:
+        # see https://developers.google.com/+/web/signin/server-side-flow#step_1_create_a_client_id_and_client_secret
+        google:
+            clientId: 504200167671-9s0scgbdulvm4u9rdgq95qa1vqk3uam4.apps.googleusercontent.com
+            clientSecret: 9ZQk5AaBnKTxkbb19zz6WSyr
+
+        # see https://developers.facebook.com/docs/facebook-login/v2.2
+        facebook:
+            clientId: 912472022199215
+            clientSecret: 9a551587d44a6505291cab3c1a33ead5
+
+        # see https://apps.twitter.com/app/
+        twitter:
+            clientId: X1S2BH04CdYXYtHfTG6gGa5C7
+            clientSecret: 3FOSZfivHHQL9OAjV3ybU5ErLZkftV5BL4xbbeoCP1GjmvSP2D

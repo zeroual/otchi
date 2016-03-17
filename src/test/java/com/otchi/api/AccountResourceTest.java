@@ -27,7 +27,7 @@ public class AccountResourceTest extends AbstractControllerTest {
                 .content(json(newAccount))
                 .contentType(contentType))
                 .andExpect(status().isCreated());
-        Optional<Account> createdAccount = accountRepository.findOneByEmail("zeros@gmail.com");
+        Optional<Account> createdAccount = accountRepository.findOneByUsername("zeros@gmail.com");
         assertThat(createdAccount).isPresent();
         assertThat(createdAccount.get().getUser().getFirstName()).isEqualTo("Abdel");
     }

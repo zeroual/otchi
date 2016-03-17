@@ -1,10 +1,9 @@
 package com.otchi.domain.users.models;
 
 
-import org.hibernate.validator.constraints.Email;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Account {
@@ -16,9 +15,10 @@ public class Account {
     @Column(name = "PASSWORD")
     private String password;
 
-    @Email
-    @Column(name = "EMAIL", length = 100, unique = true)
-    private String email;
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "USERNAME", length = 100, unique = true, nullable = false)
+    private String username;
 
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled = true;
@@ -32,14 +32,18 @@ public class Account {
     @NotNull
     private String langKey;
 
-    public Account(String firstName, String lastName, String email, String password, String langKey) {
-        this.password = password;
-        this.email = email;
-        this.langKey = langKey;
-        this.user = new User(email, firstName, lastName);
+    private Account() {
     }
 
-    private Account() {
+    public Account(String firstName, String lastName, String email, String password, String langKey) {
+        this(firstName, lastName, email, email, password, langKey);
+    }
+
+    public Account(String firstName, String lastName, String email, String username, String password, String langKey) {
+        this.password = password;
+        this.username = username;
+        this.langKey = langKey;
+        this.user = new User(username, email, firstName, lastName);
     }
 
 
@@ -51,9 +55,6 @@ public class Account {
         return password;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
     public boolean isEnabled() {
         return enabled;
@@ -73,5 +74,9 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

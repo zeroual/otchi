@@ -29,10 +29,10 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public Account createAccount(Account account) throws AccountAlreadyExistsException {
-        String userEmail = account.getEmail();
-        Optional<Account> accountOptional = accountRepository.findOneByEmail(userEmail);
+        String username = account.getUsername();
+        Optional<Account> accountOptional = accountRepository.findOneByUsername(username);
         if (accountOptional.isPresent()) {
-            throw new AccountAlreadyExistsException(account.getEmail());
+            throw new AccountAlreadyExistsException(account.getUsername());
         }
         if (account.getLangKey() == null) {
             account.setLangKey("en");

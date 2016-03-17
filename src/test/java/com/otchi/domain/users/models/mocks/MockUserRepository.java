@@ -16,8 +16,8 @@ public class MockUserRepository extends MockCrudRepository<User, Long> implement
     }
 
     @Override
-    public Optional<User> findOneByEmail(String email) {
-        return StreamSupport.stream(findAll().spliterator(), true).filter(user -> user.getEmail().equals(email)).findFirst();
+    public Optional<User> findOneByUsername(String username) {
+        return StreamSupport.stream(findAll().spliterator(), true).filter(user -> user.getUsername().equals(username)).findFirst();
     }
 
     @Override

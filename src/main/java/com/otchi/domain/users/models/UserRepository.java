@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
-    Optional<User> findOneByEmail(String email);
+    Optional<User> findOneByUsername(String username);
 
     List<User> findAllByIdNotLike(Long id);
 

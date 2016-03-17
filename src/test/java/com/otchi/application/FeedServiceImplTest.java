@@ -35,7 +35,7 @@ public class FeedServiceImplTest {
         Post post = new Post(new Date());
         postRepository.save(post);
         //mock user service
-        when(userService.findUserByEmail("email@fofo.com")).thenReturn(Optional.of(user));
+        when(userService.findUserByUsername("email@fofo.com")).thenReturn(Optional.of(user));
     }
 
     @Test
