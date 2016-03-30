@@ -1,4 +1,4 @@
-package com.otchi.domain.kitchen.models;
+package com.otchi.domain.kitchen;
 
 import javax.persistence.*;
 

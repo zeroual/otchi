@@ -2,7 +2,7 @@ angular.module("publisher")
     .directive('recipePublisher', function () {
         return {
             templateUrl: 'app/social/publisher/kitchen/directives/recipe-publisher-directive.html',
-            controller: function ($scope, $rootScope, PostService) {
+            controller: function ($scope, $rootScope, ShareService) {
 
                 function init() {
                     $scope.recipe = {ingredients: [], instructions: []};
@@ -11,7 +11,7 @@ angular.module("publisher")
                 init();
 
                 $scope.shareRecipe = function () {
-                    PostService.publishRecipe($scope.recipe).then(function (data) {
+                    ShareService.publishRecipe($scope.recipe).then(function (data) {
                         $rootScope.$broadcast('NEW_POST_PUBLISHED_EVENT', data);
                     });
                     init();

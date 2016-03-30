@@ -10,11 +10,10 @@
     <recipe ID="2"
             TITLE="TITLE_SAMPLE_2"/>
 
-    <POST ID="1"
-          CREATED_AT="2015-02-28"
-          RECIPE_ID="2"
-          AUTHOR_ID="1"
-            />
+	<POST ID="1"
+		  CREATED_AT="2015-02-28"
+		  POST_CONTENT_ID="2"
+		  AUTHOR_ID="1"/>
 
     <POST_LIKES USER_ID="1"
                 POST_ID="1"
@@ -27,4 +26,12 @@
             CONTENT="It is very delicious"
             CREATED_ON="2016-02-22"
     />
+
+    <STORY ID="3"
+           CONTENT="my story"/>
+    <POST ID="2"
+          CREATED_AT="2015-02-28"
+          POST_CONTENT_ID="3"
+          AUTHOR_ID="1"/>
+
 </dataset>

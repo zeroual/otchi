@@ -1,8 +1,8 @@
 package com.otchi.api.facades.dto;
 
-import com.otchi.domain.kitchen.models.Ingredient;
-import com.otchi.domain.kitchen.models.Instruction;
-import com.otchi.domain.kitchen.models.Recipe;
+import com.otchi.domain.kitchen.Ingredient;
+import com.otchi.domain.kitchen.Instruction;
+import com.otchi.domain.kitchen.Recipe;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -13,7 +13,7 @@
 
     <POST ID="1"
           CREATED_AT="2016-02-17"
-          RECIPE_ID="2"
+          POST_CONTENT_ID="2"
           AUTHOR_ID="1"
     />
 </dataset>

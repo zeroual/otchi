@@ -1,5 +1,7 @@
-package com.otchi.domain.kitchen.models;
+package com.otchi.domain.kitchen;
 
+
+import com.otchi.domain.social.models.PostContent;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -7,13 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "RECIPE")
-public class Recipe {
-
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+public class Recipe extends PostContent{
 
     @Column(name = "DESCRIPTION")
     private String description;
@@ -74,11 +70,6 @@ public class Recipe {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public Long getId() {
-        return id;
-    }
-
 
     public Integer getCookTime() {
         return cookTime;
