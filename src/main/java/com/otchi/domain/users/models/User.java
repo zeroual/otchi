@@ -4,6 +4,7 @@ package com.otchi.domain.users.models;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,6 +32,12 @@ public class User {
     private String email;
 
 
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(length = 100, unique = true, nullable = false)
+    private String username;
+
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "USER_FOLLOWERS",
@@ -39,18 +46,23 @@ public class User {
     )
     private Set<User> following = new HashSet<>();
 
+    private User() {
 
-    public User(String email) {
+    }
+
+    public User(String username, String email, String firstName, String lastName) {
+        this.username = username;
         this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public User(String username) {
+        this.username = username;
     }
 
     public User(String email, String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
-    private User() {
+        this(email, email, firstName, lastName);
     }
 
     public Long getId() {
@@ -81,6 +93,11 @@ public class User {
         this.email = email;
     }
 
+
+    public String getUsername() {
+        return username;
+    }
+
     public Set<User> getFollowing() {
         return following;
     }
@@ -100,7 +117,7 @@ public class User {
 
         User user = (User) o;
 
-        if (!email.equals(user.email)) {
+        if (!username.equals(user.username)) {
             return false;
         }
 
@@ -109,7 +126,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return email.hashCode();
+        return username.hashCode();
     }
 
     @Override

@@ -20,17 +20,17 @@ public class FollowingServiceImpl implements FollowingService {
     }
 
     @Override
-    public void followUser(String followerId, Long followingId) {
+    public void followUser(String followerUsername, Long followingId) {
 
 
         User userToFollow = userRepository.findOne(followingId);
         if (userToFollow == null) {
-            throw new UserNotFoundException(String.valueOf(followerId));
+            throw new UserNotFoundException(String.valueOf(followerUsername));
         }
-        if (followerId.equals(userToFollow.getEmail())) {
-            throw new UnsupportedOperationException("USER CAN NOT FOLLOW HIM SELF => USER_ID:" + followerId);
+        if (followerUsername.equals(userToFollow.getUsername())) {
+            throw new UnsupportedOperationException("USER CAN NOT FOLLOW HIM SELF => USER_ID:" + followerUsername);
         }
-        Optional<User> follower = userRepository.findOneByEmail(followerId);
+        Optional<User> follower = userRepository.findOneByUsername(followerUsername);
         User user = follower.get();
         user.followUser(userToFollow);
         userRepository.save(user);

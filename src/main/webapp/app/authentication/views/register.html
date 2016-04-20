@@ -17,6 +17,14 @@
                     <h3 class="panel-title text-center">Sign up with</h3>
                 </div>
                 <div class="panel-body">
+                    <div class="connect-options row">
+                        <social-auth-button ng-provider="facebook"></social-auth-button>
+                        <social-auth-button ng-provider="twitter"></social-auth-button>
+                        <social-auth-button ng-provider="google"></social-auth-button>
+                    </div>
+                    <div class="text-center">
+                        <h5 class="text-muted">Or via email</h5>
+                    </div>
                     <form role="form" name="form">
                         <fieldset>
                             <div class="form-group has-feedback"

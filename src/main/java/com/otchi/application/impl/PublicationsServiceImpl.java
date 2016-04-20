@@ -29,7 +29,7 @@ public class PublicationsServiceImpl implements PublicationsService {
 
     @Override
     public Post publishRecipe(Recipe recipe, String username) {
-        Optional<User> user = userRepository.findOneByEmail(username);
+        Optional<User> user = userRepository.findOneByUsername(username);
         Post post = new Post(dateFactory.now());
         post.withRecipe(recipe);
         post.setAuthor(user.get());

@@ -36,7 +36,7 @@ public class AccountServiceImplTest {
         Account account = new Account("firstName", "lastName", "email", "password", "en");
         accountService.createAccount(account);
         Account newAccount = accountRepository.findOne(1L);
-        assertThat(newAccount.getEmail()).isEqualTo("email");
+        assertThat(newAccount.getUsername()).isEqualTo("email");
         assertThat(newAccount.getUser().getFirstName()).isEqualTo("firstName");
         assertThat(newAccount.getUser().getLastName()).isEqualTo("lastName");
     }
@@ -57,6 +57,13 @@ public class AccountServiceImplTest {
         accountService.createAccount(newAccount);
     }
 
+    @Test(expected = AccountAlreadyExistsException.class)
+    public void shouldNotCreateAccountWithAlreadyExistingUsername() throws AccountAlreadyExistsException {
+        Account oldAccount = new Account("firstName", "lastName", null, "usernameAlreadyExist", "password", "en");
+        accountService.createAccount(oldAccount);
+        Account newAccount = new Account("firstName2", "lastName2", null, "usernameAlreadyExist", "password2", "fr");
+        accountService.createAccount(newAccount);
+    }
     @Test
     public void shouldSetAccountDefaultLanguageToEnglishIfNotDefined() throws AccountAlreadyExistsException {
         Account account = new Account("firstName", "lastName", "email", "password", null);

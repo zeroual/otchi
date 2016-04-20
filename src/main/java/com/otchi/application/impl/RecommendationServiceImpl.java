@@ -25,18 +25,18 @@ public class RecommendationServiceImpl implements RecommendationService {
     }
 
     @Override
-    public List<User> getRecommendedFollowingsFor(String userId) {
-        Optional<User> userOptional = userRepository.findOneByEmail(userId);
+    public List<User> getRecommendedFollowingsFor(String username) {
+        Optional<User> userOptional = userRepository.findOneByUsername(username);
 
         if (!userOptional.isPresent()) {
-            throw new UserNotFoundException(String.valueOf(userId));
+            throw new UserNotFoundException(String.valueOf(username));
         }
         User user = userOptional.get();
 
         List<User> listOfPossibleFollower = userRepository.findAllByIdNotLike(user.getId());
-        Set<User> listOfExistingFolowers = user.getFollowing();
-        Set<String> listOfFollowers = StreamSupport.stream(listOfExistingFolowers.spliterator(), true).map(User::getEmail).collect(Collectors.toSet());
-        return StreamSupport.stream(listOfPossibleFollower.spliterator(), true).filter(u -> !listOfFollowers.contains(u.getEmail())).collect(Collectors.toList());
+        Set<User> listOfExistingFollowers = user.getFollowing();
+        Set<String> listOfFollowers = StreamSupport.stream(listOfExistingFollowers.spliterator(), true).map(User::getUsername).collect(Collectors.toSet());
+        return StreamSupport.stream(listOfPossibleFollower.spliterator(), true).filter(u -> !listOfFollowers.contains(u.getUsername())).collect(Collectors.toList());
 
     }
 }

@@ -110,3 +110,76 @@ a, button {
     border-color: #f05f70;
     color: #fff
 }
+
+.connect-options {
+    border-bottom: 1px solid #eff3fa;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.connect-options button .auth-container img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+}
+
+.connect-options button {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
+    width: 33.33%;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+.connect-options button .auth-container {
+    display: inline-block;
+    padding: 15px;
+    border-radius: 64px;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: all 0.2s ease 0s;
+    -moz-transition: all 0.2s ease 0s;
+    -ms-transition: all 0.2s ease 0s;
+    -o-transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s;
+}
+
+.connect-options button .auth-container img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+}
+
+.connect-options button .auth-container:hover {
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    -o-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+.connect-options button:focus {
+    outline: 0;
+    opacity: 0.8;
+}
+
+.twitter-auth .auth-container {
+    background-color: #4099FF;
+}
+
+.facebook-auth .auth-container {
+    background-color: #3B5998;
+}
+
+.google-auth .auth-container {
+    background-color: #D34836;
+}

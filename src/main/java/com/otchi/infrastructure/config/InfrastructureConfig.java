@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 
 
 @Configuration
-@Import({SecurityConfig.class,DatabaseConfig.class})
+@Import({SecurityConfig.class, DatabaseConfig.class, SocialConfig.class})
 public class InfrastructureConfig {
 
     @Bean

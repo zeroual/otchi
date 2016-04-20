@@ -25,8 +25,8 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void shouldFindUserByEmail() {
-        Optional<User> foundUser = userService.findUserByEmail("toto@foo.com");
+    public void shouldFindUserByUsername() {
+        Optional<User> foundUser = userService.findUserByUsername("toto@foo.com");
         assertThat(foundUser).isPresent();
         assertThat(foundUser.get().getFirstName()).isEqualTo("firstName_test");
     }

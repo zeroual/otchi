@@ -31,7 +31,7 @@ public class CurrentUserResource {
     @RequestMapping(method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<UserDTO> getAccountOfCurrentUser(@AuthenticationPrincipal Principal principal) {
-        Optional<User> userOptional = userService.findUserByEmail(principal.getName());
+        Optional<User> userOptional = userService.findUserByUsername(principal.getName());
         User user = userOptional.orElseThrow(() -> new IllegalArgumentException("User not found in our database"));
         return new ResponseEntity<>(new UserDTO(user), HttpStatus.OK);
     }

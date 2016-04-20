@@ -33,11 +33,11 @@ public class UserRepositoryTest extends AbstractRepositoryTest {
 
     @Test
     @DatabaseSetup("/dbunit/users/users.xml")
-    public void shouldFindUserByEmail() {
-        Optional<User> foundUser = userRepository.findOneByEmail("zeroual.abde@gmail.com");
+    public void shouldFindUserByUsername() {
+        Optional<User> foundUser = userRepository.findOneByUsername("zeroual.abde@gmail.com");
         assertThat(foundUser).isPresent();
 
-        foundUser = userRepository.findOneByEmail("zeroual.abdellah@gmail.com");
+        foundUser = userRepository.findOneByUsername("zeroual.abdellah@gmail.com");
         assertThat(foundUser.isPresent()).isFalse();
     }
 

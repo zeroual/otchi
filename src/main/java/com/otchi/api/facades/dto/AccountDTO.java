@@ -12,12 +12,12 @@ public class AccountDTO implements DTO<Account> {
     @Size(min = 8, max = 100)
     private String password;
 
-    @Size(min = 2,max = 50)
+    @Size(min = 2, max = 50)
     @NotNull
     private String firstName;
 
     @NotNull
-    @Size(min = 2,max = 50)
+    @Size(min = 2, max = 50)
     private String lastName;
 
     @NotNull

@@ -32,7 +32,7 @@ public class FeedServiceImpl implements FeedService {
         if(post==null){
             throw new PostNotFoundException(postId);
         }
-        User user = userService.findUserByEmail(username).get();
+        User user = userService.findUserByUsername(username).get();
         post.addLike(user);
         postRepository.save(post);
     }
@@ -43,7 +43,7 @@ public class FeedServiceImpl implements FeedService {
         if(post==null){
             throw new PostNotFoundException(postId);
         }
-        User user = userService.findUserByEmail(username).get();
+        User user = userService.findUserByUsername(username).get();
         post.unLike(user);
         postRepository.save(post);
     }
@@ -54,7 +54,7 @@ public class FeedServiceImpl implements FeedService {
         if(commentedPost==null){
             throw new PostNotFoundException(postId);
         }
-        User author = userService.findUserByEmail(username).get();
+        User author = userService.findUserByUsername(username).get();
         Comment comment = new Comment(author, content,dateFactory.now());
         commentedPost.addComment(comment);
         postRepository.save(commentedPost);
