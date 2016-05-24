@@ -11,6 +11,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.mock.http.MockHttpOutputMessage;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -26,6 +27,8 @@ import javax.servlet.Filter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
+import static com.otchi.infrastructure.config.Constants.SPRING_PROFILE_DEVELOPMENT;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ApplicationConfig.class})
@@ -36,6 +39,8 @@ import java.nio.charset.Charset;
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
+@ActiveProfiles(SPRING_PROFILE_DEVELOPMENT)
+
 public class AbstractControllerTest {
 
     protected MockMvc mockMvc;

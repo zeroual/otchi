@@ -4,6 +4,7 @@ import com.otchi.infrastructure.config.ApplicationConfig;
 import com.otchi.infrastructure.config.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
@@ -11,8 +12,12 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
 
+import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.Collection;
 
 @SpringBootApplication
 @Configuration
@@ -21,11 +26,12 @@ public class OtchiApplicationStarter {
 
     private static final Logger log = LoggerFactory.getLogger(OtchiApplicationStarter.class);
 
-    /**
-     * Initializes the App.
-     * Spring profiles can be configured with a program arguments --spring.profiles.active= active-profile
-     */
+    @Autowired
+    private Environment env;
 
+    /**
+     * Main method, used to run the application.
+     */
     public static void main(String[] args) throws UnknownHostException {
         SpringApplication app = new SpringApplication(OtchiApplicationStarter.class);
         SimpleCommandLinePropertySource source = new SimpleCommandLinePropertySource(args);
@@ -50,4 +56,22 @@ public class OtchiApplicationStarter {
         }
     }
 
+    /**
+     * Initializes the App.
+     * Spring profiles can be configured with a program arguments --spring.profiles.active= active-profile
+     */
+
+    @PostConstruct
+    public void initApplication() throws IOException {
+        if (env.getActiveProfiles().length == 0) {
+            log.warn("No Spring profile configured, running with default configuration");
+        } else {
+            log.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
+            Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
+            if (activeProfiles.contains("dev") && activeProfiles.contains("prod")) {
+                log.error("You have misconfigured your application! " +
+                        "It should not run with both the 'dev' and 'prod' profiles at the same time.");
+            }
+        }
+    }
 }
