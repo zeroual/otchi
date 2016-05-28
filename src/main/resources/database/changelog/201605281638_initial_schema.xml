@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
+
+    <changeSet id="201605281648" author="Abdellah" dbms="postgresql,oracle">
+        <createSequence sequenceName="hibernate_sequence" startValue="1000" incrementBy="1"/>
+    </changeSet>
+
+    <changeSet id="201605281700" author="Abdellah">
+
+        <createTable tableName="INGREDIENT">
+            <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)"/>
+            <column name="QUANTITY" type="double"/>
+            <column name="UNIT" type="VARCHAR(255)"/>
+        </createTable>
+
+        <createTable tableName="INSTRUCTION">
+            <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="CONTENT" type="VARCHAR(255)"/>
+            <column name="RECIPE_ID" type="BIGINT"/>
+        </createTable>
+
+        <createTable tableName="RECIPE">
+            <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="TITLE" type="VARCHAR(255)"/>
+            <column name="DESCRIPTION" type="VARCHAR(255)"/>
+            <column name="COOK_TIME" type="INT"/>
+            <column name="PREPARATION_TIME" type="INT"/>
+        </createTable>
+
+        <createTable tableName="RECIPE_INGREDIENT">
+            <column name="RECIPE_ID" type="BIGINT"/>
+            <column name="INGREDIENT_ID" type="BIGINT"/>
+        </createTable>
+
+        <createTable tableName="POST">
+            <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="datetime"/>
+            <column name="RECIPE_ID" type="BIGINT"/>
+            <column name="AUTHOR_ID" type="BIGINT"/>
+        </createTable>
+
+        <createTable tableName="USER">
+            <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(100)"/>
+            <column name="USERNAME" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR(50)"/>
+            <column name="LAST_NAME" type="VARCHAR(50)"/>
+        </createTable>
+
+        <createTable tableName="ACCOUNT">
+            <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="USER_ID" type="BIGINT"/>
+            <column name="USERNAME" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LANG_KEY" type="VARCHAR(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ENABLED" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="POST_LIKES">
+            <column name="POST_ID" type="BIGINT"/>
+            <column name="USER_ID" type="BIGINT"/>
+        </createTable>
+
+        <createTable tableName="USER_FOLLOWERS">
+            <column name="USER_ID" type="BIGINT"/>
+            <column name="FOLLOWING_ID" type="BIGINT"/>
+        </createTable>
+
+        <createTable tableName="POST_COMMENT">
+            <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="POST_ID" type="BIGINT"/>
+            <column name="AUTHOR_ID" type="BIGINT"/>
+            <column name="CONTENT" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_ON" type="DATETIME"/>
+        </createTable>
+
+        <createTable tableName="UserConnection">
+            <column name="userId" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="providerId" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="providerUserId" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rank" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="displayName" type="VARCHAR(255)"/>
+            <column name="profileUrl" type="VARCHAR(512)"/>
+            <column name="imageUrl" type="VARCHAR(512)"/>
+            <column name="accessToken" type="VARCHAR(512)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="secret" type="VARCHAR(512)"/>
+            <column name="refreshToken" type="VARCHAR(512)"/>
+            <column name="expireTime" type="BIGINT"/>
+        </createTable>
+        <addPrimaryKey columnNames="userId, providerId, providerUserId" tableName="UserConnection"/>
+
+    </changeSet>
+
+    <changeSet id="201605283234" author="Abdellah">
+
+        <loadData encoding="UTF-8"
+                  file="database/data/users.csv"
+                  separator=";"
+                  tableName="USER"/>
+
+        <loadData encoding="UTF-8"
+                  file="database/data/accounts.csv"
+                  separator=";"
+                  tableName="ACCOUNT"/>
+        
+    </changeSet>
+
+</databaseChangeLog>

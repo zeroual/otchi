@@ -4,7 +4,7 @@ import com.otchi.api.facades.dto.AccountDTO;
 import com.otchi.domain.users.models.Account;
 import com.otchi.domain.users.models.AccountRepository;
 import com.otchi.infrastructure.config.ResourcesPath;
-import com.otchi.utils.AbstractControllerTest;
+import com.otchi.utils.AbstractIntegrationTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,7 +15,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class AccountResourceTest extends AbstractControllerTest {
+public class AccountResourceTest extends AbstractIntegrationTest {
 
     @Autowired
     private AccountRepository accountRepository;

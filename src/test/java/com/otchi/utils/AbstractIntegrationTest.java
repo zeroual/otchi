@@ -5,6 +5,8 @@ import com.otchi.infrastructure.config.ApplicationConfig;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
+import org.springframework.boot.test.ConfigFileApplicationContextInitializer;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -31,7 +33,7 @@ import static com.otchi.infrastructure.config.Constants.SPRING_PROFILE_DEVELOPME
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationConfig.class})
+@ContextConfiguration(classes = {ApplicationConfig.class, LiquibaseAutoConfiguration.class}, initializers = ConfigFileApplicationContextInitializer.class)
 @WebAppConfiguration()
 @IntegrationTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -41,7 +43,7 @@ import static com.otchi.infrastructure.config.Constants.SPRING_PROFILE_DEVELOPME
         DbUnitTestExecutionListener.class})
 @ActiveProfiles(SPRING_PROFILE_DEVELOPMENT)
 
-public class AbstractControllerTest {
+public class AbstractIntegrationTest {
 
     protected MockMvc mockMvc;
 

@@ -1,7 +1,7 @@
 package com.otchi.domain.users.models;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.otchi.utils.AbstractRepositoryTest;
+import com.otchi.utils.AbstractIntegrationTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class UserRepositoryTest extends AbstractRepositoryTest {
+public class UserRepositoryTest extends AbstractIntegrationTest {
 
     @Autowired
     private UserRepository userRepository;

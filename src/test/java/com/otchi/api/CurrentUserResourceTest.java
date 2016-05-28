@@ -2,7 +2,7 @@ package com.otchi.api;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.otchi.infrastructure.config.ResourcesPath;
-import com.otchi.utils.AbstractControllerTest;
+import com.otchi.utils.AbstractIntegrationTest;
 import org.junit.Test;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class CurrentUserResourceTest extends AbstractControllerTest {
+public class CurrentUserResourceTest extends AbstractIntegrationTest {
 
     @Test
     @DatabaseSetup("/dbunit/users/users.xml")

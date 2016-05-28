@@ -5,7 +5,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.otchi.domain.users.models.User;
 import com.otchi.domain.users.models.UserRepository;
 import com.otchi.infrastructure.config.ResourcesPath;
-import com.otchi.utils.AbstractControllerTest;
+import com.otchi.utils.AbstractIntegrationTest;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
-public class FollowingResourceTest extends AbstractControllerTest {
+public class FollowingResourceTest extends AbstractIntegrationTest {
 
 
     @Autowired

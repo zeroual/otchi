@@ -5,7 +5,7 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.repositories.PostRepository;
 import com.otchi.infrastructure.config.ResourcesPath;
-import com.otchi.utils.AbstractControllerTest;
+import com.otchi.utils.AbstractIntegrationTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class FeedResourceTest extends AbstractControllerTest {
+public class FeedResourceTest extends AbstractIntegrationTest {
 
     @Autowired
     private PostRepository postRepository;

@@ -14,3 +14,6 @@ spring:
         twitter:
             clientId: nJkqqr1jpzKsamjbXksRFoWDb
             clientSecret: ATGWhZKdpHnfvJBdzS7FesfiDPkPwR1trXhSqWKwsugrdBIfC1
+liquibase:
+    contexts: dev
+    change-log: classpath:/database/db.changelog-master.xml

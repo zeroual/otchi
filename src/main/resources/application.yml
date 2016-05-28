@@ -1,3 +1,7 @@
 spring:
     social:
         redirectAfterSignInUrl: "/#/feed"
+
+liquibase:
+    contexts: test
+    change-log: classpath:/database/db.changelog-master.xml

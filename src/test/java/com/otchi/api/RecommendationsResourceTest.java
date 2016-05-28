@@ -2,7 +2,7 @@ package com.otchi.api;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.otchi.infrastructure.config.ResourcesPath;
-import com.otchi.utils.AbstractControllerTest;
+import com.otchi.utils.AbstractIntegrationTest;
 import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +12,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class RecommendationsResourceTest extends AbstractControllerTest {
+public class RecommendationsResourceTest extends AbstractIntegrationTest {
 
     @Test
     @DatabaseSetup("/dbunit/users/users.xml")

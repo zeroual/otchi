@@ -4,14 +4,14 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.otchi.domain.kitchen.models.Recipe;
 import com.otchi.domain.social.models.Comment;
 import com.otchi.domain.social.models.Post;
-import com.otchi.utils.AbstractRepositoryTest;
+import com.otchi.utils.AbstractIntegrationTest;
 import org.assertj.core.groups.Tuple;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PostRepositoryTest extends AbstractRepositoryTest {
+public class PostRepositoryTest extends AbstractIntegrationTest {
 
     @Autowired
     private PostRepository postRepository;
