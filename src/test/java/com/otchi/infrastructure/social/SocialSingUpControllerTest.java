@@ -4,7 +4,7 @@ import com.otchi.application.AccountService;
 import com.otchi.domain.users.models.Account;
 import com.otchi.domain.users.models.AccountRepository;
 import com.otchi.infrastructure.config.SocialConfig;
-import com.otchi.utils.AbstractControllerTest;
+import com.otchi.utils.AbstractIntegrationTest;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
-public class SocialSingUpControllerTest extends AbstractControllerTest {
+public class SocialSingUpControllerTest extends AbstractIntegrationTest {
 
     @Autowired
     private AccountService accountService;

@@ -31,6 +31,7 @@
 		<!-- Spring social -->
 		<spring-social-security.version>1.1.2.RELEASE</spring-social-security.version>
 		<spring-social-google.version>1.0.0.RELEASE</spring-social-google.version>
+		<liquibase.version>3.5.1</liquibase.version>
 	</properties>
 
 	<dependencies>
@@ -138,6 +139,12 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>${liquibase.version}</version>
 		</dependency>
 
 	</dependencies>

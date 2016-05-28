@@ -4,14 +4,14 @@ import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.otchi.domain.kitchen.models.Ingredient;
 import com.otchi.domain.kitchen.models.Instruction;
 import com.otchi.domain.kitchen.models.Recipe;
-import com.otchi.utils.AbstractRepositoryTest;
+import com.otchi.utils.AbstractIntegrationTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class RecipeRepositoryTest extends AbstractRepositoryTest {
+public class RecipeRepositoryTest extends AbstractIntegrationTest {
 
     @Autowired
     private RecipeRepository recipeRepository;

@@ -9,9 +9,6 @@ import org.springframework.context.ApplicationContextException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
-import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 import javax.sql.DataSource;
 
@@ -51,19 +48,9 @@ public class HerokuDatabaseConfig {
 
             config.setDataSourceClassName(dataSourceClassName);
             config.addDataSourceProperty("url", herokuUrl);
-            HikariDataSource hikariDataSource = new HikariDataSource(config);
-            executeScript(hikariDataSource, "database/schema.sql");
-            executeScript(hikariDataSource, "database/social-users-connections.sql");
-            executeScript(hikariDataSource, "database/data.sql");
-            return hikariDataSource;
+            return new HikariDataSource(config);
         } else {
             throw new ApplicationContextException("Heroku database URL is not configured, you must set $JDBC_DATABASE_URL");
         }
-    }
-
-    public void executeScript(DataSource dataSource, String script) {
-        Resource resource = new ClassPathResource(script);
-        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator(resource);
-        databasePopulator.execute(dataSource);
     }
 }
