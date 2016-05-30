@@ -2,7 +2,7 @@
 -- connection in. It is, however, not to be assumed to be production-ready, all-purpose SQL. It is merely representative
 -- of the kind of table that JdbcUsersConnectionRepository works with. The table and column names, as well as the general
 -- column types, are what is important. Specific column types and sizes that work may vary across database vendors and
--- the required sizes may vary across API providers. 
+-- the required sizes may vary across API providers.
 DROP TABLE IF EXISTS UserConnection;
 
 create table UserConnection (userId varchar(255) not null,

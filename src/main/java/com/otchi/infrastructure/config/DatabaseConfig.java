@@ -1,13 +1,12 @@
 package com.otchi.infrastructure.config;
 
-import org.h2.tools.Server;
+import com.otchi.infrastructure.config.database.H2DatabaseConfig;
+import com.otchi.infrastructure.config.database.HerokuDatabaseConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -16,28 +15,14 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
-
-import static com.otchi.infrastructure.config.Constants.SPRING_PROFILE_DEVELOPMENT;
 
 
 @Configuration
 @EnableJpaRepositories("com.otchi.domain")
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableTransactionManagement
+@Import({HerokuDatabaseConfig.class, H2DatabaseConfig.class})
 public class DatabaseConfig {
-
-    private final String H2_SERVE_PORT = "8082";
-
-    @Bean
-    public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2)
-                .addScript("database/schema.sql")
-                .addScript("database/social-users-connections.sql")
-                .addScript("database/data.sql")
-                .build();
-    }
 
     @Bean
     public JpaTransactionManager transactionManager() {
@@ -60,19 +45,6 @@ public class DatabaseConfig {
         emf.setDataSource(dataSource);
         emf.setJpaVendorAdapter(jpaVendorAdapter);
         return emf;
-    }
-
-    @Bean
-    @Profile(SPRING_PROFILE_DEVELOPMENT)
-    public Server serverH2() throws SQLException {
-        // start a Web server : either before or after opening the database
-        System.out.println("\n>>>>> serverH2 : démarre ..............\n" +
-                "   URL      : http://localhost:" + H2_SERVE_PORT + "/ \n" +
-                "   URL JDBC : jdbc:h2:mem:testdb  \n" +
-                "   USER     : sa \n" +
-                "   PASSWORD : \n" +
-                " \n");
-        return Server.createWebServer("-webAllowOthers", "-webPort", H2_SERVE_PORT).start();
     }
 
 }
