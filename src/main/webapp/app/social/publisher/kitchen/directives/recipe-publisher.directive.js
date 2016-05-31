@@ -36,6 +36,7 @@ angular.module("publisher")
                 $scope.removeInstruction = function (index) {
                     $scope.recipe.instructions.splice(index, 1);
                 };
-            }
+
+                    }
         };
     });

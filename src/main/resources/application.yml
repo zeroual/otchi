@@ -5,3 +5,13 @@ spring:
 liquibase:
     contexts: test
     change-log: classpath:/database/db.changelog-master.xml
+multipart:
+  enabled: true
+
+amazon:
+    aws:
+        access-key-id: AKIAJFCC3VEOC7MARD4A
+        access-key-secret: 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
+        availabilty-zone : eu-central-1
+    s3:
+      default-bucket: otchi
