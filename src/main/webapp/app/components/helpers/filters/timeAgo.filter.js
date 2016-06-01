@@ -1,6 +1,7 @@
 angular.module("helpers")
     .filter('timeAgo', function () {
         return function (date) {
-            return moment(date).fromNow();
+            var utc = moment.utc(date);
+            return moment(utc.local()).fromNow()
         };
     });

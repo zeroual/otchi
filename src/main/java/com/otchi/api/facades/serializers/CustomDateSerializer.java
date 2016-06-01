@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class CustomDateSerializer extends JsonSerializer<Date> {
 
@@ -16,6 +17,7 @@ public class CustomDateSerializer extends JsonSerializer<Date> {
     public void serialize(Date date, JsonGenerator generator,
                           SerializerProvider serializerProvider)
             throws IOException {
+        dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
         String formattedDate = dateFormat.format(date);
         generator.writeString(formattedDate);
     }
