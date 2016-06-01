@@ -12,7 +12,7 @@ angular.module('authentication')
                 }).catch(function (err) {
                     this.logout();
                     deferred.reject(err);
-                });
+                }.bind(this));
                 return deferred.promise;
             },
             logout: function () {
