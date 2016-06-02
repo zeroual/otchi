@@ -3,6 +3,7 @@ package com.otchi.utils;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.otchi.infrastructure.config.ApplicationConfig;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
@@ -28,6 +29,7 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.Filter;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.TimeZone;
 
 import static com.otchi.infrastructure.config.Constants.SPRING_PROFILE_DEVELOPMENT;
 
@@ -54,13 +56,19 @@ public class AbstractIntegrationTest {
             Charset.forName("utf8"));
     @Autowired
     private Filter springSecurityFilterChain;
-    private HttpMessageConverter mappingJackson2HttpMessageConverter=new MappingJackson2HttpMessageConverter();
+    private HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
 
     @Before
     public void setUp() {
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
                 .addFilter(springSecurityFilterChain)
                 .build();
+    }
+
+    @BeforeClass
+    public static void changeTimeZoneForTest() {
+        System.setProperty("user.timezone", "UTC");
+        TimeZone.setDefault(null);
     }
 
     protected String json(Object o) throws IOException {
