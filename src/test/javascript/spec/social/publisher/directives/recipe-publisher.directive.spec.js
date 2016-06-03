@@ -46,7 +46,7 @@ describe('Recipe publisher directive', function () {
         });
 
         it('should notify the feed loader that a new post is published', function () {
-            spyOn($rootScope, '$broadcast');
+            spyOn($rootScope, '$broadcast').and.returnValue({preventDefault: true});
             $scope.recipe = {description: 'toto'};
             var newPost = {id: 12};
             $httpBackend.expectPOST('/rest/v1/post/recipe', $scope.recipe).respond(newPost);
