@@ -1,7 +1,7 @@
 describe('FeedViewer Directive', function () {
 
     beforeEach(module('stream'));
-    beforeEach(module('directives.templates'))
+    beforeEach(module('directives.templates'));
 
     var $scope;
     var $httpBackend;
