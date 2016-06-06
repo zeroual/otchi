@@ -10,10 +10,13 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-    <!-- Bootstrap core CSS -->
+    <!-- build:css assets/css/vendor.css -->
+    <!-- bower:css -->
     <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/ngToast/dist/ngToast.css">
+    <!-- endbower -->
+    <!-- build:css assets/css/main.css -->
     <link rel="stylesheet" href="assets/css/cards.css">
     <link rel="stylesheet" href="assets/css/buttons.css">
     <link rel="stylesheet" href="assets/css/inputs.css">
@@ -22,7 +25,7 @@
     <link rel="stylesheet" href="assets/css/form.css">
     <link rel="stylesheet" href="assets/css/notifications.css">
     <link rel="stylesheet" href="assets/css/main.css">
-
+    <!-- endbuild -->
 
 </head>
 
@@ -34,9 +37,8 @@
 
         </div>
     </div>
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+<!-- build:js scripts/vendor.js -->
+<!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular/angular.js"></script>
@@ -52,7 +54,10 @@
 <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
 <script src="bower_components/sockjs-client/dist/sockjs.min.js"></script>
 <script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
+<!-- build:js({.tmp,src/main/webapp}) scripts/app.js -->
 <script type="text/javascript" src="app/authentication/authentication.js"></script>
 <script type="text/javascript" src="app/components/toaster/toaster.js"></script>
 <script type="text/javascript" src="app/social-authentication/social-authentication.js"></script>
@@ -98,9 +103,9 @@
 <script type="text/javascript" src="app/social-authentication/directives/social-auth-button.directive.js"></script>
 <script type="text/javascript" src="app/social-authentication/controllers/social-register.controller.js"></script>
 
-
 <script type="text/javascript" src="app/components/navbar/navbar.controller.js"></script>
 <script type="text/javascript" src="app/components/toaster/toaster.js"></script>
 <script type="text/javascript" src="app/components/toaster/services/toaster.service.js"></script>
+<!-- endbuild -->
 </body>
 </html>
