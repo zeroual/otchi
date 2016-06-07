@@ -22,10 +22,10 @@
             </div>
             <div class="alert alert-warning" ng-if="feeds.length==0">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <span>
-            <strong>Notice : </strong>
-            No feeds found . You must be new. Or quiet  >_<
-        </span>
+                <span>
+                    <strong>Notice : </strong>
+                    No feeds found . You must be new. Or quiet
+                </span>
             </div>
             <div class="panel panel-default" ng-repeat="feed in feeds">
                 <feed-viewer/>
@@ -33,6 +33,6 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div ui-view="right-rail"/>
+        <div ui-view="right-rail"></div>
     </div>
 </div>
