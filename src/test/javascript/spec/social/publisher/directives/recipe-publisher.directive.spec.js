@@ -29,12 +29,6 @@ describe('Recipe publisher directive', function () {
             expect($scope.recipe.instructions.length).toEqual(0);
 
         });
-
-        it('should wait the directive parent to send an event to share recipe', function () {
-            $scope.$broadcast('SHARE_RECIPE_EVENT');
-            expect($scope.shareRecipe).toHaveBeenCalled();
-
-        });
     });
 
     describe('publish the recipe as post', function () {
@@ -46,7 +40,7 @@ describe('Recipe publisher directive', function () {
         });
 
         it('should notify the feed loader that a new post is published', function () {
-            spyOn($rootScope, '$broadcast');
+            spyOn($rootScope, '$broadcast').and.returnValue({preventDefault: true});
             $scope.recipe = {description: 'toto'};
             var newPost = {id: 12};
             $httpBackend.expectPOST('/rest/v1/post/recipe', $scope.recipe).respond(newPost);

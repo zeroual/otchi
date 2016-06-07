@@ -14,11 +14,11 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-6 col-xs-6">
                     <input ng-model="recipe.cookTime" type="text" class="form-control" id="cookTime"
                            placeholder="Cook time">
                 </div>
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-6 col-xs-6">
                     <input ng-model="recipe.preparationTime" type="text" class="form-control" id="preparationTime"
                            placeholder="Preparation time">
                 </div>
@@ -42,18 +42,18 @@
             <div class="panel-body">
                 <form class="form-horizontal">
                     <div class="form-group" ng-repeat="ingredient in recipe.ingredients">
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
                             <input ng-model="ingredient.name" type="text" class="form-control"
                                    placeholder="Put your ingredien here">
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-sm-2 col-xs-2">
                             <input ng-model="ingredient.quantity" type="text" class="form-control"
                                    placeholder="quantity">
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-sm-2 col-xs-2">
                             <input ng-model="ingredient.unit" type="text" class="form-control" placeholder="unit">
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-1 col-sm-1 col-xs-2">
                             <button class="btn btn-sm btn-warning btn-circle pull-right"
                                     ng-click="removeIngredient($index)">
                                 <i class="glyphicon glyphicon-remove"></i>
@@ -80,11 +80,11 @@
             <div class="panel-body">
                 <form class="form-horizontal">
                     <div class="form-group" ng-repeat="instruction in recipe.instructions">
-                        <div class="col-md-11">
+                        <div class="col-md-11 col-sm-11 col-xs-10">
                                 <textarea ng-model="instruction.content" type="text" class="form-control"
                                           placeholder="Put direction to follow hre "/>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-1 col-sm-1 col-xs-2">
                             <button class="btn btn-sm btn-warning btn-circle pull-right"
                                     ng-click="removeInstruction($index)">
                                 <i class="glyphicon glyphicon-remove"></i>
