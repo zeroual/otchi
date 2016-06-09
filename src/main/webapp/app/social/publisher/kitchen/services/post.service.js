@@ -1,8 +1,11 @@
 angular.module("publisher")
-    .service("PostService", function ($resource) {
+    .service("PostService", function (Upload) {
 
         this.publishRecipe = function (recipe) {
-            var service = $resource('/rest/v1/post/recipe');
-            return service.save(recipe);
+            return Upload.upload({
+                url: '/rest/v1/post/recipe',
+                data: {pictures: recipe.pictures, 'recipe': Upload.jsonBlob(recipe)},
+                arrayKey: ''
+            })
         };
     });

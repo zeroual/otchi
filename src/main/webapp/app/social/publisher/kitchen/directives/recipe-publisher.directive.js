@@ -11,7 +11,7 @@ angular.module("publisher")
                 init();
 
                 $scope.shareRecipe = function () {
-                    PostService.publishRecipe($scope.recipe).$promise.then(function (data) {
+                    PostService.publishRecipe($scope.recipe).then(function (data) {
                         $rootScope.$broadcast('NEW_POST_PUBLISHED_EVENT', data);
                     });
                     init();
@@ -36,7 +36,6 @@ angular.module("publisher")
                 $scope.removeInstruction = function (index) {
                     $scope.recipe.instructions.splice(index, 1);
                 };
-
-                    }
+            }
         };
     });
