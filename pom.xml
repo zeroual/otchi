@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -32,6 +32,8 @@
 		<spring-social-security.version>1.1.2.RELEASE</spring-social-security.version>
 		<spring-social-google.version>1.0.0.RELEASE</spring-social-google.version>
 		<liquibase.version>3.5.1</liquibase.version>
+		<aws-sdk.version>1.11.5</aws-sdk.version>
+		<apache-commons-io.version>2.4</apache-commons-io.version>
 	</properties>
 
 	<dependencies>
@@ -145,6 +147,20 @@
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
 			<version>${liquibase.version}</version>
+		</dependency>
+
+		<!-- http://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk</artifactId>
+			<version>${aws-sdk.version}</version>
+		</dependency>
+
+		<!-- http://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${apache-commons-io.version}</version>
 		</dependency>
 
 	</dependencies>
