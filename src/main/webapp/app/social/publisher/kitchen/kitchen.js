@@ -1,5 +1,5 @@
 'use strict';
-angular.module('kitchen', ['ui.router']);
+angular.module('kitchen', ['ui.router', 'ngFileUpload']);
 angular.module('kitchen')
     .config(function ($stateProvider) {
         $stateProvider

@@ -7,9 +7,11 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.otchi.infrastructure.storage.AmazonBlobStorageService;
 import com.otchi.infrastructure.storage.BlobStorageService;
+import com.otchi.infrastructure.stubs.MockBlobStorageService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
 public class BlobStorageConfig {
@@ -21,6 +23,7 @@ public class BlobStorageConfig {
     private  String secretKey;
 
     @Bean
+    @Profile("prod")
     public AmazonS3Client amazonS3Client() {
         AWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
         AmazonS3Client amazonS3Client = new AmazonS3Client(awsCredentials);
@@ -29,7 +32,15 @@ public class BlobStorageConfig {
     }
 
     @Bean
+    @Profile("prod")
     public BlobStorageService blobStorageService(AmazonS3Client amazonS3Client) {
         return new AmazonBlobStorageService(amazonS3Client);
     }
+
+    @Bean
+    @Profile("dev")
+    public BlobStorageService blobStorageServiceStub() {
+        return new MockBlobStorageService();
+    }
+
 }

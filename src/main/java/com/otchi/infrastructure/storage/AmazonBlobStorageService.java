@@ -3,14 +3,10 @@ package com.otchi.infrastructure.storage;
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
-import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.amazonaws.services.s3.transfer.model.UploadResult;
-import com.otchi.infrastructure.social.SocialSingUpController;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -29,7 +26,7 @@ public class AmazonBlobStorageService implements BlobStorageService {
     private final Logger log = LoggerFactory.getLogger(AmazonBlobStorageService.class);
 
 
-    @Value("${amazon.aws.default-bucket}")
+    @Value("${amazon.s3.default-bucket}")
     private String bucketName;
 
     private final AmazonS3Client amazonS3Client;
@@ -42,7 +39,7 @@ public class AmazonBlobStorageService implements BlobStorageService {
     }
 
     @Override
-    public void save(MultipartFile[] files) {
+    public void save(List<MultipartFile> files) {
 
         // check bucket
         if (!doestBucketExist(bucketName)) {
