@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RecipeRepositoryTest extends AbstractIntegrationTest {
 
@@ -38,6 +39,8 @@ public class RecipeRepositoryTest extends AbstractIntegrationTest {
         assertThat(recipe.getInstructions())
                 .extracting(instruction -> instruction.getContent())
                 .isEqualTo(asList("CONTENT_SAMPLE"));
+
+        assertThat(recipe.getImages()).containsExactly("http://url.com/imageID");
     }
 
     @Test

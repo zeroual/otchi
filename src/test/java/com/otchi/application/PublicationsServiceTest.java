@@ -25,7 +25,7 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class PublicationsServiceTest {
 
@@ -80,11 +80,20 @@ public class PublicationsServiceTest {
 
     @Test
     public void shouldSaveRecipePictures() {
+
+        List<String> imagesURL = asList("http://url.com/12OU222Y1Y2.png");
+        when(blobStorageService.save(any())).thenReturn(imagesURL);
+
         MultipartFile picture1 = new MockMultipartFile("food1.png", "some data".getBytes());
         List<MultipartFile> pictures = asList(picture1);
 
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
-        publicationsService.publishRecipe(recipe, pictures, "email@gmail.com");
+        Post savedPost = publicationsService.publishRecipe(recipe, pictures, "email@gmail.com");
         Mockito.verify(blobStorageService).save(pictures);
+        assertThat(savedPost.getRecipe().getImages()).hasSize(1)
+                                                     .isEqualTo(imagesURL);
+
+
+
     }
 }

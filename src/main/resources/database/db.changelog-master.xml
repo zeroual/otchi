@@ -5,4 +5,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="classpath:database/changelog/201605281638_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:database/changelog/201606121745_add_images_to_recipe.xml" relativeToChangelogFile="false"/>
+
 </databaseChangeLog>

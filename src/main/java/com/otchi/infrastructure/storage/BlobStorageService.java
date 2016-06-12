@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface BlobStorageService {
 
-    void save(List<MultipartFile> files);
+    List<String> save(List<MultipartFile> files) throws BlobObjectPutException;
 }

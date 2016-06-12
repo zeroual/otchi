@@ -48,3 +48,4 @@ amazon:
         availabilty-zone : eu-central-1
     s3:
       default-bucket: otchi
+      url: s3.amazonaws.com

@@ -13,6 +13,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import static com.otchi.infrastructure.config.Constants.SPRING_PROFILE_DEVELOPMENT;
+import static com.otchi.infrastructure.config.Constants.SPRING_PROFILE_PRODUCTION;
+
 @Configuration
 public class BlobStorageConfig {
 
@@ -23,7 +26,7 @@ public class BlobStorageConfig {
     private  String secretKey;
 
     @Bean
-    @Profile("prod")
+    @Profile(SPRING_PROFILE_PRODUCTION)
     public AmazonS3Client amazonS3Client() {
         AWSCredentials awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
         AmazonS3Client amazonS3Client = new AmazonS3Client(awsCredentials);
@@ -32,13 +35,13 @@ public class BlobStorageConfig {
     }
 
     @Bean
-    @Profile("prod")
+    @Profile(SPRING_PROFILE_PRODUCTION)
     public BlobStorageService blobStorageService(AmazonS3Client amazonS3Client) {
         return new AmazonBlobStorageService(amazonS3Client);
     }
 
     @Bean
-    @Profile("dev")
+    @Profile(SPRING_PROFILE_DEVELOPMENT)
     public BlobStorageService blobStorageServiceStub() {
         return new MockBlobStorageService();
     }
