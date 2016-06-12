@@ -42,7 +42,8 @@ public class PublicationsServiceImpl implements PublicationsService {
         Post post = new Post(dateFactory.now());
         post.withRecipe(recipe);
         post.setAuthor(user.get());
-        blobStorageService.save(pictures);
+        List<String> imagesURL = blobStorageService.save(pictures);
+        recipe.setImages(imagesURL);
         return postRepository.save(post);
     }
 

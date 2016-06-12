@@ -7,13 +7,12 @@ import java.util.List;
 
 @Entity
 @Table(name = "RECIPE")
-public class Recipe{
+public class Recipe {
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
 
     @Column(name = "DESCRIPTION")
@@ -26,19 +25,24 @@ public class Recipe{
     @Column(name = "PREPARATION_TIME")
     private Integer preparationTime;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "RECIPE_INGREDIENT",
             joinColumns = {@JoinColumn(name = "RECIPE_ID")},
             inverseJoinColumns = {@JoinColumn(name = "INGREDIENT_ID")})
     private List<Ingredient> ingredients = new ArrayList<>();
 
-            @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "RECIPE_ID")
-    private List<Instruction> instructions=new ArrayList<>();
+    private List<Instruction> instructions = new ArrayList<>();
 
     @Column(name = "TITLE")
     private String title;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "RECIPE_IMAGES", joinColumns = @JoinColumn(name = "RECIPE_ID", referencedColumnName = "ID"))
+    @Column(name = "URL")
+    List<String> images = new ArrayList<>();
 
     public Recipe(String title, String description, Integer cookTime, Integer preparationTime) {
         this.description = description;
@@ -103,5 +107,13 @@ public class Recipe{
 
     public void addInstruction(Instruction instruction) {
         this.instructions.add(instruction);
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public  void setImages(List<String> images) {
+        this.images = images;
     }
 }
