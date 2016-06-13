@@ -1,7 +1,5 @@
-package com.otchi.infrastructure.config;
+package com.otchi.infrastructure.config.database;
 
-import com.otchi.infrastructure.config.database.H2DatabaseConfig;
-import com.otchi.infrastructure.config.database.HerokuDatabaseConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
