@@ -1,6 +1,8 @@
 package com.otchi.infrastructure.config;
 
 import com.otchi.application.MailService;
+import com.otchi.infrastructure.config.database.DatabaseConfig;
+import com.otchi.infrastructure.config.storage.BlobStorageConfig;
 import com.otchi.infrastructure.mail.MailServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

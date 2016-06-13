@@ -11,9 +11,6 @@ import com.amazonaws.services.s3.transfer.model.UploadResult;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -22,24 +19,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Service
 public class AmazonBlobStorageService implements BlobStorageService {
 
     private final Logger log = LoggerFactory.getLogger(AmazonBlobStorageService.class);
 
 
-    @Value("${amazon.s3.default-bucket}")
     private String bucketName;
-
-    @Value("${amazon.s3.url}")
     private String s3EndpointURL;
-
     private final AmazonS3Client amazonS3Client;
     private TransferManager transferManager;
 
-    @Autowired
-    public AmazonBlobStorageService(AmazonS3Client amazonS3Client) {
+    public AmazonBlobStorageService(AmazonS3Client amazonS3Client, String bucketName, String s3EndpointURL) {
         this.amazonS3Client = amazonS3Client;
+        this.bucketName = bucketName;
+        this.s3EndpointURL = s3EndpointURL;
         this.transferManager = new TransferManager(this.amazonS3Client);
     }
 
