@@ -28,12 +28,11 @@ public class FeedResourceTest extends AbstractIntegrationTest {
     @Test
     @DatabaseSetup("/dbunit/social/stream-feeds.xml")
     @Transactional
-    public void shouldFetchAllRecipes() throws Exception {
+    public void shouldFetchAllFeeds() throws Exception {
         mockMvc.perform(get(ResourcesPath.FEED).with(user("user"))
                 .contentType(contentType))
                 .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(content().json("[{\"id\":1,\"author\":{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"},\"createdTime\":\"2015-02-28 00:00:00\",\"content\":{\"type\":\"RECIPE\",\"id\":2,\"description\":null,\"cookTime\":null,\"preparationTime\":null,\"ingredients\":[],\"instructions\":[],\"title\":\"TITLE_SAMPLE_2\"},\"likes\":[{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"}],\"comments\":[{\"id\":1,\"author\":{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"},\"content\":\"what a delicious meal\",\"createdOn\":\"2016-02-22 00:00:00\"}]}]"));
+                .andExpect(content().json("[{\"id\":2,\"author\":{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"},\"createdTime\":\"2016-06-16 00:00:00\",\"content\":{\"type\":\"STORY\",\"content\":\"my story\"},\"likes\":[],\"comments\":[]},{\"id\":1,\"author\":{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"},\"createdTime\":\"2015-02-28 00:00:00\",\"content\":{\"type\":\"RECIPE\",\"id\":2,\"description\":null,\"cookTime\":null,\"preparationTime\":null,\"ingredients\":[],\"instructions\":[],\"title\":\"TITLE_SAMPLE_2\"},\"likes\":[{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"}],\"comments\":[{\"id\":1,\"author\":{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"},\"content\":\"what a delicious meal\",\"createdOn\":\"2016-02-22 00:00:00\"}]}]"));
     }
 
     @Test

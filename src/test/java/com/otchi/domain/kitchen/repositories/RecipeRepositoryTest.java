@@ -1,16 +1,16 @@
 package com.otchi.domain.kitchen.repositories;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.otchi.domain.kitchen.models.Ingredient;
-import com.otchi.domain.kitchen.models.Instruction;
-import com.otchi.domain.kitchen.models.Recipe;
+import com.otchi.domain.kitchen.Ingredient;
+import com.otchi.domain.kitchen.Instruction;
+import com.otchi.domain.kitchen.Recipe;
+import com.otchi.domain.kitchen.RecipeRepository;
 import com.otchi.utils.AbstractIntegrationTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RecipeRepositoryTest extends AbstractIntegrationTest {
 

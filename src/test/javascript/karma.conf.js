@@ -22,6 +22,7 @@ module.exports = function (config) {
       'main/webapp/bower_components/angular-local-storage/dist/angular-local-storage.js',
       'main/webapp/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'main/webapp/bower_components/angular-ui-router/release/angular-ui-router.js',
+      'main/webapp/bower_components/ng-file-upload/ng-file-upload.min.js',
       'main/webapp/bower_components/ngToast/dist/ngToast.js',
       'main/webapp/app/components/toaster/toaster.js',
       'main/webapp/app/social-authentication/social-authentication.js',

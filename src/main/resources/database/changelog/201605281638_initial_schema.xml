@@ -11,8 +11,11 @@
 
     <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
 
-    <changeSet id="201605281648" author="Abdellah" dbms="postgresql,oracle">
-        <createSequence sequenceName="hibernate_sequence" startValue="1000" incrementBy="1"/>
+    <changeSet id="201605281648" author="Abdellah">
+        <createTable tableName="HIBERNATE_SEQUENCES">
+            <column name="SEQUENCE_NAME" type="VARCHAR(256)"></column>
+            <column name="SEQUENCE_NEXT_HI_VALUE" type="INT"></column>
+        </createTable>
     </changeSet>
 
     <changeSet id="201605281700" author="Abdellah">
@@ -54,7 +57,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="CREATED_AT" type="datetime"/>
-            <column name="RECIPE_ID" type="BIGINT"/>
+            <column name="POST_CONTENT_ID" type="BIGINT"/>
             <column name="AUTHOR_ID" type="BIGINT"/>
         </createTable>
 

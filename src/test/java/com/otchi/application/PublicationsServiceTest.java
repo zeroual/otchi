@@ -2,8 +2,9 @@ package com.otchi.application;
 
 import com.otchi.application.impl.PublicationsServiceImpl;
 import com.otchi.application.utils.DateFactory;
-import com.otchi.domain.kitchen.models.Recipe;
+import com.otchi.domain.kitchen.Recipe;
 import com.otchi.domain.social.models.Post;
+import com.otchi.domain.social.models.Story;
 import com.otchi.domain.social.repositories.PostRepository;
 import com.otchi.domain.social.repositories.mocks.MockPostRepository;
 import com.otchi.domain.users.models.User;
@@ -52,8 +53,8 @@ public class PublicationsServiceTest {
         publicationsService.publishRecipe(recipe, emptyList(), "email@gmail.com");
         Post savedPost = postRepository.findOne(1L);
         assertThat(savedPost).isNotNull();
-        assertThat(savedPost.getRecipe()).isNotNull();
-        assertThat(savedPost.getRecipe().getTitle()).isEqualTo("recipe_title");
+        assertThat(savedPost.getPostContent()).isNotNull();
+        assertThat(((Recipe) savedPost.getPostContent()).getTitle()).isEqualTo("recipe_title");
     }
 
     @Test
@@ -90,10 +91,43 @@ public class PublicationsServiceTest {
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
         Post savedPost = publicationsService.publishRecipe(recipe, pictures, "email@gmail.com");
         Mockito.verify(blobStorageService).save(pictures);
-        assertThat(savedPost.getRecipe().getImages()).hasSize(1)
-                                                     .isEqualTo(imagesURL);
+        Recipe savedRecipe = (Recipe) savedPost.getPostContent();
+        assertThat(savedRecipe.getImages()).hasSize(1)
+                .isEqualTo(imagesURL);
 
 
+    }
 
+    @Test
+    public void shouldSaveStoryAsPost() {
+        Story story = new Story("my story");
+        Post savedPost = publicationsService.publishStory(story, "email@gmail.com");
+        assertThat(savedPost.getId()).isNotNull();
+        savedPost = postRepository.findOne(1L);
+        assertThat(savedPost).isNotNull();
+
+        Story savedStory = (Story) savedPost.getPostContent();
+        assertThat(savedStory.content()).isEqualTo("my story");
+    }
+
+    @Test
+    public void shouldAssignStoryPostToHisAuthor() {
+        Story story = new Story("my story");
+        String username = "email@gmail.com";
+        Post savedPost = publicationsService.publishStory(story, username);
+        assertThat(savedPost.getAuthor().getUsername()).isEqualTo(username);
+
+    }
+
+    @Test
+    public void shouldAssignStoryCreationDateToNow() throws ParseException {
+        Date now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse("2015-02-28 12:15:22.8");
+        Mockito.when(dateFactory.now()).thenReturn(now);
+
+        Story story = new Story("my story");
+
+        publicationsService.publishStory(story, "email@gmail.com");
+        Post savedPost = postRepository.findOne(1L);
+        assertThat(savedPost.getCreatedTime()).isEqualTo(now);
     }
 }

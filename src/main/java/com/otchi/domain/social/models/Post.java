@@ -1,6 +1,5 @@
 package com.otchi.domain.social.models;
 
-import com.otchi.domain.kitchen.models.Recipe;
 import com.otchi.domain.users.models.User;
 
 import javax.persistence.*;
@@ -19,10 +18,6 @@ public class Post {
     @Column(name = "CREATED_AT")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdTime;
-
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinColumn(name = "RECIPE_ID")
-    private Recipe recipe;
 
     @ManyToOne
     @JoinColumn(name = "AUTHOR_ID")
@@ -43,7 +38,9 @@ public class Post {
     @JoinColumn(name = "POST_ID")
     private Collection<Comment> comments = new ArrayList<>();
 
-
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "POST_CONTENT_ID")
+	private PostContent postContent;
 
     public Post() {
 
@@ -62,15 +59,6 @@ public class Post {
 
     public Date getCreatedTime() {
         return createdTime;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public Post withRecipe(Recipe recipe) {
-        this.recipe = recipe;
-        return this;
     }
 
     public Long getId() {
@@ -93,4 +81,13 @@ public class Post {
         return comments;
     }
 
+	public PostContent getPostContent() {
+		return postContent;
+	}
+
+	public void setPostContent(PostContent postContent) {
+		this.postContent = postContent;
+	}
+
+    
 }

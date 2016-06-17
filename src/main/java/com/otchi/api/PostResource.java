@@ -2,9 +2,11 @@ package com.otchi.api;
 
 import com.otchi.api.facades.dto.PostDTO;
 import com.otchi.api.facades.dto.RecipeDTO;
+import com.otchi.api.facades.dto.StoryDTO;
 import com.otchi.application.PublicationsService;
-import com.otchi.domain.kitchen.models.Recipe;
+import com.otchi.domain.kitchen.Recipe;
 import com.otchi.domain.social.models.Post;
+import com.otchi.domain.social.models.Story;
 import com.otchi.infrastructure.config.ResourcesPath;
 import com.otchi.infrastructure.storage.BlobObjectPutException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +35,12 @@ public class PostResource {
         return new PostDTO(savedPost);
     }
 
+    @RequestMapping(value = "/story", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public PostDTO publishStory(@RequestBody StoryDTO storyDTO, Principal principal) {
+        Story story = storyDTO.toDomain();
+        Post createdPost = publicationsService.publishStory(story, principal.getName());
+        return new PostDTO(createdPost);
+    }
 
 }

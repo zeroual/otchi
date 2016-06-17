@@ -2,7 +2,9 @@ package com.otchi.api.facades.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.otchi.api.facades.serializers.CustomDateSerializer;
+import com.otchi.domain.kitchen.Recipe;
 import com.otchi.domain.social.models.Post;
+import com.otchi.domain.social.models.Story;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -65,7 +67,11 @@ public class PostDTO implements DTO<Post> {
         this.id = post.getId();
         this.author = new AuthorDTO(post.getAuthor());
         this.createdTime = post.getCreatedTime();
-        this.content = new RecipeDTO(post.getRecipe());
+        if (post.getPostContent() instanceof Recipe) {
+            this.content = new RecipeDTO((Recipe) post.getPostContent());
+        } else if (post.getPostContent() instanceof Story) {
+            this.content = new StoryDTO((Story) post.getPostContent());
+        }
         this.likes = post.getLikes().stream().map(UserDTO::new).collect(toList());
         this.comments = post.getComments().stream().map(CommentDTO::new).collect(toList());
     }
