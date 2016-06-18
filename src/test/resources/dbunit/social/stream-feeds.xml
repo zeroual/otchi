@@ -8,6 +8,8 @@
             LAST_NAME="ZEROUAL"
     />
 
+    <RECIPE_IMAGES URL="http://host/image.png"
+                   RECIPE_ID="2"/>
     <recipe ID="2"
             TITLE="TITLE_SAMPLE_2"/>
 
