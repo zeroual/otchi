@@ -1,0 +1,37 @@
+<div>
+    <form ng-submit="commentOnPost(feed)">
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" name="commentContent" ng-model="commentContent" class="form-control"
+                       placeholder="Your comment" required/>
+                            <span class="input-group-btn">
+                              <button class="btn btn-default" type="submit">
+                                  Send <i class="glyphicon glyphicon-send"></i>
+                              </button>
+                            </span>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="comments">
+    <div class="panel panel-default" ng-repeat="comment in feed.comments |orderBy:'-createdOn'">
+        <div class="panel-body">
+            <div class="media">
+                <div class="media-left">
+                    <a href="">
+                        <img class="media-object" src="/assets/images/facke-user-image.jpg">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <div>
+                        <small class="pull-right text-muted">{{comment.createdOn | timeAgo }}</small>
+                        <h5 class="margin-top-none">
+                            {{comment.author.firstName}} {{comment.author.lastName}}
+                        </h5>
+                    </div>
+                    <p class="margin-none">{{comment.content}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 angular.module("stream")
     .directive('feedViewer', function () {
         return {
-            templateUrl: 'app/social/stream/views/feed.directive.html',
+            templateUrl: 'app/social/stream/directives/feed-viewer/feed-viewer.template.html',
             controller: function ($scope, FeedsService, $uibModal) {
 
                 $scope.likePost = function (post) {
@@ -11,12 +11,6 @@ angular.module("stream")
                 $scope.unLikePost = function (post) {
                     FeedsService.unLikePost(post);
 
-                };
-
-                $scope.commentOnPost = function (feed) {
-                    FeedsService.commentOnPost(feed, $scope.commentContent).then(function () {
-                        $scope.commentContent = '';
-                    });
                 };
 
                 $scope.showLikes = function (feed) {

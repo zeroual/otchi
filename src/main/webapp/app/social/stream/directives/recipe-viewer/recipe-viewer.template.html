@@ -1,0 +1,19 @@
+<div class="row">
+    <div class="col-md-6 col-sm-12" ng-if="recipe.images">
+        <a href="#">
+            <img class="img-responsive"
+                 ng-src="{{recipe.images[0]}}">
+        </a>
+    </div>
+    <div class="col-sm-12" ng-class="{'col-md-6':recipe.images,'col-md-12':!recipe.images}">
+        <div>
+            <h4> {{recipe.title}} Annie's Fruit Salsa and Cinnamon Chips</h4>
+            <p>
+                {{recipe.description}}
+                "Easy to make, tasty fruit salsa and cinnamon tortilla chips. Great as an appetizer or a snack. Great
+                for anytime!"
+            </p>
+
+        </div>
+    </div>
+</div>
