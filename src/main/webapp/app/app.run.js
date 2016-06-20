@@ -29,8 +29,8 @@ app.run(function ($rootScope, $location, $window, $http, $state) {
     });
 
     $rootScope.back = function () {
-        // If previous state is 'activate' or do not exist go to 'home'
-        if ($rootScope.previousStateName === 'activate' || $state.get($rootScope.previousStateName) === null) {
+        // If previous state is not exist go to 'index' page
+        if ($state.get($rootScope.previousStateName) == undefined) {
             $state.go('index');
         } else {
             $state.go($rootScope.previousStateName, $rootScope.previousStateParams);

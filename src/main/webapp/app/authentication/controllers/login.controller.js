@@ -11,7 +11,7 @@ angular.module('authentication')
                 rememberMe: $scope.rememberMe
             }).then(function () {
                 $scope.authenticationError = false;
-                if ($rootScope.previousStateName === undefined) {
+                if ($rootScope.previousStateName == undefined || $rootScope.previousStateName == 'index') {
                     $state.go('feed');
                 } else {
                     $rootScope.back();
