@@ -13,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.util.Optional;
 
 @RestController
 public class AccountResource {
@@ -27,7 +29,8 @@ public class AccountResource {
     @ResponseStatus(HttpStatus.CREATED)
     public void registerAccount(@RequestBody @Valid AccountDTO accountDTO) throws AccountAlreadyExistsException {
         Account account = accountDTO.toDomain();
-        accountService.createAccount(account);
+        Optional<File> NO_PICTURE = Optional.empty();
+        accountService.createAccount(account, NO_PICTURE);
     }
 
 }

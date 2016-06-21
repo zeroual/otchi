@@ -7,6 +7,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.otchi.infrastructure.storage.AmazonBlobStorageService;
 import com.otchi.infrastructure.storage.BlobStorageService;
+import com.otchi.infrastructure.utils.FileUtilsServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,8 +40,8 @@ public class AmazonBlobStorageConfig {
     }
 
     @Bean
-    public BlobStorageService blobStorageService(AmazonS3Client amazonS3Client) {
-        return new AmazonBlobStorageService(amazonS3Client, bucketName, s3EndpointURL);
+    public BlobStorageService blobStorageService(AmazonS3Client amazonS3Client, FileUtilsServiceImpl fileUtilsService) {
+        return new AmazonBlobStorageService(amazonS3Client, bucketName, s3EndpointURL, fileUtilsService);
     }
 
 }

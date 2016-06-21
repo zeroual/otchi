@@ -14,6 +14,8 @@ import org.springframework.social.connect.*;
 import org.springframework.social.connect.web.ProviderSignInUtils;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
@@ -70,7 +72,7 @@ public class SocialSingUpControllerTest extends AbstractIntegrationTest {
     public void shouldRedirectToErrorPageIfUsernameAlreadyExist() throws Exception {
         setUpMocks();
         Account account = new Account("firstName", "lastName", "email@domaine.com", "password", "en");
-        accountService.createAccount(account);
+        accountService.createAccount(account, Optional.empty());
 
         mockMvc.perform(get(SocialConfig.SOCIAL_SIGN_UP_URL)
                 .contentType(contentType))
@@ -81,7 +83,7 @@ public class SocialSingUpControllerTest extends AbstractIntegrationTest {
     public void shouldCreateSocialUserIfNotExist() throws Exception {
         setUpMocks();
         Account account = new Account("firstName", "lastName", "new_email@domaine.com", "password", "en");
-        accountService.createAccount(account);
+        accountService.createAccount(account, Optional.empty());
         mockMvc.perform(get(SocialConfig.SOCIAL_SIGN_UP_URL)
                 .contentType(contentType))
                 .andExpect(redirectedUrl("/#/social-register/facebook?success=true"));
