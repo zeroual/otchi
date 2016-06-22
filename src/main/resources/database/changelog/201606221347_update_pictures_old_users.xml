@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="201606221347" author="Abdellah">
+        <update tableName="USER">
+            <column name="PICTURE" value="/assets/images/users/abdellah.jpg"></column>
+            <where>USERNAME = 'zeroual.abde@gmail.com'</where>
+        </update>
+        <update tableName="USER">
+            <column name="PICTURE" value="/assets/images/users/amin.jpg"></column>
+            <where>USERNAME = 'm.amine.jabri@gmail.com'</where>
+        </update>
+        <update tableName="USER">
+            <column name="PICTURE" value="/assets/images/users/reda.jpg"></column>
+            <where>USERNAME = 'mr.jaifar@gmail.com'</where>
+        </update>
+    </changeSet>
+
+</databaseChangeLog>

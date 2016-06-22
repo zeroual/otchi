@@ -4,7 +4,6 @@ import com.otchi.application.FollowingService;
 import com.otchi.infrastructure.config.ResourcesPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -18,7 +17,7 @@ public class FollowingResource {
 
     @RequestMapping(value = "/following", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void followUser(@RequestBody Long followingId, @AuthenticationPrincipal Principal principal) {
+    public void followUser(@RequestBody Long followingId, Principal principal) {
         String followerId = principal.getName();
         followingService.followUser(followerId, followingId);
     }

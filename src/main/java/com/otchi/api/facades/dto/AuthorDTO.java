@@ -7,12 +7,14 @@ public class AuthorDTO {
     private Long id;
     private String firstName;
     private String lastName;
+    private String picture;
 
 
     public AuthorDTO(User author) {
         this.id = author.getId();
         this.firstName = author.getFirstName();
         this.lastName = author.getLastName();
+        this.picture = author.picture();
     }
 
     public Long getId() {
@@ -25,5 +27,9 @@ public class AuthorDTO {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getPicture() {
+        return picture;
     }
 }

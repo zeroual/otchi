@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +29,7 @@ public class CurrentUserResource {
 
     @RequestMapping(method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDTO> getAccountOfCurrentUser(@AuthenticationPrincipal Principal principal) {
+    public ResponseEntity<UserDTO> getAccountOfCurrentUser(Principal principal) {
         Optional<User> userOptional = userService.findUserByUsername(principal.getName());
         User user = userOptional.orElseThrow(() -> new IllegalArgumentException("User not found in our database"));
         return new ResponseEntity<>(new UserDTO(user), HttpStatus.OK);

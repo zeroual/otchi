@@ -9,5 +9,7 @@
     <include file="classpath:database/changelog/201606161241_add_story_table.xml" relativeToChangelogFile="false"/>
     <include file="classpath:database/changelog/201606100020_add_column_picture_to_user.xml"
              relativeToChangelogFile="false"/>
+    <include file="classpath:database/changelog/201606221347_update_pictures_old_users.xml"
+             relativeToChangelogFile="false"/>
 
 </databaseChangeLog>

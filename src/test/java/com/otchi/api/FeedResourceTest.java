@@ -15,7 +15,6 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -32,7 +31,7 @@ public class FeedResourceTest extends AbstractIntegrationTest {
         mockMvc.perform(get(ResourcesPath.FEED).with(user("user"))
                 .contentType(contentType))
                 .andExpect(status().isOk())
-                .andExpect(content().json("[{\"id\":2,\"author\":{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"},\"createdTime\":\"2016-06-16 00:00:00\",\"content\":{\"type\":\"STORY\",\"content\":\"my story\"},\"likes\":[],\"comments\":[]},{\"id\":1,\"author\":{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"},\"createdTime\":\"2015-02-28 00:00:00\",\"content\":{\"type\":\"RECIPE\",\"id\":2,\"description\":null,\"cookTime\":null,\"preparationTime\":null,\"ingredients\":[],\"instructions\":[],\"title\":\"TITLE_SAMPLE_2\",\"images\":[\"http://host/image.png\"]},\"likes\":[{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"}],\"comments\":[{\"id\":1,\"author\":{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"},\"content\":\"what a delicious meal\",\"createdOn\":\"2016-02-22 00:00:00\"}]}]"));
+                .andExpect(content().json("[{\"id\":2,\"author\":{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"},\"createdTime\":\"2016-06-16 00:00:00\",\"content\":{\"type\":\"STORY\",\"content\":\"my story\"},\"likes\":[],\"comments\":[]},{\"id\":1,\"author\":{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"},\"createdTime\":\"2015-02-28 00:00:00\",\"content\":{\"type\":\"RECIPE\",\"id\":2,\"description\":null,\"cookTime\":null,\"preparationTime\":null,\"ingredients\":[],\"instructions\":[],\"title\":\"TITLE_SAMPLE_2\",\"images\":[\"http://host/image.png\"]},\"likes\":[{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\",\"picture\":\"picture1\"}],\"comments\":[{\"id\":1,\"author\":{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"},\"content\":\"what a delicious meal\",\"createdOn\":\"2016-02-22 00:00:00\"}]}]"));
     }
 
     @Test
@@ -73,8 +72,7 @@ public class FeedResourceTest extends AbstractIntegrationTest {
                 .with(user("mr.jaifar@gmail.com"))
                 .with(csrf()).contentType(contentType))
                 .andExpect(status().isCreated())
-                .andDo(print())
-                .andExpect(content().json("{\"author\":{\"id\":1,\"firstName\":\"reda\",\"lastName\":\"jaifar\"},\"content\":\"\\\"this is a delicious meal\\\"\",\"id\":null}"));
+                .andExpect(content().json("{\"author\":{\"id\":1,\"firstName\":\"reda\",\"lastName\":\"jaifar\",\"picture\":\"picture1\"},\"content\":\"\\\"this is a delicious meal\\\"\",\"id\":null}"));
         Post post = postRepository.findOne(1L);
         assertThat(post.getComments()).hasSize(1);
     }
