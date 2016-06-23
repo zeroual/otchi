@@ -6,4 +6,8 @@ liquibase:
     contexts: test
     change-log: classpath:/database/db.changelog-master.xml
 multipart:
-  enabled: true
+   enabled: true
+
+otchi:
+   user:
+      default-picture: "/assets/images/unknown_user.png"

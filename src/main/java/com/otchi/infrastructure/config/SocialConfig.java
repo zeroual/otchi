@@ -4,6 +4,7 @@ import com.otchi.application.AccountService;
 import com.otchi.infrastructure.social.CustomSignInAdapter;
 import com.otchi.infrastructure.social.SocialAccountService;
 import com.otchi.infrastructure.social.SocialSingUpController;
+import com.otchi.infrastructure.utils.FileUtilsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,7 +125,7 @@ public class SocialConfig implements SocialConfigurer {
     }
 
     @Bean
-    SocialAccountService socialService(UsersConnectionRepository usersConnectionRepository) {
-        return new SocialAccountService(accountService, usersConnectionRepository);
+    SocialAccountService socialService(UsersConnectionRepository usersConnectionRepository, FileUtilsServiceImpl fileUtilsService) {
+        return new SocialAccountService(accountService, usersConnectionRepository, fileUtilsService);
     }
 }

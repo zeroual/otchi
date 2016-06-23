@@ -83,7 +83,7 @@ public class PublicationsServiceTest {
     public void shouldSaveRecipePictures() {
 
         List<String> imagesURL = asList("http://url.com/12OU222Y1Y2.png");
-        when(blobStorageService.save(any())).thenReturn(imagesURL);
+        when(blobStorageService.save(anyListOf(MultipartFile.class))).thenReturn(imagesURL);
 
         MultipartFile picture1 = new MockMultipartFile("food1.png", "some data".getBytes());
         List<MultipartFile> pictures = asList(picture1);

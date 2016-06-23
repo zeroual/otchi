@@ -46,6 +46,9 @@ public class User {
     )
     private Set<User> following = new HashSet<>();
 
+    @Column(name = "PICTURE")
+    private String picture;
+
     private User() {
 
     }
@@ -137,5 +140,13 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 "}";
+    }
+
+    public String picture() {
+        return this.picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }

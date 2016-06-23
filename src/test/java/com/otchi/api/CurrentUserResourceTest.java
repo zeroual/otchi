@@ -7,7 +7,6 @@ import org.junit.Test;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -19,8 +18,7 @@ public class CurrentUserResourceTest extends AbstractIntegrationTest {
         mockMvc.perform(get(ResourcesPath.ME).with(user("zeroual.abde@gmail.com"))
                 .contentType(contentType))
                 .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(content().json("{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\"}"));
+                .andExpect(content().json("{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\",\"picture\":\"http://host.com/image2.png\"}"));
     }
 
     @Test

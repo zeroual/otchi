@@ -6,10 +6,13 @@ import com.otchi.application.MailService;
 import com.otchi.domain.users.exceptions.AccountAlreadyExistsException;
 import com.otchi.domain.users.models.Account;
 import com.otchi.domain.users.models.AccountRepository;
+import com.otchi.infrastructure.storage.BlobStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.util.Optional;
 
 @Service
@@ -18,17 +21,25 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
     private final MailService mailService;
+    private final BlobStorageService blobStorageService;
+    private final String DEFAULT_USER_PICTURE;
 
     @Autowired
-    public AccountServiceImpl(AccountRepository accountRepository, PasswordEncoder passwordEncoder, MailService mailService) {
+    public AccountServiceImpl(AccountRepository accountRepository,
+                              PasswordEncoder passwordEncoder,
+                              MailService mailService,
+                              BlobStorageService blobStorageService,
+                              @Value("${otchi.user.default-picture}") String DEFAULT_USER_PICTURE) {
 
         this.accountRepository = accountRepository;
         this.passwordEncoder = passwordEncoder;
         this.mailService = mailService;
+        this.blobStorageService = blobStorageService;
+        this.DEFAULT_USER_PICTURE = DEFAULT_USER_PICTURE;
     }
 
     @Override
-    public Account createAccount(Account account) throws AccountAlreadyExistsException {
+    public Account createAccount(Account account, Optional<File> picture) throws AccountAlreadyExistsException {
         String username = account.getUsername();
         Optional<Account> accountOptional = accountRepository.findOneByUsername(username);
         if (accountOptional.isPresent()) {
@@ -39,6 +50,15 @@ public class AccountServiceImpl implements AccountService {
         }
         String encryptedPassword = passwordEncoder.encode(account.getPassword());
         account.setPassword(encryptedPassword);
+
+        if (picture.isPresent()) {
+            File file = picture.get();
+            String pictureURL = blobStorageService.save(file);
+            account.setPicture(pictureURL);
+        } else {
+            account.setPicture(DEFAULT_USER_PICTURE);
+        }
+
         Account savedAccount = this.accountRepository.save(account);
         mailService.sendWelcomeEmail(savedAccount.getUser());
         return account;

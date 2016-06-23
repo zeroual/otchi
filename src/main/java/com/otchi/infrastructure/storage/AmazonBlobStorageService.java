@@ -8,17 +8,18 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.transfer.TransferManager;
 import com.amazonaws.services.s3.transfer.Upload;
 import com.amazonaws.services.s3.transfer.model.UploadResult;
-import org.apache.commons.io.FileUtils;
+import com.otchi.infrastructure.utils.FileUtilsServiceImpl;
+import com.otchi.infrastructure.utils.UnableToGetFileException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+//TODO refactor this class and test it
 public class AmazonBlobStorageService implements BlobStorageService {
 
     private final Logger log = LoggerFactory.getLogger(AmazonBlobStorageService.class);
@@ -28,11 +29,13 @@ public class AmazonBlobStorageService implements BlobStorageService {
     private String s3EndpointURL;
     private final AmazonS3Client amazonS3Client;
     private TransferManager transferManager;
+    private final FileUtilsServiceImpl fileUtilsService;
 
-    public AmazonBlobStorageService(AmazonS3Client amazonS3Client, String bucketName, String s3EndpointURL) {
+    public AmazonBlobStorageService(AmazonS3Client amazonS3Client, String bucketName, String s3EndpointURL, FileUtilsServiceImpl fileUtilsService) {
         this.amazonS3Client = amazonS3Client;
         this.bucketName = bucketName;
         this.s3EndpointURL = s3EndpointURL;
+        this.fileUtilsService = fileUtilsService;
         this.transferManager = new TransferManager(this.amazonS3Client);
     }
 
@@ -43,17 +46,17 @@ public class AmazonBlobStorageService implements BlobStorageService {
         // check bucket
         if (!doestBucketExist(bucketName)) {
             log.debug("operation aborted due to bucket not found");
-        }else {
+        } else {
             for (MultipartFile file : files) {
                 try {
-                    final File fileToUpload = File.createTempFile(UUID.randomUUID().toString(), null);
-                    FileUtils.writeByteArrayToFile(fileToUpload, file.getBytes());
-                    String fileExtension = getFileExtension(file);
-                    String key = generateObjectUniqueKey().concat(fileExtension);
+
+                    final File fileToUpload = fileUtilsService.getFileFrom(file);
+                    String key = generateObjectUniqueKey();
                     putObject(bucketName, fileToUpload, key);
                     String url = generateURLFrom(key);
                     objectURLList.add(url);
-                } catch (IOException e) {
+                    fileToUpload.delete();
+                } catch (UnableToGetFileException e) {
                     throw new BlobObjectPutException("cannot create temporary file", e);
                 }
             }
@@ -61,12 +64,21 @@ public class AmazonBlobStorageService implements BlobStorageService {
         return objectURLList;
     }
 
-    private String getFileExtension(MultipartFile file) {
-        String fileOriginalName = file.getOriginalFilename();
-        return fileOriginalName.substring(fileOriginalName.lastIndexOf('.'),fileOriginalName.length());
+    @Override
+    public String save(File file) {
+        String ObjectURL = "";
+        // check bucket
+        if (!doestBucketExist(bucketName)) {
+            log.debug("operation aborted due to bucket not found");
+        } else {
+            String key = generateObjectUniqueKey();
+            putObject(bucketName, file, key);
+            ObjectURL = generateURLFrom(key);
+        }
+        return ObjectURL;
     }
 
-    private String generateURLFrom(String key){
+    private String generateURLFrom(String key) {
         return "https://" + bucketName + "." + s3EndpointURL + "/" + key;
     }
 

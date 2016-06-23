@@ -79,4 +79,8 @@ public class Account {
     public String getUsername() {
         return username;
     }
+
+    public void setPicture(String picture) {
+        this.user.setPicture(picture);
+    }
 }

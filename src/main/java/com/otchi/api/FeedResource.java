@@ -8,7 +8,6 @@ import com.otchi.domain.social.models.Comment;
 import com.otchi.infrastructure.config.ResourcesPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -37,22 +36,23 @@ public class FeedResource {
 
     @RequestMapping(value = "/{postId}/like", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void likePost(@PathVariable(value = "postId") Long postId, @AuthenticationPrincipal Principal principal) {
+    public void likePost(@PathVariable(value = "postId") Long postId, Principal principal) {
         String username = principal.getName();
         feedService.likePost(postId, username);
     }
 
     @RequestMapping(value = "/{postId}/unlike", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void unLikePost(@PathVariable(value = "postId") Long postId, @AuthenticationPrincipal Principal principal) {
+    public void unLikePost(@PathVariable(value = "postId") Long postId, Principal principal) {
         String username = principal.getName();
         feedService.unlikePost(postId, username);
     }
 
     @RequestMapping(value = "/{postId}/comment", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public CommentDTO commentOnPost(@PathVariable(value = "postId") Long postId, @RequestBody String commentContent,
-                                    @AuthenticationPrincipal Principal principal) {
+    public CommentDTO commentOnPost(@PathVariable(value = "postId") Long postId,
+                                    @RequestBody String commentContent,
+                                    Principal principal) {
         String username = principal.getName();
         Comment savedComment = feedService.commentOnPost(postId, commentContent, username);
         return new CommentDTO(savedComment);

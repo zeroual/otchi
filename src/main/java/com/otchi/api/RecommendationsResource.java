@@ -5,7 +5,6 @@ import com.otchi.application.RecommendationService;
 import com.otchi.infrastructure.config.ResourcesPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -25,7 +24,7 @@ public class RecommendationsResource {
 
     @RequestMapping(value = "/followings", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<UserDTO> getFollowings(@AuthenticationPrincipal Principal principal) {
+    public List<UserDTO> getFollowings(Principal principal) {
         return recommendationService.getRecommendedFollowingsFor(principal.getName())
                 .stream()
                 .map(UserDTO::new)

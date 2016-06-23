@@ -7,6 +7,7 @@ public class UserDTO {
     private Long id;
     private String firstName;
     private String lastName;
+    private String picture;
 
 
     public UserDTO() {
@@ -14,6 +15,7 @@ public class UserDTO {
 
     public UserDTO(User user) {
         this(user.getId(), user.getFirstName(), user.getLastName());
+        this.picture = user.picture();
     }
 
     public UserDTO(Long id, String firstName, String lastName) {
@@ -32,6 +34,10 @@ public class UserDTO {
 
     public String getLastName() {
         return lastName;
+    }
+
+    public String getPicture() {
+        return picture;
     }
 
     @Override
