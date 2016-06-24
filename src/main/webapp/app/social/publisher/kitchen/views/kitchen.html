@@ -14,21 +14,13 @@
                                 </div>
                             </div>
                             <div>
-                                <div class="file-preview" ng-if="recipe.pictures">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-4 col-xs-6 thumb"
-                                             ng-repeat="picture in recipe.pictures">
-                                            <a class="thumbnail" href="#">
-                                                <img class="img-responsive" ngf-src="picture" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <images-upload-preview images="recipe.pictures"/>
                             </div>
                         </div>
                         <div class="panel-footer">
                             <div>
-                                <a href="" ngf-select ng-model="recipe.pictures" ngf-multiple="true" ngf-keep="true">
+                                <a href="" ngf-select ng-model="recipe.pictures" ngf-multiple="true" ngf-keep="true"
+                                   ngf-pattern="'image/*'" ngf-accept="'image/*'">
                                     <i class="glyphicon glyphicon-camera"></i>
                                 </a>
                                 <button class="btn btn-follow pull-right" ng-click="shareRecipe()">Share</button>
