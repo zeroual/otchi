@@ -12,13 +12,16 @@ angular.module("publisher")
         };
 
         this.publisherStory = function (story) {
+            var storyPayload = {};
+            angular.copy(story, storyPayload);
+            delete  storyPayload.images;
+            
             return Upload.upload({
                 url: '/rest/v1/post/story',
-                data: {images: story.images, 'story': Upload.jsonBlob(story)},
+                data: {images: story.images, 'story': Upload.jsonBlob(storyPayload)},
                 arrayKey: ''
             }).then(function (response) {
                 return response.data;
             });
-            ;
         };
     });

@@ -31,6 +31,8 @@
 
     />
 
+    <STORY_IMAGES URL="http://host/image2.png"
+                  STORY_ID="3"/>
     <STORY ID="3"
            CONTENT="my story"/>
 
