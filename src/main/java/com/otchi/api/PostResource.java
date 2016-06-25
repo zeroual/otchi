@@ -37,7 +37,9 @@ public class PostResource {
 
     @RequestMapping(value = "/story", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public PostDTO publishStory(@RequestBody StoryDTO storyDTO, Principal principal) {
+    public PostDTO publishStory(@RequestPart("images") List<MultipartFile> images,
+                                @RequestPart("story") StoryDTO storyDTO,
+                                Principal principal) {
         Story story = storyDTO.toDomain();
         Post createdPost = publicationsService.publishStory(story, principal.getName());
         return new PostDTO(createdPost);
