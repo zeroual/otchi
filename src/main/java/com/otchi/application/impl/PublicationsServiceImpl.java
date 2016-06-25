@@ -37,10 +37,12 @@ public class PublicationsServiceImpl implements PublicationsService {
         this.blobStorageService = blobStorageService;
     }
 
+    //TODO refactor those functions
     @Override
     public Post publishRecipe(Recipe recipe, List<MultipartFile> pictures, String author) {
-        Post post = createNewPostWith(author);
-
+        Optional<User> user = userRepository.findOneByUsername(author);
+        Post post = new Post(dateFactory.now());
+        post.setAuthor(user.get());
         List<String> imagesURL = blobStorageService.save(pictures);
         post.setPostContent(recipe);
         recipe.setImages(imagesURL);
@@ -48,17 +50,14 @@ public class PublicationsServiceImpl implements PublicationsService {
     }
 
     @Override
-    public Post publishStory(Story story, String author) {
-        Post post = createNewPostWith(author);
-        post.setPostContent(story);
-        return postRepository.save(post);
-    }
-
-    private Post createNewPostWith(String author) {
+    public Post publishStory(Story story, List<MultipartFile> images, String author) {
         Optional<User> user = userRepository.findOneByUsername(author);
         Post post = new Post(dateFactory.now());
         post.setAuthor(user.get());
-        return post;
+        List<String> imagesURL = blobStorageService.save(images);
+        story.setImages(imagesURL);
+        post.setPostContent(story);
+        return postRepository.save(post);
     }
 
 }

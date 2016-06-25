@@ -41,7 +41,7 @@ public class PostResource {
                                 @RequestPart("story") StoryDTO storyDTO,
                                 Principal principal) {
         Story story = storyDTO.toDomain();
-        Post createdPost = publicationsService.publishStory(story, principal.getName());
+        Post createdPost = publicationsService.publishStory(story, images, principal.getName());
         return new PostDTO(createdPost);
     }
 

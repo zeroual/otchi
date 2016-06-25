@@ -10,5 +10,5 @@ import java.util.List;
 public interface PublicationsService {
     Post publishRecipe(Recipe recipe, List<MultipartFile> pictures, String username);
 
-    Post publishStory(Story story, String author);
+    Post publishStory(Story story, List<MultipartFile> images, String author);
 }

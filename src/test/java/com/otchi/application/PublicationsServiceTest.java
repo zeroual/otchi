@@ -35,6 +35,7 @@ public class PublicationsServiceTest {
     private UserRepository userRepository;
     private DateFactory dateFactory = mock(DateFactory.class);
     private BlobStorageService blobStorageService = mock(BlobStorageService.class);
+    private List<MultipartFile> NO_IMAGES = emptyList();
 
     @Before
     public void setUp() {
@@ -101,7 +102,7 @@ public class PublicationsServiceTest {
     @Test
     public void shouldSaveStoryAsPost() {
         Story story = new Story("my story");
-        Post savedPost = publicationsService.publishStory(story, "email@gmail.com");
+        Post savedPost = publicationsService.publishStory(story, NO_IMAGES, "email@gmail.com");
         assertThat(savedPost.getId()).isNotNull();
         savedPost = postRepository.findOne(1L);
         assertThat(savedPost).isNotNull();
@@ -114,7 +115,7 @@ public class PublicationsServiceTest {
     public void shouldAssignStoryPostToHisAuthor() {
         Story story = new Story("my story");
         String username = "email@gmail.com";
-        Post savedPost = publicationsService.publishStory(story, username);
+        Post savedPost = publicationsService.publishStory(story, NO_IMAGES, username);
         assertThat(savedPost.getAuthor().getUsername()).isEqualTo(username);
 
     }
@@ -126,8 +127,27 @@ public class PublicationsServiceTest {
 
         Story story = new Story("my story");
 
-        publicationsService.publishStory(story, "email@gmail.com");
+        publicationsService.publishStory(story, NO_IMAGES, "email@gmail.com");
         Post savedPost = postRepository.findOne(1L);
         assertThat(savedPost.getCreatedTime()).isEqualTo(now);
+    }
+
+    @Test
+    public void shouldSaveStoryImages() {
+
+        List<String> imagesURL = asList("http://url.com/12OU222Y1Y2.png");
+        when(blobStorageService.save(anyListOf(MultipartFile.class))).thenReturn(imagesURL);
+
+        MultipartFile image = new MockMultipartFile("food1.png", "some data".getBytes());
+        List<MultipartFile> images = asList(image);
+
+        Story story = new Story("my story");
+        Post savedPost = publicationsService.publishStory(story, images, "email@gmail.com");
+        Mockito.verify(blobStorageService).save(images);
+        Story savedStory = (Story) savedPost.getPostContent();
+        assertThat(savedStory.getImages()).hasSize(1)
+                .isEqualTo(imagesURL);
+
+
     }
 }
