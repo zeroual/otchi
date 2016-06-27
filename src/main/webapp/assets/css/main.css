@@ -86,13 +86,17 @@ body {
 }
 
 .file-preview {
-    border-radius: 5px;
+    margin-top: 10px;
     border: 1px solid #ddd;
     padding: 5px;
     width: 100%;
     margin-bottom: 5px
 }
 
+.file-preview .close {
+
+    padding: 2px 6px 2px 6px;
+}
 /*NAV BAR*/
 
 .navbar-nav > li > a {

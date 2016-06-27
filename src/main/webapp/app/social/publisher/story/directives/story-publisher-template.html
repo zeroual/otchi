@@ -15,9 +15,17 @@
                         </div>
                     </div>
                 </div>
+                <div>
+                    <images-upload-preview images="story.images" on-delete="deleteImage(image)"/>
+                </div>
             </div>
-            <div class="panel-footer" align="right">
-                <span> <a class="btn btn-follow" ng-click="shareStory()">Share</a> </span>
+            <div class="panel-footer">
+                <a href="" ngf-select ng-model="story.images" ngf-multiple="true" ngf-keep="true"
+                   ngf-pattern="'image/*'" ngf-accept="'image/*'">
+                    <i class="glyphicon glyphicon-camera"></i>
+                </a>
+                <span> <a class="btn btn-follow pull-right" ng-click="shareStory()">Share</a> </span>
+                <span class="clearfix"></span>
             </div>
         </div>
     </div>

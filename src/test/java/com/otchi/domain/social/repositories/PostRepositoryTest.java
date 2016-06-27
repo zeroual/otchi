@@ -44,6 +44,7 @@ public class PostRepositoryTest extends AbstractIntegrationTest {
         Post savedStoryPost = postRepository.findOne(2L);
         assertThat(savedStoryPost).isNotNull();
         assertThat(((Story) savedStoryPost.getPostContent()).content()).isEqualTo("my story");
+        assertThat(((Story) savedStoryPost.getPostContent()).getImages()).hasSize(1);
 
     }
 

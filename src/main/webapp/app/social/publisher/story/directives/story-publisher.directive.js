@@ -7,7 +7,8 @@ angular.module('publisher')
 
                 function init() {
                     $scope.story = {
-                        content: ''
+                        content: '',
+                        images: []
                     };
                 }
 
@@ -18,6 +19,11 @@ angular.module('publisher')
                         init();
                         $rootScope.$broadcast('NEW_POST_PUBLISHED_EVENT', createdPost);
                     });
+                };
+
+                $scope.deleteImage = function (image) {
+                    var index = $scope.story.images.indexOf(image);
+                    $scope.story.images.splice(index, 1);
                 };
             }
         };
