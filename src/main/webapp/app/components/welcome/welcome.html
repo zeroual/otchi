@@ -1,3 +1,102 @@
-<div class="container">
+<head>
+    <style>
+        h1 {
+            font-size: 48px;
+        }
 
+        li {
+            font-size: 18px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .introduction {
+            border: 1px solid #e0e3e9;
+            border-radius: 2px;
+            background: #fff;
+            font-size: 15px;
+            line-height: 1.45em;
+            color: #546673;
+            padding: 10px;
+        }
+
+        .get-started-button {
+            background-color: #2f8cff;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .index-feeds-stream {
+
+        }
+
+        .sidebar-content {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<div class="container">
+    <div class="row">
+        <div class="illustration">
+            <div class="col-md-4">
+                <img src="https://cdn.avocode.com/static/webflow/landing-page/images/designer-big.svg">
+            </div>
+            <div class="col-md-4">
+                <img src="https://cdn.avocode.com/static/webflow/landing-page/images/avocode-character.svg">
+            </div>
+            <div class="col-md-4">
+                <img class="developer-avatar-header" data-ix="opacity-0-scale-up"
+                     src="https://cdn.avocode.com/static/webflow/landing-page/images/developer-big.svg">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 introduction left">
+            <h2 class="text-center"> # With Otchi Live the experience of food, not just recipes</h2>
+            <div class="text-center">
+                <h4>Otchi is a community of fun foods celebrating the Spirit of Constant Innovations & Discoveries</h4>
+                <p> Get started to EXPERIENCE THE DELIGHTFUL HIDDEN TASTES OF GLOBAL CUISINE</p>
+            </div>
+            <div class="col-md-4 col-md-offset-4">
+                <button type="button" class="btn get-started-button">GET STARTED NOW</button>
+                <button type="button" class="btn btn-primary">LEARN MORE</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="features" style="visibility: hidden">
+            <div class="col-md-2"><span class="glyphicon glyphicon-list-alt"></span> Explore thousands of food</div>
+            <div class="col-md-2"><span class="glyphicon glyphicon-shopping-cart"></span> Discover the world gastronomy
+            </div>
+            <div class="col-md-2"><span class="glyphicon glyphicon-comment"></span> Ask them how they prepare it</div>
+            <div class="col-md-2"><span class="glyphicon glyphicon-shopping-cart"></span> Find where to buy the
+                ingredients
+            </div>
+            <div class="col-md-2"><span class="glyphicon glyphicon-equalizer"></span> Want you to give hungry people ?
+                Let's
+                do it together
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+    <div class="row index-feeds-stream">
+        <div class="col-md-6">
+            <recipe-feeds/>
+        </div>
+        <div class="col-md-6">
+            <ul class="list-inline sidebar-content" align="right">
+                <li><a href="#">help</a></li>
+                <li><a href="#">privacy</a></li>
+                <li><a href="#">team</a></li>
+                <li><a href="#">about</a></li>
+                <li><a href="#">contact</a></li>
+            </ul>
+        </div>
+    </div>
 </div>

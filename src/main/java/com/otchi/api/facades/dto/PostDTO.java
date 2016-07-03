@@ -24,6 +24,8 @@ public class PostDTO implements DTO<Post> {
     private List<UserDTO> likes = new ArrayList<>();
     private List<CommentDTO> comments = new ArrayList<>();
 
+    private boolean liked = false;
+
     private PostDTO() {
 
     }
@@ -74,5 +76,9 @@ public class PostDTO implements DTO<Post> {
         }
         this.likes = post.getLikes().stream().map(UserDTO::new).collect(toList());
         this.comments = post.getComments().stream().map(CommentDTO::new).collect(toList());
+    }
+
+    public boolean isLiked() {
+        return liked;
     }
 }
