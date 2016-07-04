@@ -1,6 +1,9 @@
 angular.module("stream")
     .directive('feedViewer', function () {
         return {
+        scope:{
+            feed:"="
+        },
             templateUrl: 'app/social/stream/directives/feed-viewer/feed-viewer.template.html',
             controller: function ($scope, FeedsService, $uibModal) {
 
