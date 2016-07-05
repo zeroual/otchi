@@ -19,7 +19,7 @@ public class ExceptionHandlerAdvice {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionHandlerAdvice.class);
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler({NoSuchElementException.class})
+    @ExceptionHandler({NoSuchElementException.class, ResourceNotFoundException.class})
     public final void handleNotFound() {
     }
 

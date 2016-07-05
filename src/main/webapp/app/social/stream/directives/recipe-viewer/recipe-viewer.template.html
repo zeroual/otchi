@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-6 col-sm-12" ng-if="recipe.images">
-        <a href="#">
+        <a ui-sref="showRecipe({feedId:feedId})">
             <img class="img-responsive"
                  ng-src="{{recipe.images[0]}}">
         </a>

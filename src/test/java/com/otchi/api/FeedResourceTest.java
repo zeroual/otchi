@@ -78,4 +78,23 @@ public class FeedResourceTest extends AbstractIntegrationTest {
         assertThat(post.getComments()).hasSize(1);
     }
 
+    @Test
+    @DatabaseSetup("/dbunit/social/stream-feeds.xml")
+    public void shouldFetchFeedWithId() throws Exception {
+        mockMvc.perform(get(ResourcesPath.FEED + "/1")
+                .with(user("mr.jaifar@gmail.com"))
+                .with(csrf()).contentType(contentType))
+                .andExpect(status().isOk())
+                .andExpect(content().json("{\"id\":1,\"author\":{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\",\"picture\":\"picture1\"},\"createdTime\":\"2015-02-28 00:00:00\",\"content\":{\"type\":\"RECIPE\",\"id\":2,\"description\":null,\"cookTime\":null,\"preparationTime\":null,\"ingredients\":[],\"instructions\":[],\"title\":\"TITLE_SAMPLE_2\",\"images\":[\"http://host/image.png\"]},\"likes\":[{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\",\"picture\":\"picture1\"}],\"comments\":[{\"id\":1,\"author\":{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\",\"picture\":\"picture1\"},\"content\":\"what a delicious meal\",\"createdOn\":\"2016-02-22 00:00:00\"}],\"liked\":false}"));
+
+    }
+
+    @Test
+    public void shouldReturn404IfFeedIsNotFound() throws Exception {
+        mockMvc.perform(get(ResourcesPath.FEED + "/183728")
+                .with(user("mr.jaifar@gmail.com"))
+                .with(csrf()).contentType(contentType))
+                .andExpect(status().isNotFound());
+    }
+
 }

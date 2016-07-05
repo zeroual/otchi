@@ -46,6 +46,9 @@ angular.module("stream")
                 return feeds.map(_markFeedAsLikedOrNo);
             });
         };
+        this.fetchFeed = function (feedId) {
+            return service.get({id: feedId})
+        };
 
         this.likePost = function (post) {
             service.like({'id': post.id});
