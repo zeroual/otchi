@@ -3,7 +3,8 @@ angular.module("stream")
     .directive('recipeViewer', function () {
         return {
             scope: {
-                recipe: '='
+                recipe: '=',
+                feedId: '='
             },
             templateUrl: 'app/social/stream/directives/recipe-viewer/recipe-viewer.template.html'
         };

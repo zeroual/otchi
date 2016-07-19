@@ -1,3 +1,4 @@
+//TODO remove this controller
 angular.module("stream")
     .controller("FeedsLoaderController", function ($scope, $rootScope, FeedsService) {
         $scope.feeds = FeedsService.fetchAllFeeds();

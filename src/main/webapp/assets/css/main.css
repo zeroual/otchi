@@ -29,40 +29,6 @@ body {
     top: -1px
 }
 
-/*Recipe viewer*/
-.recipe-info {
-    margin: 2px;
-    border-top: 1px solid #eff3fa;
-}
-
-.recipe-info h3 {
-    margin-top: 7px;
-    margin-bottom: 0px;
-}
-
-.recipe-ingredients {
-    margin: 5px;
-}
-
-.recipe-instructions {
-    margin: 5px;
-}
-
-.step_index {
-    color: rgb(255, 255, 255);
-    background-color: #546673;;
-    text-align: center;
-    padding: 10px;
-}
-
-.recipe-instructions p {
-    padding: 10px;
-}
-
-.recipe-ingredients p {
-    padding: 10px;
-}
-
 /****************MARGIN ET PADDING*********/
 .margin-top-none{
     margin-top: 0px;

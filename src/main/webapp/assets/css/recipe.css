@@ -1,0 +1,115 @@
+
+.prepTime .time-icon {
+    color: #999;
+    font-size: 1.1em;
+}
+
+.prepTime_item {
+    width: 80px;
+    text-align: center;
+    line-height: 1.5rem;
+    padding: 10px;
+    border-right: solid 1px #e6e6e6;
+    color: #999;
+}
+
+ol {
+    counter-reset: li; /* Initiate a counter */
+    list-style: none; /* Remove default numbering */
+    *list-style: decimal; /* Keep using default numbering for IE6/7 */
+    font: 15px 'trebuchet MS', 'lucida sans';
+    padding: 0;
+    margin-bottom: 4em;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+}
+
+ol ol {
+    margin: 0 0 0 2em; /* Add some left margin for inner lists */
+}
+
+.recipe-directions-list .step {
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em .8em;
+    *padding: .4em;
+    margin: 1em 0 .5em 2.5em;
+    color: #444;
+    text-decoration: none;
+    transition: all .3s ease-out;
+}
+
+.recipe-directions-list .step:hover {
+    background: #eee;
+}
+
+.recipe-directions-list .step:before {
+    content: counter(li);
+    counter-increment: li;
+    position: absolute;
+    left: -2.5em;
+    top: 50%;
+    margin-top: -1em;
+    background: #fa8072;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.recipe-directions-list .step:after {
+    position: absolute;
+    content: '';
+    border: .5em solid transparent;
+    left: -1em;
+    top: 50%;
+    margin-top: -.5em;
+    transition: all .3s ease-out;
+}
+
+.recipe-directions-list .step:hover:after {
+    left: -.5em;
+    border-left-color: #fa8072;
+}
+
+/*dddd*/
+.recipe-ingredients-list .step {
+    position: relative;
+    display: block;
+    padding: .4em .4em .4em .8em;
+    *padding: .4em;
+    margin: 1em 0 .5em 2.5em;
+    color: #444;
+    text-decoration: none;
+    transition: all .3s ease-out;
+}
+
+.recipe-ingredients-list .step:hover {
+    background: #eee;
+}
+
+.recipe-ingredients-list .step:before {
+    content: "+";
+    counter-increment: li;
+    position: absolute;
+    left: -2.5em;
+    top: 50%;
+    margin-top: -1em;
+    background: white;
+    height: 2em;
+    width: 2em;
+    line-height: 2em;
+    text-align: center;
+    font-weight: bold;
+    border: solid 1px #cfcfcf;
+}
+
+.recipe-ingredients-list .step:after {
+    position: absolute;
+    content: '';
+    border: .5em solid transparent;
+    left: -1em;
+    top: 50%;
+    margin-top: -.5em;
+    transition: all .3s ease-out;
+}

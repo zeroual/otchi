@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +21,7 @@ public class FeedFetcherServiceImplTest {
 
     @Before
     public void setUp() {
-
+        postRepository.deleteAll();
         Post post1 = new Post(parse("2016-02-27"));
         Post post2 = new Post(parse("2016-02-28"));
         postRepository.save(asList(post1, post2));
@@ -34,5 +35,15 @@ public class FeedFetcherServiceImplTest {
                 .extracting(Post::getCreatedTime)
                 .containsExactly(parse("2016-02-28"), parse("2016-02-27"))
                 .isSortedAccordingTo((o1, o2) -> o2.compareTo(o1));
+    }
+
+    @Test
+    public void shouldGetPostIfExist() {
+        Optional<Post> postOptional = feedFetcherService.getFeed(1L);
+        assertThat(postOptional).isPresent();
+        assertThat(postOptional.get().getCreatedTime()).isEqualTo(parse("2016-02-27"));
+
+        postOptional = feedFetcherService.getFeed(99L);
+        assertThat(postOptional).isEmpty();
     }
 }
