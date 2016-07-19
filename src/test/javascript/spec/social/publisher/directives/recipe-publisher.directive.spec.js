@@ -5,15 +5,18 @@ describe('Recipe publisher directive', function () {
     beforeEach(module('publisher'));
     beforeEach(module('directives.templates'));
     var $rootScope;
+    var ToasterService;
+    var $state;
 
-    beforeEach(inject(function (_$rootScope_, $compile, _$httpBackend_) {
+    beforeEach(inject(function (_$rootScope_, $compile, _$httpBackend_, _ToasterService_, _$state_) {
         $httpBackend = _$httpBackend_;
         $rootScope = _$rootScope_;
+        ToasterService = _ToasterService_;
+        $state = _$state_;
         $scope = $rootScope.$new();
         var element = angular.element('<recipe-publisher/>');
         $compile(element)($scope);
         $scope.$digest();
-        $scope = element.isolateScope() || element.scope()
     }));
 
 
@@ -32,9 +35,13 @@ describe('Recipe publisher directive', function () {
     });
 
     describe('publish the recipe as post', function () {
+        beforeEach(function () {
+            spyOn($state, 'go');
+        });
+
         it('should ask the server to save the new recipe', function () {
             $scope.recipe = {description: 'toto'};
-            $httpBackend.expectPOST('/rest/v1/post/recipe').respond(201);
+            $httpBackend.expectPOST('/rest/v1/post/recipe').respond(201, {id: 2});
             $scope.shareRecipe();
             $httpBackend.flush();
         });
@@ -53,12 +60,30 @@ describe('Recipe publisher directive', function () {
 
         it('should reset the old recipe after sharing', function () {
             $scope.recipe = {description: 'toto'};
-            $httpBackend.expectPOST('/rest/v1/post/recipe').respond(201);
+            $httpBackend.expectPOST('/rest/v1/post/recipe').respond(201, {id: 2});
             $scope.shareRecipe();
             $httpBackend.flush();
             expect($scope.recipe).toBeDefined();
             expect($scope.recipe.ingredients.length).toEqual(0);
             expect($scope.recipe.instructions.length).toEqual(0);
+        });
+
+        it('should redirect user to view the new recipe if is posting is succeeded', function () {
+            $scope.recipe = {description: 'toto'};
+            $httpBackend.expectPOST('/rest/v1/post/recipe').respond(201, {id: 52});
+            $scope.shareRecipe();
+            $httpBackend.flush();
+            var showRecipeState = 'showRecipe';
+            expect($state.go).toHaveBeenCalledWith(showRecipeState, {feedId: 52});
+        });
+
+        it('should notify user when recipe posting is failed', function () {
+            spyOn(ToasterService, 'error');
+            $scope.recipe = {description: 'toto'};
+            $httpBackend.expectPOST('/rest/v1/post/recipe').respond(501);
+            $scope.shareRecipe();
+            $httpBackend.flush();
+            expect(ToasterService.error).toHaveBeenCalledWith('post.recipe.failed');
         });
     });
 
