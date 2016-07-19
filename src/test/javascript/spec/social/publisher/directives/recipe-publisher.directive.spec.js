@@ -123,5 +123,19 @@ describe('Recipe publisher directive', function () {
         });
     });
 
+    describe('images uploader', function () {
+
+        it('should have empty image on load', function () {
+            expect($scope.recipe.pictures).toEqual([]);
+        });
+
+        it('should remove selected image', function () {
+            var image1 = {name: "image1"};
+            var image2 = {name: "image2"};
+            $scope.recipe.pictures = [image1, image2];
+            $scope.deleteImage(image1);
+            expect($scope.recipe.pictures).toEqual([image2]);
+        });
+    });
 
 });
