@@ -1,9 +1,7 @@
 'use strict';
 
-//FIXME USE $Translate to display messages
-
 angular.module('toaster')
-    .service('Toaster', function (ngToast) {
+    .service('ToasterService', function (ngToast) {
         var self = this;
 
         self.success = function open(messageKey, messageParams, options) {
@@ -11,7 +9,7 @@ angular.module('toaster')
                 content: messageKey,
                 className: 'success',
                 dismissButton: true,
-                dismissOnTimeout: false
+                dismissOnTimeout: true
             }, options));
         };
 
@@ -20,7 +18,7 @@ angular.module('toaster')
                 content: messageKey,
                 className: 'danger',
                 dismissButton: true,
-                dismissOnTimeout: false
+                dismissOnTimeout: true
             }, options));
         };
     });
