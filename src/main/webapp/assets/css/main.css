@@ -95,3 +95,7 @@ body {
     font-size: 1.2em;
     color: #2e9fff;
 }
+
+.left-divider {
+    border-left: 1px solid #ebeef2;;
+}

@@ -28,8 +28,8 @@ describe('Recipe publisher directive', function () {
 
         it('should init the recipe model', function () {
             expect($scope.recipe).toBeDefined();
-            expect($scope.recipe.ingredients.length).toEqual(0);
-            expect($scope.recipe.instructions.length).toEqual(0);
+            expect($scope.recipe.ingredients.length).toEqual(1);
+            expect($scope.recipe.instructions.length).toEqual(1);
 
         });
     });
@@ -64,8 +64,8 @@ describe('Recipe publisher directive', function () {
             $scope.shareRecipe();
             $httpBackend.flush();
             expect($scope.recipe).toBeDefined();
-            expect($scope.recipe.ingredients.length).toEqual(0);
-            expect($scope.recipe.instructions.length).toEqual(0);
+            expect($scope.recipe.ingredients.length).toEqual(1);
+            expect($scope.recipe.instructions.length).toEqual(1);
         });
 
         it('should redirect user to view the new recipe if is posting is succeeded', function () {
@@ -90,7 +90,7 @@ describe('Recipe publisher directive', function () {
     describe("add ingredient action", function () {
         it('should add new ingredient to recipe', function () {
             $scope.addIngredient();
-            expect($scope.recipe.ingredients.length).toEqual(1);
+            expect($scope.recipe.ingredients.length).toEqual(2);
         });
     });
 
@@ -108,7 +108,7 @@ describe('Recipe publisher directive', function () {
     describe("add instruction action", function () {
         it('should add new instruction to recipe', function () {
             $scope.addInstruction();
-            expect($scope.recipe.instructions.length).toEqual(1);
+            expect($scope.recipe.instructions.length).toEqual(2);
         });
     });
 

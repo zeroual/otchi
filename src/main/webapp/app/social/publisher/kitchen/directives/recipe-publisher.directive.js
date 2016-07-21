@@ -5,7 +5,11 @@ angular.module("publisher")
             controller: function ($scope, $rootScope, ShareService, ToasterService, $state) {
 
                 function init() {
-                    $scope.recipe = {ingredients: [], instructions: [], pictures: []};
+                    $scope.recipe = {
+                        ingredients: [{}],
+                        instructions: [{}],
+                        pictures: []
+                    };
                 }
 
                 init();
