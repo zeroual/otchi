@@ -1,0 +1,76 @@
+.form {
+    background: #fff;
+    margin-bottom: 15px
+}
+
+@media only screen and (min-width: 768px) {
+    .form {
+        border-radius: 3px;
+        border: 1px solid #e0e3e9
+    }
+}
+
+.form__header {
+    padding: 5px;
+    border-bottom: 1px solid #ebeef2
+}
+
+@media only screen and (min-width: 768px) {
+    .form__header {
+        padding: 10px 10px 10px 22px;
+    }
+}
+
+.form__header--mobile {
+    background: #2e9fff;
+    color: #fff;
+    position: relative;
+    padding: 15px 7.5px
+}
+
+.form__header--mobile h2 {
+    text-align: center
+}
+
+.form__header--mobile .icon-left-bracket {
+    font-size: 15px
+}
+
+.form__header--mobile-back {
+    color: #fff;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%
+}
+
+.form__content {
+    padding: 15px 15px 30px
+}
+
+@media only screen and (min-width: 768px) {
+    .form__content {
+        padding: 22.5px 22.5px 30px
+    }
+}
+
+.form__footer {
+    padding: 15px;
+    border-top: 1px solid #ebeef2
+}
+
+@media only screen and (min-width: 768px) {
+    .form__footer {
+        padding: 22.5px
+    }
+}
+
+.form__footer .button {
+    transition: all .1s ease-in-out
+}
+
+.form-heading {
+    font-size: 22px;
+    font-weight: 500
+}

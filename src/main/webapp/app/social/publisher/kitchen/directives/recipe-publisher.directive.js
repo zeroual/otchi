@@ -5,7 +5,11 @@ angular.module("publisher")
             controller: function ($scope, $rootScope, ShareService, ToasterService, $state) {
 
                 function init() {
-                    $scope.recipe = {ingredients: [], instructions: []};
+                    $scope.recipe = {
+                        ingredients: [{}],
+                        instructions: [{}],
+                        pictures: []
+                    };
                 }
 
                 init();
@@ -38,6 +42,11 @@ angular.module("publisher")
 
                 $scope.removeInstruction = function (index) {
                     $scope.recipe.instructions.splice(index, 1);
+                };
+
+                $scope.deleteImage = function (image) {
+                    var index = $scope.recipe.pictures.indexOf(image);
+                    $scope.recipe.pictures.splice(index, 1);
                 };
             }
         };

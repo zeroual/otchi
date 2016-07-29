@@ -11,7 +11,7 @@ angular.module('kitchen')
                 },
                 views: {
                     'content@': {
-                        templateUrl: app_dir + "/social/publisher/kitchen/views/kitchen.html"
+                        template: '<recipe-publisher/>'
                     }
                 }
             })
