@@ -1,12 +1,12 @@
 package com.otchi.utils;
 
+import api.stepsDefinition.IntegrationTestsConfig;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
-import com.otchi.infrastructure.config.ApplicationConfig;
+import com.otchi.infrastructure.boot.OtchiApplicationStarter;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
 import org.springframework.boot.test.ConfigFileApplicationContextInitializer;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.http.MediaType;
@@ -35,7 +35,8 @@ import static com.otchi.infrastructure.config.Constants.SPRING_PROFILE_DEVELOPME
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationConfig.class, LiquibaseAutoConfiguration.class}, initializers = ConfigFileApplicationContextInitializer.class)
+@ContextConfiguration(classes = {OtchiApplicationStarter.class, IntegrationTestsConfig.class},
+        initializers = ConfigFileApplicationContextInitializer.class)
 @WebAppConfiguration()
 @IntegrationTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
