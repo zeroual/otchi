@@ -1,14 +1,14 @@
 package com.otchi.infrastructure.security;
 
+import api.stepsDefinition.IntegrationTestsConfig;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.otchi.infrastructure.config.ApplicationConfig;
+import com.otchi.infrastructure.boot.OtchiApplicationStarter;
 import com.otchi.infrastructure.config.ResourcesPath;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
 import org.springframework.boot.test.ConfigFileApplicationContextInitializer;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -35,7 +35,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationConfig.class, LiquibaseAutoConfiguration.class}, initializers = ConfigFileApplicationContextInitializer.class)
+@ContextConfiguration(classes = {OtchiApplicationStarter.class, IntegrationTestsConfig.class},
+        initializers = ConfigFileApplicationContextInitializer.class)
 @WebAppConfiguration()
 @IntegrationTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -102,13 +103,7 @@ public class AuthenticationTest {
 
     @Test
     public void shouldAllowAnonymousAccessToWebResources() throws Exception {
-        mockMvc.perform(get("/app"))
-                .andExpect(status().isOk());
-        mockMvc.perform(get("/bower_components"))
-                .andExpect(status().isOk());
-        mockMvc.perform(get("/partials"))
-                .andExpect(status().isOk());
-        mockMvc.perform(get("/assets"))
+        mockMvc.perform(get("/index.html"))
                 .andExpect(status().isOk());
     }
 
