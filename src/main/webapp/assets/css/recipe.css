@@ -1,4 +1,18 @@
+.recipe-title {
+    padding: 0px 5px 5px 5px;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 19px;
+    color: #4d4d4d;
+}
 
+.recipe-description {
+    padding: 5px;
+}
+
+.prepTime {
+    padding: 5px;
+    float: right;
+}
 .prepTime .time-icon {
     color: #999;
     font-size: 1.1em;
@@ -9,7 +23,6 @@
     text-align: center;
     line-height: 1.5rem;
     padding: 10px;
-    border-right: solid 1px #e6e6e6;
     color: #999;
 }
 
@@ -121,4 +134,14 @@ ol ol {
     transition: outline-offset .15s ease-in-out, background-color .15s linear;
     font-size: 1.25rem;
     padding: 20px 20px;
+}
+
+.recipe-images {
+    cursor: pointer;
+}
+
+.images-gallery .image-item {
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-bottom: 2px;
 }

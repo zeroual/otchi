@@ -1,0 +1,8 @@
+<div class="images-gallery">
+    <div class="col-sm-12 image-item"
+         ng-repeat="image in images"
+         ng-class="{'col-md-6':displayTowImages($index),'col-md-12':!displayTowImages($index)}">
+        <img class="img-responsive"
+             ng-src="{{image}}"/>
+    </div>
+</div>
