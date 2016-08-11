@@ -1,5 +1,5 @@
 angular.module('authentication')
-    .factory('Principal', function Principal($q, IdentityService) {
+    .factory('Principal', function Principal($q, IdentityService, SocketService, NotificationsHandlerService) {
         var _identity,
             _authenticated = false;
 
@@ -31,6 +31,9 @@ angular.module('authentication')
                         _identity = account.data;
                         _authenticated = true;
                         deferred.resolve(_identity);
+                        SocketService.connect().then(function () {
+                            NotificationsHandlerService.handleNotifications();
+                        });
                     })
                     .catch(function () {
                         _identity = null;
