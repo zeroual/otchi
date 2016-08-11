@@ -64,3 +64,15 @@ amazon:
     s3:
       default-bucket: otchi
       url: s3.amazonaws.com
+otchi:
+   stomp:
+      relayHost: squirrel.rmq.cloudamqp.com
+      relayPort: 61613
+      clientLogin: dqgowlzx
+      clientPasscode: sb6B1-4vOgGCNlUtYPpDwrG7KBNvlxNV
+      systemLogin: dqgowlzx
+      systemPasscode: sb6B1-4vOgGCNlUtYPpDwrG7KBNvlxNV
+      virtualHost: dqgowlzx
+      relayDestinationPrefix: /topic
+      appDestinationPrefix: /app
+      endpoint: /socket

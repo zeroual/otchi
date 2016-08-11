@@ -35,6 +35,7 @@
 		<aws-sdk.version>1.11.5</aws-sdk.version>
 		<apache-commons-io.version>2.4</apache-commons-io.version>
 		<cucumber.version>1.2.4</cucumber.version>
+		<netty-all.version>4.1.4.Final</netty-all.version>
 	</properties>
 
 	<dependencies>
@@ -80,6 +81,25 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+
+		<!--reactor and  netty used for rabbitMQ stomp , plz don't remove them-->
+
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-core</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-net</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>${netty-all.version}</version>
 		</dependency>
 
 		<dependency>
