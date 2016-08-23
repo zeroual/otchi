@@ -89,5 +89,7 @@ public class Post {
 		this.postContent = postContent;
 	}
 
-    
+    public boolean isNotAlreadyLikedBy(String username) {
+        return !this.likes.stream().anyMatch(user -> user.getUsername().equals(username));
+    }
 }
