@@ -1,9 +1,11 @@
 package com.otchi.application;
 
-import com.otchi.domain.social.models.Post;
+import java.util.List;
 
 public interface NotificationsService {
 
-    void sendLikeNotificationToPostAuthor(Post post, String likerUsername);
+    List<NotificationWithSender> getAllNotificationsOf(String username);
+
+    List<NotificationWithSender> getAllUnreadNotificationsOf(String username);
 
 }

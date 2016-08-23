@@ -1,23 +1,24 @@
 package api.stepsDefinition;
 
+import com.otchi.utils.DateParser;
 import cucumber.api.java.en.Given;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
 
 public class CommonStepsDefinitions {
 
     @Autowired
     private MocakableDateFactory mocakableDateFactory;
 
+    @Autowired
+    private World world;
+
 
     @Given("^time now is \"([^\"]*)\"$")
     public void timeNowIs(String dateString) throws Throwable {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-        Date newDate = simpleDateFormat.parse(dateString);
+        Date newDate = DateParser.parse(dateString);
         mocakableDateFactory.setNowTimeTo(newDate);
+        world.setCurrentDate(newDate);
     }
 }

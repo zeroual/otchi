@@ -1,7 +1,7 @@
 package com.otchi.application.impl;
 
 import com.otchi.application.FeedService;
-import com.otchi.application.NotificationsService;
+import com.otchi.application.PushNotificationsService;
 import com.otchi.application.UserService;
 import com.otchi.application.utils.DateFactory;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
@@ -18,15 +18,15 @@ public class FeedServiceImpl implements FeedService {
 
     private PostRepository postRepository;
     private UserService userService;
-    private NotificationsService notificationsService;
+    private PushNotificationsService pushNotificationsService;
     private DateFactory dateFactory;
 
     @Autowired
     public FeedServiceImpl(PostRepository postRepository, UserService userService,
-                           NotificationsService notificationsService, DateFactory dateFactory) {
+                           PushNotificationsService pushNotificationsService, DateFactory dateFactory) {
         this.postRepository = postRepository;
         this.userService = userService;
-        this.notificationsService = notificationsService;
+        this.pushNotificationsService = pushNotificationsService;
         this.dateFactory = dateFactory;
     }
 
@@ -39,7 +39,7 @@ public class FeedServiceImpl implements FeedService {
         User user = userService.findUserByUsername(likerUsername).get();
         post.addLike(user);
         postRepository.save(post);
-        notificationsService.sendLikeNotificationToPostAuthor(post, likerUsername);
+        pushNotificationsService.sendLikeNotificationToPostAuthor(post, likerUsername);
     }
 
     @Override

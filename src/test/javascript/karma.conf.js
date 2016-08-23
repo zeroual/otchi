@@ -25,6 +25,8 @@ module.exports = function (config) {
       'main/webapp/bower_components/ng-file-upload/ng-file-upload.min.js',
       'main/webapp/bower_components/angular-sanitize/angular-sanitize.js',
       'main/webapp/bower_components/ngToast/dist/ngToast.js',
+      'main/webapp/bower_components/sockjs-client/dist/sockjs.min.js',
+      'main/webapp/bower_components/stomp-websocket/lib/stomp.min.js',
       'main/webapp/app/components/toaster/toaster.js',
       'main/webapp/app/social-authentication/social-authentication.js',
       'main/webapp/app/app.js',

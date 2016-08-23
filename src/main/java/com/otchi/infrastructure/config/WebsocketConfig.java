@@ -2,6 +2,7 @@ package com.otchi.infrastructure.config;
 
 
 import com.otchi.infrastructure.notifications.WebsocketMessageSending;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
@@ -15,6 +16,8 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
 public class WebsocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
+    @Value("${otchi.websocket.events.liked}")
+    private String postLikedEventDestination;
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
@@ -28,7 +31,7 @@ public class WebsocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
     @Bean
     public WebsocketMessageSending websocketMessageSending(SimpMessageSendingOperations messagingTemplate) {
-        return new WebsocketMessageSending(messagingTemplate);
+        return new WebsocketMessageSending(messagingTemplate, postLikedEventDestination);
     }
 
 

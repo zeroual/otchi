@@ -7,12 +7,19 @@ public class WebsocketMessageSending {
 
     private final SimpMessageSendingOperations messagingTemplate;
 
+    private final String postLikedEventDestination;
+
     @Autowired
-    public WebsocketMessageSending(SimpMessageSendingOperations messagingTemplate) {
+    public WebsocketMessageSending(SimpMessageSendingOperations messagingTemplate, String postLikedEventDestination) {
         this.messagingTemplate = messagingTemplate;
+        this.postLikedEventDestination = postLikedEventDestination;
     }
 
-    public void sendMessage(String user, String destination, Object payload) {
+    public void sendLikedEvent(String user, Object likedEvent) {
+        sendMessage(user, postLikedEventDestination, likedEvent);
+    }
+
+    private void sendMessage(String user, String destination, Object payload) {
         messagingTemplate.convertAndSendToUser(user, destination, payload);
     }
 }
