@@ -25,8 +25,8 @@ public class FeedServiceImplTest {
     private PostRepository postRepository = new MockPostRepository();
     private UserService userService = Mockito.mock(UserService.class);
     private DateFactory dateFactory = Mockito.mock(DateFactory.class);
-    private NotificationsService notificationsService = mock(NotificationsService.class);
-    private FeedService feedService = new FeedServiceImpl(postRepository, userService, notificationsService, dateFactory);
+    private PushNotificationsService pushNotificationsService = mock(PushNotificationsService.class);
+    private FeedService feedService = new FeedServiceImpl(postRepository, userService, pushNotificationsService, dateFactory);
     private User user = new User("email@fofo.com", "firstName_sample", "lastName");
 
     @Before
@@ -54,7 +54,7 @@ public class FeedServiceImplTest {
         String likerUsername = "email@fofo.com";
         feedService.likePost(1L, likerUsername);
         Post post = postRepository.findOne(1L);
-        verify(notificationsService).sendLikeNotificationToPostAuthor(post, likerUsername);
+        verify(pushNotificationsService).sendLikeNotificationToPostAuthor(post, likerUsername);
     }
 
     @Test(expected = PostNotFoundException.class)

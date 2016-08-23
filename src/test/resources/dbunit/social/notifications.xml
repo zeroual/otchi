@@ -1,0 +1,29 @@
+<dataset>
+    <NOTIFICATION
+            ID="1"
+            USERNAME="user1"
+            TYPE="LIKED"
+            UNREAD="true"
+            CREATED_AT="2015-02-28"
+            SENDER_ID="user1"
+            POST_ID="3"
+    />
+    <NOTIFICATION
+            ID="2"
+            USERNAME="user2"
+            TYPE="LIKED"
+            UNREAD="true"
+            CREATED_AT="2015-02-28"
+            SENDER_ID="user1"
+            POST_ID="3"
+    />
+    <NOTIFICATION
+            ID="3"
+            USERNAME="user1"
+            TYPE="LIKED"
+            UNREAD="false"
+            CREATED_AT="2015-02-28"
+            SENDER_ID="user1"
+            POST_ID="3"
+    />
+</dataset>

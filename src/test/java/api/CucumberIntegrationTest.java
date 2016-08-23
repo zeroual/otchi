@@ -14,6 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 )
 @ContextConfiguration(classes = {ApplicationConfig.class})
 
-public class CucumberIntegrationRunnerTest {
+public class CucumberIntegrationTest {
 
 }
