@@ -28,7 +28,8 @@
                     </a>
                     <ul class="dropdown-menu">
                         <ul class="notifications">
-                            <li class="notification" ng-repeat="notification in notifications">
+                            <li class="notification" ng-repeat="notification in notifications"
+                                ng-click="readNotification(notification)">
                                 <div class="media">
                                     <div class="media-left">
                                         <div class="media-object">

@@ -1,5 +1,6 @@
 package com.otchi.application.impl;
 
+import com.otchi.application.ForbiddenNotificationUnreadStatusChangingException;
 import com.otchi.application.NotificationWithSender;
 import com.otchi.application.NotificationsService;
 import com.otchi.application.UserService;
@@ -40,6 +41,30 @@ public class NotificationsServiceImpl implements NotificationsService {
         return notificationsRepository.findAllByUsernameAndUnreadTrue(username)
                 .stream().map(notificationWithSenderTransformer())
                 .collect(toList());
+    }
+
+    @Override
+    public Notification markNotificationAsRead(Long notificationId, String username) {
+        Notification notification = notificationsRepository.findOne(notificationId);
+        if (notification.canNotChangeUnreadStatusBy(username)) {
+            String message = "user with username " + username + " try to mark notification with id " + notificationId + "as read";
+            throw new ForbiddenNotificationUnreadStatusChangingException(message);
+        }
+        notification.markAsRead();
+        notificationsRepository.save(notification);
+        return notification;
+    }
+
+    @Override
+    public Notification markNotificationAsUnread(Long notificationId, String username) {
+        Notification notification = notificationsRepository.findOne(notificationId);
+        if (notification.canNotChangeUnreadStatusBy(username)) {
+            String message = "user with username " + username + " try to mark notification with id " + notificationId + "as unread";
+            throw new ForbiddenNotificationUnreadStatusChangingException(message);
+        }
+        notification.markAsUnread();
+        notificationsRepository.save(notification);
+        return notification;
     }
 
     private Function<Notification, NotificationWithSender> notificationWithSenderTransformer() {

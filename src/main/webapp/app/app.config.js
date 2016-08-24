@@ -44,5 +44,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     controller: 'FollowingsRecommendationController'
                 }
             }
+        })
+        .state('showPost', {
+            parent: 'main',
+            url: "/post/:postId",
+            data: {
+                pageTitle: 'Post details'
+            },
         });
 });
