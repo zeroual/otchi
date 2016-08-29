@@ -57,6 +57,15 @@ public class FeedServiceImplTest {
         verify(pushNotificationsService).sendLikeNotificationToPostAuthor(post, likerUsername);
     }
 
+    @Test
+    public void shouldNotNotifyAuthorIfUserLikedAlreadyHisPost() {
+        String likerUsername = "email@fofo.com";
+        feedService.likePost(1L, likerUsername);
+        feedService.likePost(1L, likerUsername);
+        Post post = postRepository.findOne(1L);
+        verify(pushNotificationsService, times(1)).sendLikeNotificationToPostAuthor(post, likerUsername);
+    }
+
     @Test(expected = PostNotFoundException.class)
     public void shouldNotAllowToLikeUnExistingPost() {
         feedService.likePost(123L, "email@fofo.com");

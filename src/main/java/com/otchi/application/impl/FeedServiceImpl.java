@@ -37,9 +37,11 @@ public class FeedServiceImpl implements FeedService {
             throw new PostNotFoundException(postId);
         }
         User user = userService.findUserByUsername(likerUsername).get();
-        post.addLike(user);
-        postRepository.save(post);
-        pushNotificationsService.sendLikeNotificationToPostAuthor(post, likerUsername);
+        if (post.isNotAlreadyLikedBy(likerUsername)) {
+            post.addLike(user);
+            postRepository.save(post);
+            pushNotificationsService.sendLikeNotificationToPostAuthor(post, likerUsername);
+        }
     }
 
     @Override
