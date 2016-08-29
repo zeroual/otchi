@@ -5,10 +5,7 @@ import com.otchi.application.NotificationWithSender;
 import com.otchi.application.NotificationsService;
 import com.otchi.infrastructure.config.ResourcesPath;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -35,5 +32,33 @@ public class NotificationsResource {
 
         return allNotificationsOf
                 .stream().map(NotificationDTO::new).collect(toList());
+    }
+
+    @RequestMapping(value = "/notifications/{id}", method = RequestMethod.PUT)
+    public void changeNotificationUnreadStatus(@PathVariable("id") Long id,
+                                               @RequestBody NotificationUnreadState newNotificationUnreadState,
+                                               Principal principal) {
+        String username = principal.getName();
+        if (newNotificationUnreadState.isUnread()) {
+            notificationsService.markNotificationAsUnread(id, username);
+        } else {
+            notificationsService.markNotificationAsRead(id, username);
+        }
+    }
+
+    public static class NotificationUnreadState {
+
+        private boolean unread;
+
+        public NotificationUnreadState() {
+        }
+
+        public boolean isUnread() {
+            return unread;
+        }
+
+        public void setUnread(boolean unread) {
+            this.unread = unread;
+        }
     }
 }

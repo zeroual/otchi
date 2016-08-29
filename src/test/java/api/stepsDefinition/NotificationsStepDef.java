@@ -5,12 +5,14 @@ import com.otchi.domain.social.models.NotificationType;
 import com.otchi.domain.social.repositories.NotificationsRepository;
 import com.otchi.utils.DateParser;
 import cucumber.api.DataTable;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.ParseException;
 import java.util.Date;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;
 
 
@@ -28,6 +30,18 @@ public class NotificationsStepDef {
                 .forEach(notificationsRepository::save);
     }
 
+    @And("^notification with id \"([^\"]*)\" is marked as read$")
+    public void notificationWithIdIsMarkedAsRead(Long id) throws Throwable {
+        Notification notification = notificationsRepository.findOne(id);
+        assertThat(notification.isUnread()).isFalse();
+    }
+
+    @And("^notification with id \"([^\"]*)\" is marked as unread$")
+    public void notificationWithIdIsMarkedAsUnread(Long id) throws Throwable {
+        Notification notification = notificationsRepository.findOne(id);
+        assertThat(notification.isUnread()).isTrue();
+    }
+
     private class NotificationCucumber {
 
         private NotificationType type;
@@ -41,8 +55,7 @@ public class NotificationsStepDef {
             Notification notification = new Notification(username, sender, postId, type);
             notification.changeCreationDateTo(getCreationDate());
             if (unread == false)
-                notification.setToRead();
-
+                notification.markAsRead();
             return notification;
         }
 

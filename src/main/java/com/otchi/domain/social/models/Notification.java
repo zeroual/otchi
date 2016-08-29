@@ -54,8 +54,12 @@ public class Notification {
         return type;
     }
 
-    public void setToRead() {
+    public void markAsRead() {
         this.unread = false;
+    }
+
+    public void markAsUnread() {
+        this.unread = true;
     }
 
     public boolean isUnread() {
@@ -78,4 +82,9 @@ public class Notification {
     public Long postId() {
         return postId;
     }
+
+    public boolean canNotChangeUnreadStatusBy(String username) {
+        return !this.username.equals(username);
+    }
+
 }
