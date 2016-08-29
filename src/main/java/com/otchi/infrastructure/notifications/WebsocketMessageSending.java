@@ -1,5 +1,6 @@
 package com.otchi.infrastructure.notifications;
 
+import com.otchi.domain.social.models.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 
@@ -21,5 +22,9 @@ public class WebsocketMessageSending {
 
     private void sendMessage(String user, String destination, Object payload) {
         messagingTemplate.convertAndSendToUser(user, destination, payload);
+    }
+
+    public void sendNotification(Notification notification) {
+        sendMessage(notification.getUsername(), postLikedEventDestination, notification);
     }
 }
