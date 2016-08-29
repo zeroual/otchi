@@ -52,7 +52,7 @@ public class NotificationsFetchingTest {
         notification2.changeCreationDateTo(notificationsCreationDate);
         notification3.changeCreationDateTo(notificationsCreationDate);
 
-        notification3.setToRead();
+        notification3.markAsRead();
         notificationsRepository.save(asList(notification1, notification2, notification3));
     }
 
