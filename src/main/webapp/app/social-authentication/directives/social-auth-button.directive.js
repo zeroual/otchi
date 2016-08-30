@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('socialAuthentication')
-    .directive('socialAuthButton', function ($translate, $filter, SocialAuthenticationService) {
+    .directive('socialAuthButton', function ($filter, SocialAuthenticationService) {
         return {
             restrict: 'E',
             scope: {
