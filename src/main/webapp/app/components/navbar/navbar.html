@@ -28,6 +28,13 @@
                     </a>
                     <ul class="dropdown-menu">
                         <ul class="notifications">
+                            <li class="notification" ng-if="notifications.length==0">
+                                <div>
+                                    <strong class="notification-title">
+                                        You have no unread notifications
+                                    </strong>
+                                </div>
+                            </li>
                             <li class="notification" ng-repeat="notification in notifications"
                                 ng-click="readNotification(notification)">
                                 <div class="media">
@@ -42,7 +49,12 @@
                                         <strong class="notification-title">
                                             <a href="#">{{notification.sender.firstName}}
                                                 {{notification.sender.lastName}}</a>
-                                            likes your recipe
+                                            <span ng-switch="notification.type">
+                                                <span ng-switch-when="LIKED"> likes </span>
+                                                <span ng-switch-when="COMMENT_ON_POST"> commented on </span>
+                                                <span ng-switch-when="ALSO_COMMENTED"> also replied to</span>
+                                            </span>
+                                            your post
                                         </strong>
                                         <p class="notification-desc">
                                             <!--FIXME show post summary-->
