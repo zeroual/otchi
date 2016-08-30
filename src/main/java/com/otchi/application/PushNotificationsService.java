@@ -7,4 +7,6 @@ public interface PushNotificationsService {
 
     Notification sendLikeNotificationToPostAuthor(Post post, String likerUsername);
 
+    Notification sendCommentedNotificationToPostAuthor(Post post, String commentOwner);
+
 }

@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+import static com.otchi.domain.social.models.NotificationType.COMMENT_ON_POST;
+
 @Service
 public class PushNotificationsServiceImpl implements PushNotificationsService {
 
@@ -37,6 +39,20 @@ public class PushNotificationsServiceImpl implements PushNotificationsService {
         notificationsRepository.save(notification);
         websocketMessageSending.sendLikedEvent(postAuthor, notification);
         return notification;
+    }
+
+    @Override
+    public Notification sendCommentedNotificationToPostAuthor(Post post, String commentOwner) {
+        String postAuthor = post.getAuthor().getUsername();
+        if (!commentOwner.equals(postAuthor)) {
+            Notification notification = new Notification(postAuthor, commentOwner, post.getId(), COMMENT_ON_POST);
+            Date now = getCurrentDate();
+            notification.changeCreationDateTo(now);
+            notification = notificationsRepository.save(notification);
+            websocketMessageSending.sendNotification(notification);
+            return notification;
+        }
+        return null;
     }
 
     private Date getCurrentDate() {
