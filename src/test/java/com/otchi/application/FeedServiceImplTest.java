@@ -8,12 +8,12 @@ import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.repositories.PostRepository;
 import com.otchi.domain.social.repositories.mocks.MockPostRepository;
 import com.otchi.domain.users.models.User;
+import com.otchi.utils.DateParser;
 import com.otchi.utils.mocks.MockCrudRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Optional;
 
@@ -90,7 +90,7 @@ public class FeedServiceImplTest {
 
     @Test
     public void shouldSetCommentCreationOnDateToNow() throws Exception {
-        Date now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse("2015-02-28 12:15:22.8");
+        Date now = DateParser.parse("2015-02-28 12:15:22.8");
         Mockito.when(dateFactory.now()).thenReturn(now);
         feedService.commentOnPost(1L, "What a delicious meal", "email@fofo.com");
         Post post = postRepository.findOne(1L);
@@ -114,5 +114,14 @@ public class FeedServiceImplTest {
     @Test(expected = PostNotFoundException.class)
     public void shouldNotAllowToDesLikeUnExistingPost() {
         feedService.unlikePost(123L, "email@fofo.com");
+    }
+
+    @Test
+    public void shouldSendCommentNotificationToPostAuthor() throws Exception {
+        String commentContent = "What a delicious meal";
+        String commentOwner = "email@fofo.com";
+        feedService.commentOnPost(1L, commentContent, commentOwner);
+        Post post = postRepository.findOne(1L);
+        verify(pushNotificationsService).sendCommentedNotificationToPostAuthor(post, commentOwner);
     }
 }
