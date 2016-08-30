@@ -65,6 +65,7 @@ public class FeedServiceImpl implements FeedService {
         Comment comment = new Comment(author, content, dateFactory.now());
         commentedPost.addComment(comment);
         postRepository.save(commentedPost);
+        pushNotificationsService.sendCommentedNotificationToPostAuthor(commentedPost, username);
         return comment;
     }
 
