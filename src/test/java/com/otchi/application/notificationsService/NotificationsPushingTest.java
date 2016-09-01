@@ -1,8 +1,8 @@
 package com.otchi.application.notificationsService;
 
-import com.otchi.application.PushNotificationsService;
-import com.otchi.application.impl.PushNotificationsServiceImpl;
 import com.otchi.application.utils.DateFactory;
+import com.otchi.domain.services.PushNotificationsService;
+import com.otchi.domain.services.PushNotificationsServiceImpl;
 import com.otchi.domain.social.models.Notification;
 import com.otchi.domain.social.models.NotificationType;
 import com.otchi.domain.social.models.Post;

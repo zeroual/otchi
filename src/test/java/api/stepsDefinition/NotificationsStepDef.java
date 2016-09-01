@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.text.ParseException;
 import java.util.Date;
 
+import static com.otchi.domain.social.models.NotificationType.COMMENT_ON_POST;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.fail;
 
@@ -40,6 +41,13 @@ public class NotificationsStepDef {
     public void notificationWithIdIsMarkedAsUnread(Long id) throws Throwable {
         Notification notification = notificationsRepository.findOne(id);
         assertThat(notification.isUnread()).isTrue();
+    }
+
+    @And("^commented on post notification was sent to post author \"([^\"]*)\"$")
+    public void verifyThatCommentedOnPostNotificationWasSentToPostAuthor(String author) throws Throwable {
+        Notification notification = notificationsRepository.findOne(1L);
+        assertThat(notification.getUsername()).isEqualTo(author);
+        assertThat(notification.getType()).isEqualTo(COMMENT_ON_POST);
     }
 
     private class NotificationCucumber {
