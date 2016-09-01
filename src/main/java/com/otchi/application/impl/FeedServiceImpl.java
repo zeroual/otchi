@@ -1,9 +1,12 @@
 package com.otchi.application.impl;
 
 import com.otchi.application.FeedService;
-import com.otchi.application.PushNotificationsService;
 import com.otchi.application.UserService;
 import com.otchi.application.utils.DateFactory;
+import com.otchi.domain.events.DomainEvents;
+import com.otchi.domain.events.EventsChannels;
+import com.otchi.domain.events.PostCommentedEvent;
+import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
 import com.otchi.domain.social.models.Comment;
 import com.otchi.domain.social.models.Post;
@@ -20,14 +23,18 @@ public class FeedServiceImpl implements FeedService {
     private UserService userService;
     private PushNotificationsService pushNotificationsService;
     private DateFactory dateFactory;
+    private DomainEvents domainEvents;
 
     @Autowired
     public FeedServiceImpl(PostRepository postRepository, UserService userService,
-                           PushNotificationsService pushNotificationsService, DateFactory dateFactory) {
+                           PushNotificationsService pushNotificationsService,
+                           DateFactory dateFactory,
+                           DomainEvents domainEvents) {
         this.postRepository = postRepository;
         this.userService = userService;
         this.pushNotificationsService = pushNotificationsService;
         this.dateFactory = dateFactory;
+        this.domainEvents = domainEvents;
     }
 
     @Override
@@ -65,7 +72,9 @@ public class FeedServiceImpl implements FeedService {
         Comment comment = new Comment(author, content, dateFactory.now());
         commentedPost.addComment(comment);
         postRepository.save(commentedPost);
-        pushNotificationsService.sendCommentedNotificationToPostAuthor(commentedPost, username);
+
+        PostCommentedEvent postCommentedEvent = new PostCommentedEvent(commentedPost, username);
+        domainEvents.raise(EventsChannels.POST_COMMENTED, postCommentedEvent);
         return comment;
     }
 

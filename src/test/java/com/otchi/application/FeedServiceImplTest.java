@@ -2,6 +2,10 @@ package com.otchi.application;
 
 import com.otchi.application.impl.FeedServiceImpl;
 import com.otchi.application.utils.DateFactory;
+import com.otchi.domain.events.DomainEvents;
+import com.otchi.domain.events.EventsChannels;
+import com.otchi.domain.events.PostCommentedEvent;
+import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
 import com.otchi.domain.social.models.Comment;
 import com.otchi.domain.social.models.Post;
@@ -12,7 +16,10 @@ import com.otchi.utils.DateParser;
 import com.otchi.utils.mocks.MockCrudRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.Date;
 import java.util.Optional;
@@ -26,17 +33,26 @@ public class FeedServiceImplTest {
     private UserService userService = Mockito.mock(UserService.class);
     private DateFactory dateFactory = Mockito.mock(DateFactory.class);
     private PushNotificationsService pushNotificationsService = mock(PushNotificationsService.class);
-    private FeedService feedService = new FeedServiceImpl(postRepository, userService, pushNotificationsService, dateFactory);
+    private DomainEvents domainEvents = mock(DomainEvents.class);
+    private FeedService feedService;
     private User user = new User("email@fofo.com", "firstName_sample", "lastName");
+
+    @Captor
+    private ArgumentCaptor<PostCommentedEvent> postCommentedEventArgumentCaptor;
 
     @Before
     public void setUp() {
         MockCrudRepository.clearDatabase();
+
+        feedService = new FeedServiceImpl(postRepository, userService, pushNotificationsService, dateFactory, domainEvents);
+
         // Create new Post;
         Post post = new Post(new Date());
         postRepository.save(post);
         //mock user service
         when(userService.findUserByUsername("email@fofo.com")).thenReturn(Optional.of(user));
+
+        MockitoAnnotations.initMocks(this);
     }
 
     @Test
@@ -117,11 +133,16 @@ public class FeedServiceImplTest {
     }
 
     @Test
-    public void shouldSendCommentNotificationToPostAuthor() throws Exception {
+    public void shouldRaisePostCommentedEvent() throws Exception {
         String commentContent = "What a delicious meal";
         String commentOwner = "email@fofo.com";
         feedService.commentOnPost(1L, commentContent, commentOwner);
         Post post = postRepository.findOne(1L);
-        verify(pushNotificationsService).sendCommentedNotificationToPostAuthor(post, commentOwner);
+        verify(domainEvents).raise(eq(EventsChannels.POST_COMMENTED), postCommentedEventArgumentCaptor.capture());
+
+        PostCommentedEvent postCommentedEvent = postCommentedEventArgumentCaptor.getValue();
+        assertThat(postCommentedEvent.getCommentOwner()).isEqualTo(commentOwner);
+        assertThat(postCommentedEvent.getPost()).isEqualTo(post);
+
     }
 }
