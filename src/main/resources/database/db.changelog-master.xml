@@ -12,4 +12,5 @@
     <include file="classpath:database/changelog/201606221347_update_pictures_old_users.xml"
              relativeToChangelogFile="false"/>
     <include file="classpath:database/changelog/201606251307_add_images_to_story.xml"/>
+    <include file="classpath:database/changelog/201610101344_add_tags_to_recipe.xml"/>
 </databaseChangeLog>

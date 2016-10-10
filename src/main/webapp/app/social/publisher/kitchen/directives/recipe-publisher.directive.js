@@ -36,6 +36,14 @@ angular.module("publisher")
                 $scope.removeInstruction = function (index) {
                     $scope.recipe.instructions.splice(index, 1);
                 };
+
+                $scope.addTag = function (index){
+                    $scope.recipe.tags.push({})
+                };
+
+                $scope.removeTag = function (index) {
+                    $scope.recipe.tags.splice(index, 1);
+                };
             }
         };
     });

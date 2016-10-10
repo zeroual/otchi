@@ -20,7 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -50,7 +52,7 @@ public class PublicationsServiceTest {
 
     @Test
     public void shouldCreateNewPostWithRecipeAsContent() {
-        Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
+        Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20, new HashSet<String>(Arrays.asList("moroccan", "salt")));
         publicationsService.publishRecipe(recipe, emptyList(), "email@gmail.com");
         Post savedPost = postRepository.findOne(1L);
         assertThat(savedPost).isNotNull();
@@ -95,8 +97,6 @@ public class PublicationsServiceTest {
         Recipe savedRecipe = (Recipe) savedPost.getPostContent();
         assertThat(savedRecipe.getImages()).hasSize(1)
                 .isEqualTo(imagesURL);
-
-
     }
 
     @Test
