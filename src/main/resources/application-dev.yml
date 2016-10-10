@@ -17,3 +17,9 @@ spring:
 liquibase:
     contexts: dev
     change-log: classpath:/database/db.changelog-master.xml
+
+otchi:
+   stomp:
+      relayDestinationPrefix: /topic
+      appDestinationPrefix: /app
+      endpoint: /socket

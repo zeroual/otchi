@@ -1,26 +1,28 @@
 'use strict';
 
-//FIXME USE $Translate to display messages
-
 angular.module('toaster')
-    .service('Toaster', function (ngToast) {
+    .service('ToasterService', function (ngToast) {
         var self = this;
 
-        self.success = function open(messageKey, messageParams, options) {
+        function showNotification(messageKey, options, className) {
             ngToast.create(angular.extend({
                 content: messageKey,
-                className: 'success',
+                className: className,
                 dismissButton: true,
-                dismissOnTimeout: false
+                dismissOnTimeout: true
             }, options));
+        }
+
+        self.success = function open(messageKey, messageParams, options) {
+            showNotification(messageKey, options, 'success');
         };
 
         self.error = function open(messageKey, messageParams, options) {
-            ngToast.create(angular.extend({
-                content: messageKey,
-                className: 'danger',
-                dismissButton: true,
-                dismissOnTimeout: false
-            }, options));
+            showNotification(messageKey, options, 'danger');
         };
+
+        self.info = function open(messageKey, messageParams, options) {
+            showNotification(messageKey, options, 'info');
+        };
+
     });

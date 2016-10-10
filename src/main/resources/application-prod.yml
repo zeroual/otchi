@@ -37,6 +37,21 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: false
 
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: otchi.dev@gmail.com
+        password: ihcto77$L23
+        properties:
+            mail:
+               smtp:
+                   ssl: true
+                   auth: true
+                   socketFactory:
+                       class: javax.net.ssl.SSLSocketFactory
+                       fallback: false
+                       port: 465
+
 liquibase:
     contexts: prod
     change-log: classpath:/database/db.changelog-master.xml
@@ -49,3 +64,15 @@ amazon:
     s3:
       default-bucket: otchi
       url: s3.amazonaws.com
+otchi:
+   stomp:
+      relayHost: squirrel.rmq.cloudamqp.com
+      relayPort: 61613
+      clientLogin: dqgowlzx
+      clientPasscode: sb6B1-4vOgGCNlUtYPpDwrG7KBNvlxNV
+      systemLogin: dqgowlzx
+      systemPasscode: sb6B1-4vOgGCNlUtYPpDwrG7KBNvlxNV
+      virtualHost: dqgowlzx
+      relayDestinationPrefix: /topic
+      appDestinationPrefix: /app
+      endpoint: /socket

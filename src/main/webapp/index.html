@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="assets/css/buttons.css">
     <link rel="stylesheet" href="assets/css/inputs.css">
     <link rel="stylesheet" href="assets/css/nav-aside.css">
+    <link rel="stylesheet" href="assets/css/recipe.css">
+    <link rel="stylesheet" href="assets/css/form.css">
+    <link rel="stylesheet" href="assets/css/notifications.css">
     <link rel="stylesheet" href="assets/css/main.css">
 
 
@@ -44,10 +47,11 @@
 <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="bower_components/angular-translate/angular-translate.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/ngToast/dist/ngToast.js"></script>
 <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+<script src="bower_components/sockjs-client/dist/sockjs.min.js"></script>
+<script src="bower_components/stomp-websocket/lib/stomp.min.js"></script>
 
 <script type="text/javascript" src="app/authentication/authentication.js"></script>
 <script type="text/javascript" src="app/components/toaster/toaster.js"></script>
@@ -68,10 +72,15 @@
 <script type="text/javascript" src="app/social/stream/directives/story-viewer/story-viewer.directive.js"></script>
 <script type="text/javascript" src="app/social/stream/directives/feed-comments/feed-comments.directive.js"></script>
 <script type="text/javascript" src="app/social/stream/directives/recipe-feeds/recipe-feeds.directive.js"></script>
+<script type="text/javascript" src="app/social/stream/directives/images-gallery/images-gallery.directive.js"></script>
 <script type="text/javascript" src="app/social/stream/controllers/feeds-loader.controller.js"></script>
 <script type="text/javascript" src="app/social/stream/controllers/feed-likes-viewer.controller.js"></script>
 <script type="text/javascript" src="app/social/stream/controllers/followings-recommendation.controller.js"></script>
 <script type="text/javascript" src="app/social/publisher/kitchen/kitchen.js"></script>
+<script type="text/javascript" src="app/components/notifications/notifications.service.js"></script>
+<script type="text/javascript" src="app/components/notifications/socket.service.js"></script>
+<script type="text/javascript"
+        src="app/social/stream/directives/recipe-details-viewer/recipe-details-viewer.directive.js"></script>
 <script type="text/javascript"
         src="app/social/publisher/shared/images-upload-preview/images-upload-preview.js"></script>
 <script type="text/javascript" src="app/components/helpers/filters/timeAgo.filter.js"></script>

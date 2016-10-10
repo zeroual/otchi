@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 import static java.util.stream.Collectors.toList;
@@ -27,5 +28,11 @@ public class FeedFetcherServiceImpl implements FeedFetcherService {
                 .stream(postRepository.findAll().spliterator(), true)
                 .sorted((o1, o2) -> o2.getCreatedTime().compareTo(o1.getCreatedTime()))
                 .collect(toList());
+    }
+
+    @Override
+    public Optional<Post> getFeed(Long id) {
+        Post post = postRepository.findOne(id);
+        return Optional.ofNullable(post);
     }
 }

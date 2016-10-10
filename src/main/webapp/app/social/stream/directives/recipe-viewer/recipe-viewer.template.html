@@ -1,17 +1,19 @@
 <div class="row">
-    <div class="col-md-6 col-sm-12" ng-if="recipe.images">
-        <a href="#">
-            <img class="img-responsive"
-                 ng-src="{{recipe.images[0]}}">
-        </a>
-    </div>
-    <div class="col-sm-12" ng-class="{'col-md-6':recipe.images,'col-md-12':!recipe.images}">
-        <div>
-            <h4> {{recipe.title}}</h4>
-            <p>
-                {{recipe.description}}
-            </p>
-
+    <div class="col-md-12">
+        <h4 class="recipe-title"> {{recipe.title}}</h4>
+        <div class="prepTime">
+            <span class="glyphicon glyphicon-time time-icon"></span>
+            <span class="prepTime_item"> {{recipe.cookTime}} m to cook</span>
+            <span class="prepTime_item"> {{recipe.preparationTime}} m to prepare </span>
+            <span class="prepTime_item"> ready in 50 m</span>
         </div>
+        <span class="clearfix"></span>
+        <p class="recipe-description">
+            {{recipe.description}}
+        </p>
+    </div>
+
+    <div class="recipe-images" ui-sref="showRecipe({feedId:feedId})">
+        <images-gallery images="recipe.images"/>
     </div>
 </div>

@@ -1,3 +1,4 @@
+
 spring:
     social:
         redirectAfterSignInUrl: "/#/feed"
@@ -9,5 +10,12 @@ multipart:
    enabled: true
 
 otchi:
+   mail:
+      noReply: "noreply@noreply.com"
    user:
       default-picture: "/assets/images/unknown_user.png"
+   websocket:
+         events:
+            liked: "/topic/notifications"
+server:
+  port: 8080

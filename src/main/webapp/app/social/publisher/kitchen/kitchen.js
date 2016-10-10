@@ -11,9 +11,28 @@ angular.module('kitchen')
                 },
                 views: {
                     'content@': {
-                        templateUrl: app_dir + "/social/publisher/kitchen/views/kitchen.html"
+                        template: '<recipe-publisher/>'
+                    }
+                }
+            })
+            .state('showRecipe', {
+                parent: 'main',
+                url: "/recipe/:feedId",
+                data: {
+                    pageTitle: 'Recipe details'
+                },
+                views: {
+                    'content@': {
+                        template: '<recipe-details-viewer feed="feed"/>',
+                        controller: function (feed, $scope) {
+                            $scope.feed = feed;
+                        },
+                        resolve: {
+                            feed: function ($stateParams, FeedsService) {
+                                return FeedsService.fetchFeed($stateParams.feedId).$promise;
+                            }
+                        }
                     }
                 }
             });
-
     });
