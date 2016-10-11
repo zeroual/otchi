@@ -36,6 +36,7 @@
 		<apache-commons-io.version>2.4</apache-commons-io.version>
 		<cucumber.version>1.2.4</cucumber.version>
 		<netty-all.version>4.1.4.Final</netty-all.version>
+		<guava.version>19.0</guava.version>
 	</properties>
 
 	<dependencies>
@@ -105,6 +106,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
 		</dependency>
 
 		<dependency>
