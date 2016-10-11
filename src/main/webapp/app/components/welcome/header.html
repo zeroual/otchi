@@ -1,24 +1,13 @@
-<div class="navbar navbar-default topnav header" role="navigation">
+<div class="navbar navbar-default topnav header">
     <div class="container topnav">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+        <div class="navbar-header pull-left">
             <a class="navbar-brand no-padding" ui-sref="feed">
                 <img height="50" src="/assets/images/logo.png" alt="Otchi">
             </a>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <div class="navbar-btn">
-                        <a ui-sref="login" class="btn btn-primary">Login</a>
-                        <a ui-sref="register" class="btn btn-default">Sing up</a>
-                    </div>
-                </li>
-            </ul>
+        <div class="navbar-header pull-right">
+            <a ui-sref="login" class="btn btn-primary navbar-btn">Login</a>
+            <a ui-sref="register" class="btn btn-default navbar-btn">Sing up</a>
         </div>
     </div>
 </div>
