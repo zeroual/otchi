@@ -11,7 +11,6 @@ describe('Controller Tests', function () {
             $q = _$q_;
             $scope = $rootScope.$new();
             MockAccountService = jasmine.createSpyObj('MockAccountService', ['register']);
-            MockTranslate = jasmine.createSpyObj('MockTranslate', ['use']);
             MockAuth = jasmine.createSpyObj('Auth', ['login']);
             MockState = jasmine.createSpyObj('$state', ['go']);
 
@@ -19,7 +18,6 @@ describe('Controller Tests', function () {
                 '$scope': $scope,
                 'AccountService': MockAccountService,
                 'Auth': MockAuth,
-                '$translate': MockTranslate,
                 '$state': MockState
             };
             $controller('RegisterController', locals);
@@ -28,7 +26,6 @@ describe('Controller Tests', function () {
         it('should register the new user and automatically authenticate him',
             function () {
                 // given
-                MockTranslate.use.and.returnValue('en');
                 MockAccountService.register.and.returnValue($q.resolve());
                 MockAuth.login.and.returnValue($q.resolve());
                 MockState.go.and.returnValue($q.resolve());
@@ -38,12 +35,6 @@ describe('Controller Tests', function () {
                 // when
                 $scope.$apply($scope.register); // $q promises require an $apply
                 // then
-                expect(MockAccountService.register).toHaveBeenCalledWith({
-                    password: 'password',
-                    email: 'email',
-                    langKey: 'en'
-                });
-                expect(MockTranslate.use).toHaveBeenCalled();
                 expect($scope.errorEmailExists).toBeNull();
                 expect($scope.error).toBeNull();
                 expect(MockAuth.login).toHaveBeenCalledWith({

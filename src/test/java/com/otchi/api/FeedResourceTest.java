@@ -63,22 +63,6 @@ public class FeedResourceTest extends AbstractIntegrationTest {
     }
 
     @Test
-    @DatabaseSetup("/dbunit/social/comments.xml")
-    @Transactional
-    public void shouldCommentOnPost() throws Exception{
-
-        String commentContent = new String("this is a delicious meal");
-        mockMvc.perform(post(ResourcesPath.FEED +"/1/comment")
-                .content(json(commentContent))
-                .with(user("mr.jaifar@gmail.com"))
-                .with(csrf()).contentType(contentType))
-                .andExpect(status().isCreated())
-                .andExpect(content().json("{\"author\":{\"id\":1,\"firstName\":\"reda\",\"lastName\":\"jaifar\",\"picture\":\"picture1\"},\"content\":\"\\\"this is a delicious meal\\\"\",\"id\":null}"));
-        Post post = postRepository.findOne(1L);
-        assertThat(post.getComments()).hasSize(1);
-    }
-
-    @Test
     @DatabaseSetup("/dbunit/social/stream-feeds.xml")
     public void shouldFetchFeedWithId() throws Exception {
         mockMvc.perform(get(ResourcesPath.FEED + "/1")

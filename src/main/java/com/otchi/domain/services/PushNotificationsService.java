@@ -1,4 +1,4 @@
-package com.otchi.application;
+package com.otchi.domain.services;
 
 import com.otchi.domain.social.models.Notification;
 import com.otchi.domain.social.models.Post;
