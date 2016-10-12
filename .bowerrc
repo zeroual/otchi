@@ -1,3 +1,6 @@
 {
-  "directory" : "src/main/webapp/bower_components"
+  "directory" : "src/main/webapp/bower_components",
+  "proxy":"http://mjr2:232323+Root@10.6.69.50:8080",
+  "https-proxy":"http://mjr2:232323+Root@10.6.69.50:8080",
+  "strict-ssl": false
 }
