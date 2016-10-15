@@ -83,7 +83,7 @@ Run the commands
 
 - how the application is layered ? [check here](docs/application-layers.md)
 - how the back end is structured ? [check here](docs/back-end-structure.md)
-- how front end is structured ? //TODO
+- how front end is structured ? [check here](docs/front-end-structure.md)
 - how automated tests are structured ? //TODO
 
 ## Copyright and license
