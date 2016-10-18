@@ -1,55 +1,54 @@
-<div class="card">
-    <div class="panel panel-default">
-        <div class="panel-heading panel-heading-gray">
-            <div class="media">
-                <div class="media-left media-middle">
-                    <a href="#">
-                        <img class="media-object img-circle"
-                             ng-src="{{feed.author.picture}}" width="35">
-                    </a>
-                </div>
-                <div class="media-body">
-                    <span class="media-heading"> {{feed.author.firstName}}  {{feed.author.lastName}}</span>
-                    <time class="bullet text-gray">{{feed.createdTime |timeAgo}}</time>
-                </div>
+<div class="card timeline">
+<div class="panel panel-default">
+    <div class="panel-heading panel-heading-gray">
+        <div class="media">
+            <div class="media-left media-middle">
+                <a href="#">
+                    <img class="media-object img-circle"
+                         ng-src="{{feed.author.picture}}" width="35">
+                </a>
+            </div>
+            <div class="media-body">
+                <span class="media-heading"> {{feed.author.firstName}}  {{feed.author.lastName}}</span>
+                <time class="bullet text-gray">{{feed.createdTime |timeAgo}}</time>
             </div>
         </div>
-        <div class="panel-body">
-            <recipe-viewer recipe="feed.content" feed-id="feed.id" ng-if="feed.content.type==='RECIPE'"/>
-            <story-viewer story="feed.content" ng-if="feed.content.type==='STORY'"/>
-        </div>
-        <div class="panel-footer">
-            <div>
-                <div class="pull-left">
-                    <a href="" class="button-link text-muted" ng-click="recipe.showComments=true">
-                        <i class="glyphicon glyphicon-bullhorn"/>
+    </div>
+    <div class="panel-body">
+        <recipe-viewer recipe="feed.content" ng-if="feed.content.type==='RECIPE'"/>
+        <story-viewer story="feed.content" ng-if="feed.content.type==='STORY'"/>
+    </div>
+    <div class="panel-footer">
+        <div>
+            <div class="pull-left">
+                <a href="" class="button-link text-muted" ng-click="recipe.showComments=true">
+                    <i class="glyphicon glyphicon-bullhorn"/>
                     <span ng-if="feed.comments.length > 0">
                         {{feed.comments.length}} &nbsp;Comments
                     </span>
                     <span ng-if="feed.comments.length === 0">
                         Start discussion
                     </span>
-                    </a>
-                </div>
-                <div ng-switch="feed.liked" class="pull-right">
+                </a>
+            </div>
+            <div ng-switch="feed.liked" class="pull-right">
                     <span ng-if="feed.likes.length > 0">
                         <a href="" class="button-link text-muted" ng-click="showLikes(feed)">
                             {{feed.likes.length}} Likes
                         </a>
                     </span>
-                    <a href="" class="btn btn-like" ng-switch-when="false" ng-click="likePost(feed)">
-                        <i class="glyphicon glyphicon-heart-empty"></i> {{feed.likes.length}}
-                    </a>
-                    <a href="" class="btn btn-unLike" ng-switch-when="true" ng-click="unLikePost(feed)">
-                        <i class="glyphicon glyphicon-heart"></i> {{feed.likes.length}}
-                    </a>
-                </div>
-                <div class="clearfix"></div>
+                <a href="" class="btn btn-like" ng-switch-when="false" ng-click="likePost(feed)">
+                    <i class="glyphicon glyphicon-heart-empty"></i> {{feed.likes.length}}
+                </a>
+                <a href="" class="btn btn-unLike" ng-switch-when="true" ng-click="unLikePost(feed)">
+                    <i class="glyphicon glyphicon-heart"></i> {{feed.likes.length}}
+                </a>
             </div>
-            <div ng-if="recipe.showComments===true">
-                <hr/>
-                <feed-comments feed="feed"/>
-            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div ng-if="recipe.showComments===true">
+            <hr/>
+            <feed-comments feed="feed"/>
         </div>
     </div>
 </div>

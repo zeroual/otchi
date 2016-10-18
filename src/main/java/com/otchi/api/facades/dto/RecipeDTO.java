@@ -5,7 +5,9 @@ import com.otchi.domain.kitchen.Instruction;
 import com.otchi.domain.kitchen.Recipe;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 
@@ -19,6 +21,8 @@ public class RecipeDTO extends AbstractPostContent implements DTO<Recipe> {
     private List<InstructionDTO> instructions = new ArrayList<>();
     private String title;
     private List<String> images = new ArrayList<>();
+    private Set<String> tags = new HashSet<>();
+
     private RecipeDTO() {
         super("RECIPE");
 
@@ -35,6 +39,14 @@ public class RecipeDTO extends AbstractPostContent implements DTO<Recipe> {
         extractFromDomain(recipe);
 
 
+    }
+
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
     }
 
     public Long getId() {
@@ -102,7 +114,7 @@ public class RecipeDTO extends AbstractPostContent implements DTO<Recipe> {
         List<Instruction> instructionList = instructions.stream()
                 .map(InstructionDTO::toDomain)
                 .collect(toList());
-        return new Recipe(title, description, cookTime, preparationTime, ingredientList, instructionList);
+        return new Recipe(title, description, cookTime, preparationTime, ingredientList, instructionList, tags);
     }
 
     @Override
@@ -119,5 +131,6 @@ public class RecipeDTO extends AbstractPostContent implements DTO<Recipe> {
                 .map(InstructionDTO::new).collect(toList());
         this.title = recipe.getTitle();
         this.images = recipe.getImages();
+        this.tags = recipe.getTags();
     }
 }

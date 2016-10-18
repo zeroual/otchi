@@ -12,9 +12,5 @@
     <include file="classpath:database/changelog/201606221347_update_pictures_old_users.xml"
              relativeToChangelogFile="false"/>
     <include file="classpath:database/changelog/201606251307_add_images_to_story.xml"/>
-    <include file="classpath:database/changelog/201608121745_add_notification_table.xml"/>
-
-    <!-- TODO I don't like the following solution, but we need to clear database for each test (test isolation)-->
-    <!-- So don't forget to add a new row in empty.xml if you add new table-->
-    <!-- We will look for new alternative in the future -->
+    <include file="classpath:database/changelog/201610101344_add_tags_to_recipe.xml"/>
 </databaseChangeLog>

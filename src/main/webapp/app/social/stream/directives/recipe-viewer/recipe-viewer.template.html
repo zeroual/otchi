@@ -11,9 +11,13 @@
         <p class="recipe-description">
             {{recipe.description}}
         </p>
+        <div>
+            <span class="label label-info" ng-repeat="tag in recipe.tags"> {{tag}} </span>
+        </div>
     </div>
 
     <div class="recipe-images" ui-sref="showRecipe({feedId:feedId})">
         <images-gallery images="recipe.images"/>
     </div>
+
 </div>

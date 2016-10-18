@@ -9,6 +9,12 @@ import com.otchi.utils.AbstractIntegrationTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.SecondaryTable;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -41,6 +47,8 @@ public class RecipeRepositoryTest extends AbstractIntegrationTest {
                 .isEqualTo(asList("CONTENT_SAMPLE"));
 
         assertThat(recipe.getImages()).containsExactly("http://url.com/imageID");
+
+        assertThat(recipe.getTags()).containsExactly("moroccan");
     }
 
     @Test
@@ -51,6 +59,9 @@ public class RecipeRepositoryTest extends AbstractIntegrationTest {
         recipe.addIngredient(ingredient);
         Instruction instruction = new Instruction("boil carrots");
         recipe.addInstruction(instruction);
+
+        Set<String> tags = new HashSet<String>(Arrays.asList("moroccan","salt"));
+        recipe.setTags(tags);
         recipeRepository.save(recipe);
 
         Recipe savedRecipe = recipeRepository.findOne(1L);

@@ -15,6 +15,11 @@
                    RECIPE_ID="1"
                    />
 
+    <RECIPE_TAGS
+        RECIPE_ID="1"
+        TAGS="moroccan"
+    />
+
     <recipe ID="1"
             TITLE="TITLE_SAMPLE"
             DESCRIPTION="toto"

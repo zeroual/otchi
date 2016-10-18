@@ -8,7 +8,8 @@ angular.module("publisher")
                     $scope.recipe = {
                         ingredients: [{}],
                         instructions: [{}],
-                        pictures: []
+                        pictures: [],
+                        tags: []
                     };
                 }
 
@@ -47,6 +48,10 @@ angular.module("publisher")
                 $scope.deleteImage = function (image) {
                     var index = $scope.recipe.pictures.indexOf(image);
                     $scope.recipe.pictures.splice(index, 1);
+                };
+
+                $scope.addTag = function(tag){
+                    $scope.recipe.tags.push({});
                 };
             }
         };
