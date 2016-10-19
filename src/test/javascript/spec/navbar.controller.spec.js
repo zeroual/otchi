@@ -56,13 +56,15 @@ describe('NavBarController Tests', function () {
             });
 
             it('should ask the server to mark the notification as read', function () {
-                var notification = {id: 3};
+                $httpBackend.expectGET('/rest/v1/feed/3').respond(200);
+                var notification = {id: 3, postId:3};
                 $scope.readNotification(notification);
                 $httpBackend.flush();
             });
 
             it('should mark local notification as read', function () {
-                var notification = {id: 3, unread: true};
+                $httpBackend.expectGET('/rest/v1/feed/3').respond(200);
+                var notification = {id: 3, unread: true, postId:3};
                 $scope.readNotification(notification);
                 $httpBackend.flush();
                 expect(notification.unread).toBeFalsy();
@@ -70,10 +72,10 @@ describe('NavBarController Tests', function () {
 
             it('should redirect user to a specific page to display post', function () {
                 spyOn($state, 'go');
-                var notification = {id: 3, unread: true};
+                var notification = {id: 3, unread: true, postId:3};
                 $scope.readNotification(notification);
                 $httpBackend.flush();
-                expect($state.go).toHaveBeenCalledWith("showPost", {postId: 3})
+                expect($state.go).toHaveBeenCalledWith("showPost", {postId: 3});
             });
         });
 
