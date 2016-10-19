@@ -20,7 +20,7 @@
                         <h5 class="text-muted">Or via email</h5>
                     </div>
                     <div>
-                        <form role="form">
+                        <form role="form" ng-submit="login()">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="E-mail" name="email" type="text"
@@ -38,8 +38,8 @@
                                 <hr/>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <a href="" class="btn signup" ng-click="login()"> Login </a>
-                                        <a ui-sref="register" class="btn btn-secondary"> Need an account ?</a>
+                                        <button type="submit" class="btn signup"> Login </button>
+                                        <button type="button" class="btn btn-secondary"> Sign up</button>
                                     </div>
                                 </div>
                             </fieldset>
