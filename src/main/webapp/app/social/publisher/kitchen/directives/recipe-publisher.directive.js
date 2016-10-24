@@ -8,13 +8,23 @@ angular.module("publisher")
                     $scope.recipe = {
                         ingredients: [{}],
                         instructions: [{}],
-                        pictures: []
+                        pictures: [],
+                        tags: []
                     };
+                    $scope.tags = [];
                 }
 
                 init();
 
+
+                extractTags = function(){
+                    return $scope.tags.map(function(tag){
+                        return tag.text;
+                    });
+                };
+
                 $scope.shareRecipe = function () {
+                $scope.recipe.tags = extractTags();
                     ShareService.publishRecipe($scope.recipe).then(function (feed) {
                         $rootScope.$broadcast('NEW_POST_PUBLISHED_EVENT', feed);
                         $state.go('showRecipe', {feedId: feed.id});
