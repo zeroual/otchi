@@ -20,7 +20,7 @@ angular.module('otchi')
         $scope.readNotification = function (notification) {
             NotificationsService.markNotificationAsRead(notification.id).then(function () {
                 notification.unread = false;
-                $state.go('showPost', {postId: notification.id});
+                $state.go('showPost', {postId: notification.postId});
             });
         };
     });

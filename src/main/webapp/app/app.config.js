@@ -51,5 +51,19 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             data: {
                 pageTitle: 'Post details'
             },
+            views: {
+                'content@': {
+                    template: '<feed-viewer feed="feed"/>',
+                    controller: function (feed, $scope) {
+                        $scope.feed = feed;
+                    },
+                    resolve: {
+                        feed: function ($stateParams, FeedsService) {
+                            return FeedsService.fetchFeed($stateParams.postId).$promise;
+                        }
+                    }
+                }
+            }
+
         });
 });
