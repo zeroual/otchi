@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password"
-                                           value="" ng-model="password">
+                                           value="" ng-model="password" ng-keypress="($event.which === 13)?login():0">
                                 </div>
                                 <div class="checkbox">
                                     <label>
