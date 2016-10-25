@@ -13,4 +13,16 @@ angular.module("stream")
         $rootScope.$on('NEW_POST_PUBLISHED_EVENT', function (event, feed) {
             $scope.loadNewPublishedPost(feed);
         });
+
+        $scope.deletePost = function (feed) {
+        	FeedsService.deletePost(feed);
+        	var index = $scope.feeds.map(function(post) {
+                return post.id;
+            }).indexOf(feed.id)
+            $scope.feeds.splice(index, 1);
+        };
+
+        $rootScope.$on('REMOVE_POST_PUBLISHED_EVENT', function (event, feed) {
+            $scope.deletePost({'id': feed.id});
+        });
     });

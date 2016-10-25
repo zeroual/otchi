@@ -7,6 +7,7 @@ import com.otchi.domain.events.DomainEvents;
 import com.otchi.domain.events.PostCommentedEvent;
 import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
+import com.otchi.domain.social.exceptions.ResourceNotAuthorizedException;
 import com.otchi.domain.social.models.Comment;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.repositories.PostRepository;
@@ -75,6 +76,18 @@ public class FeedServiceImpl implements FeedService {
         PostCommentedEvent postCommentedEvent = new PostCommentedEvent(savedPost, username);
         domainEvents.raise(postCommentedEvent);
         return comment;
+    }
+
+    @Override
+    public void deletePost(Long postId, String username) {
+        Post post = postRepository.findOne(postId);
+        if (post == null) {
+            throw new PostNotFoundException(postId);
+        }
+        else if (!post.isOwnedBy(username)){
+            throw new ResourceNotAuthorizedException("Sorry ! this content is private.");
+        }
+        postRepository.delete(post);
     }
 
 

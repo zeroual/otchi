@@ -1,6 +1,7 @@
 package com.otchi.api.facades.exceptions;
 
 import com.otchi.domain.social.exceptions.PostNotFoundException;
+import com.otchi.domain.social.exceptions.ResourceNotAuthorizedException;
 import com.otchi.domain.users.exceptions.AccountAlreadyExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,5 +52,11 @@ public class ExceptionHandlerAdvice {
     public ResponseEntity postNotFound(PostNotFoundException e) {
         LOGGER.warn(e.getMessage());
         return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ResourceNotAuthorizedException.class)
+    public ResponseEntity postNotAuthorized(ResourceNotAuthorizedException e) {
+        LOGGER.warn(e.getMessage());
+        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
     }
 }

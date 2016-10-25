@@ -9,4 +9,6 @@ public interface FeedService {
     void unlikePost(long postId, String username);
 
     Comment commentOnPost(Long postId, String content,String username);
+
+    void deletePost(Long postId, String username);
 }

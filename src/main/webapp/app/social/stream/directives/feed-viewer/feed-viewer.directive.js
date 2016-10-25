@@ -5,7 +5,7 @@ angular.module("stream")
             feed:"="
         },
             templateUrl: 'app/social/stream/directives/feed-viewer/feed-viewer.template.html',
-            controller: function ($scope, FeedsService, $uibModal) {
+            controller: function ($scope, $rootScope, FeedsService, $uibModal) {
 
                 $scope.likePost = function (post) {
                     FeedsService.likePost(post);
@@ -15,6 +15,27 @@ angular.module("stream")
                     FeedsService.unLikePost(post);
 
                 };
+
+                $scope.deletePost = function (post) {
+                	$uibModal.open({
+	            	      animation: true,
+	            	      ariaLabelledBy: 'modal-title',
+	            	      ariaDescribedBy: 'modal-body',
+	            	      templateUrl: '/app/components/modal/confirm-delete-template.html',
+	            	      size: 'sm',
+	            	      controller: function($scope, $uibModalInstance) {
+
+	            	    	  $scope.ok = function(){
+	            	    		  $rootScope.$broadcast('REMOVE_POST_PUBLISHED_EVENT', post);
+	            	    		  $uibModalInstance.dismiss('ok');
+	                          }
+
+	                          $scope.cancel = function(){
+	                        	  $uibModalInstance.dismiss('cancel');
+	                          }
+	            	      }
+                	});
+                }
 
                 $scope.showLikes = function (feed) {
                     $uibModal.open({
