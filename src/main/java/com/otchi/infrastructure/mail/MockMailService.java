@@ -5,8 +5,12 @@ import com.otchi.domain.users.models.User;
 
 public class MockMailService implements MailService {
 
-    @Override
-    public void sendWelcomeEmail(User user) {
+	@Override
+	public void sendWelcomeEmail(User user) {
 
-    }
+	}
+
+	public void sendEmail(User user) {
+
+	}
 }

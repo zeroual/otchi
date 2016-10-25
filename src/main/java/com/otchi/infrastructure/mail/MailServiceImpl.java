@@ -56,4 +56,14 @@ public class MailServiceImpl implements MailService {
         }
     }
 
+	@Override
+	public void sendEmail(User user) {
+		log.debug("Sending e-mail to '{}'", user.getEmail());
+    Context context = new Context();
+    String content = templateEngine.process("welcomeEmail", context);
+    String subject = "xxxxxxxxx";
+    sendEmail(user.getEmail(), subject, content);
+		
+	}
+
 }

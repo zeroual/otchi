@@ -37,6 +37,7 @@ public class PushNotificationsServiceImpl implements PushNotificationsService {
         notification.changeCreationDateTo(now);
         notificationsRepository.save(notification);
         websocketMessageSending.sendLikedEvent(postAuthor, notification);
+        
         return notification;
     }
 
