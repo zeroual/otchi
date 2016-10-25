@@ -1,3 +1,13 @@
+
+
+
+
+
+
+
+
+
+
 ###### Please add here any file you dont want to commit it #########
         ##    generated file (bower,grunt,npm,mvn ..) .. ##
 
@@ -13,8 +23,10 @@ dist
 .settings
 bin
 *.log
+.metadata
 
 # static dependencies
 bower_components
 #node modules
+
 node_modules

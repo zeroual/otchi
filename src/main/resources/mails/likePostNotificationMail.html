@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:remove="all" ><span th:text="${title}" /></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    Hello, <span th:text="${username}" ></span>,
+    <p>
+      <span th:text="${likerUsername}"></span> liked your post : <span th:text="${postId}"></span>
+    </p>
+  </body>
+</html>

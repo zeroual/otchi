@@ -1,10 +1,12 @@
 package com.otchi.domain.events;
 
+import com.google.common.base.Preconditions;
 import com.google.common.eventbus.Subscribe;
 import com.otchi.application.ConnectedUserService;
 import com.otchi.application.MailService;
 import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.social.models.Post;
+import com.otchi.domain.users.models.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,17 +37,19 @@ public class PushNotificationEventHandler {
         pushNotificationsService.sendCommentedNotificationToPostAuthor(post, commentOwner);
     }
 
-	@Subscribe
-	public void sendLikeNotificationToPostAuthor(
-			PostNotificationEvent postNotifEvent) {
-		PostNotificationEvent event = postNotifEvent;
-		Post post = event.getPost();
+    @Subscribe
+    public void sendLikeNotificationToPostAuthor(LikePostEvent likePostEvent) {
+    	LikePostEvent event = likePostEvent;
+		Post post = event.getLikedPost();
+		User user = post.getAuthor();
+		String username = user.getUsername();
+		String likerUsername = event.getLikeOwner();
 
-		if (!connectedUserService.isUserConnected(event.getUser().getUsername())) {
-			mailService.sendEmail(event.getUser());
+		if (!connectedUserService.isUserConnected(username)) {
+			mailService.sendLikePostNotificationEmail( post, likerUsername);
 		} else {
 			pushNotificationsService.sendLikeNotificationToPostAuthor(post,
-					event.getLikerUsername());
+					likerUsername);
 		}
 	}
 }

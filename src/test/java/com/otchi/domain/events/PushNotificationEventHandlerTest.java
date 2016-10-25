@@ -18,34 +18,30 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class PushNotificationEventHandlerTest {
-	private MailService mailService ;
-	private ConnectedUserService connectedUserService ;
 
-    private PushNotificationsService pushNotificationsService ;
+	private final MailService mailService = mock(MailService.class);
+	private final ConnectedUserService connectedUserService = mock(ConnectedUserService.class);
+    private final PushNotificationsService pushNotificationsService = mock(PushNotificationsService.class);
     private PushNotificationEventHandler pushNotificationEventHandler ;
-
+   
     @Before
     public void init(){
+    	pushNotificationEventHandler = new PushNotificationEventHandler
+    			(pushNotificationsService, mailService, connectedUserService);
 
-    	pushNotificationsService = mock(PushNotificationsService.class);
-    	mailService = mock(MailService.class);
-    	connectedUserService = mock(ConnectedUserService.class);
-
-        pushNotificationEventHandler =	new PushNotificationEventHandler(pushNotificationsService,
-        		mailService, connectedUserService);
-        MockitoAnnotations.initMocks(this);
-
+    	MockitoAnnotations.initMocks(this);
+    	
     }
-
+    
     @Test
     public void shouldSendCommentedNotificationToPostAuthor() {
         Post commentedPost = new Post(new Date());
         String commentOwner = "commentOwner";
         PostCommentedEvent postCommentedEvent = new PostCommentedEvent(commentedPost, commentOwner);
         pushNotificationEventHandler.sendCommentedNotificationToPostAuthor(postCommentedEvent);
-        verify(pushNotificationsService).sendCommentedNotificationToPostAuthor(eq(commentedPost), eq(commentOwner));
+        Mockito.verify(pushNotificationsService).sendCommentedNotificationToPostAuthor(eq(commentedPost), eq(commentOwner));
     }
-
+    
     @Test
     public void sendLikeNotificationToPostAuthorTest() {
 
@@ -53,13 +49,14 @@ public class PushNotificationEventHandlerTest {
         String likerUsername = "likerUsername";
         User user = new User("email@fofo.com", "firstName_sample",
     			"lastName");
-        PostNotificationEvent postNotificationEvent = new PostNotificationEvent(likedPost, user, likerUsername);
 
+        LikePostEvent likPostEvent = new LikePostEvent(likedPost, likerUsername);
+        
         // Expect
         Mockito.when(connectedUserService.isUserConnected("email@fofo.com")).thenReturn(true);
 
 		// Action
-        pushNotificationEventHandler.sendLikeNotificationToPostAuthor(postNotificationEvent);
+        pushNotificationEventHandler.sendLikeNotificationToPostAuthor(likPostEvent);
 
 		Mockito.verify(connectedUserService).isUserConnected("email@fofo.com");
 		Mockito.verify(pushNotificationsService).sendLikeNotificationToPostAuthor(eq(likedPost), eq(likerUsername));
@@ -70,16 +67,15 @@ public class PushNotificationEventHandlerTest {
         String likerUsername = "likerUsername";
         User user = new User("email@fofo.com", "firstName_sample",
     			"email@fofo.com");
-        PostNotificationEvent postNotificationEvent = new PostNotificationEvent(likedPost,
-        		user, likerUsername);
-
-        // Expect
+        LikePostEvent likPostEvent = new LikePostEvent(likedPost, likerUsername);
+        
+        // Expect 
 		Mockito.when(connectedUserService.isUserConnected("email@fofo.com")).thenReturn(false);
 
 		// Action
-        pushNotificationEventHandler.sendLikeNotificationToPostAuthor(postNotificationEvent);
+		pushNotificationEventHandler.sendLikeNotificationToPostAuthor(likPostEvent);
 
 		Mockito.verify(connectedUserService).isUserConnected("email@fofo.com");
-        Mockito.verify(mailService).sendEmail(user);
+        Mockito.verify(mailService).sendLikePostNotificationEmail(likedPost, "likerUsername");
     }
 }
