@@ -81,6 +81,7 @@ Run the commands
 
 ## Otchi Structure Conventions
 
+- how the application is layered ? [check here](docs/application-layers.md)
 - how the back end is structured ? [check here](docs/back-end-structure.md)
 - how front end is structured ? //TODO
 - how automated tests are structured ? //TODO
