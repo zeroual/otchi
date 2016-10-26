@@ -42,4 +42,25 @@
           AUTHOR_ID="1"
     />
 
+    <!-- New User 2 -->
+    <USER
+            ID="2"
+            EMAIL="brahim.yakoubi@gmail.com"
+            USERNAME="brahim.yakoubi@gmail.com"
+            FIRST_NAME="Brahim"
+            LAST_NAME="YAKOUBI"
+            PICTURE="picture1"
+    />
+
+    <!-- new post 10 -->
+    <POST ID="10"
+          CREATED_AT="2015-02-28"
+          POST_CONTENT_ID="10"
+          AUTHOR_ID="1"
+    />
+
+    <STORY ID="10"
+           CONTENT="New story, new life."/>
+    <!-- end new post 10 -->
+
 </dataset>

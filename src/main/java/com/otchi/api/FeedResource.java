@@ -69,5 +69,10 @@ public class FeedResource {
         return new CommentDTO(savedComment);
     }
 
-
+    @RequestMapping(value = "/{postId}", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePost(@PathVariable(value = "postId") Long postId, Principal principal) {
+        String username = principal.getName();
+        feedService.deletePost(postId, username);
+    }
 }

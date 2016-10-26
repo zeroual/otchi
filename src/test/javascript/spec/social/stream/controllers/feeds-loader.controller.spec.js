@@ -45,4 +45,25 @@ describe('FeedLoaderController', function () {
             });
         });
     });
+
+    describe('remove Feed', function () {
+
+        it('should listen if post is deleted', function () {
+            spyOn($scope, 'deletePost');
+            var feedToDelete = {id: 1};
+            $rootScope.$broadcast('REMOVE_POST_PUBLISHED_EVENT', feedToDelete);
+            expect($scope.deletePost).toHaveBeenCalledWith(feedToDelete);
+        });
+
+        it('should remove the feed from feeds', function () {
+            var feedToDelete = {id: 1};
+            $scope.deletePost(feedToDelete);
+            var nbFeedsAfterDelete = $scope.feeds.length;
+            expect(nbFeedsAfterDelete).toBe(2);
+            expect($scope.feeds.map(function(post) {
+                return post.id;
+            }).indexOf(feedToDelete.id)).toBe(-1);
+        });
+
+    });
 });
