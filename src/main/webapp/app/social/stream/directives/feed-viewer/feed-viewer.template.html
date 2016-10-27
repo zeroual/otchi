@@ -13,15 +13,29 @@
                     <time class="bullet text-gray">{{feed.createdTime |timeAgo}}</time>
 
                     <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-cog"></span>
+                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-menu-down"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a><span class="glyphicon glyphicon-pencil"></span> Edit</a></li>
-                            <li><a ng-click="deletePost(feed)"><span class="glyphicon glyphicon-trash"></span> Delete</a></li>
-                            <li><a><span class="glyphicon glyphicon-flag"></span> Flag</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a><span class="glyphicon glyphicon-flash"></span> other</a></li>
+                            <li>
+                                <a>
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    Edit (not implemented yet )
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" ng-click="deletePost(feed)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                    Delete
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span class="glyphicon glyphicon-eye-close"></span>
+                                    Signal (not implemented yet )
+                                </a>
+                            </li>
                         </ul>
                     </div>
 
