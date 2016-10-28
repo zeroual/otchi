@@ -22,7 +22,6 @@ import static org.springframework.http.MediaType.MULTIPART_FORM_DATA;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -81,7 +80,7 @@ public class HttpStepsDefinitions {
 
         this.resultActions = mockMvc.perform(multipartHttpServletRequestBuilder
                 .with(user(this.clientUsername)).with(csrf())
-                .contentType(MULTIPART_FORM_DATA)).andDo(print());
+                .contentType(MULTIPART_FORM_DATA));
     }
 
     @And("^the response body should be$")

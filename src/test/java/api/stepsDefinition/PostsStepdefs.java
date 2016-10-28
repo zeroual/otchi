@@ -1,15 +1,15 @@
 package api.stepsDefinition;
 
-import com.otchi.application.UserService;
+import com.otchi.application.PublicationsService;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.models.Story;
 import com.otchi.domain.social.repositories.PostRepository;
-import com.otchi.domain.users.models.User;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PostsStepdefs {
@@ -18,7 +18,7 @@ public class PostsStepdefs {
     private PostRepository postRepository;
 
     @Autowired
-    private UserService userService;
+    private PublicationsService publicationsService;
 
     //FIXME Abdellah : we don't need to give post such information about user
     @Given("^those stories$")
@@ -26,12 +26,9 @@ public class PostsStepdefs {
 
         dataTable.asList(StoryCucumber.class).forEach(
                 storyCucumber -> {
-                    User user = userService.findUserByUsername(storyCucumber.getAuthor()).get();
-                    Post post = new Post();
+                    String author = storyCucumber.getAuthor();
                     Story story = new Story(storyCucumber.getContent());
-                    post.setPostContent(story);
-                    post.setAuthor(user);
-                    postRepository.save(post);
+                    publicationsService.publishStory(story, emptyList(), author);
                 }
         );
     }
