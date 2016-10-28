@@ -47,9 +47,7 @@ public class HttpStepsDefinitions {
 
     @When("^client request \"([^\"]*)\" \"([^\"]*)\" with json data:$")
     public void clientRequestWithJsonData(HttpMethod httpMethod, String resourceURI, String payload) throws Throwable {
-        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromPath(resourceURI);
-        String uriString = uriComponentsBuilder.build().toUriString();
-        MockHttpServletRequestBuilder request = request(httpMethod, uriString);
+        MockHttpServletRequestBuilder request = buildRequest(httpMethod, resourceURI);
         resultActions = mockMvc.perform(request.content(payload)
                 .with(user(clientUsername)).with(csrf())
                 .contentType(contentType));
@@ -96,6 +94,20 @@ public class HttpStepsDefinitions {
         resultActions = mockMvc.perform(get(resourceURI)
                 .with(user(clientUsername)).with(csrf())
                 .contentType(contentType));
+    }
+
+    @When("^client request \"([^\"]*)\" \"([^\"]*)\"$")
+    public void clientRequest(HttpMethod httpMethod, String resourceURI) throws Throwable {
+        MockHttpServletRequestBuilder request = buildRequest(httpMethod, resourceURI);
+        resultActions = mockMvc.perform(request
+                .with(user(clientUsername)).with(csrf())
+                .contentType(contentType));
+    }
+
+    private MockHttpServletRequestBuilder buildRequest(HttpMethod httpMethod, String resourceURI) {
+        UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromPath(resourceURI);
+        String uriString = uriComponentsBuilder.build().toUriString();
+        return request(httpMethod, uriString);
     }
 
     private class CucumberMultipartFile {
