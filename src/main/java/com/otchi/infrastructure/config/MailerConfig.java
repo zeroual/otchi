@@ -16,7 +16,7 @@ import static com.otchi.infrastructure.config.Constants.SPRING_PROFILE_PRODUCTIO
 @Configuration
 public class MailerConfig {
 
-    @Value("{otchi.mail.noReply}")
+    @Value("${otchi.mail.noReply}")
     private String noReplyMail;
 
     @Bean
