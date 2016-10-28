@@ -4,6 +4,8 @@ import com.otchi.application.impl.FeedFetcherServiceImpl;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.repositories.PostRepository;
 import com.otchi.domain.social.repositories.mocks.MockPostRepository;
+import com.otchi.domain.users.models.User;
+import org.assertj.core.groups.Tuple;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,27 +25,49 @@ public class FeedFetcherServiceImplTest {
     public void setUp() {
         postRepository.deleteAll();
         Post post1 = new Post(parse("2016-02-27"));
+        User user1 = new User("author", "firstName", "lastName");
+        post1.setAuthor(user1);
+
         Post post2 = new Post(parse("2016-02-28"));
+        User user2 = new User("another author", "firstName", "lastName");
+        post2.setAuthor(user2);
         postRepository.save(asList(post1, post2));
     }
 
     @Test
-    public void shouldReturnAllPostsAndSortThemWithCreationDateDesc() {
-        List<Post> foundPosts = feedFetcherService.fetchAllFeeds();
-        assertThat(foundPosts).hasSize(2);
-        assertThat(foundPosts)
-                .extracting(Post::getCreatedTime)
+    public void shouldReturnAllFeedsAndSortThemWithCreationDateDesc() {
+        List<Feed> foundFeeds = feedFetcherService.fetchAllFeeds("lambda username");
+        assertThat(foundFeeds).hasSize(2);
+        assertThat(foundFeeds)
+                .extracting(Feed::getCreatedTime)
                 .containsExactly(parse("2016-02-28"), parse("2016-02-27"))
                 .isSortedAccordingTo((o1, o2) -> o2.compareTo(o1));
     }
 
     @Test
-    public void shouldGetPostIfExist() {
-        Optional<Post> postOptional = feedFetcherService.getFeed(1L);
-        assertThat(postOptional).isPresent();
-        assertThat(postOptional.get().getCreatedTime()).isEqualTo(parse("2016-02-27"));
+    public void shouldIndicateIfUserCanOrNoRemoveFeeds() {
+        List<Feed> foundFeeds = feedFetcherService.fetchAllFeeds("author");
+        assertThat(foundFeeds)
+                .extracting(feed -> feed.getAuthor().getUsername(), Feed::canBeRemoved)
+                .contains(new Tuple("author", true), new Tuple("another author", false));
+    }
 
-        postOptional = feedFetcherService.getFeed(99L);
-        assertThat(postOptional).isEmpty();
+    @Test
+    public void shouldIndicateIfUserCanOrNoRemoveFeed() {
+        Optional<Feed> foundFeed = feedFetcherService.getFeed(1L, "author");
+        assertThat(foundFeed.get().canBeRemoved()).isTrue();
+
+        foundFeed = feedFetcherService.getFeed(2L, "author");
+        assertThat(foundFeed.get().canBeRemoved()).isFalse();
+    }
+
+    @Test
+    public void shouldGetFeedIfExist() {
+        Optional<Feed> feedOptional = feedFetcherService.getFeed(1L, "");
+        assertThat(feedOptional).isPresent();
+        assertThat(feedOptional.get().getCreatedTime()).isEqualTo(parse("2016-02-27"));
+
+        feedOptional = feedFetcherService.getFeed(99L, "");
+        assertThat(feedOptional).isEmpty();
     }
 }

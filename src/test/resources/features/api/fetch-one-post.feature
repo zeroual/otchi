@@ -8,8 +8,8 @@ Feature: user fetch one post
       | alice@gmail.com | alice     | ALICE    |
 
     And those stories
-      | content                             | author          |
-      | this recipe is both tasty and cheap | alice@gmail.com |
+      | content                             | author        |
+      | this recipe is both tasty and cheap | bob@gmail.com |
 
     And those recipes
       | title             | description                    | cookTime | preparationTime | author          |
@@ -34,9 +34,9 @@ Feature: user fetch one post
      {
           "id": 1,
           "author": {
-              "id": 2,
-              "firstName": "alice",
-              "lastName": "ALICE",
+              "id": 1,
+              "firstName": "bob",
+              "lastName": "BOB",
               "picture": "/assets/images/unknown_user.png"
           },
           "createdTime": "2016-07-13 06:48:21",
@@ -47,7 +47,8 @@ Feature: user fetch one post
           },
           "likes": [],
           "comments": [],
-          "liked": false
+          "liked": false,
+          "canBeRemoved":true
       }
     """
 
@@ -100,7 +101,8 @@ Feature: user fetch one post
           },
           "likes": [],
           "comments": [],
-          "liked": false
+          "liked": false,
+          "canBeRemoved":false
       }
     """
 

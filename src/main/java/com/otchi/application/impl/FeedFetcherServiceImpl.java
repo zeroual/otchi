@@ -1,5 +1,6 @@
 package com.otchi.application.impl;
 
+import com.otchi.application.Feed;
 import com.otchi.application.FeedFetcherService;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.repositories.PostRepository;
@@ -23,16 +24,22 @@ public class FeedFetcherServiceImpl implements FeedFetcherService {
     }
 
     @Override
-    public List<Post> fetchAllFeeds() {
+    public List<Feed> fetchAllFeeds(String username) {
         return StreamSupport
                 .stream(postRepository.findAll().spliterator(), true)
+                .map(post -> new Feed(post, username))
                 .sorted((o1, o2) -> o2.getCreatedTime().compareTo(o1.getCreatedTime()))
                 .collect(toList());
     }
 
     @Override
-    public Optional<Post> getFeed(Long id) {
+    public Optional<Feed> getFeed(Long id, String username) {
         Post post = postRepository.findOne(id);
-        return Optional.ofNullable(post);
+        if (post == null) {
+            return Optional.empty();
+        } else {
+            Feed feed = new Feed(post, username);
+            return Optional.ofNullable(feed);
+        }
     }
 }

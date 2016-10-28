@@ -12,8 +12,8 @@ Feature: user fetch his feed
       | this recipe is both tasty and cheap | alice@gmail.com |
 
     And those recipes
-      | title             | description                    | cookTime | preparationTime | author          |
-      | Italian Beef Stew | This hearty beef and vegetable | 60       | 45              | alice@gmail.com |
+      | title             | description                    | cookTime | preparationTime | author        |
+      | Italian Beef Stew | This hearty beef and vegetable | 60       | 45              | bob@gmail.com |
 
     And those recipe ingredients
       | recipeId | name  | quantity | unit |
@@ -48,14 +48,15 @@ Feature: user fetch his feed
           },
           "likes": [],
           "comments": [],
-          "liked": false
+          "liked": false,
+          "canBeRemoved":false
       },
       {
           "id": 2,
           "author": {
-              "id": 2,
-              "firstName": "alice",
-              "lastName": "ALICE",
+              "id": 1,
+              "firstName": "bob",
+              "lastName": "BOB",
               "picture": "/assets/images/unknown_user.png"
           },
           "createdTime": "2016-07-13 06:48:21",
@@ -94,7 +95,8 @@ Feature: user fetch his feed
           },
           "likes": [],
           "comments": [],
-          "liked": false
+          "liked": false,
+          "canBeRemoved":true
       }
   ]
     """
