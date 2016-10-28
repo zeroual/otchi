@@ -44,6 +44,12 @@ public class PostsStepdefs {
         assertThat(thisUserCommentOnThisPost).isTrue();
     }
 
+    @And("^the post with id (\\d+) is removed$")
+    public void verifyThatPostIsNotFound(Long postId) throws Throwable {
+        Post post = postRepository.findOne(postId);
+        assertThat(post).isNull();
+    }
+
     class StoryCucumber {
 
         String author;
