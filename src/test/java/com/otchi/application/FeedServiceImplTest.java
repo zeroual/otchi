@@ -3,6 +3,7 @@ package com.otchi.application;
 import com.otchi.application.impl.FeedServiceImpl;
 import com.otchi.application.utils.DateFactory;
 import com.otchi.domain.events.DomainEvents;
+import com.otchi.domain.events.LikePostEvent;
 import com.otchi.domain.events.PostCommentedEvent;
 import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
@@ -39,11 +40,14 @@ public class FeedServiceImplTest {
     @Captor
     private ArgumentCaptor<PostCommentedEvent> postCommentedEventArgumentCaptor;
 
+    @Captor
+    private ArgumentCaptor<LikePostEvent> likePostEventArgumentCaptor;
+
     @Before
     public void setUp() {
         MockCrudRepository.clearDatabase();
 
-        feedService = new FeedServiceImpl(postRepository, userService, pushNotificationsService, dateFactory, domainEvents);
+        feedService = new FeedServiceImpl(postRepository, userService, dateFactory, domainEvents);
 
         // Create new Post;
         Post post = new Post(new Date());
@@ -65,20 +69,26 @@ public class FeedServiceImplTest {
     }
 
     @Test
-    public void shouldNotifyAuthorThatSomeoneLikedHisPost() {
+    public void shouldRaiseLikePostEventIfSomeoneLikedHisPost() {
         String likerUsername = "email@fofo.com";
         feedService.likePost(1L, likerUsername);
         Post post = postRepository.findOne(1L);
-        verify(pushNotificationsService).sendLikeNotificationToPostAuthor(post, likerUsername);
+        verify(domainEvents).raise(likePostEventArgumentCaptor.capture());
+        LikePostEvent likePostEvent = likePostEventArgumentCaptor.getValue();
+        assertThat(likePostEvent.getLikedPost()).isEqualTo(post);
+        assertThat(likePostEvent.getLikeOwner()).isEqualTo(likerUsername);
     }
 
     @Test
-    public void shouldNotNotifyAuthorIfUserLikedAlreadyHisPost() {
+    public void shouldNotRaiseLikePostEventIfUserLikedAlreadyHisPost() {
         String likerUsername = "email@fofo.com";
         feedService.likePost(1L, likerUsername);
         feedService.likePost(1L, likerUsername);
         Post post = postRepository.findOne(1L);
-        verify(pushNotificationsService, times(1)).sendLikeNotificationToPostAuthor(post, likerUsername);
+        verify(domainEvents, times(1)).raise(likePostEventArgumentCaptor.capture());
+        LikePostEvent likePostEvent = likePostEventArgumentCaptor.getValue();
+        assertThat(likePostEvent.getLikeOwner()).isEqualTo(likerUsername);
+        assertThat(likePostEvent.getLikedPost()).isEqualTo(post);
     }
 
     @Test(expected = PostNotFoundException.class)

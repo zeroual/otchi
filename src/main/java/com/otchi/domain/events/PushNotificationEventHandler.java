@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PostCommentedEventHandler {
+public class PushNotificationEventHandler {
 
     private final PushNotificationsService pushNotificationsService;
 
     @Autowired
-    public PostCommentedEventHandler(PushNotificationsService pushNotificationsService) {
+    public PushNotificationEventHandler(PushNotificationsService pushNotificationsService) {
         this.pushNotificationsService = pushNotificationsService;
     }
 
@@ -23,4 +23,13 @@ public class PostCommentedEventHandler {
         String commentOwner = event.getCommentOwner();
         pushNotificationsService.sendCommentedNotificationToPostAuthor(post, commentOwner);
     }
+
+    @Subscribe
+    public void sendLikeNotificationToPostAuthor(LikePostEvent likePostEvent){
+        LikePostEvent event = likePostEvent;
+        Post likedPost = event.getLikedPost();
+        String likeOwner = event.getLikeOwner();
+        pushNotificationsService.sendLikeNotificationToPostAuthor(likedPost, likeOwner);
+    }
+
 }
