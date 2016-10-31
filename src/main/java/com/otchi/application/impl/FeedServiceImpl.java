@@ -48,7 +48,9 @@ public class FeedServiceImpl implements FeedService {
         if (post.isNotAlreadyLikedBy(likerUsername)) {
             post.addLike(user);
             postRepository.save(post);
-            pushNotificationsService.sendLikeNotificationToPostAuthor(post, likerUsername);
+            if(!post.isOwnedBy(likerUsername)) {
+                pushNotificationsService.sendLikeNotificationToPostAuthor(post, likerUsername);
+            }
         }
     }
 
