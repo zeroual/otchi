@@ -145,3 +145,30 @@ ol ol {
     padding-right: 2px;
     margin-bottom: 2px;
 }
+
+.recipe-tags span {
+    border: 1px solid #DDD;
+    display: inline-block;
+    color: #717171;
+    background: #FFF;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(180, 180, 180, 0.1);
+    box-shadow: 0 1px 1px 0 rgba(180, 180, 180, 0.1);
+    -webkit-transition: all .1s ease-in-out;
+    -moz-transition: all .1s ease-in-out;
+    -o-transition: all .1s ease-in-out;
+    -ms-transition: all .1s ease-in-out;
+    transition: all .1s ease-in-out;
+    border-radius: 2px;
+    margin: 0 3px 6px 0;
+    padding: 5px 10px
+}
+
+.recipe-tags span:hover {
+    border-color: #08C;
+}
+
+.recipe-tags span {
+    color: #FFF;
+    background-color: #7ECEFD;
+    border-color: #7ECEFD
+}

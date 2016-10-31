@@ -97,6 +97,10 @@ public class RecipeDTO extends AbstractPostContent implements DTO<Recipe> {
         return images;
     }
 
+    public Set<String> getTags() {
+        return tags;
+    }
+
     @Override
     public Recipe toDomain() {
 
