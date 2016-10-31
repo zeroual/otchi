@@ -15,15 +15,21 @@
 }
 .prepTime .time-icon {
     color: #999;
-    font-size: 1.1em;
+    font-size: 2em;
+    position:relative;
+    top:8px;
 }
 
 .prepTime_item {
     width: 80px;
     text-align: center;
-    line-height: 1.5rem;
-    padding: 10px;
+    padding: 5px;
+    border-right:1px solid #999;
     color: #999;
+}
+
+.prepTime_item:last-child {
+    border:0;
 }
 
 ol {
@@ -62,7 +68,7 @@ ol ol {
     left: -2.5em;
     top: 50%;
     margin-top: -1em;
-    background: #fa8072;
+    background: #e0e0e0;
     height: 2em;
     width: 2em;
     line-height: 2em;
@@ -82,7 +88,7 @@ ol ol {
 
 .recipe-directions-list .step:hover:after {
     left: -.5em;
-    border-left-color: #fa8072;
+    border-left-color: #e0e0e0;
 }
 
 /*dddd*/
@@ -141,6 +147,7 @@ ol ol {
 }
 
 .images-gallery .image-item {
+    width:20%;
     padding-left: 2px;
     padding-right: 2px;
     margin-bottom: 2px;
@@ -224,11 +231,57 @@ ol ol {
    font-size:1.2em;
 }
 
+.recipe-actions {
+    text-align:right;
+}
+
+.recipe-images {
+    height:200px;
+    overflow:hidden;
+    text-align:center;
+}
+
+.recipe-images img {
+    margin:5px;
+    height:100%;
+}
+
 .recipe .recipe-title {
     text-align:left;
     font-size:0.8em;
 }
 
+.recipe-submitter {
+    text-align:right;
+    line-height:50px;
+}
+
+.recipe-submitter .recipe-submitter-picture {
+    width:50px;
+    margin-right:5px;
+
+}
+
+.recipe-submitter .recipe-submitter-fullname {
+
+}
+
+@media only screen
+  and (min-width: 990px) {
+
+  .recipe-images {
+      height:auto;
+  }
+
+  .recipe-submitter {
+    text-align:center;
+  }
+
+  .recipe-submitter .recipe-submitter-picture {
+      width:100%;
+  }
+
+}
 
 @media only screen
   and (min-width: 700px) {

@@ -1,80 +1,73 @@
-<div class="row">
-    <div class="col-md-10  col-md-push-2 card">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <img class="img-responsive"
-                             ng-src="{{recipe.images[0]}}">
-                    </div>
-                    <div class="col-sm-12" ng-class="{'col-md-6':recipe.images,'col-md-12':!recipe.images}">
-                        <div>
-                            <h4 class="text-center">{{recipe.title}}</h4>
-                            <hr/>
-                            <div class="prepTime">
-                                <span class="glyphicon glyphicon-time time-icon"></span>
-                                <span class="prepTime_item"> Cook {{recipe.cookTime}} m</span>
-                                <span class="prepTime_item"> Prep {{recipe.preparationTime}} m </span>
-                                <span class="prepTime_item"> Ready in  m</span>
-                            </div>
-                            <hr/>
-                            <p>
-                                {{recipe.description}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-2 col-md-pull-10">
-        <div class="card">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Submitted by</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="card col-md-12">
-                        <div class="profile">
-                            <img ng-src="{{feed.author.picture}}"
-                                 alt="people"
-                                 class="img-circle">
-                        </div>
-                        <small><a href="">{{feed.author.firstName}} {{feed.author.lastName}}</a></small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
+<div class="panel panel-default">
+    <div class="panel-body">
         <div class="row">
-            <div class="col-md-12 card">
+            <div class="col-md-9  col-md-push-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Ingredients</h3>
-                    </div>
                     <div class="panel-body">
+                        <div class="recipe-actions">
+                            <a href="">200 comments</a> &nbsp;
+                            <i class="btn btn-default btn-favorite"><span class="glyphicon glyphicon-star"></span></i>
+                            <i class="btn btn-default btn-like"><span class="glyphicon glyphicon-heart"></span></i>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="text-center">{{recipe.title}}</h3>
+                                <div class="recipe-images">
+                                    <recipe-slider images="recipe.images" />
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+
+                                <div class="prepTime">
+                                    <span class="glyphicon glyphicon-time time-icon"></span>
+                                    <span class="prepTime_item"> Cook {{recipe.cookTime}} m </span>
+                                    <span class="prepTime_item"> Prep {{recipe.preparationTime}} m </span>
+                                    <span class="prepTime_item"> Ready in  m</span>
+                                </div>
+                                <div class="clearfix"></div>
+                                <hr />
+                                <div>
+                                    <p>
+                                        {{recipe.description}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-md-pull-9">
+                <div class="card col-md-12">
+                    <p class="recipe-submitter">
+                        <img ng-src="{{feed.author.picture}}" alt="user profile" class="img-circle recipe-submitter-picture" />
+                        <span class="recipe-submitter-fullname">Recipe by : <a href="">{{feed.author.firstName}} {{feed.author.lastName}}</a></span>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-12 card">
+                        <h3>Ingredients</h3>
                         <ol class="recipe-ingredients-list">
                             <li class="step" ng-repeat="ingredient in recipe.ingredients">
-                                <div> {{ingredient.quantity}} {{ingredient.unit}}- {{ingredient.name}}</div>
+                                <div> {{ingredient.quantity}} {{ingredient.unit}} - {{ingredient.name}}</div>
                             </li>
                         </ol>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="col-md-6">
-        <div class="row">
-            <div class="card col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Instructions</h3>
-                    </div>
-                    <div class="panel-body">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="card col-md-12">
+                        <h3>Instructions</h3>
+
                         <ol class="recipe-directions-list">
                             <li class="step" ng-repeat="instruction in recipe.instructions">
                                 <div>
@@ -83,14 +76,13 @@
                             </li>
                         </ol>
                     </div>
-
                 </div>
-            </div>
-        </div>
-        <hr/>
-        <div class="row">
-            <div class="col-md-12">
-                <feed-comments feed="feed"/>
+                <hr/>
+                <div class="row">
+                    <div class="col-md-12" id="recipe-comments">
+                        <feed-comments feed="feed"/>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
