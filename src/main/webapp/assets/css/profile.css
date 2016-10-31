@@ -1,0 +1,52 @@
+#header-profile {
+    position:relative;
+}
+
+#header-profile .picture-profile {
+    position:absolute;
+    bottom:-25px;
+    left:20px;
+    z-index:200;
+}
+
+#header-profile .picture-profile img {
+    border:2px solid #FFF;
+}
+
+#header-profile .cover-profile {
+    height:200px;
+    background: url('/assets/images/covers/couverture.png') no-repeat center fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position:bottom left;
+}
+
+#header-profile .profile-summary {
+    position:absolute;
+    margin:auto;
+    width:100%;
+    bottom:0px;
+    padding:10px 10px 10px 200px;
+    color:white;
+    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#header-profile .profile-summary-left {
+    float:left;
+}
+
+#header-profile .profile-summary-right {
+    float:right;
+}
+
+#header-profile #profile-name {
+    font-size:2em;
+}
+
+#header-profile #profile-followers-total {
+    margin-right:10px;
+}
+
+
+

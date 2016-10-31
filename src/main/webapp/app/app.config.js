@@ -65,5 +65,23 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
 
+        })
+        .state('showProfile', {
+            url: "/profile/:profileId",
+            parent: 'main',
+            data: {
+                pageTitle: 'User profile'
+            },
+            views: {
+                'content@': {
+                    templateUrl: app_dir + "social/profile/views/profile.html",
+                    controller: 'ProfileController'
+                },
+                'right-rail@showProfile': {
+                    templateUrl: app_dir + 'social/stream/views/followings-recommendation.html',
+                    controller: 'FollowingsRecommendationController'
+                }
+            }
+
         });
 });
