@@ -21,4 +21,9 @@
             COOK_TIME="12"
             PREPARATION_TIME="20"/>
 
+    <recipe_tags
+        RECIPE_ID="1"
+        TAGS="moroccan"
+        />
+
 </dataset>
