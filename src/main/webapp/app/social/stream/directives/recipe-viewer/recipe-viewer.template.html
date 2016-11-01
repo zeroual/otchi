@@ -16,4 +16,11 @@
     <div class="recipe-images" ui-sref="showRecipe({feedId:feedId})">
         <images-gallery images="recipe.images"/>
     </div>
+    <div class="col-md-12">
+        <div class="recipe-tags">
+            <span ng-repeat="tag in recipe.tags">
+                {{tag}}
+            </span>
+        </div>
+    </div>
 </div>
