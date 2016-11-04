@@ -5,6 +5,7 @@ import com.otchi.application.utils.Clock;
 import com.otchi.domain.events.DomainEvents;
 import com.otchi.domain.events.LikePostEvent;
 import com.otchi.domain.events.PostCommentedEvent;
+import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
 import com.otchi.domain.social.models.Comment;
 import com.otchi.domain.social.models.Post;
@@ -14,10 +15,7 @@ import com.otchi.domain.users.models.User;
 import com.otchi.utils.mocks.MockCrudRepository;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -31,9 +29,10 @@ public class FeedServiceImplTest {
     private PostRepository postRepository = new MockPostRepository();
     private UserService userService = Mockito.mock(UserService.class);
     private Clock clock = Mockito.mock(Clock.class);
+    private PushNotificationsService pushNotificationsService = mock(PushNotificationsService.class);
     private DomainEvents domainEvents = mock(DomainEvents.class);
     private FeedService feedService;
-    private User user = new User("email@fofo.com", "firstName_sample", "lastName");
+
 
     @Captor
     private ArgumentCaptor<PostCommentedEvent> postCommentedEventArgumentCaptor;
@@ -47,28 +46,38 @@ public class FeedServiceImplTest {
 
         feedService = new FeedServiceImpl(postRepository, userService, clock, domainEvents);
 
-        // Create new Post;
-        Post post = new Post(now());
-        postRepository.save(post);
+        // Create new Post1;
+        User user1 = new User("user1@fofo.com", "FirstName1", "LastName1");
+        Post post1 = new Post(now());
+        post1.setAuthor(user1);
+        postRepository.save(post1);
+
+        //Create new Post2;
+        User user2 = new User("user2@fofo.com", "FirstName2", "LastName2");
+        Post post2 = new Post(now());
+        post2.setAuthor(user2);
+        postRepository.save(post2);
+
         //mock user service
-        when(userService.findUserByUsername("email@fofo.com")).thenReturn(Optional.of(user));
+        when(userService.findUserByUsername("user1@fofo.com")).thenReturn(Optional.of(user1));
+        when(userService.findUserByUsername("user2@fofo.com")).thenReturn(Optional.of(user2));
 
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
     public void shouldAddNewLikeToPost() throws Exception {
-        feedService.likePost(1L, "email@fofo.com");
+        feedService.likePost(1L, "user2@fofo.com");
         Post post = postRepository.findOne(1L);
         assertThat(post.getLikes()).hasSize(1);
         assertThat(post.getLikes())
                 .extracting(user -> user.getFirstName())
-                .containsExactly("firstName_sample");
+                .containsExactly("FirstName2");
     }
 
     @Test
     public void shouldRaiseLikePostEventIfSomeoneLikedHisPost() {
-        String likerUsername = "email@fofo.com";
+        String likerUsername = "user2@fofo.com";
         feedService.likePost(1L, likerUsername);
         Post post = postRepository.findOne(1L);
         verify(domainEvents).raise(likePostEventArgumentCaptor.capture());
@@ -79,7 +88,7 @@ public class FeedServiceImplTest {
 
     @Test
     public void shouldNotRaiseLikePostEventIfUserLikedAlreadyHisPost() {
-        String likerUsername = "email@fofo.com";
+        String likerUsername = "user2@fofo.com";
         feedService.likePost(1L, likerUsername);
         feedService.likePost(1L, likerUsername);
         Post post = postRepository.findOne(1L);
@@ -91,58 +100,58 @@ public class FeedServiceImplTest {
 
     @Test(expected = PostNotFoundException.class)
     public void shouldNotAllowToLikeUnExistingPost() {
-        feedService.likePost(123L, "email@fofo.com");
+        feedService.likePost(123L, "user2@fofo.com");
     }
 
     @Test
     public void shouldNotAddLikeToPostIfAlreadyLiked() throws Exception {
-        feedService.likePost(1L, "email@fofo.com");
+        feedService.likePost(1L, "user2@fofo.com");
         Post post = postRepository.findOne(1L);
-        feedService.likePost(1L, "email@fofo.com");
+        feedService.likePost(1L, "user2@fofo.com");
         assertThat(post.getLikes()).hasSize(1);
     }
 
     @Test
     public void shouldAddCommentToPost() throws Exception {
         String commentContent = "What a delicious meal";
-        feedService.commentOnPost(1L, commentContent, "email@fofo.com");
+        feedService.commentOnPost(1L, commentContent, "user2@fofo.com");
         Post post = postRepository.findOne(1L);
         assertThat(post.getComments()).hasSize(1).extracting(Comment::getContent).containsExactly(commentContent);
-        assertThat(post.getComments()).extracting(comment -> comment.getAuthor().getEmail()).containsExactly("email@fofo.com");
+        assertThat(post.getComments()).extracting(comment -> comment.getAuthor().getEmail()).containsExactly("user2@fofo.com");
     }
 
     @Test
     public void shouldSetCommentCreationOnDateToNow() throws Exception {
         LocalDateTime now = LocalDateTime.parse("2015-02-28T12:15:22.8");
         Mockito.when(clock.now()).thenReturn(now);
-        feedService.commentOnPost(1L, "What a delicious meal", "email@fofo.com");
+        feedService.commentOnPost(1L, "What a delicious meal", "user2@fofo.com");
         Post post = postRepository.findOne(1L);
         assertThat(post.getComments()).extracting(Comment::getCreatedOn).containsExactly(now);
     }
 
     @Test(expected = PostNotFoundException.class)
     public void shouldNotAllowToCommentUnExistingPost() {
-        feedService.commentOnPost(123L, "comment", "email@fofo.com");
+        feedService.commentOnPost(123L, "comment", "user2@fofo.com");
     }
 
     @Test
     public void shouldUnlikePostIfAlreadyLiked() throws Exception {
         Post post = postRepository.findOne(1L);
-        feedService.likePost(1L, "email@fofo.com");
+        feedService.likePost(1L, "user2@fofo.com");
         assertThat(post.getLikes()).hasSize(1);
-        feedService.unlikePost(1L, "email@fofo.com");
+        feedService.unlikePost(1L, "user2@fofo.com");
         assertThat(post.getLikes()).hasSize(0);
     }
 
     @Test(expected = PostNotFoundException.class)
     public void shouldNotAllowToDesLikeUnExistingPost() {
-        feedService.unlikePost(123L, "email@fofo.com");
+        feedService.unlikePost(123L, "user2@fofo.com");
     }
 
     @Test
     public void shouldRaisePostCommentedEvent() throws Exception {
         String commentContent = "What a delicious meal";
-        String commentOwner = "email@fofo.com";
+        String commentOwner = "user2@fofo.com";
         feedService.commentOnPost(1L, commentContent, commentOwner);
         Post post = postRepository.findOne(1L);
         verify(domainEvents).raise(postCommentedEventArgumentCaptor.capture());
@@ -151,5 +160,24 @@ public class FeedServiceImplTest {
         assertThat(postCommentedEvent.getCommentOwner()).isEqualTo(commentOwner);
         assertThat(postCommentedEvent.getPost()).isEqualTo(post);
 
+    }
+
+    @Test
+    public void shouldNotSendNotificationWhenUserLikesHisPost() {
+        String likerUserName = "user1@fofo.com";
+        feedService.likePost(1L, likerUserName);
+        Post post = postRepository.findOne(1L);
+        verify(pushNotificationsService, never()).sendLikeNotificationToPostAuthor(post, likerUserName);
+        assertThat(post.getLikes()).hasSize(1);
+    }
+
+    @Test
+    public void shouldNotSendNotificationWhenUserCommentsHisPost() {
+        String commentContent = "What a delicious meal";
+        String commentOwner = "user1@fofo.com";
+        feedService.commentOnPost(1L, commentContent, commentOwner);
+        Post post = postRepository.findOne(1L);
+        verify(pushNotificationsService, never()).sendCommentedNotificationToPostAuthor(post, commentOwner);
+        assertThat(post.getComments()).hasSize(1);
     }
 }
