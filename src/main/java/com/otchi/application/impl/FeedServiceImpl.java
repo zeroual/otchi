@@ -5,8 +5,7 @@ import com.otchi.application.UserService;
 import com.otchi.application.utils.DateFactory;
 import com.otchi.domain.events.DomainEvents;
 import com.otchi.domain.events.PostCommentedEvent;
-import com.otchi.domain.events.LikePostEvent;
-import com.otchi.domain.services.PushNotificationsService;
+import com.otchi.domain.events.PostNotificationEvent;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
 import com.otchi.domain.social.exceptions.ResourceNotAuthorizedException;
 import com.otchi.domain.social.models.Comment;
@@ -46,7 +45,7 @@ public class FeedServiceImpl implements FeedService {
         if (post.isNotAlreadyLikedBy(likerUsername)) {
             post.addLike(user);
             postRepository.save(post);
-            LikePostEvent likePostEvent = new LikePostEvent(post, likerUsername);
+            PostNotificationEvent likePostEvent = new PostNotificationEvent(post,user, likerUsername);
             domainEvents.raise(likePostEvent);
         }
     }

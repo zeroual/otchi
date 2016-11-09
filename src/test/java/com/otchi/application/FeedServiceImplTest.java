@@ -5,6 +5,7 @@ import com.otchi.application.utils.DateFactory;
 import com.otchi.domain.events.DomainEvents;
 import com.otchi.domain.events.LikePostEvent;
 import com.otchi.domain.events.PostCommentedEvent;
+import com.otchi.domain.events.PostNotificationEvent;
 import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
 import com.otchi.domain.social.models.Comment;
@@ -41,7 +42,7 @@ public class FeedServiceImplTest {
     private ArgumentCaptor<PostCommentedEvent> postCommentedEventArgumentCaptor;
 
     @Captor
-    private ArgumentCaptor<LikePostEvent> likePostEventArgumentCaptor;
+    private ArgumentCaptor<PostNotificationEvent> PostNotificationEventArgumentCaptor;
 
     @Before
     public void setUp() {
@@ -73,10 +74,10 @@ public class FeedServiceImplTest {
         String likerUsername = "email@fofo.com";
         feedService.likePost(1L, likerUsername);
         Post post = postRepository.findOne(1L);
-        verify(domainEvents).raise(likePostEventArgumentCaptor.capture());
-        LikePostEvent likePostEvent = likePostEventArgumentCaptor.getValue();
-        assertThat(likePostEvent.getLikedPost()).isEqualTo(post);
-        assertThat(likePostEvent.getLikeOwner()).isEqualTo(likerUsername);
+        verify(domainEvents).raise(PostNotificationEventArgumentCaptor.capture());
+        PostNotificationEvent likePostEvent = PostNotificationEventArgumentCaptor.getValue();
+        assertThat(likePostEvent.getPost()).isEqualTo(post);
+        assertThat(likePostEvent.getLikerUsername()).isEqualTo(likerUsername);
     }
 
     @Test
@@ -85,10 +86,10 @@ public class FeedServiceImplTest {
         feedService.likePost(1L, likerUsername);
         feedService.likePost(1L, likerUsername);
         Post post = postRepository.findOne(1L);
-        verify(domainEvents, times(1)).raise(likePostEventArgumentCaptor.capture());
-        LikePostEvent likePostEvent = likePostEventArgumentCaptor.getValue();
-        assertThat(likePostEvent.getLikeOwner()).isEqualTo(likerUsername);
-        assertThat(likePostEvent.getLikedPost()).isEqualTo(post);
+        verify(domainEvents, times(1)).raise(PostNotificationEventArgumentCaptor.capture());
+        PostNotificationEvent likePostEvent = PostNotificationEventArgumentCaptor.getValue();
+        assertThat(likePostEvent.getLikerUsername()).isEqualTo(likerUsername);
+        assertThat(likePostEvent.getPost()).isEqualTo(post);
     }
 
     @Test(expected = PostNotFoundException.class)
