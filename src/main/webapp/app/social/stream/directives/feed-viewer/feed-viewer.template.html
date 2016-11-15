@@ -24,7 +24,7 @@
                                     Edit (not implemented yet )
                                 </a>
                             </li>
-                            <li>
+                            <li ng-if="feed.canBeRemoved">
                                 <a href="" ng-click="deletePost(feed)">
                                     <span class="glyphicon glyphicon-trash"></span>
                                     Delete

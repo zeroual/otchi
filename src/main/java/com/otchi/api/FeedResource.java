@@ -1,12 +1,12 @@
 package com.otchi.api;
 
 import com.otchi.api.facades.dto.CommentDTO;
-import com.otchi.api.facades.dto.PostDTO;
+import com.otchi.api.facades.dto.FeedDTO;
 import com.otchi.api.facades.exceptions.ResourceNotFoundException;
+import com.otchi.application.Feed;
 import com.otchi.application.FeedFetcherService;
 import com.otchi.application.FeedService;
 import com.otchi.domain.social.models.Comment;
-import com.otchi.domain.social.models.Post;
 import com.otchi.infrastructure.config.ResourcesPath;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,19 +30,21 @@ public class FeedResource {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<PostDTO> fetchAllRecipe() {
-        return feedFetcherService.fetchAllFeeds()
+    public List<FeedDTO> fetchAllRecipe(Principal principal) {
+        String username = principal.getName();
+        return feedFetcherService.fetchAllFeeds(username)
                 .stream()
-                .map(PostDTO::new)
+                .map(FeedDTO::new)
                 .collect(toList());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public PostDTO fetchFeed(@PathVariable("id") Long feedId) {
-        Optional<Post> postOptional = feedFetcherService.getFeed(feedId);
-        Post post = postOptional.orElseThrow(() -> new ResourceNotFoundException(feedId));
-        return new PostDTO(post);
+    public FeedDTO fetchFeed(@PathVariable("id") Long feedId, Principal principal) {
+        String username = principal.getName();
+        Optional<Feed> feedOptional = feedFetcherService.getFeed(feedId, username);
+        Feed feed = feedOptional.orElseThrow(() -> new ResourceNotFoundException(feedId));
+        return new FeedDTO(feed);
     }
 
     @RequestMapping(value = "/{postId}/like", method = RequestMethod.POST)

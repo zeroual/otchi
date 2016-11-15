@@ -1,14 +1,12 @@
 package com.otchi.application;
 
-import com.otchi.domain.social.models.Post;
-
 import java.util.List;
 import java.util.Optional;
 
 
 public interface FeedFetcherService {
 
-    List<Post> fetchAllFeeds();
+    List<Feed> fetchAllFeeds(String username);
 
-    Optional<Post> getFeed(Long id);
+    Optional<Feed> getFeed(Long id, String username);
 }
