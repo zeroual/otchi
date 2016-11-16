@@ -26,6 +26,10 @@ liquibase:
     contexts: dev
     change-log: classpath:/database/db.changelog-master.xml
 
+elasticsearch:
+   hostname: http://localhost:9200
+   path-home: target/es/
+
 otchi:
    stomp:
       relayDestinationPrefix: /topic

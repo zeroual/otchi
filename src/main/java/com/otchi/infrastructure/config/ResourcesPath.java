@@ -16,4 +16,6 @@ public final class ResourcesPath {
     public static final String ACCOUNT = URL_PREFIXE + "account";
     public static final String REGISTER = ACCOUNT + URL_SEPARATOR + "register";
     public static final String RECOMMENDATIONS = URL_PREFIXE + "recommendations";
+    public static final String SEARCH_RECIPE = URL_PREFIXE + "recipe" + URL_SEPARATOR + "search";
+    public static final String SEARCH_SUGGEST_RECIPE = SEARCH_RECIPE + URL_SEPARATOR + "suggest";
 }

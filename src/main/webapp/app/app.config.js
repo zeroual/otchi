@@ -83,5 +83,25 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
 
+        })
+        .state('search', {
+            url: "/search/?query",
+            parent: 'main',
+            data: {
+                pageTitle: 'Search recipe'
+            },
+            views: {
+                'content@': {
+                    template: '<recipe-finder query="query"/>',
+                    resolve: {
+                        query: function ($stateParams) {
+                            return $stateParams.query;
+                        }
+                    },
+                    controller: function ($scope, query) {
+                        $scope.query = query;
+                    }
+                }
+            }
         });
 });

@@ -2,6 +2,8 @@ package com.otchi.application;
 
 import com.otchi.application.impl.PublicationsServiceImpl;
 import com.otchi.application.utils.Clock;
+import com.otchi.domain.events.DomainEvents;
+import com.otchi.domain.events.RecipePostedEvent;
 import com.otchi.domain.kitchen.Recipe;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.models.Story;
@@ -35,6 +37,7 @@ public class PublicationsServiceTest {
     private Clock clock = mock(Clock.class);
     private BlobStorageService blobStorageService = mock(BlobStorageService.class);
     private List<MultipartFile> NO_IMAGES = emptyList();
+    private DomainEvents domainEvents = mock(DomainEvents.class);
 
     @Before
     public void setUp() {
@@ -43,7 +46,7 @@ public class PublicationsServiceTest {
         userRepository = new MockUserRepository();
 
         userRepository.save(new User("email@gmail.com", "abde", "zeros"));
-        publicationsService = new PublicationsServiceImpl(postRepository, userRepository, clock, blobStorageService);
+        publicationsService = new PublicationsServiceImpl(postRepository, userRepository, clock, domainEvents, blobStorageService);
 
     }
 
@@ -95,6 +98,14 @@ public class PublicationsServiceTest {
         assertThat(savedPost.images()).hasSize(1)
                 .isEqualTo(imagesURL);
 
+    }
+
+    @Test
+    public void shouldRaiseRecipePostedWhenUserPublishRecipe() {
+        Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
+        publicationsService.publishRecipe(recipe, emptyList(), "email@gmail.com");
+        RecipePostedEvent recipePostedEvent = new RecipePostedEvent(recipe);
+        verify(domainEvents).raise(recipePostedEvent);
     }
 
     @Test

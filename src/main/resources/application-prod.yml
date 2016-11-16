@@ -63,6 +63,11 @@ amazon:
     s3:
       default-bucket: otchi
       url: s3.amazonaws.com
+
+elasticsearch:
+   hostname: https://i7iyzn43:uc96akk3x8c9djxw@yew-4589897.eu-west-1.bonsaisearch.net
+
+
 otchi:
    stomp:
       relayHost: squirrel.rmq.cloudamqp.com

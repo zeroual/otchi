@@ -1,6 +1,6 @@
 package com.otchi.domain.events;
 
-import com.otchi.domain.services.PushNotificationsService;
+import com.otchi.domain.notifications.PushNotificationsService;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.users.models.User;
 import org.junit.Test;
