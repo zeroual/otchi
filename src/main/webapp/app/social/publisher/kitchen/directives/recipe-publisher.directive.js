@@ -2,7 +2,7 @@ angular.module("publisher")
     .directive('recipePublisher', function () {
         return {
             templateUrl: 'app/social/publisher/kitchen/directives/recipe-publisher-directive.html',
-            controller: function ($scope, $rootScope, ShareService, ToasterService, $state) {
+            controller: function ($scope, $rootScope, ShareService, ToasterService, $state, $http) {
 
                 function init() {
                     $scope.recipe = {
@@ -15,6 +15,35 @@ angular.module("publisher")
                 }
 
                 init();
+
+
+loadIngredients = function(){
+        $http.get('/data/ingredients_dictionary.json').then(function(res){
+
+          $scope.ingredientsDictionary = res.data.map(function(obj){
+                            return obj.name;
+                          });
+        });
+        };
+
+
+var _selected;
+
+  //$scope.selected = undefined;
+  $scope.ingredientsDictionary = loadIngredients();
+  // Any function returning a promise object can be used to load values asynchronously
+
+
+
+
+  $scope.ngModelOptionsSelected = function(value) {
+    if (arguments.length) {
+      _selected = value;
+    } else {
+      return _selected;
+    }
+  };
+
 
 
                 extractTags = function(){
