@@ -17,7 +17,7 @@ angular.module("publisher")
                 init();
 
 
-loadIngredients = function(){
+  loadIngredients = function(){
         $http.get('/data/ingredients_dictionary.json').then(function(res){
 
           $scope.ingredientsDictionary = res.data.map(function(obj){
@@ -27,15 +27,7 @@ loadIngredients = function(){
         };
 
 
-var _selected;
-
-  //$scope.selected = undefined;
   $scope.ingredientsDictionary = loadIngredients();
-  // Any function returning a promise object can be used to load values asynchronously
-
-
-
-
                 extractTags = function(){
                     return $scope.tags.map(function(tag){
                         return tag.text;
