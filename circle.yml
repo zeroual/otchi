@@ -10,3 +10,6 @@ deployment:
     branch: master
     heroku:
       appname: otchi
+test:
+  post:
+    - bash <(curl -s https://codecov.io/bash) -t 0b9407da-526f-4887-9b44-e09d9814a701

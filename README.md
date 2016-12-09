@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/zeroual/otchi/branch/master/graph/badge.svg?token=27o9BTuSbA)](https://codecov.io/gh/zeroual/otchi)
+
 ##Otchi App
 
 Otchi is a social network for food.
