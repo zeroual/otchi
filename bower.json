@@ -5,9 +5,12 @@
   "license": "private",
   "homepage": "to define",
   "moduleType": [],
+  "resolutions": {
+    "angular": "1.5.9"
+  },
   "dependencies": {
-    "angular": "^1.5.6",
-    "angular-resource": "^1.5.6",
+    "angular": "1.5.9",
+    "angular-resource": "1.5.9",
     "bootstrap": "^3.3.6",
     "angular-ui-router": "^0.3.0",
     "moment": "^2.13.0",
@@ -21,6 +24,6 @@
     "ng-tags-input": "^3.1.1"
   },
   "devDependencies": {
-    "angular-mocks": "^1.5.6"
+    "angular-mocks": "1.5.9"
   }
 }
