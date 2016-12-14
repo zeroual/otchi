@@ -37,6 +37,7 @@
 		<cucumber.version>1.2.4</cucumber.version>
 		<netty-all.version>4.1.4.Final</netty-all.version>
 		<guava.version>19.0</guava.version>
+		<failsafe-plugin.version>2.17</failsafe-plugin.version>
 		<jacoco-maven-plugin.version>0.7.8</jacoco-maven-plugin.version>
 	</properties>
 
@@ -229,6 +230,7 @@
 	</dependencies>
 
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
 
 			<plugin>
@@ -251,12 +253,37 @@
 				<configuration>
 					<excludes>
 						<exclude>**/*IntegrationTest.java</exclude>
+						<exclude>**/*ResourceTest.java</exclude>
+						<exclude>**/*RepositoryTest.java</exclude>
 						<exclude>**/*Abstract*Test.java</exclude>
 					</excludes>
-					<argLine>-Xmx256m</argLine>
-					<!-- Force alphabetical order to have a reproducible build -->
-					<runOrder>alphabetical</runOrder>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${failsafe-plugin.version}</version>
+				<configuration>
+					<includes>
+						<include>**/*IntegrationTest.java</include>
+						<include>**/*ResourceTest.java</include>
+						<include>**/*RepositoryTest.java</include>
+					</includes>
+					<excludes>
+						<exclude>**/*Abstract*Test.java</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 			<plugin>
@@ -281,7 +308,6 @@
 				</configuration>
 			</plugin>
 
-
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
@@ -301,6 +327,7 @@
 					</execution>
 				</executions>
 			</plugin>
+
 		</plugins>
 	</build>
 

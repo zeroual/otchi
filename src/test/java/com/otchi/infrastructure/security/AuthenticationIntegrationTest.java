@@ -45,7 +45,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
 @ActiveProfiles(SPRING_PROFILE_DEVELOPMENT)
-public class AuthenticationTest {
+public class AuthenticationIntegrationTest {
 
     private MockMvc mockMvc;
 

@@ -23,7 +23,7 @@ import static com.otchi.infrastructure.config.Constants.SPRING_PROFILE_DEVELOPME
         initializers = ConfigFileApplicationContextInitializer.class)
 @WebAppConfiguration()
 @IntegrationTest
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+@DirtiesContext
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class})
