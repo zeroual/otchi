@@ -1,5 +1,5 @@
 [![codecov](https://codecov.io/gh/zeroual/otchi/branch/master/graph/badge.svg?token=27o9BTuSbA)](https://codecov.io/gh/zeroual/otchi)
-[![codecov](https://circleci.com/gh/zeroual/otchi.svg?style=shield&circle-token=0d87372f166fdaf1080c8c2982f046d2bffb984e)](https://codecov.io/gh/zeroual/otchi)
+[![codecov](https://circleci.com/gh/zeroual/otchi.svg?style=shield&circle-token=0d87372f166fdaf1080c8c2982f046d2bffb984e)](https://circleci.com/gh/zeroual/otchi)
 
 ##Otchi App
 
