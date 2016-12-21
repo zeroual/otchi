@@ -9,7 +9,6 @@ import com.otchi.utils.AbstractIntegrationTest;
 import org.assertj.core.groups.Tuple;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -31,12 +30,12 @@ public class PostRepositoryTest extends AbstractIntegrationTest {
                 .contains("Abdellah");
 
         assertThat(savedPost.getPostContent()).isNotNull();
-        assertThat(((Recipe)savedPost.getPostContent()).getTitle()).isEqualTo("TITLE_SAMPLE_2");
+        assertThat(((Recipe) savedPost.getPostContent()).getTitle()).isEqualTo("TITLE_SAMPLE_2");
 
         assertThat(savedPost.getAuthor()).isNotNull();
         assertThat(savedPost.getAuthor().getFirstName()).isEqualTo("Abdellah");
 
-        assertThat(savedPost.getComments()).hasSize(1).extracting(Comment::getContent,comment -> comment.getCreatedOn().toString())
+        assertThat(savedPost.getComments()).hasSize(1).extracting(Comment::getContent, comment -> comment.getCreatedOn().toString())
                 .containsExactly(new Tuple("It is very delicious", "2016-02-22 00:00:00.0"));
         assertThat(savedPost.getComments()).hasSize(1).extracting(comment -> comment.getAuthor().getFirstName())
                 .containsExactly("Abdellah");
@@ -50,7 +49,6 @@ public class PostRepositoryTest extends AbstractIntegrationTest {
 
     @Test
     @DatabaseSetup(value = {"/dbunit/kitchen/empty.xml"})
-    @Transactional
     public void shouldSaveTheRecipeWhenSavingPost() {
         Post postToSave = new Post();
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);

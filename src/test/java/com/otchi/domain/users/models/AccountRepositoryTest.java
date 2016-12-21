@@ -5,7 +5,6 @@ import com.otchi.utils.AbstractIntegrationTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +16,6 @@ public class AccountRepositoryTest extends AbstractIntegrationTest {
 
     @Test
     @DatabaseSetup("/dbunit/users/users.xml")
-    @Transactional
     public void shouldMapWithDatabase() {
         Account savedAccount = accountRepository.findOne(1L);
         assertThat(savedAccount).isNotNull();

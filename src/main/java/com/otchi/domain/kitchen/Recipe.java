@@ -23,27 +23,27 @@ public class Recipe extends PostContent{
     @Column(name = "PREPARATION_TIME")
     private Integer preparationTime;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "RECIPE_INGREDIENT",
             joinColumns = {@JoinColumn(name = "RECIPE_ID")},
             inverseJoinColumns = {@JoinColumn(name = "INGREDIENT_ID")})
     private List<Ingredient> ingredients = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "RECIPE_ID")
     private List<Instruction> instructions = new ArrayList<>();
 
     @Column(name = "TITLE")
     private String title;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     @CollectionTable(name = "RECIPE_IMAGES", joinColumns = @JoinColumn(name = "RECIPE_ID", referencedColumnName = "ID"))
     @Column(name = "URL")
     List<String> images = new ArrayList<>();
 
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     private Set<String> tags = new HashSet<>();
 
     public Recipe(String title, String description, Integer cookTime, Integer preparationTime) {
