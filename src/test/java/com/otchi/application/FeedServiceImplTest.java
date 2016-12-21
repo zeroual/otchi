@@ -14,6 +14,7 @@ import com.otchi.domain.social.repositories.mocks.MockPostRepository;
 import com.otchi.domain.users.models.User;
 import com.otchi.utils.DateParser;
 import com.otchi.utils.mocks.MockCrudRepository;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -29,11 +30,11 @@ import static org.mockito.Mockito.*;
 
 public class FeedServiceImplTest {
 
-    private PostRepository postRepository = new MockPostRepository();
-    private UserService userService = Mockito.mock(UserService.class);
-    private DateFactory dateFactory = Mockito.mock(DateFactory.class);
-    private PushNotificationsService pushNotificationsService = mock(PushNotificationsService.class);
-    private DomainEvents domainEvents = mock(DomainEvents.class);
+    private final PostRepository postRepository = new MockPostRepository();
+    private final UserService userService = Mockito.mock(UserService.class);
+    private final DateFactory dateFactory = Mockito.mock(DateFactory.class);
+    private final PushNotificationsService pushNotificationsService = mock(PushNotificationsService.class);
+    private final DomainEvents domainEvents = mock(DomainEvents.class);
     private FeedService feedService;
     private User user = new User("email@fofo.com", "firstName_sample", "lastName");
 
@@ -41,7 +42,7 @@ public class FeedServiceImplTest {
     private ArgumentCaptor<PostCommentedEvent> postCommentedEventArgumentCaptor;
 
     @Captor
-    private ArgumentCaptor<LikePostEvent> likePostEventArgumentCaptor;
+    private ArgumentCaptor<LikePostEvent> PostNotificationEventArgumentCaptor;
 
     @Before
     public void setUp() {
@@ -73,8 +74,8 @@ public class FeedServiceImplTest {
         String likerUsername = "email@fofo.com";
         feedService.likePost(1L, likerUsername);
         Post post = postRepository.findOne(1L);
-        verify(domainEvents).raise(likePostEventArgumentCaptor.capture());
-        LikePostEvent likePostEvent = likePostEventArgumentCaptor.getValue();
+        verify(domainEvents).raise(PostNotificationEventArgumentCaptor.capture());
+        LikePostEvent likePostEvent = PostNotificationEventArgumentCaptor.getValue();
         assertThat(likePostEvent.getLikedPost()).isEqualTo(post);
         assertThat(likePostEvent.getLikeOwner()).isEqualTo(likerUsername);
     }
@@ -85,8 +86,8 @@ public class FeedServiceImplTest {
         feedService.likePost(1L, likerUsername);
         feedService.likePost(1L, likerUsername);
         Post post = postRepository.findOne(1L);
-        verify(domainEvents, times(1)).raise(likePostEventArgumentCaptor.capture());
-        LikePostEvent likePostEvent = likePostEventArgumentCaptor.getValue();
+        verify(domainEvents, times(1)).raise(PostNotificationEventArgumentCaptor.capture());
+        LikePostEvent likePostEvent = PostNotificationEventArgumentCaptor.getValue();
         assertThat(likePostEvent.getLikeOwner()).isEqualTo(likerUsername);
         assertThat(likePostEvent.getLikedPost()).isEqualTo(post);
     }
@@ -113,7 +114,7 @@ public class FeedServiceImplTest {
         assertThat(post.getComments()).extracting(comment -> comment.getAuthor().getEmail()).containsExactly("email@fofo.com");
     }
 
-    @Test
+	@Test
     public void shouldSetCommentCreationOnDateToNow() throws Exception {
         Date now = DateParser.parse("2015-02-28 12:15:22.8");
         Mockito.when(dateFactory.now()).thenReturn(now);
@@ -122,36 +123,38 @@ public class FeedServiceImplTest {
         assertThat(post.getComments()).extracting(Comment::getCreatedOn).containsExactly(now);
     }
 
-    @Test(expected = PostNotFoundException.class)
-    public void shouldNotAllowToCommentUnExistingPost() {
-        feedService.commentOnPost(123L, "comment", "email@fofo.com");
-    }
+	@Test(expected = PostNotFoundException.class)
+	public void shouldNotAllowToCommentUnExistingPost() {
+		feedService.commentOnPost(123L, "comment", "email@fofo.com");
+	}
 
-    @Test
-    public void shouldUnlikePostIfAlreadyLiked() throws Exception {
-        Post post = postRepository.findOne(1L);
-        feedService.likePost(1L, "email@fofo.com");
-        assertThat(post.getLikes()).hasSize(1);
-        feedService.unlikePost(1L, "email@fofo.com");
-        assertThat(post.getLikes()).hasSize(0);
-    }
+	@Test
+	public void shouldUnlikePostIfAlreadyLiked() throws Exception {
+		Post post = postRepository.findOne(1L);
+		feedService.likePost(1L, "email@fofo.com");
+		assertThat(post.getLikes()).hasSize(1);
+		feedService.unlikePost(1L, "email@fofo.com");
+		assertThat(post.getLikes()).hasSize(0);
+	}
 
-    @Test(expected = PostNotFoundException.class)
-    public void shouldNotAllowToDesLikeUnExistingPost() {
-        feedService.unlikePost(123L, "email@fofo.com");
-    }
+	@Test(expected = PostNotFoundException.class)
+	public void shouldNotAllowToDesLikeUnExistingPost() {
+		feedService.unlikePost(123L, "email@fofo.com");
+	}
 
-    @Test
-    public void shouldRaisePostCommentedEvent() throws Exception {
-        String commentContent = "What a delicious meal";
-        String commentOwner = "email@fofo.com";
-        feedService.commentOnPost(1L, commentContent, commentOwner);
-        Post post = postRepository.findOne(1L);
-        verify(domainEvents).raise(postCommentedEventArgumentCaptor.capture());
+	@Test
+	public void shouldRaisePostCommentedEvent() throws Exception {
+		String commentContent = "What a delicious meal";
+		String commentOwner = "email@fofo.com";
+		feedService.commentOnPost(1L, commentContent, commentOwner);
+		Post post = postRepository.findOne(1L);
+		verify(domainEvents).raise(postCommentedEventArgumentCaptor.capture());
 
-        PostCommentedEvent postCommentedEvent = postCommentedEventArgumentCaptor.getValue();
-        assertThat(postCommentedEvent.getCommentOwner()).isEqualTo(commentOwner);
-        assertThat(postCommentedEvent.getPost()).isEqualTo(post);
+		PostCommentedEvent postCommentedEvent = postCommentedEventArgumentCaptor
+				.getValue();
+		assertThat(postCommentedEvent.getCommentOwner())
+				.isEqualTo(commentOwner);
+		assertThat(postCommentedEvent.getPost()).isEqualTo(post);
 
-    }
+	}
 }

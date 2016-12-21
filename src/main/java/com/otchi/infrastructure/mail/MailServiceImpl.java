@@ -1,7 +1,11 @@
 package com.otchi.infrastructure.mail;
 
+import java.io.StringWriter;
+
 import com.otchi.application.MailService;
+import com.otchi.domain.social.models.Post;
 import com.otchi.domain.users.models.User;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +59,20 @@ public class MailServiceImpl implements MailService {
             log.warn("E-mail could not be sent to user '{}', exception is: {}", to, e.getMessage());
         }
     }
+
+	@Override
+	public void sendLikePostNotificationEmail( Post post, String likerUsername) {
+		User user = post.getAuthor();
+		log.debug("Sending e-mail to '{}'", user.getEmail());
+	    Context context = new Context();
+	    context.setVariable("username", user.getFirstName());
+	    context.setVariable("likerUsername", likerUsername);
+	    context.setVariable("postId", post.getId());
+	    
+	    String content = templateEngine.process("likePostNotificationMail", context);
+	    String subject = likerUsername + " liked your post ";
+	    sendEmail(user.getEmail(), subject, content);
+		
+	}
 
 }

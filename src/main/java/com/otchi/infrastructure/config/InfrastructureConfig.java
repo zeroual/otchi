@@ -1,5 +1,10 @@
 package com.otchi.infrastructure.config;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+
 import com.google.common.eventbus.EventBus;
 import com.otchi.domain.events.DomainEvents;
 import com.otchi.domain.events.PushNotificationEventHandler;
@@ -8,11 +13,6 @@ import com.otchi.infrastructure.config.database.DatabaseConfig;
 import com.otchi.infrastructure.config.storage.BlobStorageConfig;
 import com.otchi.infrastructure.eventBus.GuavaDomainEventsBus;
 import com.otchi.infrastructure.utils.FileUtilsServiceImpl;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
-
 
 @Configuration
 @Import({WebConfigurer.class, SecurityConfig.class, DatabaseConfig.class, SocialConfig.class, BlobStorageConfig.class,
