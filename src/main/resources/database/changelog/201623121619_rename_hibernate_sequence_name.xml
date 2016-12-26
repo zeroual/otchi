@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="201623121619" author="Abdellah">
+        <renameColumn oldColumnName="SEQUENCE_NEXT_HI_VALUE"
+                      newColumnName="NEXT_VAL"
+                      columnDataType="INT"
+                      tableName="HIBERNATE_SEQUENCES"/>
+    </changeSet>
+
+</databaseChangeLog>

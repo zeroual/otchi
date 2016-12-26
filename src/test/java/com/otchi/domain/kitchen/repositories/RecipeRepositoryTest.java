@@ -69,5 +69,4 @@ public class RecipeRepositoryTest extends AbstractIntegrationTest {
 
 
     }
-
 }

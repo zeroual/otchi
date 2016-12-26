@@ -84,10 +84,6 @@ Feature: user fetch his feed
                   {
                       "id": 1,
                       "content": "start with"
-                  },
-                  {
-                      "id": 1,
-                      "content": "start with"
                   }
               ],
               "title": "Italian Beef Stew",

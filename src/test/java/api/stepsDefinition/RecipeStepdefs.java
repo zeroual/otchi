@@ -8,9 +8,11 @@ import com.otchi.domain.kitchen.RecipeRepository;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import static java.util.Collections.emptyList;
 
+@Transactional
 public class RecipeStepdefs {
 
     @Autowired

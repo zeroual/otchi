@@ -90,10 +90,6 @@ Feature: user fetch one post
                   {
                       "id": 1,
                       "content": "start with"
-                  },
-                  {
-                      "id": 1,
-                      "content": "start with"
                   }
               ],
               "title": "Italian Beef Stew",

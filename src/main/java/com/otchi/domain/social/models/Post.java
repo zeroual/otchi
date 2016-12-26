@@ -27,20 +27,20 @@ public class Post {
         this.createdTime = createdTime;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "POST_LIKES",
             joinColumns = {@JoinColumn(name = "POST_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")}
     )
     private Set<User> likes = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "POST_ID")
     private Collection<Comment> comments = new ArrayList<>();
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "POST_CONTENT_ID")
-	private PostContent postContent;
+    private PostContent postContent;
 
     public Post() {
 
@@ -49,6 +49,7 @@ public class Post {
     public void addLike(User user) {
         this.likes.add(user);
     }
+
     public void addComment(Comment comment) {
         this.comments.add(comment);
     }
@@ -81,13 +82,13 @@ public class Post {
         return comments;
     }
 
-	public PostContent getPostContent() {
-		return postContent;
-	}
+    public PostContent getPostContent() {
+        return postContent;
+    }
 
-	public void setPostContent(PostContent postContent) {
-		this.postContent = postContent;
-	}
+    public void setPostContent(PostContent postContent) {
+        this.postContent = postContent;
+    }
 
     public boolean isNotAlreadyLikedBy(String username) {
         return !this.likes.stream().anyMatch(user -> user.getUsername().equals(username));

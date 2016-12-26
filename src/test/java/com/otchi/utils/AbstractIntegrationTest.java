@@ -7,8 +7,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.ConfigFileApplicationContextInitializer;
-import org.springframework.boot.test.IntegrationTest;
+import org.springframework.boot.test.context.ConfigFileApplicationContextInitializer;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -27,6 +26,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.servlet.Filter;
+import javax.transaction.Transactional;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.TimeZone;
@@ -38,14 +38,13 @@ import static com.otchi.infrastructure.config.Constants.SPRING_PROFILE_DEVELOPME
 @ContextConfiguration(classes = {OtchiApplicationStarter.class, IntegrationTestsConfig.class},
         initializers = ConfigFileApplicationContextInitializer.class)
 @WebAppConfiguration()
-@IntegrationTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
 @ActiveProfiles(SPRING_PROFILE_DEVELOPMENT)
-
+@Transactional
 public class AbstractIntegrationTest {
 
     protected MockMvc mockMvc;
