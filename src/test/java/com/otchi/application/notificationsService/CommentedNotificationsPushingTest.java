@@ -10,7 +10,6 @@ import com.otchi.domain.social.repositories.NotificationsRepository;
 import com.otchi.domain.social.repositories.mocks.MockNotificationsRepository;
 import com.otchi.domain.users.models.User;
 import com.otchi.infrastructure.notifications.WebsocketMessageSending;
-import com.otchi.utils.DateParser;
 import com.otchi.utils.mocks.MockCrudRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +17,7 @@ import org.mockito.Mockito;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
@@ -59,7 +58,7 @@ public class CommentedNotificationsPushingTest {
 
     @Test
     public void shouldAssignTheCurrentDateToNotification() throws ParseException {
-        Date now = DateParser.parse("2015-02-28 12:15:22.8");
+        LocalDateTime now = LocalDateTime.parse("2015-02-28T12:15:22.8");
         Mockito.when(dateFactory.now()).thenReturn(now);
         Notification notification = pushNotificationsService.sendCommentedNotificationToPostAuthor(post, commentOwner);
         assertThat(notification.getId()).isNotNull();

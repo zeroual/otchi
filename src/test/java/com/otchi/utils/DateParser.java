@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+//TODO : remove this class
 public class DateParser {
 
     public static Date parse(String dateString) throws ParseException {

@@ -28,6 +28,7 @@
         <skyscreamer.jsonassert>1.2.3</skyscreamer.jsonassert>
         <spring-social-google.version>1.0.0.RELEASE</spring-social-google.version>
         <liquibase.version>3.5.1</liquibase.version>
+        <hibernate-java8.version>5.1.0.Final</hibernate-java8.version>
         <aws-sdk.version>1.11.5</aws-sdk.version>
         <apache-commons-io.version>2.4</apache-commons-io.version>
         <cucumber.version>1.2.4</cucumber.version>
@@ -46,6 +47,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-java8</artifactId>
+            <version>${hibernate-java8.version}</version>
         </dependency>
 
         <dependency>

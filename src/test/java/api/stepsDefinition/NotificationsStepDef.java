@@ -3,18 +3,17 @@ package api.stepsDefinition;
 import com.otchi.domain.social.models.Notification;
 import com.otchi.domain.social.models.NotificationType;
 import com.otchi.domain.social.repositories.NotificationsRepository;
-import com.otchi.utils.DateParser;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.text.ParseException;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static com.otchi.domain.social.models.NotificationType.COMMENT_ON_POST;
+import static java.time.format.DateTimeFormatter.ofPattern;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.fail;
 
 
 public class NotificationsStepDef {
@@ -50,7 +49,9 @@ public class NotificationsStepDef {
         assertThat(notification.getType()).isEqualTo(COMMENT_ON_POST);
     }
 
-    private class NotificationCucumber {
+    private static class NotificationCucumber {
+
+        static DateTimeFormatter dateTimeFormatter = ofPattern("yyyy-MM-dd HH:mm:ss");
 
         private NotificationType type;
         private String username;
@@ -60,20 +61,12 @@ public class NotificationsStepDef {
         private Long postId;
 
         public Notification toNotification() {
+
             Notification notification = new Notification(username, sender, postId, type);
-            notification.changeCreationDateTo(getCreationDate());
+            notification.changeCreationDateTo(LocalDateTime.parse(creationDate, dateTimeFormatter));
             if (unread == false)
                 notification.markAsRead();
             return notification;
-        }
-
-        public Date getCreationDate() {
-            try {
-                return DateParser.parse(creationDate);
-            } catch (ParseException e) {
-                fail("bad notification creation date format :( " + creationDate);
-            }
-            return null;
         }
     }
 }

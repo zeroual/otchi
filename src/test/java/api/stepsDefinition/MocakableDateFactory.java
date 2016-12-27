@@ -2,17 +2,17 @@ package api.stepsDefinition;
 
 import com.otchi.application.utils.DateFactory;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class MocakableDateFactory implements DateFactory {
-    private Date now = new Date();
+    private LocalDateTime now = LocalDateTime.now();
 
     @Override
-    public Date now() {
+    public LocalDateTime now() {
         return now;
     }
 
-    public void setNowTimeTo(Date newDate) {
+    public void setNowTimeTo(LocalDateTime newDate) {
         this.now = newDate;
     }
 }

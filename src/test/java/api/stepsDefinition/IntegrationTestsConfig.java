@@ -42,6 +42,7 @@ public class IntegrationTestsConfig {
         return new DatabaseCleanerForTest(datasource);
     }
 
+    //TODO Remove this bean , never used
     @Bean
     @Scope("cucumber-glue")
     public World createWorld() {

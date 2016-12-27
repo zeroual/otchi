@@ -1,18 +1,20 @@
 package com.otchi.api.facades.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.otchi.api.facades.serializers.CustomDateSerializer;
+import com.otchi.api.facades.serializers.CustomLocalDateTimeSerializer;
 import com.otchi.domain.social.models.Comment;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class CommentDTO implements DTO<Comment> {
     private Long id;
     private AuthorDTO author;
     private String content;
 
-    @JsonSerialize(using = CustomDateSerializer.class)
-    private Date createdOn;
+    //TODO configure this in Jackson configuration
+
+    @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
+    private LocalDateTime createdOn;
 
     public CommentDTO(Comment comment) {
         extractFromDomain(comment);
@@ -43,7 +45,7 @@ public class CommentDTO implements DTO<Comment> {
         return content;
     }
 
-    public Date getCreatedOn() {
+    public LocalDateTime getCreatedOn() {
         return createdOn;
     }
 }

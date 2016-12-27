@@ -10,6 +10,7 @@ import org.assertj.core.groups.Tuple;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static java.time.LocalDateTime.parse;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PostRepositoryTest extends AbstractIntegrationTest {
@@ -23,7 +24,7 @@ public class PostRepositoryTest extends AbstractIntegrationTest {
     public void shouldMapWithDatabase() {
         Post savedPost = postRepository.findOne(1L);
         assertThat(savedPost).isNotNull();
-        assertThat(savedPost.getCreatedTime().toString()).isEqualTo("2015-02-28 00:00:00.0");
+        assertThat(savedPost.getCreatedTime()).isEqualTo(parse("2015-02-28T00:00:00"));
         assertThat(savedPost.getLikes()).isNotEmpty();
         assertThat(savedPost.getLikes())
                 .extracting(user -> user.getFirstName())
@@ -35,8 +36,8 @@ public class PostRepositoryTest extends AbstractIntegrationTest {
         assertThat(savedPost.getAuthor()).isNotNull();
         assertThat(savedPost.getAuthor().getFirstName()).isEqualTo("Abdellah");
 
-        assertThat(savedPost.getComments()).hasSize(1).extracting(Comment::getContent, comment -> comment.getCreatedOn().toString())
-                .containsExactly(new Tuple("It is very delicious", "2016-02-22 00:00:00.0"));
+        assertThat(savedPost.getComments()).hasSize(1).extracting(Comment::getContent, comment -> comment.getCreatedOn())
+                .containsExactly(new Tuple("It is very delicious", parse("2016-02-22T00:00:00")));
         assertThat(savedPost.getComments()).hasSize(1).extracting(comment -> comment.getAuthor().getFirstName())
                 .containsExactly("Abdellah");
 

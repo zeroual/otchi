@@ -4,7 +4,7 @@ import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.social.models.Post;
 import org.junit.Test;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -17,7 +17,7 @@ public class PushNotificationEventHandlerTest {
 
     @Test
     public void shouldSendCommentedNotificationToPostAuthor() {
-        Post commentedPost = new Post(new Date());
+        Post commentedPost = new Post(LocalDateTime.now());
         String commentOwner = "commentOwner";
         PostCommentedEvent postCommentedEvent = new PostCommentedEvent(commentedPost, commentOwner);
         pushNotificationEventHandler.sendCommentedNotificationToPostAuthor(postCommentedEvent);
@@ -26,7 +26,7 @@ public class PushNotificationEventHandlerTest {
 
     @Test
     public void shouldSendLikeNotificationToPostAuthor(){
-        Post likedPost = new Post(new Date());
+        Post likedPost = new Post(LocalDateTime.now());
         String likeOwner = "likeOwner";
         LikePostEvent postLikedEvent = new LikePostEvent(likedPost, likeOwner);
         pushNotificationEventHandler.sendLikeNotificationToPostAuthor(postLikedEvent);

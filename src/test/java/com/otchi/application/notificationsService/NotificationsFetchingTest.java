@@ -13,7 +13,7 @@ import com.otchi.utils.mocks.MockCrudRepository;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +28,7 @@ public class NotificationsFetchingTest {
     private NotificationsRepository notificationsRepository = new MockNotificationsRepository();
     private UserService userService = mock(UserService.class);
     private NotificationsService notificationsService;
-    private Date notificationsCreationDate;
+    private LocalDateTime notificationsCreationDate;
     private Notification notification1, notification2, notification3;
     private User notificationSender;
     private Long postId = 12L;
@@ -43,7 +43,7 @@ public class NotificationsFetchingTest {
         Optional<User> expectedUser = Optional.of(notificationSender);
         when(userService.findUserByUsername("user2")).thenReturn(expectedUser);
 
-        notificationsCreationDate = new Date();
+        notificationsCreationDate = LocalDateTime.now();
         notification1 = new Notification("user1", "user2", postId, LIKED);
         notification2 = new Notification("user2", "user1", postId, LIKED);
         notification3 = new Notification("user1", "user2", postId, LIKED);

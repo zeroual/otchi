@@ -19,8 +19,7 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -71,7 +70,7 @@ public class PublicationsServiceTest {
 
     @Test
     public void shouldAssignPostCreationDateToNow() throws ParseException {
-        Date now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse("2015-02-28 12:15:22.8");
+        LocalDateTime now = LocalDateTime.parse("2015-02-28T12:15:22.8");
         Mockito.when(dateFactory.now()).thenReturn(now);
 
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
@@ -122,7 +121,7 @@ public class PublicationsServiceTest {
 
     @Test
     public void shouldAssignStoryCreationDateToNow() throws ParseException {
-        Date now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse("2015-02-28 12:15:22.8");
+        LocalDateTime now = LocalDateTime.parse("2015-02-28T12:15:22.8");
         Mockito.when(dateFactory.now()).thenReturn(now);
 
         Story story = new Story("my story");
