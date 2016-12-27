@@ -1,7 +1,5 @@
 package com.otchi.api.facades.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.otchi.api.facades.serializers.CustomLocalDateTimeSerializer;
 import com.otchi.domain.kitchen.Recipe;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.models.Story;
@@ -16,7 +14,6 @@ public class PostDTO implements DTO<Post> {
     private Long id;
     private AuthorDTO author;
 
-    @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
     private LocalDateTime createdTime;
 
     private AbstractPostContent content;

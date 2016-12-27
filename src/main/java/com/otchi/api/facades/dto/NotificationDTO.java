@@ -1,8 +1,6 @@
 package com.otchi.api.facades.dto;
 
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.otchi.api.facades.serializers.CustomLocalDateTimeSerializer;
 import com.otchi.application.NotificationWithSender;
 import com.otchi.domain.social.models.NotificationType;
 
@@ -14,7 +12,6 @@ public class NotificationDTO {
     private NotificationType type;
     private Long postId;
 
-    @JsonSerialize(using = CustomLocalDateTimeSerializer.class)
     private LocalDateTime createdAt;
 
     private UserDTO sender;
