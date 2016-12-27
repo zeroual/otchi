@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class DateFactoryImpl implements DateFactory {
+public class DefaultClock implements Clock {
 
     @Override
     public LocalDateTime now() {

@@ -1,6 +1,6 @@
 package com.otchi.domain.services;
 
-import com.otchi.application.utils.DateFactory;
+import com.otchi.application.utils.Clock;
 import com.otchi.domain.social.models.Notification;
 import com.otchi.domain.social.models.NotificationType;
 import com.otchi.domain.social.models.Post;
@@ -18,15 +18,15 @@ public class PushNotificationsServiceImpl implements PushNotificationsService {
 
     private WebsocketMessageSending websocketMessageSending;
     private NotificationsRepository notificationsRepository;
-    private DateFactory dateFactory;
+    private Clock clock;
 
     @Autowired
     public PushNotificationsServiceImpl(WebsocketMessageSending websocketMessageSending,
                                         NotificationsRepository notificationsRepository,
-                                        DateFactory dateFactory) {
+                                        Clock clock) {
         this.websocketMessageSending = websocketMessageSending;
         this.notificationsRepository = notificationsRepository;
-        this.dateFactory = dateFactory;
+        this.clock = clock;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class PushNotificationsServiceImpl implements PushNotificationsService {
     }
 
     private LocalDateTime getCurrentDate() {
-        return dateFactory.now();
+        return clock.now();
     }
 
 

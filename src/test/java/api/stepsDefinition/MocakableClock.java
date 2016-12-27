@@ -1,10 +1,10 @@
 package api.stepsDefinition;
 
-import com.otchi.application.utils.DateFactory;
+import com.otchi.application.utils.Clock;
 
 import java.time.LocalDateTime;
 
-public class MocakableDateFactory implements DateFactory {
+public class MocakableClock implements Clock {
     private LocalDateTime now = LocalDateTime.now();
 
     @Override

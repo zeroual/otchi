@@ -1,6 +1,6 @@
 package api.stepsDefinition;
 
-import com.otchi.application.utils.DateFactory;
+import com.otchi.application.utils.Clock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,8 +32,8 @@ public class IntegrationTestsConfig {
 
     @Bean
     @Primary
-    public DateFactory dateFactory() {
-        return new MocakableDateFactory();
+    public Clock clock() {
+        return new MocakableClock();
     }
 
     @Bean

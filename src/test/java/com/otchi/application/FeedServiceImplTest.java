@@ -1,7 +1,7 @@
 package com.otchi.application;
 
 import com.otchi.application.impl.FeedServiceImpl;
-import com.otchi.application.utils.DateFactory;
+import com.otchi.application.utils.Clock;
 import com.otchi.domain.events.DomainEvents;
 import com.otchi.domain.events.LikePostEvent;
 import com.otchi.domain.events.PostCommentedEvent;
@@ -30,7 +30,7 @@ public class FeedServiceImplTest {
 
     private PostRepository postRepository = new MockPostRepository();
     private UserService userService = Mockito.mock(UserService.class);
-    private DateFactory dateFactory = Mockito.mock(DateFactory.class);
+    private Clock clock = Mockito.mock(Clock.class);
     private DomainEvents domainEvents = mock(DomainEvents.class);
     private FeedService feedService;
     private User user = new User("email@fofo.com", "firstName_sample", "lastName");
@@ -45,7 +45,7 @@ public class FeedServiceImplTest {
     public void setUp() {
         MockCrudRepository.clearDatabase();
 
-        feedService = new FeedServiceImpl(postRepository, userService, dateFactory, domainEvents);
+        feedService = new FeedServiceImpl(postRepository, userService, clock, domainEvents);
 
         // Create new Post;
         Post post = new Post(now());
@@ -114,7 +114,7 @@ public class FeedServiceImplTest {
     @Test
     public void shouldSetCommentCreationOnDateToNow() throws Exception {
         LocalDateTime now = LocalDateTime.parse("2015-02-28T12:15:22.8");
-        Mockito.when(dateFactory.now()).thenReturn(now);
+        Mockito.when(clock.now()).thenReturn(now);
         feedService.commentOnPost(1L, "What a delicious meal", "email@fofo.com");
         Post post = postRepository.findOne(1L);
         assertThat(post.getComments()).extracting(Comment::getCreatedOn).containsExactly(now);

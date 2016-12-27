@@ -1,6 +1,6 @@
 package com.otchi.application.notificationsService;
 
-import com.otchi.application.utils.DateFactory;
+import com.otchi.application.utils.Clock;
 import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.services.PushNotificationsServiceImpl;
 import com.otchi.domain.social.models.Notification;
@@ -32,7 +32,7 @@ public class NotificationsPushingTest {
     private WebsocketMessageSending websocketMessageSending = mock(WebsocketMessageSending.class);
     private NotificationsRepository notificationsRepository = new MockNotificationsRepository();
 
-    private DateFactory dateFactory = mock(DateFactory.class);
+    private Clock clock = mock(Clock.class);
     private PushNotificationsService pushNotificationsService;
     private Post post;
     private String postAuthor;
@@ -47,7 +47,7 @@ public class NotificationsPushingTest {
         setField(post, "id", 23L);
 
         MockCrudRepository.clearDatabase();
-        pushNotificationsService = new PushNotificationsServiceImpl(websocketMessageSending, notificationsRepository, dateFactory);
+        pushNotificationsService = new PushNotificationsServiceImpl(websocketMessageSending, notificationsRepository, clock);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class NotificationsPushingTest {
     @Test
     public void shouldAssignTheCurrentDateToNotification() throws ParseException {
         LocalDateTime now = LocalDateTime.parse("2015-02-28T12:15:22.8");
-        Mockito.when(dateFactory.now()).thenReturn(now);
+        Mockito.when(clock.now()).thenReturn(now);
         Notification notification = pushNotificationsService.sendLikeNotificationToPostAuthor(post, "user");
         assertThat(notification.getId()).isNotNull();
         assertThat(notification.getCreationDate()).isEqualTo(now);

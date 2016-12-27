@@ -12,13 +12,13 @@ import static java.time.format.DateTimeFormatter.ofPattern;
 public class CommonStepsDefinitions {
 
     @Autowired
-    private MocakableDateFactory mocakableDateFactory;
+    private MocakableClock mocakableClock;
     private DateTimeFormatter dateTimeFormatter = ofPattern("yyyy-MM-dd HH:mm:ss");
 
 
     @Given("^time now is \"([^\"]*)\"$")
     public void timeNowIs(String dateString) throws Throwable {
         LocalDateTime newDate = parse(dateString, dateTimeFormatter);
-        mocakableDateFactory.setNowTimeTo(newDate);
+        mocakableClock.setNowTimeTo(newDate);
     }
 }

@@ -1,7 +1,7 @@
 package com.otchi.application.impl;
 
 import com.otchi.application.PublicationsService;
-import com.otchi.application.utils.DateFactory;
+import com.otchi.application.utils.Clock;
 import com.otchi.domain.kitchen.Recipe;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.models.PostContent;
@@ -23,18 +23,18 @@ public class PublicationsServiceImpl implements PublicationsService {
 
     private PostRepository postRepository;
     private UserRepository userRepository;
-    private DateFactory dateFactory;
+    private Clock clock;
     private final BlobStorageService blobStorageService;
 
     @Autowired
     public PublicationsServiceImpl(PostRepository postRepository,
                                    UserRepository userRepository,
-                                   DateFactory dateFactory,
+                                   Clock clock,
                                    BlobStorageService blobStorageService) {
 
         this.postRepository = postRepository;
         this.userRepository = userRepository;
-        this.dateFactory = dateFactory;
+        this.clock = clock;
         this.blobStorageService = blobStorageService;
     }
 
@@ -58,7 +58,7 @@ public class PublicationsServiceImpl implements PublicationsService {
     }
 
     private Post createPost(User author, PostContent content) {
-        Post post = new Post(dateFactory.now());
+        Post post = new Post(clock.now());
         post.setAuthor(author);
         post.setPostContent(content);
         return post;
