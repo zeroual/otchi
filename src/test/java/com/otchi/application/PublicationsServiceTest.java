@@ -1,7 +1,7 @@
 package com.otchi.application;
 
 import com.otchi.application.impl.PublicationsServiceImpl;
-import com.otchi.application.utils.DateFactory;
+import com.otchi.application.utils.Clock;
 import com.otchi.domain.kitchen.Recipe;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.models.Story;
@@ -19,8 +19,7 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -33,7 +32,7 @@ public class PublicationsServiceTest {
     private PublicationsService publicationsService;
     private PostRepository postRepository;
     private UserRepository userRepository;
-    private DateFactory dateFactory = mock(DateFactory.class);
+    private Clock clock = mock(Clock.class);
     private BlobStorageService blobStorageService = mock(BlobStorageService.class);
     private List<MultipartFile> NO_IMAGES = emptyList();
 
@@ -44,7 +43,7 @@ public class PublicationsServiceTest {
         userRepository = new MockUserRepository();
 
         userRepository.save(new User("email@gmail.com", "abde", "zeros"));
-        publicationsService = new PublicationsServiceImpl(postRepository, userRepository, dateFactory, blobStorageService);
+        publicationsService = new PublicationsServiceImpl(postRepository, userRepository, clock, blobStorageService);
 
     }
 
@@ -71,8 +70,8 @@ public class PublicationsServiceTest {
 
     @Test
     public void shouldAssignPostCreationDateToNow() throws ParseException {
-        Date now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse("2015-02-28 12:15:22.8");
-        Mockito.when(dateFactory.now()).thenReturn(now);
+        LocalDateTime now = LocalDateTime.parse("2015-02-28T12:15:22.8");
+        Mockito.when(clock.now()).thenReturn(now);
 
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
         publicationsService.publishRecipe(recipe, emptyList(), "email@gmail.com");
@@ -122,8 +121,8 @@ public class PublicationsServiceTest {
 
     @Test
     public void shouldAssignStoryCreationDateToNow() throws ParseException {
-        Date now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse("2015-02-28 12:15:22.8");
-        Mockito.when(dateFactory.now()).thenReturn(now);
+        LocalDateTime now = LocalDateTime.parse("2015-02-28T12:15:22.8");
+        Mockito.when(clock.now()).thenReturn(now);
 
         Story story = new Story("my story");
 

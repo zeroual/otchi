@@ -3,11 +3,11 @@ package com.otchi.infrastructure.config;
 import com.google.common.eventbus.EventBus;
 import com.otchi.domain.events.DomainEvents;
 import com.otchi.domain.events.PushNotificationEventHandler;
-import com.otchi.infrastructure.web.WebConfigurer;
 import com.otchi.infrastructure.config.database.DatabaseConfig;
 import com.otchi.infrastructure.config.storage.BlobStorageConfig;
 import com.otchi.infrastructure.eventBus.GuavaDomainEventsBus;
 import com.otchi.infrastructure.utils.FileUtilsServiceImpl;
+import com.otchi.infrastructure.web.WebConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import({WebConfigurer.class, SecurityConfig.class, DatabaseConfig.class, SocialConfig.class, BlobStorageConfig.class,
-        ThymeleafConfig.class, MailerConfig.class, WebsocketConfig.class})
+        ThymeleafConfig.class, MailerConfig.class, WebsocketConfig.class, JacksonConfig.class})
 @ComponentScan({"com.otchi.api"})
 
 public class InfrastructureConfig {

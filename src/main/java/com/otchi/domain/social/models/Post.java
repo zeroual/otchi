@@ -3,7 +3,11 @@ package com.otchi.domain.social.models;
 import com.otchi.domain.users.models.User;
 
 import javax.persistence.*;
-import java.util.*;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -16,14 +20,13 @@ public class Post {
     private Long id;
 
     @Column(name = "CREATED_AT")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdTime;
+    private LocalDateTime createdTime;
 
     @ManyToOne
     @JoinColumn(name = "AUTHOR_ID")
     private User author;
 
-    public Post(Date createdTime) {
+    public Post(LocalDateTime createdTime) {
         this.createdTime = createdTime;
     }
 
@@ -58,7 +61,7 @@ public class Post {
         this.likes.remove(user);
     }
 
-    public Date getCreatedTime() {
+    public LocalDateTime getCreatedTime() {
         return createdTime;
     }
 

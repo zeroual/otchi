@@ -5,15 +5,15 @@ import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.models.PostContent;
 import com.otchi.domain.users.models.User;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 import java.util.Set;
 
 public class Feed {
 
     private final Long id;
 
-    private final Date createdTime;
+    private final LocalDateTime createdTime;
 
     private final User author;
 
@@ -40,7 +40,7 @@ public class Feed {
         return id;
     }
 
-    public Date getCreatedTime() {
+    public LocalDateTime getCreatedTime() {
         return createdTime;
     }
 

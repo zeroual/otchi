@@ -1,18 +1,16 @@
 package com.otchi.application;
 
 import com.otchi.application.impl.FeedServiceImpl;
-import com.otchi.application.utils.DateFactory;
+import com.otchi.application.utils.Clock;
 import com.otchi.domain.events.DomainEvents;
 import com.otchi.domain.events.LikePostEvent;
 import com.otchi.domain.events.PostCommentedEvent;
-import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
 import com.otchi.domain.social.models.Comment;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.repositories.PostRepository;
 import com.otchi.domain.social.repositories.mocks.MockPostRepository;
 import com.otchi.domain.users.models.User;
-import com.otchi.utils.DateParser;
 import com.otchi.utils.mocks.MockCrudRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,9 +19,10 @@ import org.mockito.Captor;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
+import static java.time.LocalDateTime.now;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
@@ -31,8 +30,7 @@ public class FeedServiceImplTest {
 
     private PostRepository postRepository = new MockPostRepository();
     private UserService userService = Mockito.mock(UserService.class);
-    private DateFactory dateFactory = Mockito.mock(DateFactory.class);
-    private PushNotificationsService pushNotificationsService = mock(PushNotificationsService.class);
+    private Clock clock = Mockito.mock(Clock.class);
     private DomainEvents domainEvents = mock(DomainEvents.class);
     private FeedService feedService;
     private User user = new User("email@fofo.com", "firstName_sample", "lastName");
@@ -47,10 +45,10 @@ public class FeedServiceImplTest {
     public void setUp() {
         MockCrudRepository.clearDatabase();
 
-        feedService = new FeedServiceImpl(postRepository, userService, dateFactory, domainEvents);
+        feedService = new FeedServiceImpl(postRepository, userService, clock, domainEvents);
 
         // Create new Post;
-        Post post = new Post(new Date());
+        Post post = new Post(now());
         postRepository.save(post);
         //mock user service
         when(userService.findUserByUsername("email@fofo.com")).thenReturn(Optional.of(user));
@@ -115,8 +113,8 @@ public class FeedServiceImplTest {
 
     @Test
     public void shouldSetCommentCreationOnDateToNow() throws Exception {
-        Date now = DateParser.parse("2015-02-28 12:15:22.8");
-        Mockito.when(dateFactory.now()).thenReturn(now);
+        LocalDateTime now = LocalDateTime.parse("2015-02-28T12:15:22.8");
+        Mockito.when(clock.now()).thenReturn(now);
         feedService.commentOnPost(1L, "What a delicious meal", "email@fofo.com");
         Post post = postRepository.findOne(1L);
         assertThat(post.getComments()).extracting(Comment::getCreatedOn).containsExactly(now);

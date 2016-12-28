@@ -1,7 +1,7 @@
 package com.otchi.domain.social.models;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "NOTIFICATION")
@@ -23,8 +23,7 @@ public class Notification {
     private boolean unread = true;
 
     @Column(name = "CREATED_AT")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date creationDate;
+    private LocalDateTime creationDate;
 
     @Column(name = "SENDER_ID")
     private String senderId;
@@ -66,11 +65,11 @@ public class Notification {
         return unread;
     }
 
-    public Date getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void changeCreationDateTo(Date newCreationDate) {
+    public void changeCreationDateTo(LocalDateTime newCreationDate) {
         this.creationDate = newCreationDate;
     }
 

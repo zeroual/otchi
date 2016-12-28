@@ -1,13 +1,11 @@
 package com.otchi.api.facades.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.otchi.api.facades.serializers.CustomDateSerializer;
 import com.otchi.domain.kitchen.Recipe;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.models.Story;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -16,8 +14,7 @@ public class PostDTO implements DTO<Post> {
     private Long id;
     private AuthorDTO author;
 
-    @JsonSerialize(using = CustomDateSerializer.class)
-    private Date createdTime;
+    private LocalDateTime createdTime;
 
     private AbstractPostContent content;
 
@@ -42,7 +39,7 @@ public class PostDTO implements DTO<Post> {
         return likes;
     }
 
-    public Date getCreatedTime() {
+    public LocalDateTime getCreatedTime() {
         return createdTime;
     }
 

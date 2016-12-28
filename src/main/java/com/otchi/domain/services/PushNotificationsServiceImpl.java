@@ -1,6 +1,6 @@
 package com.otchi.domain.services;
 
-import com.otchi.application.utils.DateFactory;
+import com.otchi.application.utils.Clock;
 import com.otchi.domain.social.models.Notification;
 import com.otchi.domain.social.models.NotificationType;
 import com.otchi.domain.social.models.Post;
@@ -9,7 +9,7 @@ import com.otchi.infrastructure.notifications.WebsocketMessageSending;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import static com.otchi.domain.social.models.NotificationType.COMMENT_ON_POST;
 
@@ -18,22 +18,22 @@ public class PushNotificationsServiceImpl implements PushNotificationsService {
 
     private WebsocketMessageSending websocketMessageSending;
     private NotificationsRepository notificationsRepository;
-    private DateFactory dateFactory;
+    private Clock clock;
 
     @Autowired
     public PushNotificationsServiceImpl(WebsocketMessageSending websocketMessageSending,
                                         NotificationsRepository notificationsRepository,
-                                        DateFactory dateFactory) {
+                                        Clock clock) {
         this.websocketMessageSending = websocketMessageSending;
         this.notificationsRepository = notificationsRepository;
-        this.dateFactory = dateFactory;
+        this.clock = clock;
     }
 
     @Override
     public Notification sendLikeNotificationToPostAuthor(Post post, String likerUsername) {
         String postAuthor = post.getAuthor().getUsername();
         Notification notification = new Notification(postAuthor, likerUsername, post.getId(), NotificationType.LIKED);
-        Date now = getCurrentDate();
+        LocalDateTime now = getCurrentDate();
         notification.changeCreationDateTo(now);
         notificationsRepository.save(notification);
         websocketMessageSending.sendLikedEvent(postAuthor, notification);
@@ -45,7 +45,7 @@ public class PushNotificationsServiceImpl implements PushNotificationsService {
         String postAuthor = post.getAuthor().getUsername();
         if (!commentOwner.equals(postAuthor)) {
             Notification notification = new Notification(postAuthor, commentOwner, post.getId(), COMMENT_ON_POST);
-            Date now = getCurrentDate();
+            LocalDateTime now = getCurrentDate();
             notification.changeCreationDateTo(now);
             notification = notificationsRepository.save(notification);
             websocketMessageSending.sendNotification(notification);
@@ -54,8 +54,8 @@ public class PushNotificationsServiceImpl implements PushNotificationsService {
         return null;
     }
 
-    private Date getCurrentDate() {
-        return dateFactory.now();
+    private LocalDateTime getCurrentDate() {
+        return clock.now();
     }
 
 
