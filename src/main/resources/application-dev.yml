@@ -14,6 +14,14 @@ spring:
         twitter:
             clientId: nJkqqr1jpzKsamjbXksRFoWDb
             clientSecret: ATGWhZKdpHnfvJBdzS7FesfiDPkPwR1trXhSqWKwsugrdBIfC1
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        database: H2
+        openInView: true
+        show_sql: false
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
 liquibase:
     contexts: dev
     change-log: classpath:/database/db.changelog-master.xml

@@ -26,12 +26,11 @@ spring:
     jpa:
         database-platform: org.hibernate.dialect.MySQLInnoDBDialect
         database: MYSQL
-        openInView: false
+        openInView: true
         show_sql: false
         generate-ddl: false
         hibernate:
             ddl-auto: none
-            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
         properties:
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
