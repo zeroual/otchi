@@ -1,0 +1,51 @@
+{
+  "name": "otchi",
+  "scripts": {},
+  "env": {
+    "BONSAI_URL": {
+      "required": true
+    },
+    "CLEARDB_DATABASE_URL": {
+      "required": true
+    },
+    "CLOUDAMQP_URL": {
+      "required": true
+    },
+    "SPARKPOST_API_KEY": {
+      "required": true
+    },
+    "SPARKPOST_API_URL": {
+      "required": true
+    },
+    "SPARKPOST_SANDBOX_DOMAIN": {
+      "required": true
+    },
+    "SPARKPOST_SMTP_HOST": {
+      "required": true
+    },
+    "SPARKPOST_SMTP_PASSWORD": {
+      "required": true
+    },
+    "SPARKPOST_SMTP_PORT": {
+      "required": true
+    },
+    "SPARKPOST_SMTP_USERNAME": {
+      "required": true
+    }
+  },
+  "formation": {},
+  "addons": [
+    "bonsai",
+    "cleardb",
+    "cloudamqp",
+    "sparkpost"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/java"
+    }
+  ]
+}
