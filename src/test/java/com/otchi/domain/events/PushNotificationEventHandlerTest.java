@@ -2,6 +2,7 @@ package com.otchi.domain.events;
 
 import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.social.models.Post;
+import com.otchi.domain.users.models.User;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
@@ -18,6 +19,8 @@ public class PushNotificationEventHandlerTest {
     @Test
     public void shouldSendCommentedNotificationToPostAuthor() {
         Post commentedPost = new Post(LocalDateTime.now());
+        String postOwner = "postOwner";
+        commentedPost.setAuthor(new User(postOwner));
         String commentOwner = "commentOwner";
         PostCommentedEvent postCommentedEvent = new PostCommentedEvent(commentedPost, commentOwner);
         pushNotificationEventHandler.sendCommentedNotificationToPostAuthor(postCommentedEvent);
@@ -27,6 +30,8 @@ public class PushNotificationEventHandlerTest {
     @Test
     public void shouldSendLikeNotificationToPostAuthor(){
         Post likedPost = new Post(LocalDateTime.now());
+        String postOwner = "postOwner";
+        likedPost.setAuthor(new User(postOwner));
         String likeOwner = "likeOwner";
         LikePostEvent postLikedEvent = new LikePostEvent(likedPost, likeOwner);
         pushNotificationEventHandler.sendLikeNotificationToPostAuthor(postLikedEvent);

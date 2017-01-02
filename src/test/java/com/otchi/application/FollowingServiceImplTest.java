@@ -5,6 +5,7 @@ import com.otchi.domain.users.exceptions.UserNotFoundException;
 import com.otchi.domain.users.models.User;
 import com.otchi.domain.users.models.UserRepository;
 import com.otchi.domain.users.models.mocks.MockUserRepository;
+import com.otchi.utils.mocks.MockCrudRepository;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class FollowingServiceImplTest {
 
     @Before
     public void setUp() {
-
+        MockCrudRepository.clearDatabase();
         User user = new User("toto@foo.com");
         user.setFirstName("firstName_test");
         userRepository.save(user);
