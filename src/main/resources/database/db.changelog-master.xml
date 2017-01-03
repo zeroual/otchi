@@ -15,6 +15,7 @@
     <include file="classpath:database/changelog/201608121745_add_notification_table.xml"/>
     <include file="classpath:database/changelog/201610101344_add_tags_to_recipe.xml"/>
     <include file="classpath:database/changelog/201623121619_rename_hibernate_sequence_name.xml"/>
+    <include file="classpath:database/changelog/201703011807_attach_images_to_post.xml"/>
     <!-- TODO I don't like the following solution, but we need to clear database for each test (test isolation)-->
     <!-- So don't forget to add a new row in empty.xml if you add new table-->
     <!-- We will look for new alternative in the future -->

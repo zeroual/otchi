@@ -1,9 +1,9 @@
 angular.module("stream")
     .directive('feedViewer', function () {
         return {
-        scope:{
-            feed:"="
-        },
+            scope: {
+                feed: "="
+            },
             templateUrl: 'app/social/stream/directives/feed-viewer/feed-viewer.template.html',
             controller: function ($scope, $rootScope, FeedsService, $uibModal) {
 
@@ -17,25 +17,25 @@ angular.module("stream")
                 };
 
                 $scope.deletePost = function (post) {
-                	$uibModal.open({
-	            	      animation: true,
-	            	      ariaLabelledBy: 'modal-title',
-	            	      ariaDescribedBy: 'modal-body',
-	            	      templateUrl: '/app/components/modal/confirm-delete-template.html',
-	            	      size: 'sm',
-	            	      controller: function($scope, $uibModalInstance) {
+                    $uibModal.open({
+                        animation: true,
+                        ariaLabelledBy: 'modal-title',
+                        ariaDescribedBy: 'modal-body',
+                        templateUrl: '/app/components/modal/confirm-delete-template.html',
+                        size: 'sm',
+                        controller: function ($scope, $uibModalInstance) {
 
-	            	    	  $scope.ok = function(){
-	            	    		  $rootScope.$broadcast('REMOVE_POST_PUBLISHED_EVENT', post);
-	            	    		  $uibModalInstance.dismiss('ok');
-	                          }
+                            $scope.ok = function () {
+                                $rootScope.$broadcast('REMOVE_POST_PUBLISHED_EVENT', post);
+                                $uibModalInstance.dismiss('ok');
+                            };
 
-	                          $scope.cancel = function(){
-	                        	  $uibModalInstance.dismiss('cancel');
-	                          }
-	            	      }
-                	});
-                }
+                            $scope.cancel = function () {
+                                $uibModalInstance.dismiss('cancel');
+                            }
+                        }
+                    });
+                };
 
                 $scope.showLikes = function (feed) {
                     $uibModal.open({

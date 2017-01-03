@@ -4,10 +4,7 @@ import com.otchi.domain.users.models.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -44,6 +41,13 @@ public class Post {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "POST_CONTENT_ID")
     private PostContent postContent;
+
+    @ElementCollection()
+    @CollectionTable(name = "POST_IMAGES",
+            joinColumns = @JoinColumn(name = "POST_ID",
+                    referencedColumnName = "ID"))
+    @Column(name = "URL")
+    private List<String> images = new ArrayList<>();
 
     public Post() {
 
@@ -99,5 +103,13 @@ public class Post {
 
     public boolean isOwnedBy(String username) {
         return getAuthor().getUsername().equals(username);
+    }
+
+    public List<String> images() {
+        return this.images;
+    }
+
+    public void attachImages(List<String> images) {
+        this.images = images;
     }
 }

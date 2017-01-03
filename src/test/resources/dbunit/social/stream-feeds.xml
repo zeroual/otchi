@@ -9,8 +9,8 @@
             PICTURE="picture1"
     />
 
-    <RECIPE_IMAGES URL="http://host/image.png"
-                   RECIPE_ID="2"/>
+    <POST_IMAGES URL="http://host/image.png"
+                 POST_ID="1"/>
     <recipe ID="2"
             TITLE="TITLE_SAMPLE_2"/>
 
@@ -31,8 +31,8 @@
 
     />
 
-    <STORY_IMAGES URL="http://host/image2.png"
-                  STORY_ID="3"/>
+    <POST_IMAGES URL="http://host/image2.png"
+                 POST_ID="2"/>
     <STORY ID="3"
            CONTENT="my story"/>
 

@@ -20,7 +20,6 @@ public class RecipeDTO extends AbstractPostContent implements DTO<Recipe> {
     private List<IngredientDTO> ingredients = new ArrayList<>();
     private List<InstructionDTO> instructions = new ArrayList<>();
     private String title;
-    private List<String> images = new ArrayList<>();
     private Set<String> tags = new HashSet<>();
 
     private RecipeDTO() {
@@ -93,10 +92,6 @@ public class RecipeDTO extends AbstractPostContent implements DTO<Recipe> {
         this.title = title;
     }
 
-    public List<String> getImages() {
-        return images;
-    }
-
     public Set<String> getTags() {
         return tags;
     }
@@ -126,7 +121,6 @@ public class RecipeDTO extends AbstractPostContent implements DTO<Recipe> {
         this.instructions = recipe.getInstructions().stream()
                 .map(InstructionDTO::new).collect(toList());
         this.title = recipe.getTitle();
-        this.images = recipe.getImages();
         this.tags = recipe.getTags();
     }
 }

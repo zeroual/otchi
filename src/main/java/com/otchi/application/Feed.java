@@ -7,6 +7,7 @@ import com.otchi.domain.users.models.User;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 public class Feed {
@@ -25,6 +26,8 @@ public class Feed {
 
     private final boolean canBeRemoved;
 
+    private final List<String> images;
+
     public Feed(Post post, String username) {
         this.id = post.getId();
         this.createdTime = post.getCreatedTime();
@@ -33,6 +36,7 @@ public class Feed {
         this.comments = post.getComments();
         this.postContent = post.getPostContent();
         this.canBeRemoved = post.isOwnedBy(username);
+        this.images = post.images();
     }
 
 
@@ -62,5 +66,9 @@ public class Feed {
 
     public boolean canBeRemoved() {
         return canBeRemoved;
+    }
+
+    public List<String> images() {
+        return images;
     }
 }

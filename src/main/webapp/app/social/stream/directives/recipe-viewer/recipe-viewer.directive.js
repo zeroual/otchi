@@ -4,7 +4,8 @@ angular.module("stream")
         return {
             scope: {
                 recipe: '=',
-                feedId: '='
+                feedId: '=',
+                images: '='
             },
             templateUrl: 'app/social/stream/directives/recipe-viewer/recipe-viewer.template.html'
         };
