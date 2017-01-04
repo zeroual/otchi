@@ -1,24 +1,24 @@
 <div class="row">
     <div class="col-md-12">
-        <h4 class="recipe-title"> {{recipe.title}}</h4>
+        <h4 class="recipe-title"> {{$ctrl.recipe.title}}</h4>
         <div class="prepTime">
             <span class="glyphicon glyphicon-time time-icon"></span>
-            <span class="prepTime_item"> {{recipe.cookTime}} m to cook</span>
-            <span class="prepTime_item"> {{recipe.preparationTime}} m to prepare </span>
+            <span class="prepTime_item"> {{$ctrl.recipe.cookTime}} m to cook</span>
+            <span class="prepTime_item"> {{$ctrl.recipe.preparationTime}} m to prepare </span>
             <span class="prepTime_item"> ready in 50 m</span>
         </div>
         <span class="clearfix"></span>
         <p class="recipe-description">
-            {{recipe.description}}
+            {{$ctrl.recipe.description}}
         </p>
     </div>
 
-    <div class="recipe-images" ui-sref="showRecipe({feedId:feedId})">
-        <images-gallery images="images"/>
+    <div class="recipe-images" ui-sref="showRecipe({feedId:$ctrl.feedId})">
+        <images-gallery images="$ctrl.images"/>
     </div>
     <div class="col-md-12">
         <div class="recipe-tags">
-            <span ng-repeat="tag in recipe.tags">
+            <span ng-repeat="tag in $ctrl.recipe.tags">
                 {{tag}}
             </span>
         </div>
