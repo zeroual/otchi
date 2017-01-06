@@ -43,8 +43,15 @@
             </div>
         </div>
         <div class="panel-body">
-            <recipe-viewer recipe="feed.content" feed-id="feed.id" ng-if="feed.content.type==='RECIPE'"/>
-            <story-viewer story="feed.content" ng-if="feed.content.type==='STORY'"/>
+            <recipe-viewer recipe="feed.content"
+                           feed-id="feed.id"
+                           images="feed.images"
+                           ng-if="feed.content.type==='RECIPE'"
+            />
+            <story-viewer story="feed.content"
+                          images="feed.images"
+                          ng-if="feed.content.type==='STORY'"
+            />
         </div>
         <div class="panel-footer">
             <div>

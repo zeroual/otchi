@@ -3,15 +3,15 @@
     <div class="col-md-12 col-sm-12">
         <div>
             <p>
-                {{story.content}}
+                {{$ctrl.story.content}}
             </p>
         </div>
     </div>
 
-    <div class="col-md-12 col-sm-12" ng-if="story.images">
+    <div class="col-md-12 col-sm-12" ng-if="$ctrl.story.images">
         <a href="#">
             <img class="img-responsive"
-                 ng-src="{{story.images[0]}}">
+                 ng-src="{{$ctrl.images[0]}}">
         </a>
     </div>
 </div>

@@ -2,7 +2,6 @@ package com.otchi.domain.social.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -16,5 +15,4 @@ public abstract class PostContent implements Serializable {
         return id;
     }
 
-    public abstract void setImages(List<String> images);
 }

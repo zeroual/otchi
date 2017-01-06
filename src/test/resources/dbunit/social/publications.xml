@@ -27,8 +27,12 @@
             CREATED_ON="2016-02-22"
     />
 
-    <STORY_IMAGES URL="http://url.com/imageID"
-                  STORY_ID="3"/>
+    <POST_IMAGES URL="http://url.com/image1"
+                 POST_ID="1"/>
+
+    <POST_IMAGES URL="http://url.com/image2"
+                 POST_ID="2"/>
+
     <STORY ID="3"
            CONTENT="my story"/>
     <POST ID="2"

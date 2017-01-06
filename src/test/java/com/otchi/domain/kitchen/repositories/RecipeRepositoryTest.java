@@ -44,8 +44,6 @@ public class RecipeRepositoryTest extends AbstractIntegrationTest {
                 .extracting(instruction -> instruction.getContent())
                 .isEqualTo(asList("CONTENT_SAMPLE"));
 
-        assertThat(recipe.getImages()).containsExactly("http://url.com/imageID");
-
         assertThat(recipe.getTags()).containsExactly("moroccan");
     }
 

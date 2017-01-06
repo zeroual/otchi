@@ -13,17 +13,14 @@ import static java.util.stream.Collectors.toList;
 public class FeedDTO {
     private Long id;
     private AuthorDTO author;
-
     private LocalDateTime createdTime;
-
     private AbstractPostContent content;
-
     private List<UserDTO> likes = new ArrayList<>();
     private List<CommentDTO> comments = new ArrayList<>();
-
     private boolean liked = false;
-
     private boolean canBeRemoved = false;
+    private List<String> images;
+
 
     private FeedDTO() {
 
@@ -41,6 +38,7 @@ public class FeedDTO {
         this.likes = feed.getLikes().stream().map(UserDTO::new).collect(toList());
         this.comments = feed.getComments().stream().map(CommentDTO::new).collect(toList());
         this.canBeRemoved = feed.canBeRemoved();
+        this.images = feed.images();
 
     }
 
@@ -79,5 +77,9 @@ public class FeedDTO {
 
     public boolean isCanBeRemoved() {
         return this.canBeRemoved;
+    }
+
+    public List<String> getImages() {
+        return images;
     }
 }

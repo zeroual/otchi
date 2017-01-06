@@ -51,16 +51,16 @@ public class PublicationsServiceImpl implements PublicationsService {
     //FIXME (abdellah) i don't like that a service change parameter's state (services are stateless)
     private Post publishPost(PostContent postContent, List<MultipartFile> images, String authorUsername) {
         User author = getAuthor(authorUsername);
-        Post post = createPost(author, postContent);
         List<String> imagesURL = saveImages(images);
-        postContent.setImages(imagesURL);
+        Post post = createPost(author, postContent, imagesURL);
         return postRepository.save(post);
     }
 
-    private Post createPost(User author, PostContent content) {
+    private Post createPost(User author, PostContent content, List<String> imagesURL) {
         Post post = new Post(clock.now());
         post.setAuthor(author);
         post.setPostContent(content);
+        post.attachImages(imagesURL);
         return post;
     }
 

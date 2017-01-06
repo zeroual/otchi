@@ -80,7 +80,7 @@ public class PublicationsServiceTest {
     }
 
     @Test
-    public void shouldSaveRecipePictures() {
+    public void shouldSaveRecipeImages() {
 
         List<String> imagesURL = asList("http://url.com/12OU222Y1Y2.png");
         when(blobStorageService.save(anyListOf(MultipartFile.class))).thenReturn(imagesURL);
@@ -91,10 +91,9 @@ public class PublicationsServiceTest {
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
         Post savedPost = publicationsService.publishRecipe(recipe, pictures, "email@gmail.com");
         Mockito.verify(blobStorageService).save(pictures);
-        Recipe savedRecipe = (Recipe) savedPost.getPostContent();
-        assertThat(savedRecipe.getImages()).hasSize(1)
-                .isEqualTo(imagesURL);
 
+        assertThat(savedPost.images()).hasSize(1)
+                .isEqualTo(imagesURL);
 
     }
 
@@ -143,9 +142,7 @@ public class PublicationsServiceTest {
         Story story = new Story("my story");
         Post savedPost = publicationsService.publishStory(story, images, "email@gmail.com");
         Mockito.verify(blobStorageService).save(images);
-        Story savedStory = (Story) savedPost.getPostContent();
-        assertThat(savedStory.getImages()).hasSize(1)
-                .isEqualTo(imagesURL);
+        assertThat(savedPost.images()).hasSize(1).isEqualTo(imagesURL);
 
 
     }

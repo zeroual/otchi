@@ -31,6 +31,7 @@ public class PostRepositoryTest extends AbstractIntegrationTest {
                 .contains("Abdellah");
 
         assertThat(savedPost.getPostContent()).isNotNull();
+        assertThat(savedPost.images()).containsOnly("http://url.com/image1");
         assertThat(((Recipe) savedPost.getPostContent()).getTitle()).isEqualTo("TITLE_SAMPLE_2");
 
         assertThat(savedPost.getAuthor()).isNotNull();
@@ -44,7 +45,7 @@ public class PostRepositoryTest extends AbstractIntegrationTest {
         Post savedStoryPost = postRepository.findOne(2L);
         assertThat(savedStoryPost).isNotNull();
         assertThat(((Story) savedStoryPost.getPostContent()).content()).isEqualTo("my story");
-        assertThat(((Story) savedStoryPost.getPostContent()).getImages()).hasSize(1);
+        assertThat(savedStoryPost.images()).containsOnly("http://url.com/image2");
 
     }
 

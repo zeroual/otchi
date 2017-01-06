@@ -38,12 +38,6 @@ public class Recipe extends PostContent{
     private String title;
 
     @ElementCollection
-    @CollectionTable(name = "RECIPE_IMAGES", joinColumns = @JoinColumn(name = "RECIPE_ID", referencedColumnName = "ID"))
-    @Column(name = "URL")
-    List<String> images = new ArrayList<>();
-
-
-    @ElementCollection
     private Set<String> tags = new HashSet<>();
 
     public Recipe(String title, String description, Integer cookTime, Integer preparationTime) {
@@ -105,14 +99,6 @@ public class Recipe extends PostContent{
 
     public void addInstruction(Instruction instruction) {
         this.instructions.add(instruction);
-    }
-
-    public List<String> getImages() {
-        return images;
-    }
-
-    public  void setImages(List<String> images) {
-        this.images = images;
     }
 
     public Set<String> getTags() {
