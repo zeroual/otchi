@@ -1,6 +1,7 @@
 package com.otchi.infrastructure.mail;
 
 import com.otchi.application.MailService;
+import com.otchi.domain.social.models.Post;
 import com.otchi.domain.users.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,12 @@ public class MailServiceImpl implements MailService {
         String subject = "Welcome to otchi";
         sendEmail(user.getEmail(), subject, content);
     }
+
+    @Override
+    public void sendLikedPostNotificationMail(User author, User liker, String summary, Long postId) {
+
+    }
+
 
     public void sendEmail(String to, String subject, String content) {
         log.debug("Send e-mail to '{}' with subject '{}'", to, subject);
