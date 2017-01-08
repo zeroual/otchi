@@ -42,6 +42,7 @@ public class PushNotificationEventHandlerTest {
         String postOwner = "postOwner";
         likedPost.setAuthor(new User(postOwner));
         String likeOwner = "likeOwner";
+        when(connectedUserService.isConnected(postOwner)).thenReturn(true);
         LikePostEvent postLikedEvent = new LikePostEvent(likedPost, likeOwner);
         pushNotificationEventHandler.sendLikeNotificationToPostAuthor(postLikedEvent);
         verify(pushNotificationsService).sendLikeNotificationToPostAuthor(eq(likedPost), eq(likeOwner));
