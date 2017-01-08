@@ -27,7 +27,7 @@ public class Story extends PostContent {
 
 	@Override
 	public String getSummary() {
-		return content.subSequence(0, 20).toString();
+		return content.length() >= 20 ?  content.subSequence(0, 20).toString() : content ;
 	}
 
 }
