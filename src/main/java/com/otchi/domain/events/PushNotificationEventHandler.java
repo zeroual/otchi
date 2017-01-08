@@ -47,6 +47,7 @@ public class PushNotificationEventHandler {
         LikePostEvent event = likePostEvent;
         Post likedPost = event.getLikedPost();
         String likeOwner = event.getLikeOwner();
+        
         if (!likedPost.isOwnedBy(likeOwner)) {
             String authorUsername = likedPost.getAuthor().getUsername();
             if (connectedUserService.isConnected(authorUsername)) {
