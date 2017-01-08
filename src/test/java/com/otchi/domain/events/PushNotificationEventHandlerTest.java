@@ -2,8 +2,10 @@ package com.otchi.domain.events;
 
 import com.otchi.application.MailService;
 import com.otchi.application.UserService;
+import com.otchi.domain.mail.MailParameter;
 import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.social.models.Post;
+import com.otchi.domain.social.models.Story;
 import com.otchi.domain.users.models.User;
 import org.junit.Test;
 
@@ -48,6 +50,7 @@ public class PushNotificationEventHandlerTest {
     @Test
     public void shouldSendEmailToAuthorIfIsNotConnected() {
         Post likedPost = new Post(LocalDateTime.now());
+        likedPost.setPostContent(new Story("blabla"));
         String postOwner = "postOwner";
         likedPost.setAuthor(new User(postOwner));
         String likeOwner = "likeOwner";
@@ -59,11 +62,11 @@ public class PushNotificationEventHandlerTest {
         pushNotificationEventHandler.sendLikeNotificationToPostAuthor(postLikedEvent);
 
         User author = likedPost.getAuthor();
-
-        String summary = "";
+        String summary = "blabla";
         Long postId = likedPost.getId();
 
-        verify(mailService, atLeastOnce()).sendLikedPostNotificationMail(author, liker,summary, postId);
+        verify(mailService, atLeastOnce()).sendLikedPostNotificationMail(
+        		new MailParameter(author, liker, summary, postId));
 
     }
 }

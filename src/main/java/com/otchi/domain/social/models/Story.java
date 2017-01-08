@@ -25,4 +25,9 @@ public class Story extends PostContent {
         return content;
     }
 
+	@Override
+	public String getSummary() {
+		return content.subSequence(0, 20).toString();
+	}
+
 }

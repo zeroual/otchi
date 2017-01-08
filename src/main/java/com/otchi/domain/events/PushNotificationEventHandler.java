@@ -3,6 +3,7 @@ package com.otchi.domain.events;
 import com.google.common.eventbus.Subscribe;
 import com.otchi.application.MailService;
 import com.otchi.application.UserService;
+import com.otchi.domain.mail.MailParameter;
 import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.users.models.User;
@@ -53,10 +54,13 @@ public class PushNotificationEventHandler {
             }
             else {
 
-
-                User liker = userService.findUserByUsername(likeOwner).orElseThrow(()-> new RuntimeException("to change !!"));
+                User liker = userService.findUserByUsername(likeOwner).orElseThrow(()-> 
+                new RuntimeException("to change !!"));
                 User author = likedPost.getAuthor();
-                mailService.sendLikedPostNotificationMail(author,liker,null,null);
+                String summary = likedPost.getPostContent().getSummary();
+                Long postId = likedPost.getId();
+                                
+                mailService.sendLikedPostNotificationMail(new MailParameter(author, liker, summary, postId));
             }
         }
     }

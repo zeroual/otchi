@@ -15,4 +15,5 @@ public abstract class PostContent implements Serializable {
         return id;
     }
 
+    public abstract String getSummary();
 }
