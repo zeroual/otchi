@@ -105,16 +105,15 @@ public class Post {
         return getAuthor().getUsername().equals(username);
     }
 
-<<<<<<< Updated upstream
     public List<String> images() {
         return this.images;
     }
 
     public void attachImages(List<String> images) {
         this.images = images;
-=======
+    }
+    
     public String summary() {
         return null;
->>>>>>> Stashed changes
     }
 }
