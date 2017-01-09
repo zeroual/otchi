@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Welcome to otchi</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-</head>
-<body>
-<p>
-    Bonjour, <div th:text="${postAuthorFirstName}"/>
-    <div th:text="postLikerFirstName"/> a aimé votre post :
-    
-    <a href="" th:text="${postSummary}"/>
-     
-</p>
-</body>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:remove="all">Template for HTML email with inline image</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <p>
+      Hello, <span th:text="${postAuthorFirstName}">toto</span>
+      
+    </p>
+    <p>
+    	<span th:text="${postLikerFirstName}">toto</span>, has liked you post : 
+    	<a href=""><span th:text="${postSummary}">your post</span></a>
+    </p>
+    <p>
+      Regards, <br />
+      <em>The Otchi Team</em>
+    </p>
+  </body>
 </html>
