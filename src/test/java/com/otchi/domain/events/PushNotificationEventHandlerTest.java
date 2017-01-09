@@ -23,7 +23,9 @@ public class PushNotificationEventHandlerTest {
     private ConnectedUserService connectedUserService = mock(ConnectedUserService.class);
     private MailService mailService = mock(MailService.class);
     private UserService userService = mock(UserService.class);
-    private PushNotificationEventHandler pushNotificationEventHandler = new PushNotificationEventHandler(pushNotificationsService, connectedUserService, mailService,
+    private String serverAdress = "https://otchi.herokuapp.com/feed";
+    private PushNotificationEventHandler pushNotificationEventHandler = new PushNotificationEventHandler(
+    		serverAdress, pushNotificationsService, connectedUserService, mailService,
             userService);
 
     @Test
@@ -58,7 +60,8 @@ public class PushNotificationEventHandlerTest {
         LikePostEvent postLikedEvent = new LikePostEvent(likedPost, likeOwner);
         User liker = new User(likeOwner);
         User author = new User(postOwner);
-        Long postId = new Long(928839L);
+        Long postId = new Long(928839);
+        String postUrl = new String("https://otchi.herokuapp.com/feed/928839");
         
         // expect
         when(likedPost.getAuthor()).thenReturn(author);
@@ -71,7 +74,7 @@ public class PushNotificationEventHandlerTest {
         pushNotificationEventHandler.sendLikeNotificationToPostAuthor(postLikedEvent);
 
         verify(mailService, atLeastOnce()).sendLikedPostNotificationMail(
-        		new MailParameter(author, liker, summary, postId));
+        		new MailParameter(author, liker, summary, postUrl));
 
     }
 }

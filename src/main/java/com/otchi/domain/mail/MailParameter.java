@@ -7,13 +7,13 @@ public class MailParameter {
 	private final User author;
 	private final User liker;
 	private final String summary;
-	private final Long postId;
+	private final String postUrl;
 
-	public MailParameter(User author, User liker, String summary, Long postId) {
+	public MailParameter(User author, User liker, String summary, String postUrl) {
 		this.author = author;
 		this.liker = liker;
 		this.summary = summary;
-		this.postId = postId;
+		this.postUrl = postUrl;
 	}
 
 	public User getAuthor() {
@@ -28,19 +28,18 @@ public class MailParameter {
 		return summary;
 	}
 
-	public Long getPostId() {
-		return postId;
+	public String getPostUrl() {
+		return postUrl;
 	}
 
-	
 	@Override
 	public String toString() {
-		return "MailParameter [author=" + author + ", liker=" + liker + ", summary=" + summary + ", postId=" + postId
+		return "MailParameter [author=" + author + ", liker=" + liker + ", summary=" + summary + ", postUrl=" + postUrl
 				+ "]";
 	}
     @Override
     public int hashCode() {
-        return Objects.hashCode(getClass(), author, liker, summary, postId);
+        return Objects.hashCode(getClass(), author, liker, summary, postUrl);
     }
 
     @Override
@@ -54,7 +53,7 @@ public class MailParameter {
         MailParameter that = (MailParameter) object;
         return Objects.equal(this.author, that.author)
                 && Objects.equal(this.liker, that.liker)
-                && Objects.equal(this.postId, that.postId)
+                && Objects.equal(this.postUrl, that.postUrl)
                 && Objects.equal(this.summary, that.summary);
         // @formatter:on
     }

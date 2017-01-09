@@ -1,15 +1,17 @@
 package com.otchi.domain.events;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.socket.messaging.DefaultSimpUserRegistry;
 
+@Service
 public class ConnectedUserService {
 	
-	private final DefaultSimpUserRegistry defaultSimpUserRegistry;
+	private final DefaultSimpUserRegistry defaultSimpUserRegistry ;
 	
 	@Autowired
     public ConnectedUserService(DefaultSimpUserRegistry defaultSimpUserRegistry) {
-		this.defaultSimpUserRegistry = defaultSimpUserRegistry;
+		this.defaultSimpUserRegistry =defaultSimpUserRegistry;
 	}
 
 

@@ -46,7 +46,7 @@ public class MailServiceImpl implements MailService {
         Context context = new Context();
         context.setVariable("postAuthorFirstName", parameterObject.getAuthor().getFirstName());
         context.setVariable("postLikerFirstName", parameterObject.getLiker().getFirstName());
-        context.setVariable("postId", parameterObject.getPostId());
+        context.setVariable("postUrl", parameterObject.getPostUrl());
         context.setVariable("postSummary", parameterObject.getSummary());
         String content = templateEngine.process("likePostNotificationMail", context);
         String subject = "Like post Notification";

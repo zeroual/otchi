@@ -31,3 +31,5 @@ otchi:
       relayDestinationPrefix: /topic
       appDestinationPrefix: /app
       endpoint: /socket
+   post: 
+     url: https://otchi.herokuapp.com/feed

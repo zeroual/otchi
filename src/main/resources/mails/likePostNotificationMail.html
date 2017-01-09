@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title th:remove="all">Template for HTML email with inline image</title>
+    <title th:remove="all">Like post notification mail</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   </head>
   <body>
@@ -11,7 +11,7 @@
     </p>
     <p>
     	<span th:text="${postLikerFirstName}">toto</span>, has liked you post : 
-    	<a href=""><span th:text="${postSummary}">your post</span></a>
+    	<a href="${postUrl}"><span th:text="${postSummary}">your post</span></a>
     </p>
     <p>
       Regards, <br />
