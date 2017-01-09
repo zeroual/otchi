@@ -1,7 +1,7 @@
 package com.otchi.domain.events;
 
 import com.google.common.eventbus.Subscribe;
-import com.otchi.domain.services.PushNotificationsService;
+import com.otchi.domain.notifications.PushNotificationsService;
 import com.otchi.domain.social.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

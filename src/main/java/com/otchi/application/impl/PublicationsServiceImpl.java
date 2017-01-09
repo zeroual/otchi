@@ -2,6 +2,8 @@ package com.otchi.application.impl;
 
 import com.otchi.application.PublicationsService;
 import com.otchi.application.utils.Clock;
+import com.otchi.domain.events.DomainEvents;
+import com.otchi.domain.events.RecipePostedEvent;
 import com.otchi.domain.kitchen.Recipe;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.models.PostContent;
@@ -25,22 +27,30 @@ public class PublicationsServiceImpl implements PublicationsService {
     private UserRepository userRepository;
     private Clock clock;
     private final BlobStorageService blobStorageService;
+    private final DomainEvents domainEvents;
 
+    // FIXME PublicationsService should not have access to UserRepository directly :(
     @Autowired
     public PublicationsServiceImpl(PostRepository postRepository,
                                    UserRepository userRepository,
                                    Clock clock,
+                                   DomainEvents domainEvents,
                                    BlobStorageService blobStorageService) {
 
         this.postRepository = postRepository;
         this.userRepository = userRepository;
         this.clock = clock;
         this.blobStorageService = blobStorageService;
+        this.domainEvents = domainEvents;
     }
 
     @Override
     public Post publishRecipe(Recipe recipe, List<MultipartFile> images, String authorUsername) {
-        return publishPost(recipe, images, authorUsername);
+        Post post = publishPost(recipe, images, authorUsername);
+
+        RecipePostedEvent recipePostedEvent = new RecipePostedEvent(recipe);
+        domainEvents.raise(recipePostedEvent);
+        return post;
     }
 
     @Override

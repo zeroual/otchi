@@ -1,7 +1,8 @@
 angular.module('otchi')
-    .controller('NavBarController', function ($scope, $state, Auth, Principal, NotificationsService, $state) {
+    .controller('NavBarController', function ($scope, $state, Auth, Principal, NotificationsService, SearchService) {
         $scope.isAuthenticated = Principal.isAuthenticated;
         $scope.$state = $state;
+        $scope.recipeSuggestions = [];
 
         NotificationsService.getUnreadNotifications().then(function (notifications) {
             $scope.notifications = notifications;
@@ -22,5 +23,16 @@ angular.module('otchi')
                 notification.unread = false;
                 $state.go('showPost', {postId: notification.postId});
             });
+        };
+
+        $scope.suggestRecipes = function () {
+            SearchService.suggestRecipes($scope.recipeQuery).then(function (recipeSuggestions) {
+                $scope.recipeSuggestions = recipeSuggestions;
+            });
+        };
+
+        $scope.searchRecipes = function () {
+            var query = $scope.recipeQuery;
+            $state.go('search', {query: query});
         };
     });

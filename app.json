@@ -16,8 +16,7 @@
   "addons": [
     "bonsai",
     "cleardb",
-    "cloudamqp",
-    "sparkpost"
+    "cloudamqp"
   ],
   "buildpacks": [
     {

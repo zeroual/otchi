@@ -17,5 +17,9 @@ otchi:
    websocket:
          events:
             liked: "/topic/notifications"
+elasticsearch:
+   index-name: "otchi"
+   index-settings-mapping: "/elasticsearch/otchi_index_settings_mappings.json"
+
 server:
   port: 8080

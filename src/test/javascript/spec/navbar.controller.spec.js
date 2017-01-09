@@ -57,14 +57,14 @@ describe('NavBarController Tests', function () {
 
             it('should ask the server to mark the notification as read', function () {
                 $httpBackend.expectGET('/rest/v1/feed/3').respond(200);
-                var notification = {id: 3, postId:3};
+                var notification = {id: 3, postId: 3};
                 $scope.readNotification(notification);
                 $httpBackend.flush();
             });
 
             it('should mark local notification as read', function () {
                 $httpBackend.expectGET('/rest/v1/feed/3').respond(200);
-                var notification = {id: 3, unread: true, postId:3};
+                var notification = {id: 3, unread: true, postId: 3};
                 $scope.readNotification(notification);
                 $httpBackend.flush();
                 expect(notification.unread).toBeFalsy();
@@ -72,7 +72,7 @@ describe('NavBarController Tests', function () {
 
             it('should redirect user to a specific page to display post', function () {
                 spyOn($state, 'go');
-                var notification = {id: 3, unread: true, postId:3};
+                var notification = {id: 3, unread: true, postId: 3};
                 $scope.readNotification(notification);
                 $httpBackend.flush();
                 expect($state.go).toHaveBeenCalledWith("showPost", {postId: 3});
@@ -80,4 +80,37 @@ describe('NavBarController Tests', function () {
         });
 
     });
+
+    describe('Recipes search', function () {
+
+        beforeEach(function () {
+            $scope = instantiateController();
+        });
+
+        describe('Recipes suggestions', function () {
+
+            it('should ask the server to suggest recipes based on what user input the form', function () {
+                $scope.recipeQuery = 'tomato';
+                var expectedRecipeSuggestions = [
+                    {title: 'Double Tomato Bruschetta'}
+                ];
+                $httpBackend.expectGET('/rest/v1/recipe/search/suggest?query=' + $scope.recipeQuery).respond(200, expectedRecipeSuggestions);
+                $scope.suggestRecipes();
+                $httpBackend.flush();
+                expect($scope.recipeSuggestions).toEqualData(expectedRecipeSuggestions);
+            });
+        });
+
+        describe('Recipes search', function () {
+
+            it('should redirect to search page when user click on go', function () {
+                $scope.recipeQuery = 'tomato';
+                spyOn($state, 'go');
+                $scope.searchRecipes();
+                expect($state.go).toHaveBeenCalledWith('search', {query: $scope.recipeQuery});
+            });
+        });
+    });
+
+
 });

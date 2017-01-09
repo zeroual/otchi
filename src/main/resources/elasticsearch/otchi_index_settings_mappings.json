@@ -1,0 +1,64 @@
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "ngram_analyzer": {
+          "tokenizer": "ngram_tokenizer"
+        }
+      },
+      "tokenizer": {
+        "ngram_tokenizer": {
+          "type": "nGram",
+          "min_gram": "2",
+          "max_gram": "8"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "recipe": {
+      "properties": {
+        "preparationTime": {
+          "type": "long"
+        },
+        "title": {
+          "type": "string",
+          "analyzer": "ngram_analyzer"
+        },
+        "cookTime": {
+          "type": "long"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "long"
+        },
+        "suggest": {
+          "type": "completion",
+          "analyzer": "simple",
+          "payloads": false,
+          "preserve_separators": true,
+          "preserve_position_increments": true,
+          "max_input_length": 50
+        },
+        "ingredients": {
+          "properties": {
+            "id": {
+              "type": "long"
+            },
+            "name": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "double"
+            },
+            "unit": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
