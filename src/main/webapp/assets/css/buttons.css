@@ -183,3 +183,17 @@ a, button {
 .google-auth .auth-container {
     background-color: #D34836;
 }
+
+
+.btn-favorite {
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 36px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    height: auto;
+    transition: all 250ms ease-in-out;
+    color: #FFA500;
+}
