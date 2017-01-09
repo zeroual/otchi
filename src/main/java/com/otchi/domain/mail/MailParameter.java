@@ -1,6 +1,5 @@
 package com.otchi.domain.mail;
 
-import com.edelia.oauth2.authorizationserver.userdetails.ExternalId;
 import com.google.common.base.Objects;
 import com.otchi.domain.users.models.User;
 
