@@ -15,6 +15,7 @@ import java.util.Optional;
 import static java.util.Optional.of;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 public class PushNotificationEventHandlerTest {
 
@@ -50,19 +51,22 @@ public class PushNotificationEventHandlerTest {
 
     @Test
     public void shouldSendEmailToAuthorIfIsNotConnected() {
-        Post likedPost = new Post(LocalDateTime.now());
-        likedPost.setPostContent(new Story("blabla"));
+        Post likedPost = mock(Post.class);
         String postOwner = "postOwner";
-        likedPost.setAuthor(new User(postOwner));
         String likeOwner = "likeOwner";
-        LikePostEvent postLikedEvent = new LikePostEvent(likedPost, likeOwner);
-        User author = likedPost.getAuthor();
         String summary = "blabla";
-        Long postId = likedPost.getId();
-
+        LikePostEvent postLikedEvent = new LikePostEvent(likedPost, likeOwner);
         User liker = new User(likeOwner);
+        User author = new User(postOwner);
+        Long postId = new Long(928839L);
+        
+        // expect
+        when(likedPost.getAuthor()).thenReturn(author);
+        when(likedPost.getPostContent()).thenReturn(new Story(summary));
+        when(likedPost.getId()).thenReturn(postId);
         when(connectedUserService.isConnected(postOwner)).thenReturn(false);
         when(userService.findUserByUsername(likeOwner)).thenReturn(of(liker));
+        
         // action
         pushNotificationEventHandler.sendLikeNotificationToPostAuthor(postLikedEvent);
 
