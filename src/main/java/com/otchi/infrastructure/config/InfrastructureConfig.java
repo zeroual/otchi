@@ -2,7 +2,7 @@ package com.otchi.infrastructure.config;
 
 import com.google.common.eventbus.EventBus;
 import com.otchi.domain.events.DomainEvents;
-import com.otchi.domain.events.PushNotificationEventHandler;
+import com.otchi.domain.events.impl.PushNotificationEventHandler;
 import com.otchi.infrastructure.config.database.DatabaseConfig;
 import com.otchi.infrastructure.config.storage.BlobStorageConfig;
 import com.otchi.infrastructure.eventBus.GuavaDomainEventsBus;

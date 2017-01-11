@@ -1,5 +1,6 @@
-package com.otchi.domain.events;
+package com.otchi.domain.events.impl;
 
+import com.otchi.domain.events.Event;
 import com.otchi.domain.social.models.Post;
 
 public class PostCommentedEvent implements Event {

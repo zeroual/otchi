@@ -114,6 +114,6 @@ public class Post {
     }
     
     public String summary() {
-        return null;
+        return this.postContent.getSummary();
     }
 }

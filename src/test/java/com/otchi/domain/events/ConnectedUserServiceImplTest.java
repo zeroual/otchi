@@ -8,14 +8,16 @@ import org.junit.Test;
 import org.springframework.messaging.simp.user.SimpUser;
 import org.springframework.web.socket.messaging.DefaultSimpUserRegistry;
 
-public class ConnectedUserServiceTest {
+import com.otchi.domain.events.impl.ConnectedUserServiceImpl;
+
+public class ConnectedUserServiceImplTest {
 
 	private DefaultSimpUserRegistry defaultSimpUserRegistry = mock(DefaultSimpUserRegistry.class);
 	private SimpUser simpUser = mock(SimpUser.class);
-	private ConnectedUserService connectedUserService = new ConnectedUserService(defaultSimpUserRegistry);
+	private ConnectedUserServiceImpl connectedUserService = new ConnectedUserServiceImpl(defaultSimpUserRegistry);
 	
 	@Test
-	public void isConnectedTest_true(){
+	public void isConnectedTest_UserIsConnected(){
 		
 		String username = "username";
 		// expect
@@ -28,7 +30,7 @@ public class ConnectedUserServiceTest {
 	}
 	
 	@Test
-	public void isConnectedTest_false(){
+	public void isConnectedTest_UserIsNotConnected(){
 		
 		String username = "username";
 		// expect

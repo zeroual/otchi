@@ -1,4 +1,4 @@
-package com.otchi.domain.events;
+package com.otchi.domain.events.impl;
 
 import com.google.common.base.Preconditions;
 import com.google.common.eventbus.Subscribe;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class PushNotificationEventHandler {
 
     private final PushNotificationsService pushNotificationsService;
-    private final ConnectedUserService connectedUserService;
+    private final ConnectedUserServiceImpl connectedUserService;
     private final MailService mailService;
     private final UserService userService;
     private final String serverAdress;
@@ -26,7 +26,7 @@ public class PushNotificationEventHandler {
     @Autowired
     public PushNotificationEventHandler(@Value("${otchi.post.url}") String serverAdress,
     		PushNotificationsService pushNotificationsService,
-                                        ConnectedUserService connectedUserService,
+                                        ConnectedUserServiceImpl connectedUserService,
                                         MailService mailService,
                                         UserService userService) {
         this.pushNotificationsService = pushNotificationsService;
@@ -63,7 +63,7 @@ public class PushNotificationEventHandler {
                 User liker = userService.findUserByUsername(likeOwner).orElseThrow(()-> 
                 new RuntimeException("to change !!"));
                 User author = likedPost.getAuthor();
-                String summary = likedPost.getPostContent().getSummary();
+                String summary = likedPost.summary();
                 String postUrl = getApplicationURL(likedPost.getId());
                                 
                 mailService.sendLikedPostNotificationMail(new MailParameter(author, liker, summary, postUrl));

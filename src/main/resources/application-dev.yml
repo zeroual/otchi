@@ -32,4 +32,4 @@ otchi:
       appDestinationPrefix: /app
       endpoint: /socket
    post: 
-     url: https://otchi.herokuapp.com/feed
+     url: https://localhost:8080/feed

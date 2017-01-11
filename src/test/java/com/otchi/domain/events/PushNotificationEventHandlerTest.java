@@ -2,6 +2,10 @@ package com.otchi.domain.events;
 
 import com.otchi.application.MailService;
 import com.otchi.application.UserService;
+import com.otchi.domain.events.impl.ConnectedUserServiceImpl;
+import com.otchi.domain.events.impl.LikePostEvent;
+import com.otchi.domain.events.impl.PostCommentedEvent;
+import com.otchi.domain.events.impl.PushNotificationEventHandler;
 import com.otchi.domain.mail.MailParameter;
 import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.social.models.Post;
@@ -20,7 +24,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 public class PushNotificationEventHandlerTest {
 
     private PushNotificationsService pushNotificationsService = mock(PushNotificationsService.class);
-    private ConnectedUserService connectedUserService = mock(ConnectedUserService.class);
+    private ConnectedUserServiceImpl connectedUserService = mock(ConnectedUserServiceImpl.class);
     private MailService mailService = mock(MailService.class);
     private UserService userService = mock(UserService.class);
     private String serverAdress = "https://otchi.herokuapp.com/feed";
@@ -63,14 +67,12 @@ public class PushNotificationEventHandlerTest {
         Long postId = new Long(928839);
         String postUrl = new String("https://otchi.herokuapp.com/feed/928839");
         
-        // expect
         when(likedPost.getAuthor()).thenReturn(author);
-        when(likedPost.getPostContent()).thenReturn(new Story(summary));
+        when(likedPost.summary()).thenReturn(summary);
         when(likedPost.getId()).thenReturn(postId);
         when(connectedUserService.isConnected(postOwner)).thenReturn(false);
         when(userService.findUserByUsername(likeOwner)).thenReturn(of(liker));
         
-        // action
         pushNotificationEventHandler.sendLikeNotificationToPostAuthor(postLikedEvent);
 
         verify(mailService, atLeastOnce()).sendLikedPostNotificationMail(

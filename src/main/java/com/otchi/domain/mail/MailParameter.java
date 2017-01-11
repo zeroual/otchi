@@ -32,11 +32,6 @@ public class MailParameter {
 		return postUrl;
 	}
 
-	@Override
-	public String toString() {
-		return "MailParameter [author=" + author + ", liker=" + liker + ", summary=" + summary + ", postUrl=" + postUrl
-				+ "]";
-	}
     @Override
     public int hashCode() {
         return Objects.hashCode(getClass(), author, liker, summary, postUrl);

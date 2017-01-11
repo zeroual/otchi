@@ -9,8 +9,4 @@ import org.springframework.web.socket.messaging.DefaultSimpUserRegistry;
 @ComponentScan({"com.otchi.application", "com.otchi.domain"})
 public class ServicesConfig {
 
-	@Bean
-	public DefaultSimpUserRegistry defaultSimpUserRegistry(){
-		return new DefaultSimpUserRegistry();
-	}
 }
