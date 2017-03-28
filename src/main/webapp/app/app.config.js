@@ -12,9 +12,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             views: {
                 'navbar@': {
                     templateUrl: app_dir + 'components/welcome/header.html',
+                    controller: 'NavBarController'
                 },
                 'content@': {
                     templateUrl: app_dir + "components/welcome/welcome.html"
+                }
+            },
+            resolve: {
+                translatePartialLoader: function ($translatePartialLoader) {
+                    $translatePartialLoader.addPart('landing');
                 }
             }
         })
@@ -84,4 +90,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             }
 
         });
+}).config(function ($translateProvider) {
+
+    $translateProvider.useLoader('$translatePartialLoader', {
+        urlTemplate: 'i18n/{lang}/{part}.json'
+    });
+    $translateProvider.preferredLanguage('fr');
+    $translateProvider.useSanitizeValueStrategy('escaped');
 });
