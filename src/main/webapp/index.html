@@ -9,6 +9,12 @@
     <title>Otchi Beta</title>
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <!-- build:css assets/css/vendor.css -->
     <!-- bower:css -->
@@ -16,6 +22,7 @@
     <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet">
     <link href="bower_components/ngToast/dist/ngToast.css" rel="stylesheet">
     <link href="bower_components/ng-tags-input/ng-tags-input.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.css" rel="stylesheet">
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css assets/css/main.css -->
@@ -29,19 +36,18 @@
     <link rel="stylesheet" href="assets/css/feeds.css">
     <link rel="stylesheet" href="assets/css/profile.css">
     <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/landing.css">
     <!-- endbuild -->
 </head>
 
 <body ng-app="otchi">
 <toast></toast>
 <div ui-view="navbar"></div>
-<div class="container">
-    <h1 translate="TITLE"></h1>
-    <p translate="FOO"></p>
+<div>
     <div ui-view="content">
 
-        </div>
     </div>
+</div>
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -115,6 +121,7 @@
 
 <script type="text/javascript" src="app/social/profile/controllers/profile.controller.js"></script>
 <script type="text/javascript" src="app/social/profile/directives/profile.directive.js"></script>
+<script type="text/javascript" src="app/landing/landing.controller.js"></script>
 <!-- endbuild -->
 </body>
 </html>

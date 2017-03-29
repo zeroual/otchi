@@ -10,12 +10,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 pageTitle: 'Otchi Beta'
             },
             views: {
-                'navbar@': {
-                    templateUrl: app_dir + 'components/welcome/header.html',
-                    controller: 'NavBarController'
-                },
                 'content@': {
-                    templateUrl: app_dir + "components/welcome/welcome.html"
+                    templateUrl: app_dir + "landing/landing.html",
+                    controller: 'LandingController'
                 }
             },
             resolve: {

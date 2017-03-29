@@ -1,0 +1,134 @@
+<div class="landing">
+    <nav class="navbar">
+        <div class="container">
+            <div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                {{usedLanguage}}
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a ng-click="changeLanguage('fr')">Français</a></li>
+                                <li><a ng-click="changeLanguage('ar')">العربية</a></li>
+                                <li><a ng-click="changeLanguage('en')">English</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <button ui-sref="login" class="btn btn-primary">Login</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="header-content">
+                        <div class="header-content-inner">
+                            <h1 translate="landing.proposition-value"></h1>
+                            <a translate="landing.more" href="#download" class="btn btn-outline btn-xl page-scroll"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="device-container">
+                        <div class="portrait white">
+                            <div class="device">
+                                <div class="screen">
+                                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                                    <img src="/assets/images/mike-wilson-207128.jpg" class="img-responsive" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="download" class="download bg-primary text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2 class="section-heading" translate="landing.how"></h2>
+                    <p translate="landing.how-description"></p>
+                    <div class="badges">
+                        <a href="#features" translate="landing.more" class="btn btn-outline btn-xl page-scroll"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-heading">
+                        <h2>Hi, je suis Otchi ton noueau robot</h2>
+                        <p class="text-muted"> Je t'aiderai chaque jour à</p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="feature-item">
+                                    <i class="fa fa-search"></i>
+                                    <h3>Trouver</h3>
+                                    <p class="text-muted">facilement quoi préparer avec une expérience sur-mesure et
+                                        intelligente se basant sur tes préférence et des ingrédients que tu as dans ton
+                                        frigo</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="feature-item">
+                                    <i class="fa fa-fire"></i>
+                                    <h3>Préparer</h3>
+                                    <p class="text-muted">des recettes visuelles facile à suivre et à préparer avec des
+                                        animations qui t’aide dans chaque étape</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="feature-item">
+                                    <i class="fa fa-bullhorn"></i>
+                                    <h3>Partager</h3>
+                                    <p class="text-muted">avec une communauté talentueuse pour des meilleures sources
+                                        d’inspiration.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact bg-primary">
+        <div class="container">
+            <h2>Fait avec <i class="fa fa-heart"></i> à Paris, France.</h2>
+            <p>Suis otchi sur facebook et rejoin notre commaunauté</p>
+            <ul class="list-inline list-social">
+                <li class="social-facebook">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2017 Otchi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</div>
