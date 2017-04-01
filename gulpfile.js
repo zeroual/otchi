@@ -53,7 +53,7 @@
      * build the front app for prod env
      */
     gulp.task('build', function (cb) {
-        runSequence('clean', 'usemin', 'copy-bs-fonts', cb);
+        runSequence('clean', 'usemin', 'copy-fonts', 'copy-images', cb);
     });
 
     gulp.task('styles', [], function () {
@@ -64,12 +64,22 @@
     /**
      *  copy bootstrap font into assets/fonts
      */
-    gulp.task('copy-bs-fonts', function () {
+    gulp.task('copy-fonts', function () {
         return gulp.src([
-                config.app + 'bower_components/bootstrap/fonts/*.*'])
+            config.app + 'bower_components/bootstrap/fonts/*.*',
+            config.app + 'bower_components/font-awesome/fonts/*.*'])
             .pipe(flatten())
             .pipe(gulp.dest(config.dist + 'assets/fonts/'));
     });
+
+    /**
+     * copy images
+     */
+    gulp.task('copy-images', function () {
+        return gulp.src(config.app + 'assets/images/**')
+            .pipe(gulp.dest(config.dist + 'assets/images'));
+    });
+
 
     /**
      * remove the old dist directory
