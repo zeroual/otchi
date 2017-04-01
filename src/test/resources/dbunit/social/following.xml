@@ -6,6 +6,7 @@
             USERNAME="zeroual.abde@gmail.com"
             FIRST_NAME="Abdellah"
             LAST_NAME="ZEROUAL"
+            LANG_KEY="fr"
     />
 
     <ACCOUNT
@@ -14,7 +15,6 @@
             USERNAME="zeroual.abde@gmail.com"
             PASSWORD="$2a$10$9m.et2mcPSzA4RdS1AOGPemNLOCerTkyEC99BUdqMSNL.4F9HUtbW"
             ENABLED="1"
-            LANG_KEY="en"
     />
 
     <USER
@@ -23,6 +23,7 @@
             USERNAME="mr.jaifar@gmail.com"
             FIRST_NAME="Reda"
             LAST_NAME="JAIFAR"
+            LANG_KEY="fr"
     />
 
     <ACCOUNT
@@ -31,7 +32,6 @@
             USERNAME="mr.jaifar@gmail.com"
             PASSWORD="$2a$10$9m.et2mcPSzA4RdS1AOGPemNLOCerTkyEC99BUdqMSNL.4F9HUtbW"
             ENABLED="1"
-            LANG_KEY="en"
     />
 
 </dataset>

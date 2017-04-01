@@ -5,15 +5,16 @@
             USERNAME="zeroual.abde@gmail.com"
             FIRST_NAME="Abdellah"
             LAST_NAME="ZEROUAL"
+            LANG_KEY="fr"
     />
 
     <recipe ID="2"
             TITLE="TITLE_SAMPLE_2"/>
 
-	<POST ID="1"
-		  CREATED_AT="2015-02-28"
-		  POST_CONTENT_ID="2"
-		  AUTHOR_ID="1"/>
+    <POST ID="1"
+          CREATED_AT="2015-02-28"
+          POST_CONTENT_ID="2"
+          AUTHOR_ID="1"/>
 
     <POST_LIKES USER_ID="1"
                 POST_ID="1"

@@ -1,11 +1,12 @@
 angular.module('authentication')
-    .controller('RegisterController', function ($scope, AccountService, Auth, $state) {
+    .controller('RegisterController', function ($scope, AccountService, Auth, $state, $translate) {
         $scope.error = null;
         $scope.account = {};
 
         $scope.register = function () {
             $scope.error = null;
             $scope.errorEmailExists = null;
+            $scope.account.langKey = $translate.use();
 
             AccountService.register($scope.account).then(function () {
                 Auth.login({

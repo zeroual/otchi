@@ -18,7 +18,7 @@ public class CurrentUserResourceTest extends AbstractIntegrationTest {
         mockMvc.perform(get(ResourcesPath.ME).with(user("zeroual.abde@gmail.com"))
                 .contentType(contentType))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\",\"picture\":\"http://host.com/image2.png\"}"));
+                .andExpect(content().json("{\"id\":1,\"firstName\":\"Abdellah\",\"lastName\":\"ZEROUAL\",\"picture\":\"http://host.com/image2.png\",\"langKey\":\"fr\"}"));
     }
 
     @Test

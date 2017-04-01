@@ -12,6 +12,7 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Optional;
 
+import static com.otchi.domain.users.models.UserBuilder.asUser;
 import static java.time.LocalDateTime.parse;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,11 +26,17 @@ public class FeedFetcherServiceImplTest {
     public void setUp() {
         postRepository.deleteAll();
         Post post1 = new Post(parse("2016-02-27T00:00:00"));
-        User user1 = new User("author", "firstName", "lastName");
+        User user1 = asUser().withUsername("author")
+                .withFirstName("firstName")
+                .withLastName("lastName")
+                .build();
         post1.setAuthor(user1);
 
         Post post2 = new Post(parse("2016-02-28T00:00:00"));
-        User user2 = new User("another author", "firstName", "lastName");
+        User user2 = asUser().withUsername("another author")
+                .withFirstName("firstName")
+                .withLastName("lastName")
+                .build();
         post2.setAuthor(user2);
         postRepository.save(asList(post1, post2));
     }

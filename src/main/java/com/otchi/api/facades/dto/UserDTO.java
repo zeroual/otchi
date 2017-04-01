@@ -8,20 +8,18 @@ public class UserDTO {
     private String firstName;
     private String lastName;
     private String picture;
+    private String langKey;
 
 
     public UserDTO() {
     }
 
     public UserDTO(User user) {
-        this(user.getId(), user.getFirstName(), user.getLastName());
+        this.id = user.getId();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
         this.picture = user.picture();
-    }
-
-    public UserDTO(Long id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.langKey = user.getLanguage();
     }
 
     public Long getId() {
@@ -40,13 +38,7 @@ public class UserDTO {
         return picture;
     }
 
-    @Override
-    public String toString() {
-        return "UserDTO{" +
-                ", id='" + id + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                "}";
+    public String getLangKey() {
+        return langKey;
     }
-
 }

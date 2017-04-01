@@ -7,6 +7,7 @@
             FIRST_NAME="Abdellah"
             LAST_NAME="ZEROUAL"
             PICTURE="picture1"
+            LANG_KEY="fr"
     />
 
     <POST_IMAGES URL="http://host/image.png"
@@ -50,6 +51,7 @@
             FIRST_NAME="Brahim"
             LAST_NAME="YAKOUBI"
             PICTURE="picture1"
+            LANG_KEY="fr"
     />
 
     <!-- new post 10 -->

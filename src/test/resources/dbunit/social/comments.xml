@@ -7,6 +7,7 @@
             FIRST_NAME="reda"
             LAST_NAME="jaifar"
             PICTURE="picture1"
+            LANG_KEY="fr"
     />
 
     <recipe ID="2"
