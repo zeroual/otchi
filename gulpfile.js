@@ -9,7 +9,6 @@
         ngAnnotate = require('gulp-ng-annotate'),
         uglify = require('gulp-uglify'),
         prefix = require('gulp-autoprefixer'),
-        imagemin = require('gulp-imagemin'),
         flatten = require('gulp-flatten'),
         del = require('del'),
         runSequence = require('run-sequence');
@@ -63,16 +62,6 @@
     });
 
     /**
-     * minimise images size
-     */
-    gulp.task('images', function () {
-        return gulp.src(config.app + 'assets/images/**')
-            .pipe(imagemin({optimizationLevel: 5}))
-            .pipe(gulp.dest(config.dist + 'assets/images'))
-            .pipe(browserSync.reload({stream: true}));
-    });
-
-    /**
      *  copy bootstrap font into assets/fonts
      */
     gulp.task('copy-bs-fonts', function () {
@@ -92,7 +81,7 @@
     /**
      *  minify css and js
      */
-    gulp.task('usemin', ['styles', 'images'], function () {
+    gulp.task('usemin', ['styles'], function () {
         return gulp.src([config.app + '**/*.html', '!' + config.app + '@(dist|bower_components)/**/*.html'])
             .pipe(usemin({
                 css: [

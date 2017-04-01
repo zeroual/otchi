@@ -36,4 +36,8 @@ app.run(function ($rootScope, $location, $window, $http, $state) {
             $state.go($rootScope.previousStateName, $rootScope.previousStateParams);
         }
     };
+}).run(function ($rootScope, $translate) {
+    $rootScope.$on('$translatePartialLoaderStructureChanged', function () {
+        $translate.refresh();
+    });
 });

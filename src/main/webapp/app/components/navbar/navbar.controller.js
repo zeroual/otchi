@@ -1,5 +1,5 @@
 angular.module('otchi')
-    .controller('NavBarController', function ($scope, $state, Auth, Principal, NotificationsService, $state) {
+    .controller('NavBarController', function ($scope, $state, Auth, Principal, NotificationsService, $translate) {
         $scope.isAuthenticated = Principal.isAuthenticated;
         $scope.$state = $state;
 
@@ -22,5 +22,8 @@ angular.module('otchi')
                 notification.unread = false;
                 $state.go('showPost', {postId: notification.postId});
             });
+        };
+        $scope.changeLanguage = function (langKey) {
+            $translate.use(langKey);
         };
     });

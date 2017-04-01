@@ -2,6 +2,7 @@ describe('NavBarController Tests', function () {
 
     beforeEach(module('otchi'));
     beforeEach(module('directives.templates'));
+    beforeEach(mockI18nCalls);
 
     var $scope, $controller;
     var $httpBackend;
