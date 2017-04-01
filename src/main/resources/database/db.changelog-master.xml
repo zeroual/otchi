@@ -1,21 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <include file="classpath:database/changelog/201605281638_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:database/changelog/201606121745_add_images_to_recipe.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:database/changelog/201606161241_add_story_table.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:database/changelog/201606100020_add_column_picture_to_user.xml"
-             relativeToChangelogFile="false"/>
-    <include file="classpath:database/changelog/201606221347_update_pictures_old_users.xml"
-             relativeToChangelogFile="false"/>
-    <include file="classpath:database/changelog/201606251307_add_images_to_story.xml"/>
-    <include file="classpath:database/changelog/201608121745_add_notification_table.xml"/>
-    <include file="classpath:database/changelog/201610101344_add_tags_to_recipe.xml"/>
-    <include file="classpath:database/changelog/201623121619_rename_hibernate_sequence_name.xml"/>
-    <include file="classpath:database/changelog/201703011807_attach_images_to_post.xml"/>
+    <include file="changelog/201704011735_initial_schema.xml" relativeToChangelogFile="true"/>
+
     <!-- TODO I don't like the following solution, but we need to clear database for each test (test isolation)-->
     <!-- So don't forget to add a new row in empty.xml if you add new table-->
     <!-- We will look for new alternative in the future -->
