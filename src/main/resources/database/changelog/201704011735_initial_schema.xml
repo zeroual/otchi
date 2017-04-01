@@ -14,11 +14,11 @@
     <changeSet id="201605281648" author="Abdellah">
         <createTable tableName="HIBERNATE_SEQUENCES">
             <column name="SEQUENCE_NAME" type="VARCHAR(256)"></column>
-            <column name="SEQUENCE_NEXT_HI_VALUE" type="INT"></column>
+            <column name="NEXT_VAL" type="INT"></column>
         </createTable>
     </changeSet>
 
-    <changeSet id="201605281700" author="Abdellah">
+    <changeSet id="201704011735" author="Abdellah">
 
         <createTable tableName="INGREDIENT">
             <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
@@ -52,6 +52,23 @@
             <column name="INGREDIENT_ID" type="BIGINT"/>
         </createTable>
 
+        <createTable tableName="RECIPE_TAGS">
+            <column name="TAGS" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="RECIPE_ID" type="BIGINT"/>
+        </createTable>
+
+        <createTable tableName="STORY">
+            <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="CONTENT" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+
         <createTable tableName="POST">
             <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
@@ -60,6 +77,45 @@
             <column name="POST_CONTENT_ID" type="BIGINT"/>
             <column name="AUTHOR_ID" type="BIGINT"/>
         </createTable>
+
+        <createTable tableName="POST_IMAGES">
+            <column name="URL" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="POST_ID" type="BIGINT"/>
+        </createTable>
+
+
+        <createTable tableName="NOTIFICATION">
+            <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="USERNAME" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="TYPE" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="UNREAD" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="CREATED_AT" type="DATETIME">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="SENDER_ID" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="POST_ID" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
 
         <createTable tableName="USER">
             <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
@@ -71,9 +127,8 @@
             </column>
             <column name="FIRST_NAME" type="VARCHAR(50)"/>
             <column name="LAST_NAME" type="VARCHAR(50)"/>
-            <column name="LANG_KEY" type="VARCHAR(5)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="LANG_KEY" type="VARCHAR(5)"/>
+            <column name="PICTURE" type="VARCHAR(256)"></column>
         </createTable>
 
         <createTable tableName="ACCOUNT">
@@ -142,7 +197,7 @@
 
     </changeSet>
 
-    <changeSet id="201605283234" author="Abdellah">
+    <changeSet id="201704011736" author="Abdellah">
 
         <loadData encoding="UTF-8"
                   file="database/data/users.csv"
