@@ -15,11 +15,15 @@ import com.otchi.domain.users.models.User;
 import com.otchi.utils.mocks.MockCrudRepository;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.*;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import static com.otchi.domain.users.models.UserBuilder.asUser;
 import static java.time.LocalDateTime.now;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
@@ -47,13 +51,20 @@ public class FeedServiceImplTest {
         feedService = new FeedServiceImpl(postRepository, userService, clock, domainEvents);
 
         // Create new Post1;
-        User user1 = new User("user1@fofo.com", "FirstName1", "LastName1");
+        User user1 =
+                asUser().withUsername("user1@fofo.com")
+                        .withFirstName("FirstName1")
+                        .withLastName("LastName1")
+                        .build();
         Post post1 = new Post(now());
         post1.setAuthor(user1);
         postRepository.save(post1);
 
         //Create new Post2;
-        User user2 = new User("user2@fofo.com", "FirstName2", "LastName2");
+        User user2 = asUser().withUsername("user2@fofo.com")
+                .withFirstName("FirstName2")
+                .withLastName("LastName2")
+                .build();
         Post post2 = new Post(now());
         post2.setAuthor(user2);
         postRepository.save(post2);
@@ -117,7 +128,7 @@ public class FeedServiceImplTest {
         feedService.commentOnPost(1L, commentContent, "user2@fofo.com");
         Post post = postRepository.findOne(1L);
         assertThat(post.getComments()).hasSize(1).extracting(Comment::getContent).containsExactly(commentContent);
-        assertThat(post.getComments()).extracting(comment -> comment.getAuthor().getEmail()).containsExactly("user2@fofo.com");
+        assertThat(post.getComments()).extracting(comment -> comment.getAuthor().getUsername()).containsExactly("user2@fofo.com");
     }
 
     @Test

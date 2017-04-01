@@ -22,6 +22,7 @@ import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.otchi.domain.users.models.UserBuilder.asUser;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,7 +43,12 @@ public class PublicationsServiceTest {
         postRepository = new MockPostRepository();
         userRepository = new MockUserRepository();
 
-        userRepository.save(new User("email@gmail.com", "abde", "zeros"));
+        User user =
+                asUser().withUsername("email@gmail.com")
+                        .withFirstName("abde")
+                        .withLastName("zeros")
+                        .build();
+        userRepository.save(user);
         publicationsService = new PublicationsServiceImpl(postRepository, userRepository, clock, blobStorageService);
 
     }

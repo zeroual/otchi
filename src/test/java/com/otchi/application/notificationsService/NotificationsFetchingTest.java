@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.otchi.domain.social.models.NotificationType.LIKED;
+import static com.otchi.domain.users.models.UserBuilder.asUser;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -39,7 +40,10 @@ public class NotificationsFetchingTest {
 
         notificationsService = new NotificationsServiceImpl(
                 notificationsRepository, userService);
-        notificationSender = new User("user2", "firstName", "lastName");
+        notificationSender = asUser().withUsername("user2")
+                .withFirstName("firstName")
+                .withLastName("lastName")
+                .build();
         Optional<User> expectedUser = Optional.of(notificationSender);
         when(userService.findUserByUsername("user2")).thenReturn(expectedUser);
 

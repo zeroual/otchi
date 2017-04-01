@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 
+import static com.otchi.domain.users.models.UserBuilder.asUser;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
@@ -42,7 +43,10 @@ public class NotificationsPushingTest {
     public void setUp() {
         this.post = new Post();
         this.postAuthor = "postAuthor";
-        User user = new User(postAuthor, "firstName", "lastName");
+        User user = asUser().withUsername(postAuthor)
+                .withFirstName("firstName")
+                .withLastName("lastName")
+                .build();
         post.setAuthor(user);
         setField(post, "id", 23L);
 

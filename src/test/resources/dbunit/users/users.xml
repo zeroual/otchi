@@ -7,7 +7,8 @@
             FIRST_NAME="Abdellah"
             LAST_NAME="ZEROUAL"
             PICTURE="http://host.com/image2.png"
-            />
+            LANG_KEY="fr"
+    />
 
     <ACCOUNT
             ID="1"
@@ -15,7 +16,6 @@
             USERNAME="zeroual.abde@gmail.com"
             PASSWORD="$2a$10$9m.et2mcPSzA4RdS1AOGPemNLOCerTkyEC99BUdqMSNL.4F9HUtbW"
             ENABLED="1"
-            LANG_KEY ="en"
     />
 
     <USER
@@ -25,6 +25,7 @@
             FIRST_NAME="Reda"
             LAST_NAME="JAIFAR"
             PICTURE="http://host.com/image.png"
+            LANG_KEY="fr"
     />
 
     <ACCOUNT
@@ -33,7 +34,6 @@
             USERNAME="mr.jaifar@gmail.com"
             PASSWORD="$2a$10$9m.et2mcPSzA4RdS1AOGPemNLOCerTkyEC99BUdqMSNL.4F9HUtbW"
             ENABLED="1"
-            LANG_KEY="en"
     />
 
     <USER_FOLLOWERS

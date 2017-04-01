@@ -1,4 +1,4 @@
-angular.module('authentication', ['ngResource', 'LocalStorageModule', 'ui.router', 'socket'])
+angular.module('authentication', ['ngResource', 'LocalStorageModule', 'ui.router', 'socket', 'pascalprecht.translate'])
     .run(function ($rootScope, $location, $window, $http, $state, Auth, Principal) {
 
         $rootScope.$on('$stateChangeStart', function (event, toState) {
