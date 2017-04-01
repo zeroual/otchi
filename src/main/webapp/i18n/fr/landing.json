@@ -1,4 +1,8 @@
 {
-  "TITLE": "Salut",
-  "FOO": "c'est une paragrahe"
+  "landing": {
+    "proposition-value": "Marre de penser tout les jours qu'est ce je vais faire encore à manger ?",
+    "more": "Découvrir comment!",
+    "how": "Tu cherches plus de cuisine dans ta vie!",
+    "how-description": "Otchi t'accompagne au quotidien pour trouver et réussir les recettes qui te correspondent"
+  }
 }
