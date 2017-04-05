@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-@Import({AmazonBlobStorageConfig.class, MemoryBlobStorageConfig.class})
+@Import({AmazonBlobStorageConfig.class, LocalBlobStorageConfig.class})
 public class BlobStorageConfig {
 
 }
