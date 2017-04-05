@@ -95,10 +95,10 @@ public class PublicationsServiceTest {
         List<MultipartFile> pictures = asList(picture1);
 
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
-        Post savedPost = publicationsService.publishRecipe(recipe, pictures, "email@gmail.com");
+        Feed feed = publicationsService.publishRecipe(recipe, pictures, "email@gmail.com");
         Mockito.verify(blobStorageService).save(pictures);
 
-        assertThat(savedPost.images()).hasSize(1)
+        assertThat(feed.images()).hasSize(1)
                 .isEqualTo(imagesURL);
 
     }
@@ -106,9 +106,9 @@ public class PublicationsServiceTest {
     @Test
     public void shouldSaveStoryAsPost() {
         Story story = new Story("my story");
-        Post savedPost = publicationsService.publishStory(story, NO_IMAGES, "email@gmail.com");
-        assertThat(savedPost.getId()).isNotNull();
-        savedPost = postRepository.findOne(1L);
+        Feed feed = publicationsService.publishStory(story, NO_IMAGES, "email@gmail.com");
+        assertThat(feed.getId()).isNotNull();
+        Post savedPost = postRepository.findOne(1L);
         assertThat(savedPost).isNotNull();
 
         Story savedStory = (Story) savedPost.getPostContent();
@@ -119,8 +119,8 @@ public class PublicationsServiceTest {
     public void shouldAssignStoryPostToHisAuthor() {
         Story story = new Story("my story");
         String username = "email@gmail.com";
-        Post savedPost = publicationsService.publishStory(story, NO_IMAGES, username);
-        assertThat(savedPost.getAuthor().getUsername()).isEqualTo(username);
+        Feed feed = publicationsService.publishStory(story, NO_IMAGES, username);
+        assertThat(feed.getAuthor().getUsername()).isEqualTo(username);
 
     }
 
@@ -146,9 +146,9 @@ public class PublicationsServiceTest {
         List<MultipartFile> images = asList(image);
 
         Story story = new Story("my story");
-        Post savedPost = publicationsService.publishStory(story, images, "email@gmail.com");
+        Feed feed = publicationsService.publishStory(story, images, "email@gmail.com");
         Mockito.verify(blobStorageService).save(images);
-        assertThat(savedPost.images()).hasSize(1).isEqualTo(imagesURL);
+        assertThat(feed.images()).hasSize(1).isEqualTo(imagesURL);
 
 
     }
