@@ -1,5 +1,6 @@
 package com.otchi.application.impl;
 
+import com.otchi.application.Feed;
 import com.otchi.application.PublicationsService;
 import com.otchi.application.utils.Clock;
 import com.otchi.domain.kitchen.Recipe;
@@ -39,21 +40,21 @@ public class PublicationsServiceImpl implements PublicationsService {
     }
 
     @Override
-    public Post publishRecipe(Recipe recipe, List<MultipartFile> images, String authorUsername) {
+    public Feed publishRecipe(Recipe recipe, List<MultipartFile> images, String authorUsername) {
         return publishPost(recipe, images, authorUsername);
     }
 
     @Override
-    public Post publishStory(Story story, List<MultipartFile> images, String authorUsername) {
+    public Feed publishStory(Story story, List<MultipartFile> images, String authorUsername) {
         return publishPost(story, images, authorUsername);
     }
 
-    //FIXME (abdellah) i don't like that a service change parameter's state (services are stateless)
-    private Post publishPost(PostContent postContent, List<MultipartFile> images, String authorUsername) {
+    private Feed publishPost(PostContent postContent, List<MultipartFile> images, String authorUsername) {
         User author = getAuthor(authorUsername);
         List<String> imagesURL = saveImages(images);
         Post post = createPost(author, postContent, imagesURL);
-        return postRepository.save(post);
+        postRepository.save(post);
+        return new Feed(post, authorUsername);
     }
 
     private Post createPost(User author, PostContent content, List<String> imagesURL) {
