@@ -112,4 +112,8 @@ public class Post {
     public void attachImages(List<String> images) {
         this.images = images;
     }
+    
+    public String summary() {
+        return this.postContent.getSummary();
+    }
 }

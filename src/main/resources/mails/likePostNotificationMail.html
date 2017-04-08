@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:remove="all">Like post notification mail</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <p>
+      Hello, <span th:text="${postAuthorFirstName}">toto</span>
+      
+    </p>
+    <p>
+    	<span th:text="${postLikerFirstName}">toto</span>, has liked you post : 
+    	<a href="${postUrl}"><span th:text="${postSummary}">your post</span></a>
+    </p>
+    <p>
+      Regards, <br />
+      <em>The Otchi Team</em>
+    </p>
+  </body>
+</html>

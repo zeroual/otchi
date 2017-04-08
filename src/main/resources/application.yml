@@ -17,5 +17,8 @@ otchi:
    websocket:
          events:
             liked: "/topic/notifications"
+   post: 
+     url: https://otchi.herokuapp.com/feed
 server:
   port: 8080
+  

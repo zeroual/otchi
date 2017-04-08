@@ -56,6 +56,11 @@ public class Recipe extends PostContent{
         this.title = title;
         this.tags = tags;
     }
+    
+	@Override
+	public String getSummary() {
+		return this.title;
+	}
 
     public Recipe() {
     }

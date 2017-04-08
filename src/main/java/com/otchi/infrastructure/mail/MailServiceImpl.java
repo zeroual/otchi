@@ -1,6 +1,8 @@
 package com.otchi.infrastructure.mail;
 
 import com.otchi.application.MailService;
+import com.otchi.domain.mail.MailParameter;
+import com.otchi.domain.social.models.Post;
 import com.otchi.domain.users.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +38,22 @@ public class MailServiceImpl implements MailService {
         String subject = "Welcome to otchi";
         sendEmail(user.getEmail(), subject, content);
     }
+
+    @Override
+    public void sendLikedPostNotificationMail(MailParameter parameterObject) {
+    	String to = parameterObject.getAuthor().getEmail();
+        log.debug("Sending post like notification e-mail to '{}'", to);
+        Context context = new Context();
+        context.setVariable("postAuthorFirstName", parameterObject.getAuthor().getFirstName());
+        context.setVariable("postLikerFirstName", parameterObject.getLiker().getFirstName());
+        context.setVariable("postUrl", parameterObject.getPostUrl());
+        context.setVariable("postSummary", parameterObject.getSummary());
+        String content = templateEngine.process("likePostNotificationMail", context);
+        String subject = "Like post Notification";
+        sendEmail(to, subject, content);
+    }
+
+
 
     public void sendEmail(String to, String subject, String content) {
         log.debug("Send e-mail to '{}' with subject '{}'", to, subject);

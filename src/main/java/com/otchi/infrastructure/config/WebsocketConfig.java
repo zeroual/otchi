@@ -10,6 +10,7 @@ import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+import org.springframework.web.socket.messaging.DefaultSimpUserRegistry;
 
 @Configuration
 @EnableWebSocketMessageBroker
@@ -34,5 +35,9 @@ public class WebsocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
         return new WebsocketMessageSending(messagingTemplate, postLikedEventDestination);
     }
 
+	@Bean
+	public DefaultSimpUserRegistry defaultSimpUserRegistry(){
+		return new DefaultSimpUserRegistry();
+	}
 
 }
