@@ -9,8 +9,8 @@ spring:
 
         # see https://developers.facebook.com/docs/facebook-login/v2.2
         facebook:
-            clientId: 912472022199215
-            clientSecret: 9a551587d44a6505291cab3c1a33ead5
+            clientId: 381879212199335
+            clientSecret: 0fa1419fc5c45820c094822a0222147a
 
         # see https://apps.twitter.com/app/
         twitter:
