@@ -27,6 +27,7 @@
         <mockito.version>1.9.5</mockito.version>
         <skyscreamer.jsonassert>1.2.3</skyscreamer.jsonassert>
         <spring-social-google.version>1.0.0.RELEASE</spring-social-google.version>
+        <spring-social-facebook.version>3.0.0.M1</spring-social-facebook.version>
         <liquibase.version>3.5.3</liquibase.version>
         <hibernate-java8.version>5.1.0.Final</hibernate-java8.version>
         <aws-sdk.version>1.11.5</aws-sdk.version>
