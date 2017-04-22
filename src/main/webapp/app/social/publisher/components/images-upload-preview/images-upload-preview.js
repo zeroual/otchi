@@ -4,5 +4,5 @@ angular.module("publisher")
             images: '<',
             onDelete: '&'
         },
-        templateUrl: 'app/social/publisher/shared/images-upload-preview/images-upload-preview.template.html'
+        templateUrl: 'app/social/publisher/components/images-upload-preview/images-upload-preview.html'
     });

@@ -15,7 +15,7 @@ angular.module("publisher")
             var storyPayload = {};
             angular.copy(story, storyPayload);
             delete  storyPayload.images;
-            
+
             return Upload.upload({
                 url: '/rest/v1/post/story',
                 data: {images: story.images, 'story': Upload.jsonBlob(storyPayload)},

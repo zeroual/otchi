@@ -1,6 +1,5 @@
 'use strict';
-angular.module('kitchen', ['ui.router']);
-angular.module('kitchen')
+angular.module('publisher')
     .config(function ($stateProvider) {
         $stateProvider
             .state('newRecipe', {
@@ -32,6 +31,18 @@ angular.module('kitchen')
                                 return FeedsService.fetchFeed($stateParams.feedId).$promise;
                             }
                         }
+                    }
+                }
+            })
+            .state('newStory', {
+                parent: 'main',
+                url: "/story/new",
+                data: {
+                    pageTitle: 'Publish new story'
+                },
+                views: {
+                    'content@': {
+                        template: '<story-publisher/>'
                     }
                 }
             });

@@ -1,7 +1,7 @@
 angular.module("publisher")
     .directive('recipePublisher', function () {
         return {
-            templateUrl: 'app/social/publisher/kitchen/directives/recipe-publisher-directive.html',
+            templateUrl: 'app/social/publisher/components/recipe-publisher/recipe-publisher.html',
             controller: function ($scope, $rootScope, ShareService, ToasterService, $state) {
 
                 function init() {
