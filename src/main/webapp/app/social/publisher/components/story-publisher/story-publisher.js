@@ -2,7 +2,7 @@ angular.module('publisher')
     .directive('storyPublisher', function ($rootScope, ShareService) {
         return {
             restrict: 'E',
-            templateUrl: 'app/social/publisher/story/directives/story-publisher-template.html',
+            templateUrl: 'app/social/publisher/components/story-publisher/story-publisher.html',
             controller: function ($scope) {
 
                 function init() {

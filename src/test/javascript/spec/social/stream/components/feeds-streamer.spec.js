@@ -1,6 +1,6 @@
-describe("tptp", function () {
+describe("Feed streamer", function () {
 
-    beforeEach(module('otchi'));
+    beforeEach(module('stream'));
     beforeEach(module('directives.templates'));
     beforeEach(mockI18nCalls);
 

@@ -1,6 +1,6 @@
 angular.module("publisher")
     .component('publisherActions', {
-        templateUrl: 'app/social/publisher/shared/publisher-actions/publisher-actions.template.html',
+        templateUrl: 'app/social/publisher/components/publisher-actions/publisher-actions.html',
         controller: function () {
 
             $('.fab').hover(function () {

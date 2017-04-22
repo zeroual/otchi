@@ -1,4 +1,4 @@
-angular.module("otchi")
+angular.module("stream")
     .component('feedsStreamer', {
         templateUrl: 'app/social/stream/directives/feeds-streamer/feeds.streamer.html',
         controller: function (FeedsService) {
