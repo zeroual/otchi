@@ -1,4 +1,12 @@
-<div ng-repeat="feed in $ctrl.feeds">
-    <feed-viewer feed="feed"
-                 on-remove="$ctrl.removeFeed(feed)"/>
+<div class="card timeline">
+    <div class="alert alert-warning" ng-if="$ctrl.feeds.length==0">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <span> <strong>Notice : </strong>
+                         No feeds found . You must be new. Or quiet :(
+        </span>
+    </div>
+    <div ng-repeat="feed in $ctrl.feeds">
+        <feed-viewer feed="feed"
+                     on-remove="$ctrl.removeFeed(feed)"/>
+    </div>
 </div>
