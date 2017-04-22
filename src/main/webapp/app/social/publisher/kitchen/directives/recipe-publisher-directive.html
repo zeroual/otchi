@@ -24,10 +24,10 @@
                                     <div class="form-group">
                                         <div class="col-md-12">
                                             <label>Description</label>
-                    <textarea ng-model="recipe.description"
-                              class="form-control"
-                              id="description"
-                              placeholder="Write a brief description about your recipe"/>
+                                            <textarea ng-model="recipe.description"
+                                                      class="form-control"
+                                                      id="description"
+                                                      placeholder="Write a brief description about your recipe"/>
                                         </div>
                                     </div>
                                 </form>
@@ -46,8 +46,12 @@
                                     <form class="form-horizontal">
                                         <div class="form-group" ng-repeat="ingredient in recipe.ingredients">
                                             <div class="col-md-5 col-sm-6 col-xs-12">
-                                                <input ng-model="ingredient.name" type="text" class="form-control"
-                                                       placeholder="Put your ingredient name here">
+                                                <!--<input ng-model="ingredient.name" type="text" class="form-control"-->
+                                                       <!--placeholder="Put your ingredient name here">-->
+
+                                                <input type="text" ng-model="ingredient.name" placeholder="Put your ingredient name here"
+                                                       uib-typeahead="ingredient for ingredient in ingredientsDictionary | filter:$viewValue | limitTo:8"
+                                                       class="form-control">
                                             </div>
 
                                             <div class="col-md-5 col-sm-2 col-xs-12">
