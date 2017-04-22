@@ -6,8 +6,6 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "USER")
@@ -45,16 +43,6 @@ public class User {
     @Size(min = 1, max = 100)
     @Column(length = 100, unique = true, nullable = false)
     private String username;
-
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "USER_FOLLOWERS",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "FOLLOWING_ID", referencedColumnName = "ID")}
-    )
-    private Set<User> following = new HashSet<>();
-
 
     private User() {
     }
@@ -102,14 +90,6 @@ public class User {
 
     public String getUsername() {
         return username;
-    }
-
-    public Set<User> getFollowing() {
-        return following;
-    }
-
-    public void followUser(User user) {
-        following.add(user);
     }
 
     public String picture() {

@@ -39,11 +39,6 @@ describe('FeedViewer Directive', function () {
             expect(FeedsService.unLikeFeed).toHaveBeenCalledWith(feed);
         });
 
-        xit('should call the `onRemove` binding, when removing the feed', function () {
-            ctrl.remove();
-            expect(onRemoveSpy).toHaveBeenCalledWith({id: 1, likes: []});
-        });
-
         it('should open modal de confirm feed suppression', function () {
             spyOn($uibModal, 'open');
             ctrl.remove();

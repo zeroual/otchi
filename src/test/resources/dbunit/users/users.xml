@@ -35,9 +35,4 @@
             PASSWORD="$2a$10$9m.et2mcPSzA4RdS1AOGPemNLOCerTkyEC99BUdqMSNL.4F9HUtbW"
             ENABLED="1"
     />
-
-    <USER_FOLLOWERS
-            USER_ID="2"
-            FOLLOWING_ID="1"
-    />
 </dataset>

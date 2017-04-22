@@ -40,10 +40,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             views: {
                 'content@': {
                     templateUrl: app_dir + "social/stream/views/feed.html"
-                },
-                'right-rail@feed': {
-                    templateUrl: app_dir + 'social/stream/views/followings-recommendation.html',
-                    controller: 'FollowingsRecommendationController'
                 }
             }
         })
@@ -78,10 +74,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 'content@': {
                     templateUrl: app_dir + "social/profile/views/profile.html",
                     controller: 'ProfileController'
-                },
-                'right-rail@showProfile': {
-                    templateUrl: app_dir + 'social/stream/views/followings-recommendation.html',
-                    controller: 'FollowingsRecommendationController'
                 }
             }
 

@@ -9,7 +9,6 @@ public final class ResourcesPath {
     public static final String URL_PREFIXE = URL_SEPARATOR + API_PREFIXE + URL_SEPARATOR + VERSION + URL_SEPARATOR;
     public static final String POST = URL_PREFIXE + "post";
     public static final String FEED = URL_PREFIXE + "feed";
-    public static final String RECIPE_FEED = URL_PREFIXE + "recipe-feeds";
     public static final String LOGIN = URL_PREFIXE + "login";
     public static final String LOGOUT = URL_PREFIXE + "logout";
     public static final String ME = URL_PREFIXE + "me";
