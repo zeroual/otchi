@@ -22,11 +22,14 @@ public class Feed {
 
     private final Collection<Comment> comments;
 
-    private final PostContent postContent;
+    private final PostContent content;
 
     private final boolean canBeRemoved;
 
     private final List<String> images;
+
+    private final Integer likesCount;
+    private final boolean liked;
 
     public Feed(Post post, String username) {
         this.id = post.getId();
@@ -34,9 +37,11 @@ public class Feed {
         this.author = post.getAuthor();
         this.likes = post.getLikes();
         this.comments = post.getComments();
-        this.postContent = post.getPostContent();
+        this.content = post.getPostContent();
         this.canBeRemoved = post.isOwnedBy(username);
         this.images = post.images();
+        this.likesCount = likes.size();
+        this.liked = post.isLikedBy(username);
     }
 
 
@@ -60,8 +65,8 @@ public class Feed {
         return comments;
     }
 
-    public PostContent getPostContent() {
-        return postContent;
+    public PostContent getContent() {
+        return content;
     }
 
     public boolean canBeRemoved() {
@@ -70,5 +75,13 @@ public class Feed {
 
     public List<String> images() {
         return images;
+    }
+
+    public Integer getLikesCount() {
+        return likesCount;
+    }
+
+    public boolean isLiked() {
+        return liked;
     }
 }

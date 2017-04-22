@@ -16,7 +16,7 @@ describe('Feeds Service', function () {
 
         var feeds;
         beforeEach(function () {
-            feeds = [{id: 1, likes: []}];
+            feeds = [{id: 1, likes: [], likesCount: 0}];
         });
 
         it('should ask the server to perform post like', function () {
@@ -30,6 +30,7 @@ describe('Feeds Service', function () {
             FeedsService.likeFeed(feeds[0]);
             $httpBackend.flush();
             expect(feeds[0].liked).toBeTruthy();
+            expect(feeds[0].likesCount).toBe(1);
         });
 
         it('should not marque that post as liked if server return error', function () {
@@ -37,6 +38,7 @@ describe('Feeds Service', function () {
             FeedsService.likeFeed(feeds[0]);
             $httpBackend.flush();
             expect(feeds[0].liked).toBeFalsy();
+            expect(feeds[0].likesCount).toBe(0);
         });
     });
 
@@ -44,7 +46,7 @@ describe('Feeds Service', function () {
 
         var feeds;
         beforeEach(function () {
-            feeds = [{id: 1, liked: true}];
+            feeds = [{id: 1, liked: true, likesCount: 1}];
         });
 
         it('should ask the server to perform post unlike', function () {
@@ -58,6 +60,7 @@ describe('Feeds Service', function () {
             FeedsService.unLikeFeed(feeds[0]);
             $httpBackend.flush();
             expect(feeds[0].liked).toBeFalsy();
+            expect(feeds[0].likesCount).toBe(0);
         });
 
         it('', function () {
@@ -65,6 +68,7 @@ describe('Feeds Service', function () {
             FeedsService.unLikeFeed(feeds[0]);
             $httpBackend.flush();
             expect(feeds[0].liked).toBeTruthy();
+            expect(feeds[0].likesCount).toBe(1);
         });
     });
 });

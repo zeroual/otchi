@@ -34,6 +34,8 @@ angular.module("stream")
             var param = {'id': feed.id};
             Feed.like(param, function () {
                 feed.liked = true;
+                feed.likesCount++;
+
             });
         };
 
@@ -42,6 +44,7 @@ angular.module("stream")
             var param = {'id': feed.id};
             Feed.unLike(param, function () {
                 feed.liked = false;
+                feed.likesCount--;
             });
 
         };
