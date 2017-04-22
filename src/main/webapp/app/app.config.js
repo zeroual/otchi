@@ -39,7 +39,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             },
             views: {
                 'content@': {
-                    templateUrl: app_dir + "social/stream/views/feed.html"
+                    template:'<timeline/>'
                 }
             }
         })
