@@ -24,6 +24,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
     "gulp-usemin": "^0.3.23",
+    "gulp-util": "^3.0.8",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.22",
     "karma-cli": "~0.1.1",
