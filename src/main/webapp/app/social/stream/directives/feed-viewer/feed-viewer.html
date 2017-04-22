@@ -66,17 +66,18 @@
                     </span>
                     </a>
                 </div>
+
                 <div ng-switch="$ctrl.feed.liked" class="pull-right">
-                    <span ng-if="$ctrl.feed.likes.length > 0">
+                    <span ng-if="$ctrl.feed.likesCount# > 0">
                         <a href="" class="button-link text-muted" ng-click="$ctrl.showLikes()">
-                            {{$ctrl.feed.likes.length}} Likes
+                            {{$ctrl.feed.likesCount}} Likes
                         </a>
                     </span>
                     <a href="" class="btn btn-like" ng-switch-when="false" ng-click="$ctrl.like()">
-                        <i class="glyphicon glyphicon-heart-empty"></i> {{$ctrl.feed.likes.length}}
+                        <i class="glyphicon glyphicon-heart-empty"></i> {{$ctrl.feed.likesCount}}
                     </a>
                     <a href="" class="btn btn-unLike" ng-switch-when="true" ng-click="$ctrl.unLike()">
-                        <i class="glyphicon glyphicon-heart"></i> {{$ctrl.feed.likes.length}}
+                        <i class="glyphicon glyphicon-heart"></i> {{$ctrl.feed.likesCount}}
                     </a>
                 </div>
                 <div class="clearfix"></div>

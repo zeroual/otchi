@@ -20,6 +20,7 @@ public class FeedDTO {
     private boolean liked = false;
     private boolean canBeRemoved = false;
     private List<String> images;
+    private Integer likesCount;
 
 
     private FeedDTO() {
@@ -30,15 +31,17 @@ public class FeedDTO {
         this.id = feed.getId();
         this.author = new AuthorDTO(feed.getAuthor());
         this.createdTime = feed.getCreatedTime();
-        if (feed.getPostContent() instanceof Recipe) {
-            this.content = new RecipeDTO((Recipe) feed.getPostContent());
-        } else if (feed.getPostContent() instanceof Story) {
-            this.content = new StoryDTO((Story) feed.getPostContent());
+        if (feed.getContent() instanceof Recipe) {
+            this.content = new RecipeDTO((Recipe) feed.getContent());
+        } else if (feed.getContent() instanceof Story) {
+            this.content = new StoryDTO((Story) feed.getContent());
         }
         this.likes = feed.getLikes().stream().map(UserDTO::new).collect(toList());
+        this.likesCount = feed.getLikesCount();
         this.comments = feed.getComments().stream().map(CommentDTO::new).collect(toList());
         this.canBeRemoved = feed.canBeRemoved();
         this.images = feed.images();
+        this.liked = feed.isLiked();
 
     }
 
@@ -81,5 +84,9 @@ public class FeedDTO {
 
     public List<String> getImages() {
         return images;
+    }
+
+    public Integer getLikesCount() {
+        return likesCount;
     }
 }

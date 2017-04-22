@@ -101,6 +101,10 @@ public class Post {
         return !this.likes.stream().anyMatch(user -> user.getUsername().equals(username));
     }
 
+    public boolean isLikedBy(String username) {
+        return !this.isNotAlreadyLikedBy(username);
+    }
+
     public boolean isOwnedBy(String username) {
         return getAuthor().getUsername().equals(username);
     }
