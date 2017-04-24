@@ -53,7 +53,7 @@ angular.module("stream")
             return Feed.remove(feed).$promise;
         };
 
-        this.commentOnPost = function (feed, comment) {
+        this.commentOnFeed = function (feed, comment) {
             return Feed.comment({'id': feed.id}, comment).$promise
                 .then(function (response) {
                     feed.comments.push(response);

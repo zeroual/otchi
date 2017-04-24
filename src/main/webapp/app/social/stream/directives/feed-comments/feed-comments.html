@@ -1,8 +1,8 @@
 <div>
-    <form ng-submit="commentOnPost(feed)">
+    <form ng-submit="$ctrl.commentOnFeed()">
         <div class="form-group">
             <div class="input-group">
-                <input type="text" name="commentContent" ng-model="commentContent" class="form-control"
+                <input type="text" name="commentContent" ng-model="$ctrl.commentContent" class="form-control"
                        placeholder="Your comment" required/>
                             <span class="input-group-btn">
                               <button class="btn btn-default" type="submit">
@@ -14,7 +14,7 @@
     </form>
 </div>
 <div class="comments">
-    <div class="panel panel-default" ng-repeat="comment in feed.comments |orderBy:'-createdOn'">
+    <div class="panel panel-default" ng-repeat="comment in $ctrl.feed.comments |orderBy:'-createdOn'">
         <div class="panel-body">
             <div class="media">
                 <div class="media-left">
