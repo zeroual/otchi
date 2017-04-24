@@ -17,15 +17,14 @@ spring:
             clientId: X1S2BH04CdYXYtHfTG6gGa5C7
             clientSecret: 3FOSZfivHHQL9OAjV3ybU5ErLZkftV5BL4xbbeoCP1GjmvSP2D
     datasource:
-        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        cachePrepStmts: true
-        prepStmtCacheSize: 250
-        prepStmtCacheSqlLimit: 2048
-        useServerPrepStmts: true
+        dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+        username: ${JDBC_DATABASE_USERNAME}
+        password: ${JDBC_DATABASE_PASSWORD}
+        url: ${JDBC_DATABASE_URL}
 
     jpa:
-        database-platform: org.hibernate.dialect.MySQLInnoDBDialect
-        database: MYSQL
+        database-platform: org.hibernate.dialect.PostgreSQL82Dialect
+        database: POSTGRESQL
         openInView: true
         show_sql: false
         generate-ddl: false

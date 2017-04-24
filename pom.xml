@@ -37,6 +37,7 @@
         <guava.version>19.0</guava.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <failsafe-plugin.version>2.17</failsafe-plugin.version>
+        <postgresql.version>9.4.1208-jdbc42-atlassian-hosted</postgresql.version>
     </properties>
 
     <dependencies>
@@ -170,21 +171,11 @@
             <artifactId>mockito-all</artifactId>
             <version>${mockito.version}</version>
         </dependency>
-        <!-- HikariCP is a "zero-overhead" production ready JDBC connection pool. At roughly 90Kb, the library is very light.-->
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>tools</artifactId>
-                    <groupId>com.sun</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
 
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
         </dependency>
 
         <dependency>
@@ -314,4 +305,11 @@
 
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>atlassian</id>
+            <name>atlassian</name>
+            <url>https://maven.atlassian.com/3rdparty/</url>
+        </repository>
+    </repositories>
 </project>

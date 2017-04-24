@@ -5,7 +5,7 @@
     "BONSAI_URL": {
       "required": true
     },
-    "CLEARDB_DATABASE_URL": {
+    "DATABASE_URL": {
       "required": true
     },
     "CLOUDAMQP_URL": {
@@ -15,9 +15,8 @@
   "formation": {},
   "addons": [
     "bonsai",
-    "cleardb",
-    "cloudamqp",
-    "sparkpost"
+    "heroku-postgresql",
+    "cloudamqp"
   ],
   "buildpacks": [
     {
