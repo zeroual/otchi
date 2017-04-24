@@ -26,7 +26,6 @@ angular.module("publisher")
                 $scope.shareRecipe = function () {
                 $scope.recipe.tags = extractTags();
                     ShareService.publishRecipe($scope.recipe).then(function (feed) {
-                        $rootScope.$broadcast('NEW_POST_PUBLISHED_EVENT', feed);
                         $state.go('showRecipe', {feedId: feed.id});
                     }).catch(function () {
                         ToasterService.error('post.recipe.failed');

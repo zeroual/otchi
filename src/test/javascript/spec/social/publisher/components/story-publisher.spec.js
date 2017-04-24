@@ -47,15 +47,6 @@ describe('Recipe publisher directive', function () {
             expect($scope.story.content).toEqual('');
             expect($scope.story.images).toEqual([]);
         });
-
-        it('should notify the feed loader that a new story is published', function () {
-            spyOn($rootScope, '$broadcast').and.returnValue({preventDefault: false});
-            $scope.shareStory();
-            $httpBackend.flush();
-            $rootScope.$apply();
-            jasmine.addCustomEqualityTester(angular.equals);
-            expect($scope.$broadcast).toHaveBeenCalledWith("NEW_POST_PUBLISHED_EVENT", createdPost);
-        });
     });
 
     describe('images uploader', function () {
