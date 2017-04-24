@@ -17,7 +17,6 @@ angular.module('publisher')
                 $scope.shareStory = function () {
                     ShareService.publisherStory($scope.story).then(function (createdPost) {
                         init();
-                        $rootScope.$broadcast('NEW_POST_PUBLISHED_EVENT', createdPost);
                     });
                 };
 
