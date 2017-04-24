@@ -46,18 +46,6 @@ describe('Recipe publisher directive', function () {
             $httpBackend.flush();
         });
 
-        it('should notify the feed loader that a new post is published', function () {
-            spyOn($rootScope, '$broadcast').and.returnValue({preventDefault: true});
-            $scope.recipe = {description: 'toto'};
-            var newPost = {id: 12};
-            $httpBackend.expectPOST('/rest/v1/post/recipe').respond(newPost);
-            $scope.shareRecipe();
-            $httpBackend.flush();
-
-            jasmine.addCustomEqualityTester(angular.equals);
-            expect($scope.$broadcast).toHaveBeenCalledWith("NEW_POST_PUBLISHED_EVENT", newPost);
-        });
-
         it('should reset the old recipe after sharing', function () {
             $scope.recipe = {description: 'toto'};
             $httpBackend.expectPOST('/rest/v1/post/recipe').respond(201, {id: 2});
