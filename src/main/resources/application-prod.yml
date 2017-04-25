@@ -20,7 +20,7 @@ spring:
         username: ${JDBC_DATABASE_USERNAME}
         password: ${JDBC_DATABASE_PASSWORD}
         url: ${JDBC_DATABASE_URL}
-        driver-class-name: org.postgresql.Driver 
+        driver-class-name: org.postgresql.Driver  
     jpa:
         database-platform: org.hibernate.dialect.PostgreSQL82Dialect
         database: POSTGRESQL
