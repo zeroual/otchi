@@ -1,11 +1,9 @@
 package com.otchi.infrastructure.config.database;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContextException;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -20,37 +18,10 @@ public class HerokuDatabaseConfig {
 
     private final Logger log = LoggerFactory.getLogger(HerokuDatabaseConfig.class);
 
-    @Value("${spring.datasource.cachePrepStmts:true}")
-    private boolean cachePrepStmts;
-
-    @Value("${spring.datasource.prepStmtCacheSize:250}")
-    private int prepStmtCacheSize;
-
-    @Value("${spring.datasource.prepStmtCacheSqlLimit:2048}")
-    private int prepStmtCacheSqlLimit;
-
-    @Value("${spring.datasource.dataSourceClassName}")
-    private String dataSourceClassName;
-
     @Bean
+    @ConfigurationProperties(prefix = "spring.dataSource")
     public DataSource dataSource() {
         log.debug("Configuring Heroku Datasource");
-        String herokuUrl = System.getenv("JDBC_DATABASE_URL");
-        if (herokuUrl != null) {
-            HikariConfig config = new HikariConfig();
-
-            //MySQL optimizations, see https://github.com/brettwooldridge/HikariCP/wiki/MySQL-Configuration
-            if ("com.mysql.jdbc.jdbc2.optional.MysqlDataSource".equals(dataSourceClassName)) {
-                config.addDataSourceProperty("cachePrepStmts", cachePrepStmts);
-                config.addDataSourceProperty("prepStmtCacheSize", prepStmtCacheSize);
-                config.addDataSourceProperty("prepStmtCacheSqlLimit", prepStmtCacheSqlLimit);
-            }
-
-            config.setDataSourceClassName(dataSourceClassName);
-            config.addDataSourceProperty("url", herokuUrl);
-            return new HikariDataSource(config);
-        } else {
-            throw new ApplicationContextException("Heroku database URL is not configured, you must set $JDBC_DATABASE_URL");
-        }
+        return DataSourceBuilder.create().build();
     }
 }
