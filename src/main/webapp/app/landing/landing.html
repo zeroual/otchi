@@ -1,47 +1,26 @@
 <div class="landing">
-    <nav class="navbar">
-        <div class="container">
-            <div>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                {{usedLanguage}}
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                <li><a ng-click="changeLanguage('fr')">Français</a></li>
-                                <li><a ng-click="changeLanguage('ar')">العربية</a></li>
-                                <li><a ng-click="changeLanguage('en')">English</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <button ui-sref="login" class="btn btn-primary">Login</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <header>
+    <section id="header" class="header bg-primary text-center">
         <div class="container">
             <div class="row">
-                <div class="col-sm-7">
-                    <div class="header-content">
-                        <div class="header-content-inner">
-                            <h1 translate="landing.proposition-value"></h1>
-                            <a translate="landing.more" href="#download" class="btn btn-outline btn-xl page-scroll"></a>
-                        </div>
+                <div class="col-md-7">
+                    <h2 class="section-heading" translate="landing.proposition-value"/>
+                    <p translate="landing.how"/>
+                    <div class="badges">
+                        <a href="#features"
+                           class="btn-more btn-outline"
+                           translate="landing.more"/>
+                        <a href="#features"
+                           class="btn-outline btn-get-started"
+                           translate="landing.get-started"
+                        />
                     </div>
                 </div>
-                <div class="col-sm-5">
+                <div class="col-md-5">
                     <div class="device-container">
                         <div class="portrait white">
                             <div class="device">
                                 <div class="screen">
-                                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                    <img src="/assets/images/mike-wilson-207128.jpg" class="img-responsive" alt="">
+                                    <img src="assets/images/food.jpg" class="img-responsive"/>
                                 </div>
                             </div>
                         </div>
@@ -49,84 +28,58 @@
                 </div>
             </div>
         </div>
-    </header>
-
-    <section id="download" class="download bg-primary text-center">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <h2 class="section-heading" translate="landing.how"></h2>
-                    <p translate="landing.how-description"></p>
-                    <div class="badges">
-                        <a href="#features" translate="landing.more" class="btn btn-outline btn-xl page-scroll"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
-    <section id="features" class="features">
+    <section id="features" class="features" style="padding-top: 20px;background-color: white">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <div class="section-heading">
-                        <h2 translate="landing.what"></h2>
-                        <p translate="landing.what-description" class="text-muted"></p>
-                        <hr>
+                    <div class="section-heading" style="margin-bottom: 1px;">
+                        <h2 translate="landing.what"/>
+                        <p class="text-muted"
+                           translate="landing.what-description"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row row-eq-height">
+                <div class="col-md-4 bg-info">
+                    <div class="feature-item">
+                        <i class="fa fa-search"></i>
+                        <h3 translate="landing.what-1"/>
+                        <p translate="landing.what-description-1"
+                           class="text-muted"/>
+                    </div>
+                </div>
+                <div class="col-md-4 bg-primary">
+                    <div class="feature-item">
+                        <i class="fa fa-fire"></i>
+                        <h3 translate="landing.what-2"/>
+                        <p translate="landing.what-description-2"
+                           class="text-muted"/>
+                    </div>
+                </div>
+                <div class="col-md-4 bg-success">
+                    <div class="feature-item">
+                        <i class="fa fa-bullhorn"></i>
+                        <h3 translate="landing.what-3"/>
+                        <p translate="landing.what-description-3"
+                           class="text-muted"/>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="feature-item">
-                                    <i class="fa fa-search"></i>
-                                    <h3 translate="landing.what-1"></h3>
-                                    <p translate="landing.what-description-1" class="text-muted"></p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="feature-item">
-                                    <i class="fa fa-fire"></i>
-                                    <h3 translate="landing.what-2"></h3>
-                                    <p translate="landing.what-description-2" class="text-muted"></p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="feature-item">
-                                    <i class="fa fa-bullhorn"></i>
-                                    <h3 translate="landing.what-3"></h3>
-                                    <p translate="landing.what-description-3" class="text-muted"></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="badges">
+                    <a translate="landing.get-started"
+                       class="btn-more btn-outline btn-more-xl btn-get-started"/>
                 </div>
             </div>
         </div>
     </section>
-
-    <section id="contact" class="contact bg-primary">
-        <div class="container">
-            <h2>
-                <span translate="landing.made-with-love"></span>
-                <i class="fa fa-heart"></i>
-                <span translate="landing.made-from-paris"></span>
-            </h2>
-            <p translate="landing.join-us"></p>
-            <ul class="list-inline list-social">
-                <li class="social-facebook">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                </li>
-            </ul>
-        </div>
-    </section>
-
     <footer>
         <div class="container">
-            <p>&copy; 2017 Otchi. All Rights Reserved.</p>
+            <p>© 2017 Otchi. All Rights Reserved.</p>
         </div>
     </footer>
 
