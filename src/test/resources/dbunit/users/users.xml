@@ -1,6 +1,6 @@
 <dataset>
     <!--password for test "zeros"-->
-    <USER
+    <USERS
             ID="1"
             EMAIL="zeroual.abde@gmail.com"
             USERNAME="zeroual.abde@gmail.com"
@@ -18,7 +18,7 @@
             ENABLED="1"
     />
 
-    <USER
+    <USERS
             ID="2"
             EMAIL="mr.jaifar@gmail.com"
             USERNAME="mr.jaifar@gmail.com"
