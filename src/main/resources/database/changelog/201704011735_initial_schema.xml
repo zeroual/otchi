@@ -14,7 +14,7 @@
     <changeSet id="201605281648" author="Abdellah">
         <createTable tableName="HIBERNATE_SEQUENCES">
             <column name="SEQUENCE_NAME" type="VARCHAR(256)"></column>
-            <column name="NEXT_VAL" type="INT"></column>
+            <column name="SEQUENCE_NEXT_HI_VALUE" type="INT"></column>
         </createTable>
     </changeSet>
 
@@ -117,7 +117,7 @@
         </createTable>
 
 
-        <createTable tableName="USER">
+        <createTable tableName="USERS">
             <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -202,7 +202,7 @@
         <loadData encoding="UTF-8"
                   file="database/data/users.csv"
                   separator=";"
-                  tableName="USER"/>
+                  tableName="USERS"/>
 
         <loadData encoding="UTF-8"
                   file="database/data/accounts.csv"
