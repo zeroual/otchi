@@ -1,6 +1,6 @@
 <dataset>
 
-    <USER
+    <USERS
             ID="1"
             EMAIL="zeroual.abde@gmail.com"
             USERNAME="zeroual.abde@gmail.com"
@@ -44,7 +44,7 @@
     />
 
     <!-- New User 2 -->
-    <USER
+    <USERS
             ID="2"
             EMAIL="brahim.yakoubi@gmail.com"
             USERNAME="brahim.yakoubi@gmail.com"

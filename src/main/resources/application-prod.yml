@@ -17,11 +17,10 @@ spring:
             clientId: X1S2BH04CdYXYtHfTG6gGa5C7
             clientSecret: 3FOSZfivHHQL9OAjV3ybU5ErLZkftV5BL4xbbeoCP1GjmvSP2D
     datasource:
-        dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
         username: ${JDBC_DATABASE_USERNAME}
         password: ${JDBC_DATABASE_PASSWORD}
         url: ${JDBC_DATABASE_URL}
-
+        driver-class-name: org.postgresql.Driver
     jpa:
         database-platform: org.hibernate.dialect.PostgreSQL82Dialect
         database: POSTGRESQL

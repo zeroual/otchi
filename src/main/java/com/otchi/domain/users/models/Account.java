@@ -8,6 +8,7 @@ import javax.validation.constraints.Size;
 import static com.otchi.domain.users.models.UserBuilder.asUser;
 
 @Entity
+@Table(name = "ACCOUNT")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
