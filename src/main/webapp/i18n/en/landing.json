@@ -1,20 +1,15 @@
 {
   "landing": {
     "proposition-value": "Sick of thinking \"What's for dinner\" ?",
-    "more": "Tell me more",
     "how": "Stop rummaging in the cupboard, start enjoying easy homemade cuisine",
-    "how-description": "Otchi encourages you to create easy, healthy meals that your lifestyle",
-    "what":"Let us inspire you and!",
-    "what-description":"Discover, save and share your favorite recipes when you join otchi",
+    "more": "Tell me more",
+    "get-started": "Get started",
+    "what": "Let us inspire you and!",
+    "what-description": "Discover, save and share your favorite recipes when you join otchi",
     "what-1":"Find",
     "what-description-1":"individualized suggestions according to your preferences and what you have in your fridge",
     "what-2":"Prepare",
     "what-description-2":"with user friendly features and tips for success at every step",
     "what-3":"Share",
-    "what-description-3":"new ideas with others; inspire and be inspired",
-    "made-with-love":"Made with",
-    "made-from-paris":"from Paris, France.",
-    "join-us":"Follow otchi on facebook and join our community"
-
-  }
+    "what-description-3":"new ideas with others; inspire and be inspired"  }
 }
