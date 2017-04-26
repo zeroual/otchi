@@ -36,16 +36,6 @@ var _selected;
 
 
 
-  $scope.ngModelOptionsSelected = function(value) {
-    if (arguments.length) {
-      _selected = value;
-    } else {
-      return _selected;
-    }
-  };
-
-
-
                 extractTags = function(){
                     return $scope.tags.map(function(tag){
                         return tag.text;
