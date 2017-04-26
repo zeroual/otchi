@@ -1,6 +1,6 @@
 package com.otchi.application.notificationsService;
 
-import com.otchi.application.utils.DateFactory;
+import com.otchi.application.utils.Clock;
 import com.otchi.domain.services.PushNotificationsService;
 import com.otchi.domain.services.PushNotificationsServiceImpl;
 import com.otchi.domain.social.models.Notification;
@@ -10,7 +10,6 @@ import com.otchi.domain.social.repositories.NotificationsRepository;
 import com.otchi.domain.social.repositories.mocks.MockNotificationsRepository;
 import com.otchi.domain.users.models.User;
 import com.otchi.infrastructure.notifications.WebsocketMessageSending;
-import com.otchi.utils.DateParser;
 import com.otchi.utils.mocks.MockCrudRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,8 +17,9 @@ import org.mockito.Mockito;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import static com.otchi.domain.users.models.UserBuilder.asUser;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
@@ -30,7 +30,7 @@ public class CommentedNotificationsPushingTest {
     private WebsocketMessageSending websocketMessageSending = mock(WebsocketMessageSending.class);
     private NotificationsRepository notificationsRepository = new MockNotificationsRepository();
 
-    private DateFactory dateFactory = mock(DateFactory.class);
+    private Clock clock = mock(Clock.class);
     private PushNotificationsService pushNotificationsService;
     private Post post;
     private String postAuthor = "user";
@@ -40,11 +40,14 @@ public class CommentedNotificationsPushingTest {
     public void setUp() {
         this.post = new Post();
         this.postAuthor = "postAuthor";
-        User author = new User(postAuthor, "firstName", "lastName");
+        User author = asUser().withUsername(postAuthor)
+                .withFirstName("firstName")
+                .withLastName("lastName")
+                .build();
         post.setAuthor(author);
 
         MockCrudRepository.clearDatabase();
-        pushNotificationsService = new PushNotificationsServiceImpl(websocketMessageSending, notificationsRepository, dateFactory);
+        pushNotificationsService = new PushNotificationsServiceImpl(websocketMessageSending, notificationsRepository, clock);
     }
 
     @Test
@@ -59,8 +62,8 @@ public class CommentedNotificationsPushingTest {
 
     @Test
     public void shouldAssignTheCurrentDateToNotification() throws ParseException {
-        Date now = DateParser.parse("2015-02-28 12:15:22.8");
-        Mockito.when(dateFactory.now()).thenReturn(now);
+        LocalDateTime now = LocalDateTime.parse("2015-02-28T12:15:22.8");
+        Mockito.when(clock.now()).thenReturn(now);
         Notification notification = pushNotificationsService.sendCommentedNotificationToPostAuthor(post, commentOwner);
         assertThat(notification.getId()).isNotNull();
         assertThat(notification.getCreationDate()).isEqualTo(now);

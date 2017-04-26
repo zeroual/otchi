@@ -7,13 +7,21 @@ spring:
 
         # see https://developers.facebook.com/docs/facebook-login/v2.2
         facebook:
-            clientId: 914759381970479
-            clientSecret: ec739e24663ee1fce890e721a7682c52
+            clientId: 381879482199308
+            clientSecret: 704f4e302d1f442d409b706c242cd107
 
         # see https://apps.twitter.com/app/#
         twitter:
             clientId: nJkqqr1jpzKsamjbXksRFoWDb
             clientSecret: ATGWhZKdpHnfvJBdzS7FesfiDPkPwR1trXhSqWKwsugrdBIfC1
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        database: H2
+        openInView: true
+        show_sql: false
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
 liquibase:
     contexts: dev
     change-log: classpath:/database/db.changelog-master.xml

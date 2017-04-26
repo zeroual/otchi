@@ -5,7 +5,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import static com.otchi.domain.users.models.UserBuilder.asUser;
+
 @Entity
+@Table(name = "ACCOUNT")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,10 +31,6 @@ public class Account {
     @NotNull
     private User user;
 
-    @Column(name = "LANG_KEY")
-    @NotNull
-    private String langKey;
-
     private Account() {
     }
 
@@ -42,8 +41,14 @@ public class Account {
     public Account(String firstName, String lastName, String email, String username, String password, String langKey) {
         this.password = password;
         this.username = username;
-        this.langKey = langKey;
-        this.user = new User(username, email, firstName, lastName);
+        this.user = asUser()
+                .withUsername(username)
+                .withLastName(lastName)
+                .withFirstName(firstName)
+                .withEmail(email)
+                .withLanguage(langKey)
+                .build();
+
     }
 
 
@@ -55,6 +60,9 @@ public class Account {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public boolean isEnabled() {
         return enabled;
@@ -65,15 +73,11 @@ public class Account {
     }
 
     public String getLangKey() {
-        return langKey;
+        return this.user.getLanguage();
     }
 
-    public void setLangKey(String langKey) {
-        this.langKey = langKey;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void changeLanguageTo(String langKey) {
+        this.user.changeLanguageTo(langKey);
     }
 
     public String getUsername() {

@@ -10,11 +10,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 pageTitle: 'Otchi Beta'
             },
             views: {
-                'navbar@': {
-                    templateUrl: app_dir + 'components/welcome/header.html',
-                },
                 'content@': {
-                    templateUrl: app_dir + "components/welcome/welcome.html"
+                    templateUrl: app_dir + "landing/landing.html",
+                    controller: 'LandingController'
+                }
+            },
+            resolve: {
+                translatePartialLoader: function ($translatePartialLoader) {
+                    $translatePartialLoader.addPart('landing');
                 }
             }
         })
@@ -36,12 +39,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             },
             views: {
                 'content@': {
-                    templateUrl: app_dir + "social/stream/views/feed.html",
-                    controller: 'FeedsLoaderController'
-                },
-                'right-rail@feed': {
-                    templateUrl: app_dir + 'social/stream/views/followings-recommendation.html',
-                    controller: 'FollowingsRecommendationController'
+                    template:'<timeline/>'
                 }
             }
         })
@@ -76,12 +74,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 'content@': {
                     templateUrl: app_dir + "social/profile/views/profile.html",
                     controller: 'ProfileController'
-                },
-                'right-rail@showProfile': {
-                    templateUrl: app_dir + 'social/stream/views/followings-recommendation.html',
-                    controller: 'FollowingsRecommendationController'
                 }
             }
 
         });
+}).config(function ($translateProvider) {
+
+    $translateProvider.useLoader('$translatePartialLoader', {
+        urlTemplate: 'i18n/{lang}/{part}.json'
+    });
+    $translateProvider.preferredLanguage('fr');
+    $translateProvider.useSanitizeValueStrategy('escaped');
+    $translateProvider.useCookieStorage();
 });

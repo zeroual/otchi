@@ -11,9 +11,6 @@
     <recipe_ingredient
                        RECIPE_ID="1"
                        INGREDIENT_ID="1"/>
-    <recipe_images URL="http://url.com/imageID"
-                   RECIPE_ID="1"
-                   />
 
     <recipe ID="1"
             TITLE="TITLE_SAMPLE"

@@ -46,7 +46,7 @@ public class AccountServiceImpl implements AccountService {
             throw new AccountAlreadyExistsException(account.getUsername());
         }
         if (account.getLangKey() == null) {
-            account.setLangKey("en");
+            account.changeLanguageTo("en");
         }
         String encryptedPassword = passwordEncoder.encode(account.getPassword());
         account.setPassword(encryptedPassword);

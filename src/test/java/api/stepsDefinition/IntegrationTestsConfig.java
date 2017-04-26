@@ -1,11 +1,10 @@
 package api.stepsDefinition;
 
-import com.otchi.application.utils.DateFactory;
+import com.otchi.application.utils.Clock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Scope;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -33,18 +32,12 @@ public class IntegrationTestsConfig {
 
     @Bean
     @Primary
-    public DateFactory dateFactory() {
-        return new MocakableDateFactory();
+    public Clock clock() {
+        return new MocakableClock();
     }
 
     @Bean
     public DatabaseCleanerForTest databaseCleanerForTest(DataSource datasource) {
         return new DatabaseCleanerForTest(datasource);
-    }
-
-    @Bean
-    @Scope("cucumber-glue")
-    public World createWorld() {
-        return new World();
     }
 }

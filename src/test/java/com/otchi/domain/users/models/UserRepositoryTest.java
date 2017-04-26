@@ -27,9 +27,7 @@ public class UserRepositoryTest extends AbstractIntegrationTest {
         assertThat(savedUser.getFirstName()).isEqualTo("Reda");
         assertThat(savedUser.getLastName()).isEqualTo("JAIFAR");
         assertThat(savedUser.picture()).isEqualTo("http://host.com/image.png");
-        assertThat(savedUser.getFollowing()).hasSize(1);
-        assertThat(savedUser.getFollowing())
-                .extracting(user -> user.getFirstName()).contains("Abdellah");
+
     }
 
     @Test

@@ -6,11 +6,9 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "USERS")
 public class User {
 
     @Id
@@ -19,10 +17,12 @@ public class User {
     private Long id;
 
     @Size(max = 50)
+    @NotNull
     @Column(name = "FIRST_NAME", length = 50)
     private String firstName;
 
     @Size(max = 50)
+    @NotNull
     @Column(name = "LAST_NAME", length = 50)
     private String lastName;
 
@@ -31,41 +31,32 @@ public class User {
     @Column(name = "EMAIL", length = 100, unique = true)
     private String email;
 
+    @Column(name = "LANG_KEY")
+    @NotNull
+    private String language;
+
+    @Column(name = "PICTURE")
+    private String picture;
+
 
     @NotNull
     @Size(min = 1, max = 100)
     @Column(length = 100, unique = true, nullable = false)
     private String username;
 
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "USER_FOLLOWERS",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "FOLLOWING_ID", referencedColumnName = "ID")}
-    )
-    private Set<User> following = new HashSet<>();
-
-    @Column(name = "PICTURE")
-    private String picture;
-
     private User() {
-
     }
 
-    public User(String username, String email, String firstName, String lastName) {
+    User(String username, String email, String firstName, String lastName, String language) {
         this.username = username;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.language = language;
     }
 
     public User(String username) {
         this.username = username;
-    }
-
-    public User(String email, String firstName, String lastName) {
-        this(email, email, firstName, lastName);
     }
 
     public Long getId() {
@@ -101,52 +92,19 @@ public class User {
         return username;
     }
 
-    public Set<User> getFollowing() {
-        return following;
-    }
-
-    public void followUser(User user) {
-        following.add(user);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-
-        User user = (User) o;
-
-        if (!username.equals(user.username)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return username.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id:" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                "}";
-    }
-
     public String picture() {
         return this.picture;
     }
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void changeLanguageTo(String language) {
+        this.language = language;
     }
 }

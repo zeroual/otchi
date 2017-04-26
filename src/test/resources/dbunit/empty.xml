@@ -1,11 +1,10 @@
 <dataset>
-    <USER/>
+    <USERS/>
     <ACCOUNT/>
     <NOTIFICATION/>
-    <RECIPE_IMAGES/>
     <POST_LIKES/>
     <POST_COMMENT/>
-    <STORY_IMAGES/>
+    <POST_IMAGES/>
     <STORY/>
     <RECIPE/>
     <POST/>

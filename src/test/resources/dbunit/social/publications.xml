@@ -1,19 +1,20 @@
 <dataset>
-    <USER
+    <USERS
             ID="1"
             EMAIL="zeroual.abde@gmail.com"
             USERNAME="zeroual.abde@gmail.com"
             FIRST_NAME="Abdellah"
             LAST_NAME="ZEROUAL"
+            LANG_KEY="fr"
     />
 
     <recipe ID="2"
             TITLE="TITLE_SAMPLE_2"/>
 
-	<POST ID="1"
-		  CREATED_AT="2015-02-28"
-		  POST_CONTENT_ID="2"
-		  AUTHOR_ID="1"/>
+    <POST ID="1"
+          CREATED_AT="2015-02-28"
+          POST_CONTENT_ID="2"
+          AUTHOR_ID="1"/>
 
     <POST_LIKES USER_ID="1"
                 POST_ID="1"
@@ -27,8 +28,12 @@
             CREATED_ON="2016-02-22"
     />
 
-    <STORY_IMAGES URL="http://url.com/imageID"
-                  STORY_ID="3"/>
+    <POST_IMAGES URL="http://url.com/image1"
+                 POST_ID="1"/>
+
+    <POST_IMAGES URL="http://url.com/image2"
+                 POST_ID="2"/>
+
     <STORY ID="3"
            CONTENT="my story"/>
     <POST ID="2"

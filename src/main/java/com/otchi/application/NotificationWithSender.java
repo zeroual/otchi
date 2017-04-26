@@ -4,14 +4,14 @@ import com.otchi.domain.social.models.Notification;
 import com.otchi.domain.social.models.NotificationType;
 import com.otchi.domain.users.models.User;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class NotificationWithSender {
 
     private final User sender;
     private Long id;
     private NotificationType type;
-    private Date creationDate;
+    private LocalDateTime creationDate;
     private Long postId;
 
     public NotificationWithSender(Notification notification, User sender) {
@@ -30,7 +30,7 @@ public class NotificationWithSender {
         return type;
     }
 
-    public Date creationDate() {
+    public LocalDateTime creationDate() {
         return creationDate;
     }
 

@@ -3,6 +3,7 @@ package com.otchi.domain.social.models;
 import com.otchi.domain.users.models.User;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -16,31 +17,37 @@ public class Post {
     private Long id;
 
     @Column(name = "CREATED_AT")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdTime;
+    private LocalDateTime createdTime;
 
     @ManyToOne
     @JoinColumn(name = "AUTHOR_ID")
     private User author;
 
-    public Post(Date createdTime) {
+    public Post(LocalDateTime createdTime) {
         this.createdTime = createdTime;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "POST_LIKES",
             joinColumns = {@JoinColumn(name = "POST_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")}
     )
     private Set<User> likes = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "POST_ID")
     private Collection<Comment> comments = new ArrayList<>();
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "POST_CONTENT_ID")
-	private PostContent postContent;
+    private PostContent postContent;
+
+    @ElementCollection()
+    @CollectionTable(name = "POST_IMAGES",
+            joinColumns = @JoinColumn(name = "POST_ID",
+                    referencedColumnName = "ID"))
+    @Column(name = "URL")
+    private List<String> images = new ArrayList<>();
 
     public Post() {
 
@@ -49,6 +56,7 @@ public class Post {
     public void addLike(User user) {
         this.likes.add(user);
     }
+
     public void addComment(Comment comment) {
         this.comments.add(comment);
     }
@@ -57,7 +65,7 @@ public class Post {
         this.likes.remove(user);
     }
 
-    public Date getCreatedTime() {
+    public LocalDateTime getCreatedTime() {
         return createdTime;
     }
 
@@ -81,19 +89,31 @@ public class Post {
         return comments;
     }
 
-	public PostContent getPostContent() {
-		return postContent;
-	}
+    public PostContent getPostContent() {
+        return postContent;
+    }
 
-	public void setPostContent(PostContent postContent) {
-		this.postContent = postContent;
-	}
+    public void setPostContent(PostContent postContent) {
+        this.postContent = postContent;
+    }
 
     public boolean isNotAlreadyLikedBy(String username) {
         return !this.likes.stream().anyMatch(user -> user.getUsername().equals(username));
     }
 
+    public boolean isLikedBy(String username) {
+        return !this.isNotAlreadyLikedBy(username);
+    }
+
     public boolean isOwnedBy(String username) {
         return getAuthor().getUsername().equals(username);
+    }
+
+    public List<String> images() {
+        return this.images;
+    }
+
+    public void attachImages(List<String> images) {
+        this.images = images;
     }
 }

@@ -1,30 +1,7 @@
 angular.module("stream")
-    .service("FeedsService", function ($resource, Principal) {
+    .service("FeedsService", function ($resource) {
 
-        function _markFeedAsLikedOrNo(feed) {
-            Principal.identity().then(function (account) {
-                feed.liked = feed.likes.some(function (like) {
-                    return account.id == like.id;
-                });
-            });
-            return feed;
-        };
-
-        function _addMyLikeTo(post) {
-            Principal.identity().then(function (account) {
-                post.likes.push(account);
-            });
-        }
-
-        function _removeMyLikeFrom(post) {
-            Principal.identity().then(function (account) {
-                post.likes.splice(post.likes.indexOf(function (like) {
-                    return like === account.id;
-                }), 1);
-            });
-        }
-
-        var service = $resource('/rest/v1/feed/:id', {id: '@id'},
+        var Feed = $resource('/rest/v1/feed/:id', {id: '@id'},
             {
                 like: {
                     method: 'POST',
@@ -46,33 +23,38 @@ angular.module("stream")
         );
 
         this.fetchAllFeeds = function () {
-            return service.query(function (feeds) {
-                return feeds.map(_markFeedAsLikedOrNo);
+            return Feed.query();
+        };
+
+        this.fetchFeed = function (feedId) {
+            return Feed.get({id: feedId})
+        };
+
+        this.likeFeed = function (feed) {
+            var param = {'id': feed.id};
+            Feed.like(param, function () {
+                feed.liked = true;
+                feed.likesCount++;
+
             });
         };
-        this.fetchFeed = function (feedId) {
-            return service.get({id: feedId})
+
+
+        this.unLikeFeed = function (feed) {
+            var param = {'id': feed.id};
+            Feed.unLike(param, function () {
+                feed.liked = false;
+                feed.likesCount--;
+            });
+
         };
 
-        this.likePost = function (post) {
-            service.like({'id': post.id});
-            _addMyLikeTo(post);
-            post.liked = true;
+        this.removeFeed = function (feed) {
+            return Feed.remove(feed).$promise;
         };
 
-
-        this.unLikePost = function (post) {
-            service.unLike({'id': post.id});
-            _removeMyLikeFrom(post);
-            post.liked = false;
-        };
-
-        this.deletePost = function (post) {
-            return service.remove(post);
-        };
-
-        this.commentOnPost = function (feed, comment) {
-            return service.comment({'id': feed.id}, comment).$promise
+        this.commentOnFeed = function (feed, comment) {
+            return Feed.comment({'id': feed.id}, comment).$promise
                 .then(function (response) {
                     feed.comments.push(response);
                 });

@@ -5,15 +5,16 @@ import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.models.PostContent;
 import com.otchi.domain.users.models.User;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 public class Feed {
 
     private final Long id;
 
-    private final Date createdTime;
+    private final LocalDateTime createdTime;
 
     private final User author;
 
@@ -21,9 +22,14 @@ public class Feed {
 
     private final Collection<Comment> comments;
 
-    private final PostContent postContent;
+    private final PostContent content;
 
     private final boolean canBeRemoved;
+
+    private final List<String> images;
+
+    private final Integer likesCount;
+    private final boolean liked;
 
     public Feed(Post post, String username) {
         this.id = post.getId();
@@ -31,8 +37,11 @@ public class Feed {
         this.author = post.getAuthor();
         this.likes = post.getLikes();
         this.comments = post.getComments();
-        this.postContent = post.getPostContent();
+        this.content = post.getPostContent();
         this.canBeRemoved = post.isOwnedBy(username);
+        this.images = post.images();
+        this.likesCount = likes.size();
+        this.liked = post.isLikedBy(username);
     }
 
 
@@ -40,7 +49,7 @@ public class Feed {
         return id;
     }
 
-    public Date getCreatedTime() {
+    public LocalDateTime getCreatedTime() {
         return createdTime;
     }
 
@@ -56,11 +65,23 @@ public class Feed {
         return comments;
     }
 
-    public PostContent getPostContent() {
-        return postContent;
+    public PostContent getContent() {
+        return content;
     }
 
     public boolean canBeRemoved() {
         return canBeRemoved;
+    }
+
+    public List<String> images() {
+        return images;
+    }
+
+    public Integer getLikesCount() {
+        return likesCount;
+    }
+
+    public boolean isLiked() {
+        return liked;
     }
 }

@@ -11,95 +11,85 @@ describe('Feeds Service', function () {
         Principal = _Principal_;
     }));
 
-    describe('Fetch Feeds', function () {
-        var currentAccount = {id: 2};
-        var posts = [{id: 1, likes: [{id: 1}]}, {id: 2, likes: [{id: 1}, {id: 2}]}];
-
-        it('should fetch feeds form the back end and mark liked feeds by the current user', function () {
-            spyOn(Principal, 'identity').and.callFake(function () {
-                return {
-                    then: function (cb) {
-                        return cb(currentAccount);
-                    }
-                };
-            });
-            $httpBackend.expectGET('/rest/v1/feed').respond(posts);
-            var feeds = FeedsService.fetchAllFeeds();
-            $httpBackend.flush();
-            expect(feeds[0].liked).toBeFalsy();
-            expect(feeds[1].liked).toBeTruthy();
-        });
-    });
 
     describe('Like Feed', function () {
-        var currentAccount = {id: 2};
-        var posts = [{id: 1, likes: []}];
 
+        var feeds;
         beforeEach(function () {
-            spyOn(Principal, 'identity').and.callFake(function () {
-                return {
-                    then: function (cb) {
-                        return cb(currentAccount);
-                    }
-                };
-            });
-        });
-
-        it('should fetch feeds form the back end and mark liked feeds by the current user', function () {
-            $httpBackend.expectGET('/rest/v1/feed').respond(posts);
-            var feeds = FeedsService.fetchAllFeeds();
-            $httpBackend.flush();
-            expect(feeds[0].liked).toBeFalsy();
+            feeds = [{id: 1, likes: [], likesCount: 0}];
         });
 
         it('should ask the server to perform post like', function () {
             $httpBackend.expectPOST('/rest/v1/feed/1/like').respond(200);
-            FeedsService.likePost(posts[0]);
+            FeedsService.likeFeed(feeds[0]);
             $httpBackend.flush();
         });
 
         it('should marque that post as liked', function () {
-            FeedsService.likePost(posts[0]);
-            expect(posts[0].liked).toBeTruthy();
+            $httpBackend.expectPOST('/rest/v1/feed/1/like').respond(200);
+            FeedsService.likeFeed(feeds[0]);
+            $httpBackend.flush();
+            expect(feeds[0].liked).toBeTruthy();
+            expect(feeds[0].likesCount).toBe(1);
         });
 
-        it('should add current user to likes list', function () {
-            FeedsService.likePost(posts[0]);
-            expect(posts[0].likes).toContain(currentAccount);
+        it('should not marque that post as liked if server return error', function () {
+            $httpBackend.expectPOST('/rest/v1/feed/1/like').respond(409);
+            FeedsService.likeFeed(feeds[0]);
+            $httpBackend.flush();
+            expect(feeds[0].liked).toBeFalsy();
+            expect(feeds[0].likesCount).toBe(0);
         });
     });
 
     describe('unLike Feed', function () {
-        var currentAccount = {id: 2};
-        var posts = [{id: 1, likes: []}];
 
+        var feeds;
         beforeEach(function () {
-            spyOn(Principal, 'identity').and.callFake(function () {
-                return {
-                    then: function (cb) {
-                        return cb(currentAccount);
-                    }
-                };
-            });
+            feeds = [{id: 1, liked: true, likesCount: 1}];
         });
 
         it('should ask the server to perform post unlike', function () {
             $httpBackend.expectPOST('/rest/v1/feed/1/unlike').respond(200);
-            FeedsService.unLikePost(posts[0]);
+            FeedsService.unLikeFeed(feeds[0]);
             $httpBackend.flush();
         });
 
-        it('should marque that post as not liked', function () {
-            FeedsService.likePost(posts[0]);
-            expect(posts[0].liked).toBeTruthy();
-            FeedsService.unLikePost(posts[0]);
-            expect(posts[0].liked).toBeFalsy();
+        it('should marque that post as unliked', function () {
+            $httpBackend.expectPOST('/rest/v1/feed/1/unlike').respond(200);
+            FeedsService.unLikeFeed(feeds[0]);
+            $httpBackend.flush();
+            expect(feeds[0].liked).toBeFalsy();
+            expect(feeds[0].likesCount).toBe(0);
         });
 
-        it('should remove current user from likes list', function () {
-            FeedsService.likePost(posts[0]);
-            FeedsService.unLikePost(posts[0]);
-            expect(posts[0].likes).not.toContain(currentAccount);
+        it('should not marque that post as unliked', function () {
+            $httpBackend.expectPOST('/rest/v1/feed/1/unlike').respond(508);
+            FeedsService.unLikeFeed(feeds[0]);
+            $httpBackend.flush();
+            expect(feeds[0].liked).toBeTruthy();
+            expect(feeds[0].likesCount).toBe(1);
+        });
+    });
+
+    describe('comment on feed', function () {
+
+        var feed;
+        var comment = "comment content";
+        beforeEach(function () {
+            feed = {id: 1, comments: []};
+            $httpBackend.expectPOST('/rest/v1/feed/1/comment', 'comment content').respond(200, {id: 2, data: 'foo'});
+        });
+
+        it('should ask the server to add save comment', function () {
+            FeedsService.commentOnFeed(feed, comment);
+            $httpBackend.flush();
+        });
+
+        it('should add the new comment to comments list in feed', function () {
+            FeedsService.commentOnFeed(feed, comment);
+            $httpBackend.flush();
+            expect(feed.comments).toEqualData([{id: 2, data: 'foo'}]);
         });
     });
 });

@@ -42,13 +42,13 @@ Feature: user fetch one post
           "createdTime": "2016-07-13 06:48:21",
           "content": {
               "type": "STORY",
-              "content": "this recipe is both tasty and cheap",
-              "images": []
+              "content": "this recipe is both tasty and cheap"
           },
           "likes": [],
           "comments": [],
           "liked": false,
-          "canBeRemoved":true
+          "canBeRemoved":true,
+          "images": []
       }
     """
 
@@ -90,19 +90,15 @@ Feature: user fetch one post
                   {
                       "id": 1,
                       "content": "start with"
-                  },
-                  {
-                      "id": 1,
-                      "content": "start with"
                   }
               ],
-              "title": "Italian Beef Stew",
-              "images": []
+              "title": "Italian Beef Stew"
           },
           "likes": [],
           "comments": [],
           "liked": false,
-          "canBeRemoved":false
+          "canBeRemoved":false,
+          "images": []
       }
     """
 

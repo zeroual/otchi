@@ -32,11 +32,10 @@ Feature: posting story
       "createdTime": "2016-07-13 06:48:21",
       "content": {
           "type": "STORY",
-          "content": "i am so happy that i found this restaurant",
-          "images": []
+          "content": "i am so happy that i found this restaurant"
       },
       "likes": [],
       "comments": [],
-      "liked": false
+      "liked": false,
     }
     """

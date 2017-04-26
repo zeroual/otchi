@@ -1,12 +1,15 @@
 'use strict';
 
 angular.module('authentication')
-    .factory('Auth', function Auth($rootScope, $state, $q, Principal, AuthServerProvider) {
+    .factory('Auth', function Auth($rootScope, $state, $q, Principal, AuthServerProvider, $translate) {
         return {
             login: function (credentials) {
                 var deferred = $q.defer();
                 AuthServerProvider.login(credentials).then(function (data) {
-                    Principal.identity(true).then(function () {
+                    Principal.identity(true).then(function (account) {
+                        $translate.use(account.langKey).then(function () {
+                            $translate.refresh();
+                        });
                         deferred.resolve(data);
                     });
                 }).catch(function (err) {

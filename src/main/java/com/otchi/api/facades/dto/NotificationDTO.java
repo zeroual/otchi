@@ -1,12 +1,10 @@
 package com.otchi.api.facades.dto;
 
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.otchi.api.facades.serializers.CustomDateSerializer;
 import com.otchi.application.NotificationWithSender;
 import com.otchi.domain.social.models.NotificationType;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class NotificationDTO {
 
@@ -14,8 +12,7 @@ public class NotificationDTO {
     private NotificationType type;
     private Long postId;
 
-    @JsonSerialize(using = CustomDateSerializer.class)
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     private UserDTO sender;
 
@@ -36,7 +33,7 @@ public class NotificationDTO {
         return type;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 

@@ -1,12 +1,13 @@
 <dataset>
 
-    <USER
+    <USERS
             ID="1"
             EMAIL="mr.jaifar@gmail.com"
             USERNAME="mr.jaifar@gmail.com"
             FIRST_NAME="reda"
             LAST_NAME="jaifar"
             PICTURE="picture1"
+            LANG_KEY="fr"
     />
 
     <recipe ID="2"

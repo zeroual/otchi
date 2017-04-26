@@ -1,7 +1,7 @@
 package com.otchi.application;
 
 import com.otchi.application.impl.PublicationsServiceImpl;
-import com.otchi.application.utils.DateFactory;
+import com.otchi.application.utils.Clock;
 import com.otchi.domain.kitchen.Recipe;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.models.Story;
@@ -19,10 +19,10 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import static com.otchi.domain.users.models.UserBuilder.asUser;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -33,7 +33,7 @@ public class PublicationsServiceTest {
     private PublicationsService publicationsService;
     private PostRepository postRepository;
     private UserRepository userRepository;
-    private DateFactory dateFactory = mock(DateFactory.class);
+    private Clock clock = mock(Clock.class);
     private BlobStorageService blobStorageService = mock(BlobStorageService.class);
     private List<MultipartFile> NO_IMAGES = emptyList();
 
@@ -43,8 +43,13 @@ public class PublicationsServiceTest {
         postRepository = new MockPostRepository();
         userRepository = new MockUserRepository();
 
-        userRepository.save(new User("email@gmail.com", "abde", "zeros"));
-        publicationsService = new PublicationsServiceImpl(postRepository, userRepository, dateFactory, blobStorageService);
+        User user =
+                asUser().withUsername("email@gmail.com")
+                        .withFirstName("abde")
+                        .withLastName("zeros")
+                        .build();
+        userRepository.save(user);
+        publicationsService = new PublicationsServiceImpl(postRepository, userRepository, clock, blobStorageService);
 
     }
 
@@ -71,8 +76,8 @@ public class PublicationsServiceTest {
 
     @Test
     public void shouldAssignPostCreationDateToNow() throws ParseException {
-        Date now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse("2015-02-28 12:15:22.8");
-        Mockito.when(dateFactory.now()).thenReturn(now);
+        LocalDateTime now = LocalDateTime.parse("2015-02-28T12:15:22.8");
+        Mockito.when(clock.now()).thenReturn(now);
 
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
         publicationsService.publishRecipe(recipe, emptyList(), "email@gmail.com");
@@ -81,7 +86,7 @@ public class PublicationsServiceTest {
     }
 
     @Test
-    public void shouldSaveRecipePictures() {
+    public void shouldSaveRecipeImages() {
 
         List<String> imagesURL = asList("http://url.com/12OU222Y1Y2.png");
         when(blobStorageService.save(anyListOf(MultipartFile.class))).thenReturn(imagesURL);
@@ -90,21 +95,20 @@ public class PublicationsServiceTest {
         List<MultipartFile> pictures = asList(picture1);
 
         Recipe recipe = new Recipe("recipe_title", "recipe_desc", 50, 20);
-        Post savedPost = publicationsService.publishRecipe(recipe, pictures, "email@gmail.com");
+        Feed feed = publicationsService.publishRecipe(recipe, pictures, "email@gmail.com");
         Mockito.verify(blobStorageService).save(pictures);
-        Recipe savedRecipe = (Recipe) savedPost.getPostContent();
-        assertThat(savedRecipe.getImages()).hasSize(1)
-                .isEqualTo(imagesURL);
 
+        assertThat(feed.images()).hasSize(1)
+                .isEqualTo(imagesURL);
 
     }
 
     @Test
     public void shouldSaveStoryAsPost() {
         Story story = new Story("my story");
-        Post savedPost = publicationsService.publishStory(story, NO_IMAGES, "email@gmail.com");
-        assertThat(savedPost.getId()).isNotNull();
-        savedPost = postRepository.findOne(1L);
+        Feed feed = publicationsService.publishStory(story, NO_IMAGES, "email@gmail.com");
+        assertThat(feed.getId()).isNotNull();
+        Post savedPost = postRepository.findOne(1L);
         assertThat(savedPost).isNotNull();
 
         Story savedStory = (Story) savedPost.getPostContent();
@@ -115,15 +119,15 @@ public class PublicationsServiceTest {
     public void shouldAssignStoryPostToHisAuthor() {
         Story story = new Story("my story");
         String username = "email@gmail.com";
-        Post savedPost = publicationsService.publishStory(story, NO_IMAGES, username);
-        assertThat(savedPost.getAuthor().getUsername()).isEqualTo(username);
+        Feed feed = publicationsService.publishStory(story, NO_IMAGES, username);
+        assertThat(feed.getAuthor().getUsername()).isEqualTo(username);
 
     }
 
     @Test
     public void shouldAssignStoryCreationDateToNow() throws ParseException {
-        Date now = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse("2015-02-28 12:15:22.8");
-        Mockito.when(dateFactory.now()).thenReturn(now);
+        LocalDateTime now = LocalDateTime.parse("2015-02-28T12:15:22.8");
+        Mockito.when(clock.now()).thenReturn(now);
 
         Story story = new Story("my story");
 
@@ -142,11 +146,9 @@ public class PublicationsServiceTest {
         List<MultipartFile> images = asList(image);
 
         Story story = new Story("my story");
-        Post savedPost = publicationsService.publishStory(story, images, "email@gmail.com");
+        Feed feed = publicationsService.publishStory(story, images, "email@gmail.com");
         Mockito.verify(blobStorageService).save(images);
-        Story savedStory = (Story) savedPost.getPostContent();
-        assertThat(savedStory.getImages()).hasSize(1)
-                .isEqualTo(imagesURL);
+        assertThat(feed.images()).hasSize(1).isEqualTo(imagesURL);
 
 
     }

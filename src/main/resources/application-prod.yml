@@ -9,29 +9,26 @@ spring:
 
         # see https://developers.facebook.com/docs/facebook-login/v2.2
         facebook:
-            clientId: 912472022199215
-            clientSecret: 9a551587d44a6505291cab3c1a33ead5
+            clientId: 381879212199335
+            clientSecret: 0fa1419fc5c45820c094822a0222147a
 
         # see https://apps.twitter.com/app/
         twitter:
             clientId: X1S2BH04CdYXYtHfTG6gGa5C7
             clientSecret: 3FOSZfivHHQL9OAjV3ybU5ErLZkftV5BL4xbbeoCP1GjmvSP2D
     datasource:
-        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
-        cachePrepStmts: true
-        prepStmtCacheSize: 250
-        prepStmtCacheSqlLimit: 2048
-        useServerPrepStmts: true
-
+        username: ${JDBC_DATABASE_USERNAME}
+        password: ${JDBC_DATABASE_PASSWORD}
+        url: ${JDBC_DATABASE_URL}
+        driver-class-name: org.postgresql.Driver
     jpa:
-        database-platform: org.hibernate.dialect.MySQLInnoDBDialect
-        database: MYSQL
-        openInView: false
+        database-platform: org.hibernate.dialect.PostgreSQL82Dialect
+        database: POSTGRESQL
+        openInView: true
         show_sql: false
         generate-ddl: false
         hibernate:
             ddl-auto: none
-            naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
         properties:
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false

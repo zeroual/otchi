@@ -1,0 +1,91 @@
+<div class="card">
+    <div class="panel panel-default">
+        <div class="panel-heading panel-heading-gray">
+            <div class="media">
+                <div class="media-left media-middle">
+                    <a href="#">
+                        <img class="media-object img-circle"
+                             ng-src="{{$ctrl.feed.author.picture}}" width="35">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <span class="media-heading"> {{$ctrl.feed.author.firstName}}  {{$ctrl.feed.author.lastName}}</span>
+                    <time class="bullet text-gray">{{$ctrl.feed.createdTime |timeAgo}}</time>
+
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-menu-down"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a>
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                    Edit (not implemented yet )
+                                </a>
+                            </li>
+                            <li ng-if="$ctrl.feed.canBeRemoved">
+                                <a href="" ng-click="$ctrl.remove()">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                    Delete
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span class="glyphicon glyphicon-eye-close"></span>
+                                    Signal (not implemented yet )
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <recipe-viewer recipe="$ctrl.feed.content"
+                           feed-id="$ctrl.feed.id"
+                           images="$ctrl.feed.images"
+                           ng-if="$ctrl.feed.content.type==='RECIPE'"
+            />
+            <story-viewer story="$ctrl.feed.content"
+                          images="$ctrl.feed.images"
+                          ng-if="$ctrl.feed.content.type==='STORY'"
+            />
+        </div>
+        <div class="panel-footer">
+            <div>
+                <div class="pull-left">
+                    <a href="" class="button-link text-muted" ng-click="showComments=!showComments">
+                        <i class="glyphicon glyphicon-bullhorn"/>
+                        <span ng-if="$ctrl.feed.comments.length > 0">
+                        {{$ctrl.feed.comments.length}} &nbsp;Comments
+                    </span>
+                        <span ng-if="$ctrl.feed.comments.length === 0">
+                        Start discussion
+                    </span>
+                    </a>
+                </div>
+
+                <div ng-switch="$ctrl.feed.liked" class="pull-right">
+                    <span ng-if="$ctrl.feed.likesCount > 0">
+                        <a href="" class="button-link text-muted" ng-click="$ctrl.showLikes()">
+                            {{$ctrl.feed.likesCount}} Likes
+                        </a>
+                    </span>
+                    <a href="" class="btn btn-like" ng-switch-when="false" ng-click="$ctrl.like()">
+                        <i class="glyphicon glyphicon-heart-empty"></i> {{$ctrl.feed.likesCount}}
+                    </a>
+                    <a href="" class="btn btn-unLike" ng-switch-when="true" ng-click="$ctrl.unLike()">
+                        <i class="glyphicon glyphicon-heart"></i> {{$ctrl.feed.likesCount}}
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div ng-if="showComments===true">
+                <hr/>
+                <feed-comments feed="$ctrl.feed"/>
+            </div>
+        </div>
+    </div>
+</div>

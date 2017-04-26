@@ -1,5 +1,4 @@
-ID;USER_ID;USERNAME;PASSWORD;ENABLED;LANG_KEY
-1;1;zeroual.abde@gmail.com;$2a$10$9m.et2mcPSzA4RdS1AOGPemNLOCerTkyEC99BUdqMSNL.4F9HUtbW;true;en
-2;2;m.amine.jabri@gmail.com;$2a$10$2msNJre9jMfIKWxq/tXPP.F2GR6MRP3Hu0pscFOpYeOQzSqsrj2TO;true;en
-3;3;mr.jaifar@gmail.com;$2a$10$ir99IGmrvfFc90qloVGJr.XY03r2rFnsvhNcp8OH40HEClM7KSbeO;true;en
-4;4;brahimfes@gmail.com;$2a$10$ir99IGmrvfFc90qloVGJr.XY03r2rFnsvhNcp8OH40HEClM7KSbeO;true;en
+ID;USER_ID;USERNAME;PASSWORD;ENABLED
+1;1;zeroual.abde@gmail.com;$2a$10$9m.et2mcPSzA4RdS1AOGPemNLOCerTkyEC99BUdqMSNL.4F9HUtbW;true
+3;3;mr.jaifar@gmail.com;$2a$10$ir99IGmrvfFc90qloVGJr.XY03r2rFnsvhNcp8OH40HEClM7KSbeO;true
+4;4;brahimfes@gmail.com;$2a$10$ir99IGmrvfFc90qloVGJr.XY03r2rFnsvhNcp8OH40HEClM7KSbeO;true

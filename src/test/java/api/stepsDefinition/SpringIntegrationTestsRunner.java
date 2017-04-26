@@ -4,8 +4,7 @@ import com.otchi.infrastructure.boot.OtchiApplicationStarter;
 import cucumber.api.java.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.ConfigFileApplicationContextInitializer;
-import org.springframework.boot.test.IntegrationTest;
+import org.springframework.boot.test.context.ConfigFileApplicationContextInitializer;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,13 +21,11 @@ import static com.otchi.infrastructure.config.Constants.SPRING_PROFILE_DEVELOPME
 @ContextConfiguration(classes = {OtchiApplicationStarter.class, IntegrationTestsConfig.class},
         initializers = ConfigFileApplicationContextInitializer.class)
 @WebAppConfiguration()
-@IntegrationTest
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+@DirtiesContext
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class,
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class})
 @ActiveProfiles(SPRING_PROFILE_DEVELOPMENT)
-
 public class SpringIntegrationTestsRunner {
 
     @Autowired

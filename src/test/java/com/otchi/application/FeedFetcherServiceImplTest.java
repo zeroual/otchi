@@ -12,9 +12,10 @@ import org.junit.Test;
 import java.util.List;
 import java.util.Optional;
 
+import static com.otchi.domain.users.models.UserBuilder.asUser;
+import static java.time.LocalDateTime.parse;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.util.Dates.parse;
 
 public class FeedFetcherServiceImplTest {
 
@@ -24,12 +25,18 @@ public class FeedFetcherServiceImplTest {
     @Before
     public void setUp() {
         postRepository.deleteAll();
-        Post post1 = new Post(parse("2016-02-27"));
-        User user1 = new User("author", "firstName", "lastName");
+        Post post1 = new Post(parse("2016-02-27T00:00:00"));
+        User user1 = asUser().withUsername("author")
+                .withFirstName("firstName")
+                .withLastName("lastName")
+                .build();
         post1.setAuthor(user1);
 
-        Post post2 = new Post(parse("2016-02-28"));
-        User user2 = new User("another author", "firstName", "lastName");
+        Post post2 = new Post(parse("2016-02-28T00:00:00"));
+        User user2 = asUser().withUsername("another author")
+                .withFirstName("firstName")
+                .withLastName("lastName")
+                .build();
         post2.setAuthor(user2);
         postRepository.save(asList(post1, post2));
     }
@@ -40,7 +47,7 @@ public class FeedFetcherServiceImplTest {
         assertThat(foundFeeds).hasSize(2);
         assertThat(foundFeeds)
                 .extracting(Feed::getCreatedTime)
-                .containsExactly(parse("2016-02-28"), parse("2016-02-27"))
+                .containsExactly(parse("2016-02-28T00:00:00"), parse("2016-02-27T00:00:00"))
                 .isSortedAccordingTo((o1, o2) -> o2.compareTo(o1));
     }
 
@@ -65,7 +72,7 @@ public class FeedFetcherServiceImplTest {
     public void shouldGetFeedIfExist() {
         Optional<Feed> feedOptional = feedFetcherService.getFeed(1L, "");
         assertThat(feedOptional).isPresent();
-        assertThat(feedOptional.get().getCreatedTime()).isEqualTo(parse("2016-02-27"));
+        assertThat(feedOptional.get().getCreatedTime()).isEqualTo(parse("2016-02-27T00:00:00"));
 
         feedOptional = feedFetcherService.getFeed(99L, "");
         assertThat(feedOptional).isEmpty();

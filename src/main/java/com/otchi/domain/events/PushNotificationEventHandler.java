@@ -21,7 +21,9 @@ public class PushNotificationEventHandler {
         PostCommentedEvent event = postCommentedEvent;
         Post post = event.getPost();
         String commentOwner = event.getCommentOwner();
-        pushNotificationsService.sendCommentedNotificationToPostAuthor(post, commentOwner);
+        if (!post.isOwnedBy(commentOwner)) {
+            pushNotificationsService.sendCommentedNotificationToPostAuthor(post, commentOwner);
+        }
     }
 
     @Subscribe
@@ -29,7 +31,9 @@ public class PushNotificationEventHandler {
         LikePostEvent event = likePostEvent;
         Post likedPost = event.getLikedPost();
         String likeOwner = event.getLikeOwner();
-        pushNotificationsService.sendLikeNotificationToPostAuthor(likedPost, likeOwner);
+        if (!likedPost.isOwnedBy(likeOwner)) {
+            pushNotificationsService.sendLikeNotificationToPostAuthor(likedPost, likeOwner);
+        }
     }
 
 }

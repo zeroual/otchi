@@ -2,11 +2,10 @@ package com.otchi.application.impl;
 
 import com.otchi.application.FeedService;
 import com.otchi.application.UserService;
-import com.otchi.application.utils.DateFactory;
+import com.otchi.application.utils.Clock;
 import com.otchi.domain.events.DomainEvents;
-import com.otchi.domain.events.PostCommentedEvent;
 import com.otchi.domain.events.LikePostEvent;
-import com.otchi.domain.services.PushNotificationsService;
+import com.otchi.domain.events.PostCommentedEvent;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
 import com.otchi.domain.social.exceptions.ResourceNotAuthorizedException;
 import com.otchi.domain.social.models.Comment;
@@ -22,17 +21,17 @@ public class FeedServiceImpl implements FeedService {
 
     private PostRepository postRepository;
     private UserService userService;
-    private DateFactory dateFactory;
+    private Clock clock;
     private DomainEvents domainEvents;
 
     @Autowired
     public FeedServiceImpl(PostRepository postRepository,
                            UserService userService,
-                           DateFactory dateFactory,
+                           Clock clock,
                            DomainEvents domainEvents) {
         this.postRepository = postRepository;
         this.userService = userService;
-        this.dateFactory = dateFactory;
+        this.clock = clock;
         this.domainEvents = domainEvents;
     }
 
@@ -69,7 +68,7 @@ public class FeedServiceImpl implements FeedService {
             throw new PostNotFoundException(postId);
         }
         User author = userService.findUserByUsername(username).get();
-        Comment comment = new Comment(author, content, dateFactory.now());
+        Comment comment = new Comment(author, content, clock.now());
         commentedPost.addComment(comment);
         Post savedPost = postRepository.save(commentedPost);
         PostCommentedEvent postCommentedEvent = new PostCommentedEvent(savedPost, username);
