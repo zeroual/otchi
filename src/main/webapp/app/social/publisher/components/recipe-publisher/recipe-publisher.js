@@ -2,7 +2,7 @@ angular.module("publisher")
     .directive('recipePublisher', function () {
         return {
             templateUrl: 'app/social/publisher/components/recipe-publisher/recipe-publisher.html',
-            controller: function ($scope, $rootScope, ShareService, ToasterService, $state) {
+            controller: function ($scope, $rootScope, ShareService, ToasterService, $state, $http) {
 
                 function init() {
                     $scope.recipe = {
@@ -17,6 +17,17 @@ angular.module("publisher")
                 init();
 
 
+  loadIngredients = function(){
+        $http.get('/data/ingredients_dictionary.json').then(function(res){
+
+          $scope.ingredientsDictionary = res.data.map(function(obj){
+                            return obj.name;
+                          });
+        });
+        };
+
+
+  $scope.ingredientsDictionary = loadIngredients();
                 extractTags = function(){
                     return $scope.tags.map(function(tag){
                         return tag.text;

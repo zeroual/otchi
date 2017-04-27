@@ -10,6 +10,8 @@ describe('Recipe publisher directive', function () {
 
     beforeEach(inject(function (_$rootScope_, $compile, _$httpBackend_, _ToasterService_, _$state_) {
         $httpBackend = _$httpBackend_;
+        ingredientsSuggestions = [];
+        $httpBackend.whenGET('/data/ingredients_dictionary.json').respond(200, ingredientsSuggestions);
         $rootScope = _$rootScope_;
         ToasterService = _ToasterService_;
         $state = _$state_;
@@ -126,4 +128,11 @@ describe('Recipe publisher directive', function () {
         });
     });
 
+    describe('load ingredients dictionary', function(){
+        it('should have empty dictionary', function (){
+            $scope.ingredientsDictionary = [];
+            $httpBackend.whenGET('/data/ingredients_dictionary.json').respond(200, ingredientsSuggestions);
+            $httpBackend.flush();
+        });
+    });
 });
