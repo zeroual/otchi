@@ -1,4 +1,4 @@
-ID;EMAIL;USERNAME;FIRST_NAME;LAST_NAME;LANG_KEY;PICTURE
-1;zeroual.abde@gmail.com;zeroual.abde@gmail.com;Abdellah;ZEROUAL;fr;/assets/images/users/abdellah.jpg
-3;mr.jaifar@gmail.com;mr.jaifar@gmail.com;Reda;JAIFAR;en;/assets/images/users/reda.jpg
-4;brahimfes@gmail.com;brahimfes@gmail.com;Brahim;YAKOUBI;fr;/assets/images/users/thierry.jpg
+EMAIL;USERNAME;FIRST_NAME;LAST_NAME;LANG_KEY;PICTURE
+zeroual.abde@gmail.com;zeroual.abde@gmail.com;Abdellah;ZEROUAL;fr;/assets/images/users/abdellah.jpg
+mr.jaifar@gmail.com;mr.jaifar@gmail.com;Reda;JAIFAR;en;/assets/images/users/reda.jpg
+brahimfes@gmail.com;brahimfes@gmail.com;Brahim;YAKOUBI;fr;/assets/images/users/thierry.jpg

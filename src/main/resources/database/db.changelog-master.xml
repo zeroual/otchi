@@ -5,7 +5,6 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="changelog/201704011735_initial_schema.xml" relativeToChangelogFile="true"/>
-    <include file="changelog/201704221258_remove-user_followers_table.xml" relativeToChangelogFile="true"/>
 
     <!-- TODO I don't like the following solution, but we need to clear database for each test (test isolation)-->
     <!-- So don't forget to add a new row in empty.xml if you add new table-->

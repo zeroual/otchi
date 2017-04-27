@@ -153,11 +153,6 @@
             <column name="USER_ID" type="BIGINT"/>
         </createTable>
 
-        <createTable tableName="USER_FOLLOWERS">
-            <column name="USER_ID" type="BIGINT"/>
-            <column name="FOLLOWING_ID" type="BIGINT"/>
-        </createTable>
-
         <createTable tableName="POST_COMMENT">
             <column name="ID" type="BIGINT" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
@@ -170,34 +165,34 @@
             <column name="CREATED_ON" type="DATETIME"/>
         </createTable>
 
-        <createTable tableName="UserConnection">
-            <column name="userId" type="VARCHAR(255)">
+        <createTable tableName="USERCONNECTION">
+            <column name="USERID" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="providerId" type="VARCHAR(255)">
+            <column name="PROVIDERID" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="providerUserId" type="VARCHAR(255)">
+            <column name="PROVIDERUSERID" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="rank" type="INT">
+            <column name="RANK" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="displayName" type="VARCHAR(255)"/>
-            <column name="profileUrl" type="VARCHAR(512)"/>
-            <column name="imageUrl" type="VARCHAR(512)"/>
-            <column name="accessToken" type="VARCHAR(512)">
+            <column name="DISPLAYNAME" type="VARCHAR(255)"/>
+            <column name="PROFILEURL" type="VARCHAR(512)"/>
+            <column name="IMAGEURL" type="VARCHAR(512)"/>
+            <column name="ACCESSTOKEN" type="VARCHAR(512)">
                 <constraints nullable="false"/>
             </column>
-            <column name="secret" type="VARCHAR(512)"/>
-            <column name="refreshToken" type="VARCHAR(512)"/>
-            <column name="expireTime" type="BIGINT"/>
+            <column name="SECRET" type="VARCHAR(512)"/>
+            <column name="REFRESHTOKEN" type="VARCHAR(512)"/>
+            <column name="EXPIRETIME" type="BIGINT"/>
         </createTable>
-        <addPrimaryKey columnNames="userId, providerId, providerUserId" tableName="UserConnection"/>
+        <addPrimaryKey columnNames="USERID, PROVIDERID, PROVIDERUSERID" tableName="USERCONNECTION"/>
 
     </changeSet>
 
-    <changeSet id="201704011736" author="Abdellah">
+    <changeSet id="201704011736" author="Abdellah" >
 
         <loadData encoding="UTF-8"
                   file="database/data/users.csv"
