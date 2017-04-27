@@ -184,7 +184,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="DISPLAYNAME" type="VARCHAR(255)"/>
-            <column name="PROFILURL" type="VARCHAR(512)"/>
+            <column name="PROFILEURL" type="VARCHAR(512)"/>
             <column name="IMAGEURL" type="VARCHAR(512)"/>
             <column name="ACESSTOKEN" type="VARCHAR(512)">
                 <constraints nullable="false"/>
