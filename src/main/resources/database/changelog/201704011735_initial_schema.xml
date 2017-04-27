@@ -177,7 +177,7 @@
             <column name="PROVIDERID" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="PROVIDERIDUSERID" type="VARCHAR(255)">
+            <column name="PROVIDERUSERID" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="RANK" type="INT">
@@ -193,7 +193,7 @@
             <column name="REFRESHTOKEN" type="VARCHAR(512)"/>
             <column name="EXPRIETIME" type="BIGINT"/>
         </createTable>
-        <addPrimaryKey columnNames="USERID, PROVIDERID, PROVIDERIDUSERID" tableName="USERCONNECTION"/>
+        <addPrimaryKey columnNames="USERID, PROVIDERID, PROVIDERUSERID" tableName="USERCONNECTION"/>
 
     </changeSet>
 
