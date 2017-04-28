@@ -1,0 +1,81 @@
+<div class="navbar navbar-default header" role="navigation">
+    <div class="container topnav">
+        <div class="navbar-header">
+            <a class="navbar-brand padding-bottom-none padding-top-none" ui-sref="feed">
+                <img height="50" src="/assets/images/logo.png" alt="Otchi">
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="dropdown notifications dropdown-notifications">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                        <i data-count="{{$ctrl.notifications.length}}"
+                           class="glyphicon glyphicon-bell"
+                           ng-class="{'notification-icon':$ctrl.notifications.length>0}"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <ul class="notifications">
+                            <li class="notification" ng-if="$ctrl.notifications.length==0">
+                                <div>
+                                    <strong class="notification-title">
+                                        You have no unread notifications
+                                    </strong>
+                                </div>
+                            </li>
+                            <li class="notification" ng-repeat="notification in $ctrl.notifications"
+                                ng-click="$ctrl.readNotification(notification)">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <div class="media-object">
+                                            <img class="img-circle"
+                                                 width="50" height="50"
+                                                 ng-src="{{notification.sender.picture}}">
+                                        </div>
+                                    </div>
+                                    <div class="media-body">
+                                        <strong class="notification-title">
+                                            <a href="#">{{notification.sender.firstName}}
+                                                {{notification.sender.lastName}}</a>
+                                            <span ng-switch="notification.type">
+                                                <span ng-switch-when="LIKED"> likes </span>
+                                                <span ng-switch-when="COMMENT_ON_POST"> commented on </span>
+                                                <span ng-switch-when="ALSO_COMMENTED"> also replied to</span>
+                                            </span>
+                                            your post
+                                        </strong>
+                                        <p class="notification-desc">
+                                            <!--FIXME show post summary-->
+                                            i think that we should show something about post here :D </p>
+
+                                        <div class="notification-meta">
+                                            <small class="timestamp">{{notification.createdAt| timeAgo}}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="dropdown-footer text-center">
+                            <a href="#">View All</a>
+                        </div>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                        <img class="img-circle"
+                             ng-src="{{$ctrl.account.picture}}" width="35">
+                          {{$ctrl.account.firstName}} &nbsp;
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> Profile</a></li>
+                        <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Setting</a></li>
+                        <li class="divider"></li>
+                        <li><a href="" ng-click="$ctrl.logout()"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
