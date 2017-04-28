@@ -31,7 +31,14 @@ public class FeedResource {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<FeedDTO> fetchAllRecipe(Principal principal) {
-        String username = principal.getName();
+
+        //TODO : refactor: the empty string don't really mean that user is unauthenticated
+        String username = "";
+
+        if (principal != null) {
+            username = principal.getName();
+        }
+
         return feedFetcherService.fetchAllFeeds(username)
                 .stream()
                 .map(FeedDTO::new)
