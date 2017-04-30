@@ -152,6 +152,27 @@ a, button {
     transition: all 0.2s ease 0s;
 }
 
+.connect-options2 button .auth-container {
+    display: inline-block;
+    padding: 15px;
+    border-radius: 64px;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: all 0.2s ease 0s;
+    -moz-transition: all 0.2s ease 0s;
+    -ms-transition: all 0.2s ease 0s;
+    -o-transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s;
+     
+    color: white;
+    margin: -5px -200px; 
+    position:relative;
+    top:50%; 
+    left:50%;
+}
 .connect-options button .auth-container img {
     display: block;
     width: 40px;

@@ -1,9 +1,9 @@
-<form action="{{providerURL}}" method="POST">
+<form action="{{providerURL}}" method="POST"  >
     <input name="scope" type="hidden" value="{{providerSetting}}"/>
     <input name="_csrf" type="hidden" value="{{csrf}}"/>
     <button title="{{provider}}" type="submit" class="{{provider}}-auth">
-       <span class="auth-container">
-           <img src="/assets/images/icons/{{provider}}.svg" alt="{{provider}}">
+       <span class="auth-container" >
+           Get started
        </span>
     </button>
 </form>
