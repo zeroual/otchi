@@ -14,7 +14,6 @@ import org.springframework.web.context.WebApplicationContext;
 import javax.servlet.Filter;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -57,17 +56,24 @@ public class AuthenticationIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     public void shouldRejectAnonymousAccessToRestResources() throws Exception {
-        mockMvc.perform(get(ResourcesPath.FEED).with(csrf()))
+        mockMvc.perform(get(ResourcesPath.ME).with(csrf()))
                 .andExpect(status().isUnauthorized());
     }
 
     @Test
-    @DatabaseSetup("/dbunit/users/users.xml")
-    public void shouldAllowAuthenticatedAccessToRestResources() throws Exception {
-        mockMvc.perform(get(ResourcesPath.FEED)
-                .with(user("zeroual.abde@gmail.com").password("zeros")).with(csrf()))
+    public void shouldAllowUnAuthenticatedUsersToGetFeeds() throws Exception {
+        mockMvc.perform(get(ResourcesPath.FEED).with(csrf()))
                 .andExpect(status().isOk());
+
     }
+
+    @Test
+    public void shouldDenyAnyPostRequestIntoFeedApiOfUnAuthenticatedUsers() throws Exception {
+        mockMvc.perform(post(ResourcesPath.FEED).with(csrf()))
+                .andExpect(status().isUnauthorized());
+
+    }
+
 
     @Test
     @WithMockUser

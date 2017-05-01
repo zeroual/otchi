@@ -25,8 +25,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             'abstract': true,
             views: {
                 'navbar@': {
-                    templateUrl: app_dir + 'components/navbar/navbar.html',
-                    controller: 'NavBarController'
+                    template:'<navbar/>'
                 }
             }
         })
