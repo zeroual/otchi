@@ -1,4 +1,4 @@
-<div class="landing">
+<div class="socialAuth">
 
 <section id="header" class="header bg-primary text-center">
 	<div class="container">
@@ -21,8 +21,17 @@
 
 				 <div class="badges">		
 					<div class="connect-options2 row" ng-if="success=='true'">
-						<social-auth-button ng-if="success=='true'"
-							ng-provider="{{ provider }}"></social-auth-button>
+						<!-- final-social-auth-button ng-if="success=='true'"
+							ng-provider="{{ provider }}"></final-social-auth-button -->
+						<form action="{{providerURL}}" method="POST"  >
+							<input name="scope" type="hidden" value="{{providerSetting}}"/>
+							<input name="_csrf" type="hidden" value="{{csrf}}"/>
+							<button title="{{provider}}" type="submit" class="{{provider}}-auth">
+							   <span class="auth-container" >
+								Get started
+							   </span>
+							</button>
+						</form>
 					</div>
 				</div>
 							
