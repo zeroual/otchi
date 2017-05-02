@@ -1,17 +1,5 @@
-<div class="row">
-
-    <div class="col-md-12 col-sm-12">
-        <div>
-            <p>
-                {{$ctrl.story.content}}
-            </p>
-        </div>
-    </div>
-
-    <div class="col-md-12 col-sm-12" ng-if="$ctrl.images">
-        <a href="#">
-            <img class="img-responsive"
-                 ng-src="{{$ctrl.images[0]}}">
-        </a>
-    </div>
+<div class="col-md-12 story-text">
+    <p>
+        {{$ctrl.story.content}}
+    </p>
 </div>

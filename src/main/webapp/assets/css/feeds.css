@@ -1,3 +1,35 @@
 .media, .media-body {
-	overflow: visible;
+    overflow: visible;
+}
+
+.feed .feed-image {
+    padding: 0px;
+}
+
+.feed p, img, h1, h2, h3, h4, h5, h6 {
+    cursor: pointer !important;
+}
+
+.feed .panel-body {
+    padding-top: 0px;
+}
+
+.feed .story-text {
+    color: #4d4d4d;
+    font-size: 1em;
+    padding: 10px 15px;
+}
+
+.feed .recipe-title {
+    color: #4d4d4d;
+    width: 94%;
+    padding-left: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.feed .recipe-description {
+    color: #4d4d4d;
+    font-size: 1em;
+    padding: 10px 15px;
 }
