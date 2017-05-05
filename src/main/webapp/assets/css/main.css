@@ -2,6 +2,9 @@ body {
     background: #eff3fa;
     color: #546673;
     font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.content {
     padding-top: 70px;
 }
 
@@ -22,9 +25,11 @@ body {
 .no-padding {
     padding: 0px;
 }
-.timeline{
-    padding:2px;
+
+.timeline {
+    padding: 2px;
 }
+
 .text-gray {
     color: #7f919e;
 }
@@ -40,10 +45,11 @@ body {
 }
 
 /****************MARGIN ET PADDING*********/
-.margin-top-none{
+.margin-top-none {
     margin-top: 0px;
 }
-.margin-bottom-none{
+
+.margin-bottom-none {
     margin-bottom: 0px;
 }
 
@@ -73,6 +79,7 @@ body {
 
     padding: 2px 6px 2px 6px;
 }
+
 /*NAV BAR*/
 
 .navbar-nav > li > a {

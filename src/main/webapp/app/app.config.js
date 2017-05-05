@@ -10,7 +10,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 pageTitle: 'Otchi Beta'
             },
             views: {
-                'content@': {
+                'main@': {
                     templateUrl: app_dir + "landing/landing.html",
                     controller: 'LandingController'
                 }
