@@ -1,12 +1,22 @@
 body {
     background: #eff3fa;
     color: #546673;
-    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding-top: 70px;
 }
 
-.header {
+.navbar {
     background-color: #fff;
     border-bottom: 1px solid #c2c9d4;
+}
+
+.navbar-header {
+    float: left;
+}
+
+.navbar-right {
+    float: right !important;
+    margin-right: 1px;
 }
 
 .no-padding {
