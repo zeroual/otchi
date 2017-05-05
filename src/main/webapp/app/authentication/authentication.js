@@ -29,7 +29,7 @@ angular.module('authentication', ['ngResource', 'LocalStorageModule', 'ui.router
                     pageTitle: 'Login'
                 },
                 views: {
-                    'content@': {
+                    'main@': {
                         templateUrl: app_dir + "authentication/views/login.html",
                         controller: 'LoginController'
                     }
@@ -40,7 +40,7 @@ angular.module('authentication', ['ngResource', 'LocalStorageModule', 'ui.router
                 pageTitle: 'register'
             },
             views: {
-                'content@': {
+                'main@': {
                     templateUrl: app_dir + "authentication/views/register.html",
                     controller: 'RegisterController'
                 }

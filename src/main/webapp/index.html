@@ -40,13 +40,11 @@
     <!-- endbuild -->
 </head>
 
-<body ng-app="otchi">
+<body ng-app="otchi" ui-view="main">
 <toast></toast>
 <div ui-view="navbar"></div>
-<div>
-    <div ui-view="content">
+<div ui-view="content" class="content">
 
-    </div>
 </div>
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
