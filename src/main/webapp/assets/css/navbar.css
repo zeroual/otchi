@@ -1,0 +1,143 @@
+
+.navbar .notifications {
+    list-style: none;
+    padding: 0;
+}
+
+.navbar .notifications .glyphicon {
+    font-size: 1.3em;
+    top: 8px;
+    color: #2e9fff;
+}
+
+.navbar .notification {
+    display: block;
+    padding: 9.6px 12px;
+    border-bottom: 1px solid #eeeeee;
+    color: #333333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar .notification:last-child {
+    border-bottom: 0;
+}
+
+.navbar .notification:hover,
+.navbar .notification.active:hover {
+    background-color: #f9f9f9;
+}
+
+.navbar .notification.active {
+    background-color: #f4f4f4;
+}
+
+.navbar .notification-title {
+    font-size: 15px;
+    margin-bottom: 0;
+}
+
+.navbar .notification-desc {
+    margin-bottom: 0;
+}
+
+.navbar .notification-meta {
+    color: #777777;
+}
+
+.navbar a.notification:hover {
+    text-decoration: none;
+}
+
+.navbar .dropdown-notifications > .dropdown-container,
+.navbar .dropdown-notifications > .dropdown-menu {
+    width: 450px;
+    max-width: 450px;
+}
+
+.navbar .dropdown-notifications .dropdown-menu {
+    padding: 0;
+}
+
+.navbar .dropdown-notifications .dropdown-toolbar,
+.navbar .dropdown-notifications .dropdown-footer {
+    padding: 9.6px 12px;
+}
+
+.navbar .dropdown-notifications .dropdown-toolbar {
+    background: #fff;
+}
+
+.navbar .dropdown-notifications .dropdown-footer {
+    background: #eeeeee;
+}
+
+.navbar .notification-icon {
+    margin-right: 6.8775px;
+}
+
+.navbar .notification-icon:after {
+    position: absolute;
+    content: attr(data-count);
+    margin-left: -6.8775px;
+    margin-top: -6.8775px;
+    padding: 0 4px;
+    min-width: 13.755px;
+    height: 13.755px;
+    line-height: 13.755px;
+    background: red;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 11.004px;
+    font-weight: 600;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.navbar .notification .media-body {
+    padding-top: 5.6px;
+}
+
+.navbar .dropdown-menu {
+    border-radius: 0px;
+}
+
+@media (max-width: 768px) {
+
+    .navbar .dropdown {
+        position: static;
+    }
+
+    .navbar .dropdown-menu {
+        width: 100%;
+    }
+}
+
+.navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.navbar {
+    background-color: #fff;
+    border-bottom: 1px solid #c2c9d4;
+}
+
+.navbar-header {
+    float: left;
+}
+
+.navbar-right {
+    float: right !important;
+    margin-right: 1px;
+}
+
+.navbar-right .navbar-action {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.left-divider {
+    border-left: 1px solid #ebeef2;;
+}
