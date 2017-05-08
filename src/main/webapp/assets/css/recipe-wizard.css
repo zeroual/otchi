@@ -1,0 +1,14 @@
+.wizard-card{
+
+     margin: auto;
+    width: 50%;
+}
+
+.wizard-box{
+    border: 1px solid #D7E3EF;
+    padding:1%;
+}
+
+.wizard-nav{
+    margin-top:2%;
+}

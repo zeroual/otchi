@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                <p class="text-muted">
+                    Add the first instruction, then if you want to add more
+                    click on plus button
+                </p>
+                <form class="form-horizontal">
+                    <div class="form-group" ng-repeat="instruction in $ctrl.instructions">
+                        <div class="col-md-10 col-sm-10 col-xs-10">
+                                <textarea ng-model="instruction.content" type="text" class="form-control"
+                                          placeholder="Put direction to follow here "
+                                />
+                        </div>
+                        <div class="col-md-1 col-sm-2 col-xs-1">
+                            <button class='btn btn-danger glyphicon glyphicon-minus'
+                                    ng-click="$ctrl.removeInstruction($index)"
+                                    ng-if="!$last">
+                            </button>
+                            <button class='btn btn-success glyphicon glyphicon-plus'
+                                    ng-click="$ctrl.addInstruction()"
+                                    ng-if="$last">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row wizard-nav">
+        <div class="col-md-12">
+            <button class="btn btn-primary btn-default pull-left"
+                    type="button"
+                    ng-click="$ctrl.previousStep()"
+                    ui-sref="addIngredients">previous</button>
+            <button class="btn btn-primary btn-default pull-right"
+                    type="button"
+                    ng-click="$ctrl.nextStep()"
+                    ui-sref="addImages">images</button>
+        </div>
+    </div>
+
+</div>
+
+

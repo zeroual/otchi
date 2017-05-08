@@ -1,0 +1,33 @@
+<div class="container">
+
+    <div class="row">
+        <div align="center">
+            <label>Add images to show your recipe</label>
+        </div>
+        <div class="recipe-images-uploader" align="center">
+            <a href="" ngf-select ng-model="$ctrl.images" ngf-multiple="true" ngf-keep="true"
+               ngf-pattern="'image/*'" ngf-accept="'image/*'">
+                <i class="glyphicon glyphicon-camera" style="font-size: 10em;"></i>
+            </a>
+        </div>
+        <div>
+            <images-upload-preview images="$ctrl.images" on-delete="$ctrl.deleteImage()"/>
+        </div>
+    </div>
+
+    <div class="row wizard-nav">
+        <div class="col-md-12">
+            <button class="btn btn-primary btn-default pull-left"
+                    type="button"
+                    ng-click="$ctrl.previousStep()">
+                previous
+            </button>
+            <button class="btn btn-primary btn-success pull-right"
+                    type="button"
+                    ng-click="$ctrl.shareRecipe()">
+                create
+            </button>
+        </div>
+    </div>
+
+</div>
