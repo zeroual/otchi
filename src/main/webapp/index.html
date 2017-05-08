@@ -29,10 +29,9 @@
     <link rel="stylesheet" href="assets/css/cards.css">
     <link rel="stylesheet" href="assets/css/buttons.css">
     <link rel="stylesheet" href="assets/css/inputs.css">
-    <link rel="stylesheet" href="assets/css/nav-aside.css">
     <link rel="stylesheet" href="assets/css/recipe.css">
     <link rel="stylesheet" href="assets/css/form.css">
-    <link rel="stylesheet" href="assets/css/notifications.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/feeds.css">
     <link rel="stylesheet" href="assets/css/profile.css">
     <link rel="stylesheet" href="assets/css/main.css">
@@ -40,11 +39,15 @@
     <!-- endbuild -->
 </head>
 
-<body ng-app="otchi" ui-view="main">
-<toast></toast>
-<div ui-view="navbar"></div>
-<div ui-view="content" class="content">
+<body ng-app="otchi">
+<div ui-view="main">
+    <toast></toast>
+    <div ui-view="navbar"></div>
+    <div class="container" style="padding-top: 70px;">
+        <div ui-view="content">
 
+        </div>
+    </div>
 </div>
 <!-- build:js scripts/vendor.js -->
 <!-- bower:js -->
