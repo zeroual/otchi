@@ -1,32 +1,30 @@
 describe('Recipe publisher directive', function () {
 
-    var $scope;
+    var ctrl;
     var $httpBackend;
-    beforeEach(module('publisher'));
+    var $state;
+
+    beforeEach(module('otchi'));
+    beforeEach(mockI18nCalls());
 
     beforeEach(module('directives.templates'));
 
-    var $rootScope;
-
-    beforeEach(inject(function (_$rootScope_, $compile, _$httpBackend_) {
+    beforeEach(inject(function (_$httpBackend_, $componentController, _$state_) {
         $httpBackend = _$httpBackend_;
-        $rootScope = _$rootScope_;
-        $scope = $rootScope.$new();
-        var element = angular.element('<story-publisher/>');
-        $compile(element)($scope);
-        $scope.$digest();
+        $state = _$state_;
+        ctrl = $componentController('storyPublisher', null, {});
     }));
 
 
     it('should init story with empty', function () {
-        expect($scope.story.content).toBe('');
+        expect(ctrl.story.content).toBe('');
     });
 
     describe('when we user click in share', function () {
         var createdPost = {data: 'data'};
 
         beforeEach(function () {
-            $scope.story = {
+            ctrl.story = {
                 content: 'tonight i will eat in this restaurant, any recommendations plz',
                 images: [{name: "image1"}, {name: "image2"}]
             };
@@ -36,31 +34,31 @@ describe('Recipe publisher directive', function () {
         });
 
         it('should ask the server to save the new story published', function () {
-            $scope.shareStory();
+            ctrl.shareStory();
             $httpBackend.flush();
             $httpBackend.verifyNoOutstandingExpectation();
         });
 
-        it('should init the story form', function () {
-            $scope.shareStory();
+        it('should redirect to feed page after success publish', function () {
+            spyOn($state, 'go');
+            ctrl.shareStory();
             $httpBackend.flush();
-            expect($scope.story.content).toEqual('');
-            expect($scope.story.images).toEqual([]);
+            expect($state.go).toHaveBeenCalledWith('feed');
         });
     });
 
     describe('images uploader', function () {
 
         it('should have empty image on load', function () {
-            expect($scope.story.images).toEqual([]);
+            expect(ctrl.story.images).toEqual([]);
         });
 
         it('should remove selected image', function () {
             var image1 = {name: "image1"};
             var image2 = {name: "image2"};
-            $scope.story.images = [image1, image2];
-            $scope.deleteImage(image1);
-            expect($scope.story.images).toEqual([image2]);
+            ctrl.story.images = [image1, image2];
+            ctrl.deleteImage(image1);
+            expect(ctrl.story.images).toEqual([image2]);
         });
     });
 
