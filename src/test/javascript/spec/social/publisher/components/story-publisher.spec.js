@@ -5,9 +5,8 @@ describe('Recipe publisher directive', function () {
     var $state;
 
     beforeEach(module('otchi'));
-    beforeEach(mockI18nCalls());
-
     beforeEach(module('directives.templates'));
+    beforeEach(mockI18nCalls);
 
     beforeEach(inject(function (_$httpBackend_, $componentController, _$state_) {
         $httpBackend = _$httpBackend_;
