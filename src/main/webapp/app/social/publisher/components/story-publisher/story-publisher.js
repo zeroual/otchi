@@ -1,29 +1,23 @@
 angular.module('publisher')
-    .directive('storyPublisher', function ($rootScope, ShareService) {
-        return {
-            restrict: 'E',
-            templateUrl: 'app/social/publisher/components/story-publisher/story-publisher.html',
-            controller: function ($scope) {
+    .component('storyPublisher', {
+        templateUrl: 'app/social/publisher/components/story-publisher/story-publisher.html',
+        controller: function (ShareService, $state) {
+            var ctrl = this;
 
-                function init() {
-                    $scope.story = {
-                        content: '',
-                        images: []
-                    };
-                }
+            ctrl.story = {
+                content: '',
+                images: []
+            };
 
-                init();
+            ctrl.shareStory = function () {
+                ShareService.publisherStory(ctrl.story).then(function () {
+                    $state.go('feed');
+                });
+            };
 
-                $scope.shareStory = function () {
-                    ShareService.publisherStory($scope.story).then(function (createdPost) {
-                        init();
-                    });
-                };
-
-                $scope.deleteImage = function (image) {
-                    var index = $scope.story.images.indexOf(image);
-                    $scope.story.images.splice(index, 1);
-                };
-            }
-        };
+            ctrl.deleteImage = function (image) {
+                var index = ctrl.story.images.indexOf(image);
+                ctrl.story.images.splice(index, 1);
+            };
+        }
     });
