@@ -14,26 +14,6 @@ angular.module('publisher')
                     }
                 }
             })
-            .state('showRecipe', {
-                parent: 'main',
-                url: "/recipe/:feedId",
-                data: {
-                    pageTitle: 'Recipe details'
-                },
-                views: {
-                    'content@': {
-                        template: '<recipe-details-viewer feed="feed"/>',
-                        controller: function (feed, $scope) {
-                            $scope.feed = feed;
-                        },
-                        resolve: {
-                            feed: function ($stateParams, FeedsService) {
-                                return FeedsService.fetchFeed($stateParams.feedId).$promise;
-                            }
-                        }
-                    }
-                }
-            })
             .state('newStory', {
                 parent: 'main',
                 url: "/story/new",
