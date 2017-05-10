@@ -42,27 +42,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
-        .state('showPost', {
-            parent: 'main',
-            url: "/post/:postId",
-            data: {
-                pageTitle: 'Post details'
-            },
-            views: {
-                'content@': {
-                    template: '<feed-viewer feed="feed"/>',
-                    controller: function (feed, $scope) {
-                        $scope.feed = feed;
-                    },
-                    resolve: {
-                        feed: function ($stateParams, FeedsService) {
-                            return FeedsService.fetchFeed($stateParams.postId).$promise;
-                        }
-                    }
-                }
-            }
-
-        })
         .state('showProfile', {
             url: "/profile/:profileId",
             parent: 'main',

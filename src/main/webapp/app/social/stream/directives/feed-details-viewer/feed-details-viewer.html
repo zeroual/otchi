@@ -1,0 +1,6 @@
+<feed-viewer
+        ng-if="$ctrl.feed.content.type=='STORY'"
+        feed="$ctrl.feed"/>
+<recipe-details-viewer
+        ng-if="$ctrl.feed.content.type=='RECIPE'"
+        feed="$ctrl.feed"/>
