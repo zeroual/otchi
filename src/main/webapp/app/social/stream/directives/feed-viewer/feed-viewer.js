@@ -5,7 +5,7 @@ angular.module("stream")
             onRemove: '&'
         },
         templateUrl: 'app/social/stream/directives/feed-viewer/feed-viewer.html',
-        controller: function (FeedsService, $uibModal) {
+        controller: function (FeedsService, $uibModal, $state) {
             var ctrl = this;
 
             ctrl.like = function () {
@@ -48,6 +48,10 @@ angular.module("stream")
                         }
                     }
                 });
+            };
+
+            ctrl.showFeedDetails = function (feedId) {
+                $state.go('showFeed', {feedId: feedId});
             };
         }
     });

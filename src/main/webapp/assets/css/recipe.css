@@ -10,11 +10,12 @@
 
 .prepTime {
     padding: 5px;
-    float: right;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+
 }
-.prepTime .time-icon {
-    color: #999;
-    font-size: 1.1em;
+.prepTime .chef-profile{
+    padding-top: 10px;
 }
 
 .prepTime_item {
@@ -23,6 +24,14 @@
     line-height: 1.5rem;
     padding: 10px;
     color: #999;
+}
+
+.recipe-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    padding: 0px;
 }
 
 ol {

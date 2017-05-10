@@ -1,6 +1,6 @@
 describe('FeedViewer Directive', function () {
 
-    beforeEach(module('stream','fakeModal'));
+    beforeEach(module('stream', 'fakeModal'));
     beforeEach(module('directives.templates'));
 
     var ctrl;
@@ -10,8 +10,10 @@ describe('FeedViewer Directive', function () {
     var FeedsService;
     var $uibModal;
     var feed;
-    beforeEach(inject(function ($componentController, _$uibModal_,_FeedsService_) {
+    var $state;
+    beforeEach(inject(function ($componentController, _$uibModal_, _FeedsService_, _$state_) {
         $uibModal = _$uibModal_;
+        $state = _$state_;
         FeedsService = _FeedsService_;
 
         feed = {id: 1, likes: []};
@@ -44,5 +46,11 @@ describe('FeedViewer Directive', function () {
             ctrl.remove();
             expect($uibModal.open).toHaveBeenCalled();
         });
+    });
+
+    it('should allow to display feed details', function () {
+        spyOn($state, 'go');
+        ctrl.showFeedDetails(12);
+        expect($state.go).toHaveBeenCalledWith("showFeed", {feedId: 12});
     });
 });
