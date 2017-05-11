@@ -64,4 +64,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $translateProvider.preferredLanguage('fr');
     $translateProvider.useSanitizeValueStrategy('escaped');
     $translateProvider.useCookieStorage();
-});
+}).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = false;
+}]);
