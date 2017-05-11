@@ -3,11 +3,11 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-md-6 col-sm-12 no-padding">
+                    <div class="col-md-4 col-sm-12 no-padding">
                         <img class="recipe-image"
                              ng-src="{{feed.images[0]}}">
                     </div>
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-8 col-sm-12">
                         <h4 class="text-center">{{recipe.title}}</h4>
                         <div class="prepTime">
 
@@ -34,42 +34,31 @@
         </div>
     </div>
 </div>
-<div class="row row-eq-height">
-    <div class="col-md-6 col-xs-12 no-padding">
-        <div class="card">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Ingredients</h3>
-                </div>
-                <div class="panel-body">
-                    <ol class="recipe-ingredients-list">
-                        <li class="step" ng-repeat="ingredient in recipe.ingredients">
-                            <div> {{ingredient.quantity}} {{ingredient.unit}}- {{ingredient.name}}</div>
-                        </li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-xs-12 no-padding">
-        <div class="card">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Instructions</h3>
-                </div>
-                <div class="panel-body">
-                    <ol class="recipe-directions-list">
-                        <li class="step" ng-repeat="instruction in recipe.instructions">
-                            <div>
-                                {{instruction.content}}
-                            </div>
-                        </li>
-                    </ol>
-                </div>
+<div class="row card">
 
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-md-6 col-xs-12 no-padding">
+                <h3>Ingredients</h3>
+                <ol class="recipe-ingredients-list">
+                    <li class="step" ng-repeat="ingredient in recipe.ingredients">
+                        <div> {{ingredient.quantity}} {{ingredient.unit}}- {{ingredient.name}}</div>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-md-6 col-xs-12 no-padding">
+                <h3>Instructions</h3>
+                <ol class="recipe-directions-list">
+                    <li class="step" ng-repeat="instruction in recipe.instructions">
+                        <div>
+                            {{instruction.content}}
+                        </div>
+                    </li>
+                </ol>
             </div>
         </div>
     </div>
+
 </div>
 <div class="row">
     <div class="col-md-12">
