@@ -32,6 +32,7 @@ module.exports = function (config) {
             'main/webapp/bower_components/angular-translate/angular-translate.js',
             'main/webapp/bower_components/angular-translate-loader-partial/angular-translate-loader-partial.min.js',
             'main/webapp/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js',
+            'main/webapp/bower_components/angular-loading-bar/build/loading-bar.min.js',
             'main/webapp/app/components/toaster/toaster.js',
             'main/webapp/app/social-authentication/social-authentication.js',
             'main/webapp/app/app.js',
