@@ -48,7 +48,12 @@ public class FeedResource {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public FeedDTO fetchFeed(@PathVariable("id") Long feedId, Principal principal) {
-        String username = principal.getName();
+        String username = "";
+
+        if (principal != null) {
+            username = principal.getName();
+        }
+
         Optional<Feed> feedOptional = feedFetcherService.getFeed(feedId, username);
         Feed feed = feedOptional.orElseThrow(() -> new ResourceNotFoundException(feedId));
         return new FeedDTO(feed);
