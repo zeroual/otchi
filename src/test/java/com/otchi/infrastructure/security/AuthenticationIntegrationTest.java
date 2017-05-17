@@ -68,6 +68,13 @@ public class AuthenticationIntegrationTest extends AbstractIntegrationTest {
     }
 
     @Test
+    @DatabaseSetup("/dbunit/social/publications.xml")
+    public void shouldAllowUnAuthenticatedUsersToGetFeed() throws Exception {
+        mockMvc.perform(get(ResourcesPath.FEED+"/1").with(csrf()))
+                .andExpect(status().isOk());
+    }
+
+    @Test
     public void shouldDenyAnyPostRequestIntoFeedApiOfUnAuthenticatedUsers() throws Exception {
         mockMvc.perform(post(ResourcesPath.FEED).with(csrf()))
                 .andExpect(status().isUnauthorized());
