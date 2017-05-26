@@ -1,12 +1,13 @@
 package com.otchi.application.notificationsService;
 
 
-import com.otchi.application.NotificationWithSender;
-import com.otchi.application.NotificationsService;
+import com.otchi.api.facades.dto.UserDTO;
 import com.otchi.application.UserService;
 import com.otchi.application.impl.NotificationsServiceImpl;
-import com.otchi.domain.social.models.Notification;
-import com.otchi.domain.social.repositories.NotificationsRepository;
+import com.otchi.domain.notifications.models.Notification;
+import com.otchi.domain.notifications.models.NotificationsRepository;
+import com.otchi.domain.notifications.services.NotificationsService;
+import com.otchi.domain.notifications.services.WebNotification;
 import com.otchi.domain.social.repositories.mocks.MockNotificationsRepository;
 import com.otchi.domain.users.models.User;
 import com.otchi.utils.mocks.MockCrudRepository;
@@ -17,7 +18,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static com.otchi.domain.social.models.NotificationType.LIKED;
+import static com.otchi.domain.notifications.models.NotificationType.LIKED;
 import static com.otchi.domain.users.models.UserBuilder.asUser;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -63,26 +64,26 @@ public class NotificationsFetchingTest {
     @Test
     public void shouldGetAllNotificationsForUser() {
 
-        List<NotificationWithSender> notificationsOfUser1 = notificationsService.getAllNotificationsOf("user1");
+        List<WebNotification> notificationsOfUser1 = notificationsService.getAllNotificationsOf("user1");
         assertThat(notificationsOfUser1).hasSize(2);
-        assertThat(notificationsOfUser1).extracting(NotificationWithSender::id).containsOnly(1L, 3L);
-        assertThat(notificationsOfUser1).extracting(NotificationWithSender::type).containsOnly(LIKED, LIKED);
-        assertThat(notificationsOfUser1).extracting(NotificationWithSender::creationDate)
+        assertThat(notificationsOfUser1).extracting(WebNotification::getId).containsOnly(1L, 3L);
+        assertThat(notificationsOfUser1).extracting(WebNotification::getType).containsOnly(LIKED, LIKED);
+        assertThat(notificationsOfUser1).extracting(WebNotification::getCreatedAt)
                 .containsOnly(notificationsCreationDate, notificationsCreationDate);
-        assertThat(notificationsOfUser1).extracting(NotificationWithSender::sender)
-                .containsOnly(notificationSender, notificationSender);
-        assertThat(notificationsOfUser1).extracting(NotificationWithSender::postId).containsOnly(postId, postId);
+        assertThat(notificationsOfUser1).extracting(WebNotification::getSender)
+                .containsOnly(new UserDTO(notificationSender), new UserDTO(notificationSender));
+        assertThat(notificationsOfUser1).extracting(WebNotification::getPostId).containsOnly(postId, postId);
     }
 
     @Test
     public void shouldReturnUnreadNotifications() {
 
-        List<NotificationWithSender> notificationsOfUser1 = notificationsService.getAllUnreadNotificationsOf("user1");
+        List<WebNotification> notificationsOfUser1 = notificationsService.getAllUnreadNotificationsOf("user1");
         assertThat(notificationsOfUser1).hasSize(1);
-        assertThat(notificationsOfUser1).extracting(NotificationWithSender::id).containsExactly(1L);
-        assertThat(notificationsOfUser1).extracting(NotificationWithSender::type).containsOnly(LIKED);
-        assertThat(notificationsOfUser1).extracting(NotificationWithSender::creationDate).containsOnly(notificationsCreationDate);
-        assertThat(notificationsOfUser1).extracting(NotificationWithSender::sender).containsOnly(notificationSender);
-        assertThat(notificationsOfUser1).extracting(NotificationWithSender::postId).containsOnly(postId, postId);
+        assertThat(notificationsOfUser1).extracting(WebNotification::getId).containsExactly(1L);
+        assertThat(notificationsOfUser1).extracting(WebNotification::getType).containsOnly(LIKED);
+        assertThat(notificationsOfUser1).extracting(WebNotification::getCreatedAt).containsOnly(notificationsCreationDate);
+        assertThat(notificationsOfUser1).extracting(WebNotification::getSender).containsOnly(new UserDTO(notificationSender));
+        assertThat(notificationsOfUser1).extracting(WebNotification::getPostId).containsOnly(postId, postId);
     }
 }
