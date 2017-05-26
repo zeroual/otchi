@@ -21,12 +21,17 @@ public class MailServiceImpl implements MailService {
     private final SpringTemplateEngine templateEngine;
     private static final Logger log = LoggerFactory.getLogger(MailServiceImpl.class);
     private final String noReplyMail;
+    private String appUrl;
 
     @Autowired
-    public MailServiceImpl(JavaMailSender mailSender, SpringTemplateEngine templateEngine, String noReplyMail) {
+    public MailServiceImpl(JavaMailSender mailSender,
+                           SpringTemplateEngine templateEngine,
+                           String noReplyMail,
+                           String appUrl) {
         this.mailSender = mailSender;
         this.templateEngine = templateEngine;
         this.noReplyMail = noReplyMail;
+        this.appUrl = appUrl;
     }
 
     @Override
@@ -42,6 +47,7 @@ public class MailServiceImpl implements MailService {
     public void sendNotificationMail(MailNotification mailNotification) {
         Context context = new Context();
         context.setVariable("notification",mailNotification);
+        context.setVariable("appUrl",appUrl);
         String content = templateEngine.process("notificationMail", context);
         String subject = "Otchi notifications";
         sendEmail(mailNotification.getTo().getEmail(), subject, content);

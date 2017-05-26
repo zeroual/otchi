@@ -16,7 +16,7 @@
         <span th:case="'COMMENT_ON_POST'"> has commented on your post :</span>
         <span th:case="'LIKED'">has liked you post :</span>
     </span>
-    <a th:href="'/#/feed/'+${notification.getPostId()}">click her to show the post </a>
+    <a th:href="${appUrl}+'/#/feed/'+${notification.getPostId()}">click her to show the post </a>
 </p>
 <p>
     Regards, <br/>
