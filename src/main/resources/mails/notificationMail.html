@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:remove="all">Like post notification mail</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p>
+    Hello, <span th:text="${notification.getTo().getFirstName()}"></span>
+
+</p>
+<p>
+    <span th:text="${notification.getFrom().getFirstName()}"/>,
+
+    <span th:switch="${notification.getType().name()}">
+        <span th:case="'COMMENT_ON_POST'"> has commented on your post :</span>
+        <span th:case="'LIKED'">has liked you post :</span>
+    </span>
+    <a th:href="'/#/feed/'+${notification.getPostId()}">click her to show the post </a>
+</p>
+<p>
+    Regards, <br/>
+    <em>The Otchi Team</em>
+</p>
+</body>
+</html>

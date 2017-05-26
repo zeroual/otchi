@@ -1,7 +1,6 @@
-package com.otchi.domain.social.repositories;
+package com.otchi.domain.notifications.models;
 
 
-import com.otchi.domain.social.models.Notification;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

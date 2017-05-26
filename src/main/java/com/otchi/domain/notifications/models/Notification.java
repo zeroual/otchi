@@ -1,4 +1,4 @@
-package com.otchi.domain.social.models;
+package com.otchi.domain.notifications.models;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

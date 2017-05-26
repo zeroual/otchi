@@ -1,7 +1,7 @@
 package com.otchi.domain.social.repositories.mocks;
 
-import com.otchi.domain.social.models.Notification;
-import com.otchi.domain.social.repositories.NotificationsRepository;
+import com.otchi.domain.notifications.models.Notification;
+import com.otchi.domain.notifications.models.NotificationsRepository;
 import com.otchi.utils.mocks.MockCrudRepository;
 
 import java.util.List;

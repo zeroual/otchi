@@ -1,11 +1,12 @@
 package com.otchi.application.impl;
 
+import com.otchi.api.facades.dto.UserDTO;
 import com.otchi.application.ForbiddenNotificationUnreadStatusChangingException;
-import com.otchi.application.NotificationWithSender;
-import com.otchi.application.NotificationsService;
 import com.otchi.application.UserService;
-import com.otchi.domain.social.models.Notification;
-import com.otchi.domain.social.repositories.NotificationsRepository;
+import com.otchi.domain.notifications.models.Notification;
+import com.otchi.domain.notifications.models.NotificationsRepository;
+import com.otchi.domain.notifications.services.NotificationsService;
+import com.otchi.domain.notifications.services.WebNotification;
 import com.otchi.domain.users.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class NotificationsServiceImpl implements NotificationsService {
     }
 
     @Override
-    public List<NotificationWithSender> getAllNotificationsOf(String username) {
+    public List<WebNotification> getAllNotificationsOf(String username) {
         return notificationsRepository.findAllByUsername(username)
                 .stream()
                 .map(notificationWithSenderTransformer())
@@ -37,7 +38,7 @@ public class NotificationsServiceImpl implements NotificationsService {
     }
 
     @Override
-    public List<NotificationWithSender> getAllUnreadNotificationsOf(String username) {
+    public List<WebNotification> getAllUnreadNotificationsOf(String username) {
         return notificationsRepository.findAllByUsernameAndUnreadTrue(username)
                 .stream().map(notificationWithSenderTransformer())
                 .collect(toList());
@@ -67,10 +68,10 @@ public class NotificationsServiceImpl implements NotificationsService {
         return notification;
     }
 
-    private Function<Notification, NotificationWithSender> notificationWithSenderTransformer() {
+    private Function<Notification, WebNotification> notificationWithSenderTransformer() {
         return notification -> {
             User sender = getSenderOfThisNotification(notification);
-            return new NotificationWithSender(notification, sender);
+            return new WebNotification(notification, new UserDTO(sender));
         };
     }
 

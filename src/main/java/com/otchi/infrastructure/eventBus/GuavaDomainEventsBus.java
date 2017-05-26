@@ -1,8 +1,8 @@
 package com.otchi.infrastructure.eventBus;
 
 import com.google.common.eventbus.EventBus;
-import com.otchi.domain.events.DomainEvents;
-import com.otchi.domain.events.Event;
+import com.otchi.domain.notifications.events.DomainEvents;
+import com.otchi.domain.notifications.events.Event;
 
 public class GuavaDomainEventsBus implements DomainEvents {
 

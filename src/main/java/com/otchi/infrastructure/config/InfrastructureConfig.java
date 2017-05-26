@@ -1,8 +1,9 @@
 package com.otchi.infrastructure.config;
 
 import com.google.common.eventbus.EventBus;
-import com.otchi.domain.events.DomainEvents;
-import com.otchi.domain.events.PushNotificationEventHandler;
+import com.otchi.domain.notifications.events.CommentedNotificationEventHandler;
+import com.otchi.domain.notifications.events.DomainEvents;
+import com.otchi.domain.notifications.events.LikeNotificationEventHandler;
 import com.otchi.infrastructure.config.database.DatabaseConfig;
 import com.otchi.infrastructure.config.storage.BlobStorageConfig;
 import com.otchi.infrastructure.eventBus.GuavaDomainEventsBus;
@@ -28,9 +29,11 @@ public class InfrastructureConfig {
 
 
     @Bean
-    EventBus createEventBus(PushNotificationEventHandler pushNotificationEventHandler) {
+    EventBus createEventBus(CommentedNotificationEventHandler commentedNotificationEventHandler,
+                            LikeNotificationEventHandler likeNotificationEventHandler) {
         EventBus eventBus = new EventBus();
-        eventBus.register(pushNotificationEventHandler);
+        eventBus.register(commentedNotificationEventHandler);
+        eventBus.register(likeNotificationEventHandler);
         return eventBus;
     }
 
