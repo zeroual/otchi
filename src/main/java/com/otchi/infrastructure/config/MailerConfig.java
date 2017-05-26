@@ -14,8 +14,11 @@ public class MailerConfig {
     @Value("${otchi.mail.noReply}")
     private String noReplyMail;
 
+    @Value("${otchi.url}")
+    private String appUrl;
+
     @Bean
     public MailService mailService(JavaMailSender mailSender, SpringTemplateEngine templateEngine) {
-        return new MailServiceImpl(mailSender, templateEngine, noReplyMail);
+        return new MailServiceImpl(mailSender, templateEngine, noReplyMail, appUrl);
     }
 }

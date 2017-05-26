@@ -30,6 +30,7 @@ liquibase:
     change-log: classpath:/database/db.changelog-master.xml
 
 otchi:
+   url: http://localhost:8080
    stomp:
       relayDestinationPrefix: /topic
       appDestinationPrefix: /app

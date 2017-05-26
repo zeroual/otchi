@@ -52,6 +52,7 @@ amazon:
       default-bucket: otchi
       url: s3.amazonaws.com
 otchi:
+   url: http://www.otchi.io
    stomp:
       relayHost: squirrel.rmq.cloudamqp.com
       relayPort: 61613
