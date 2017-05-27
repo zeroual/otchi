@@ -11,11 +11,11 @@ multipart:
 
 otchi:
    mail:
-      noReply: "noreply@noreply.com"
+      noReply: "noreply@otchi.io"
    user:
       default-picture: "/assets/images/unknown_user.png"
    websocket:
-         events:
-            liked: "/topic/notifications"
+         channel:
+            notifications: "/topic/notifications"
 server:
   port: 8080

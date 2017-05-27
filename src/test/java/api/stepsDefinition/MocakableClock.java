@@ -7,6 +7,13 @@ import java.time.LocalDateTime;
 public class MocakableClock implements Clock {
     private LocalDateTime now = LocalDateTime.now();
 
+    public MocakableClock() {
+    }
+
+    public MocakableClock(LocalDateTime now) {
+        this.now = now;
+    }
+
     @Override
     public LocalDateTime now() {
         return now;

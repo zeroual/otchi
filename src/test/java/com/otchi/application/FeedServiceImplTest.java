@@ -2,10 +2,10 @@ package com.otchi.application;
 
 import com.otchi.application.impl.FeedServiceImpl;
 import com.otchi.application.utils.Clock;
-import com.otchi.domain.events.DomainEvents;
-import com.otchi.domain.events.LikePostEvent;
-import com.otchi.domain.events.PostCommentedEvent;
-import com.otchi.domain.services.PushNotificationsService;
+import com.otchi.domain.notifications.events.DomainEvents;
+import com.otchi.domain.notifications.events.LikePostEvent;
+import com.otchi.domain.notifications.events.PostCommentedEvent;
+import com.otchi.domain.notifications.services.NotifierService;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
 import com.otchi.domain.social.models.Comment;
 import com.otchi.domain.social.models.Post;
@@ -33,7 +33,7 @@ public class FeedServiceImplTest {
     private PostRepository postRepository = new MockPostRepository();
     private UserService userService = Mockito.mock(UserService.class);
     private Clock clock = Mockito.mock(Clock.class);
-    private PushNotificationsService pushNotificationsService = mock(PushNotificationsService.class);
+    private NotifierService notifierService = mock(NotifierService.class);
     private DomainEvents domainEvents = mock(DomainEvents.class);
     private FeedService feedService;
 
@@ -171,24 +171,5 @@ public class FeedServiceImplTest {
         assertThat(postCommentedEvent.getCommentOwner()).isEqualTo(commentOwner);
         assertThat(postCommentedEvent.getPost()).isEqualTo(post);
 
-    }
-
-    @Test
-    public void shouldNotSendNotificationWhenUserLikesHisPost() {
-        String likerUserName = "user1@fofo.com";
-        feedService.likePost(1L, likerUserName);
-        Post post = postRepository.findOne(1L);
-        verify(pushNotificationsService, never()).sendLikeNotificationToPostAuthor(post, likerUserName);
-        assertThat(post.getLikes()).hasSize(1);
-    }
-
-    @Test
-    public void shouldNotSendNotificationWhenUserCommentsHisPost() {
-        String commentContent = "What a delicious meal";
-        String commentOwner = "user1@fofo.com";
-        feedService.commentOnPost(1L, commentContent, commentOwner);
-        Post post = postRepository.findOne(1L);
-        verify(pushNotificationsService, never()).sendCommentedNotificationToPostAuthor(post, commentOwner);
-        assertThat(post.getComments()).hasSize(1);
     }
 }

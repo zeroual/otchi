@@ -1,4 +1,4 @@
-package com.otchi.domain.events;
+package com.otchi.domain.notifications.events;
 
 import com.otchi.domain.social.models.Post;
 

@@ -2,17 +2,17 @@ package com.otchi.application.notificationsService;
 
 
 import com.otchi.application.ForbiddenNotificationUnreadStatusChangingException;
-import com.otchi.application.NotificationsService;
 import com.otchi.application.UserService;
 import com.otchi.application.impl.NotificationsServiceImpl;
-import com.otchi.domain.social.models.Notification;
-import com.otchi.domain.social.repositories.NotificationsRepository;
+import com.otchi.domain.notifications.models.Notification;
+import com.otchi.domain.notifications.models.NotificationsRepository;
+import com.otchi.domain.notifications.services.NotificationsService;
 import com.otchi.domain.social.repositories.mocks.MockNotificationsRepository;
 import com.otchi.utils.mocks.MockCrudRepository;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.otchi.domain.social.models.NotificationType.LIKED;
+import static com.otchi.domain.notifications.models.NotificationType.LIKED;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

@@ -1,7 +1,8 @@
 package com.otchi.domain.social.repositories;
 
 import com.github.springtestdbunit.annotation.DatabaseSetup;
-import com.otchi.domain.social.models.Notification;
+import com.otchi.domain.notifications.models.Notification;
+import com.otchi.domain.notifications.models.NotificationsRepository;
 import com.otchi.utils.AbstractIntegrationTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

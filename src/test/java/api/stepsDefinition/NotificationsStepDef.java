@@ -1,8 +1,8 @@
 package api.stepsDefinition;
 
-import com.otchi.domain.social.models.Notification;
-import com.otchi.domain.social.models.NotificationType;
-import com.otchi.domain.social.repositories.NotificationsRepository;
+import com.otchi.domain.notifications.models.Notification;
+import com.otchi.domain.notifications.models.NotificationType;
+import com.otchi.domain.notifications.models.NotificationsRepository;
 import cucumber.api.DataTable;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static com.otchi.domain.social.models.NotificationType.COMMENT_ON_POST;
+import static com.otchi.domain.notifications.models.NotificationType.COMMENT_ON_POST;
 import static java.time.format.DateTimeFormatter.ofPattern;
 import static org.assertj.core.api.Assertions.assertThat;
 

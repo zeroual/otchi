@@ -22,11 +22,15 @@ spring:
         generate-ddl: false
         hibernate:
             ddl-auto: none
+    mail:
+        host: smtp.localhost.com
+        port: 587
 liquibase:
     contexts: dev
     change-log: classpath:/database/db.changelog-master.xml
 
 otchi:
+   url: http://localhost:8080
    stomp:
       relayDestinationPrefix: /topic
       appDestinationPrefix: /app

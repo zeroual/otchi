@@ -2,6 +2,8 @@ package com.otchi.api.facades.dto;
 
 import com.otchi.domain.users.models.User;
 
+import java.util.Objects;
+
 public class UserDTO {
 
     private Long id;
@@ -40,5 +42,22 @@ public class UserDTO {
 
     public String getLangKey() {
         return langKey;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserDTO userDTO = (UserDTO) o;
+        return Objects.equals(id, userDTO.id) &&
+                Objects.equals(firstName, userDTO.firstName) &&
+                Objects.equals(lastName, userDTO.lastName) &&
+                Objects.equals(picture, userDTO.picture) &&
+                Objects.equals(langKey, userDTO.langKey);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, picture, langKey);
     }
 }

@@ -1,4 +1,4 @@
-package com.otchi.domain.events;
+package com.otchi.domain.notifications.events;
 
 public interface DomainEvents {
 
