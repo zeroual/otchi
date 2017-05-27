@@ -2,9 +2,6 @@
   "name": "otchi",
   "scripts": {},
   "env": {
-    "BONSAI_URL": {
-      "required": true
-    },
     "DATABASE_URL": {
       "required": true
     },
@@ -14,7 +11,6 @@
   },
   "formation": {},
   "addons": [
-    "bonsai",
     "heroku-postgresql",
     "cloudamqp"
   ],
