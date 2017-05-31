@@ -2,15 +2,51 @@
 angular.module('publisher')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('newRecipe', {
+            .state('createRecipe', {
                 parent: 'main',
-                url: "/recipe/new",
+                url: "/recipe/create",
                 data: {
                     pageTitle: 'Create new recipe'
                 },
                 views: {
                     'content@': {
-                        template: '<recipe-publisher/>'
+                        template: '<recipe-summary/>'
+                    }
+                }
+            })
+            .state('addIngredients', {
+                parent: 'main',
+                url: "/recipe/ingredients",
+                data: {
+                    pageTitle: 'Create new recipe'
+                },
+                views: {
+                    'content@': {
+                        template: '<recipe-ingredients/>'
+                    }
+                }
+            })
+            .state('addInstructions', {
+                parent: 'main',
+                url: "/recipe/instructions",
+                data: {
+                    pageTitle: 'Create new recipe'
+                },
+                views: {
+                    'content@': {
+                        template: '<recipe-instructions/>'
+                    }
+                }
+            })
+            .state('addImages', {
+                parent: 'main',
+                url: "/recipe/images",
+                data: {
+                    pageTitle: 'Create new recipe'
+                },
+                views: {
+                    'content@': {
+                        template: '<recipe-images/>'
                     }
                 }
             })

@@ -1,5 +1,5 @@
 angular.module('authentication')
-    .factory('AuthServerProvider', function loginService($http, localStorageService, LOGIN_URL, LOGOUT_URL, ACCOUNT_URL) {
+    .factory('AuthServerProvider', function loginService($http, LOGIN_URL, LOGOUT_URL, ACCOUNT_URL) {
         return {
             login: function (credentials) {
                 var data = 'email=' + encodeURIComponent(credentials.email) +
@@ -16,7 +16,6 @@ angular.module('authentication')
             logout: function () {
                 // logout from the server
                 $http.post(LOGOUT_URL).success(function (response) {
-                    localStorageService.clearAll();
                     // to get a new csrf token call the api
                     $http.get(ACCOUNT_URL);
                     return response;
