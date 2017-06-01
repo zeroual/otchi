@@ -1,28 +1,54 @@
-<div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h1 ng-show="success" class="text-center">
-                Registration with {{provider}}</h1>
-                
-                
-            <h2 ng-show="success" >
-                Welcome to Otchi, the place to be !!! </h2>
+<div class="socialAuth">
 
-            <div class="alert alert-success" ng-if="success=='true'">
-                <strong>Registration Complete!</strong> Welcome to Otchi.
-            </div>
-            <div class="alert alert-danger" ng-if="success=='false'">
-                <strong>Registration failed!</strong> Please try again later.
-            </div>
-            <div class="alert alert-warning" ng-if="error=='ACCOUNT_ALREADY_EXIST'">
-                <strong>an account already exists with the same email address !!</strong>
-            </div>
+<section id="header" class="header bg-primary text-center">
+	<div class="container">
+			<div class="col-md-7">
+			<h3 ng-show="success" class="text-center" ng-if="success=='true'">Successful registration with
+					{{provider}}</h3>
+					
+					<h3 class="section-heading"  ng-if="success=='false'" >
+						<strong>Registration failed!</strong> Please try again later.
+					</h3>
+					
+				<div class="alert alert-warning"
+					ng-if="error=='ACCOUNT_ALREADY_EXIST'">
+					<strong>an account already exists with the same email
+						address !!</strong>
+				</div>
+			
+				<h2 class="section-heading" ng-show="success" ng-if="success=='true'" >Welcome to Otchi,</h2>
+				<h3 class="section-heading" ng-show="success" ng-if="success=='true'" >The place to be ;)</h3>
 
-            <div class="connect-options row" ng-if="success=='true'">
-                <h1>Click here to continue</h1>
-                <social-auth-button ng-if="success=='true'" ng-provider="{{ provider }}"></social-auth-button>
-            </div>
+				 <div class="badges">		
+					<div class="connect-options2 row" ng-if="success=='true'">
+						<!-- final-social-auth-button ng-if="success=='true'"
+							ng-provider="{{ provider }}"></final-social-auth-button -->
+						<form action="{{providerURL}}" method="POST"  >
+							<input name="scope" type="hidden" value="{{providerSetting}}"/>
+							<input name="_csrf" type="hidden" value="{{csrf}}"/>
+							<button title="{{provider}}" type="submit" class="{{provider}}-auth">
+							   <span class="auth-container" >
+								Get started
+							   </span>
+							</button>
+						</form>
+					</div>
+				</div>
+							
+			</div>
+			<div class="col-md-5">
+				<div class="device-container">
+					<div class="portrait white">
+						<div class="device">
+							<div class="screen" >
+								<img src="assets/images/food.jpg" class="img-responsive" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
-        </div>
-    </div>
 </div>

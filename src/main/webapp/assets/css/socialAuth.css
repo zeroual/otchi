@@ -1,0 +1,306 @@
+
+.socialAuth .heading-font {
+    font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
+.socialAuth .body-font {
+    font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif';
+}
+
+.socialAuth .alt-font {
+    font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.socialAuth {
+    height: 100%;
+    width: 100%;
+}
+
+.socialAuth {
+    font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif';
+}
+
+.socialAuth a {
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
+    color: #fdcc52;
+    text-decoration: none;
+}
+
+.socialAuth a:hover,
+.socialAuth a:focus {
+    background-color: #f1652c;
+    border: 1px solid #f1652c
+}
+
+.socialAuth h1,
+.socialAuth h2,
+.socialAuth h3,
+.socialAuth h4,
+.socialAuth h5,
+.socialAuth h6 {
+    font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
+.socialAuth p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.socialAuth section {
+    padding: 100px 0;
+}
+
+.socialAuth section h2 {
+    font-size: 50px;
+}
+
+.socialAuth section.header {
+    padding: 150px 0;
+    position: relative;
+}
+
+.socialAuth section.header h2 {
+    margin-top: 0;
+    font-size: 50px;
+}
+
+.socialAuth section.header .badges {
+    padding: 2px;
+}
+
+.socialAuth section.header .badges .badge-link {
+    display: block;
+    margin-bottom: 25px;
+}
+
+.socialAuth section.header .badges .badge-link:last-child {
+    margin-bottom: 0;
+}
+
+.socialAuth section.header .badges .badge-link img {
+    height: 60px;
+}
+
+.socialAuth section.features .section-heading {
+    margin-bottom: 100px;
+}
+
+.socialAuth section.features .section-heading h2 {
+    margin-top: 0;
+}
+
+.socialAuth section.features .section-heading p {
+    margin-bottom: 0;
+}
+
+.socialAuth section.features .device-container,
+.socialAuth section.features .feature-item {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.socialAuth section.features .device-container {
+    margin-bottom: 100px;
+}
+
+.socialAuth section.features .badges {
+    padding: 20px;
+    text-align: center;
+}
+
+.socialAuth section.features .feature-item {
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.socialAuth section.features .feature-item p {
+    margin-bottom: 0px;
+    padding: 10px;
+}
+
+.socialAuth section.features .feature-item h3 {
+    font-size: 30px;
+}
+
+.socialAuth section.features .feature-item i {
+    font-size: 80px;
+    background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
+    background: linear-gradient(to left, #7b4397, #dc2430);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.socialAuth footer {
+    background-color: #222222;
+    padding: 25px 0;
+    color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+}
+
+.socialAuth footer p {
+    font-size: 12px;
+    margin: 0;
+}
+
+.socialAuth footer ul {
+    margin-bottom: 0;
+}
+
+.socialAuth footer ul li a {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.socialAuth footer ul li a:hover,
+.socialAuth footer ul li a:focus,
+.socialAuth footer ul li a:active,
+.socialAuth footer ul li a.active {
+    text-decoration: none;
+}
+
+.socialAuth .bg-primary {
+    background: #fdcc52;
+    background: -webkit-linear-gradient(#fdcc52, #fdc539);
+    background: linear-gradient(#fdcc52, #fdc539);
+}
+
+.socialAuth .text-primary {
+    color: #fdcc52;
+}
+
+.socialAuth .no-gutter > [class*='col-'] {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.socialAuth .btn-outline {
+    color: white;
+    border-color: white;
+    border: 1px solid;
+}
+
+.socialAuth .btn-get-started {
+    letter-spacing: 2px;
+    background: #ee2761;
+    border: 1px solid #ee2761;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.socialAuth .btn-get-started:hover {
+    background: #af1e48;
+    color: white;
+}
+
+.socialAuth .btn-outline {
+    font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 15px 45px;
+    font-size: 11px;
+    display: inline-block;
+}
+
+.socialAuth ::-moz-selection {
+    color: white;
+    text-shadow: none;
+    background: #222222;
+}
+
+.socialAuth ::selection {
+    color: white;
+    text-shadow: none;
+    background: #222222;
+}
+
+.socialAuth img::selection {
+    color: white;
+    background: transparent;
+}
+
+.socialAuth img::-moz-selection {
+    color: white;
+    background: transparent;
+}
+
+.socialAuth {
+    webkit-tap-highlight-color: #222222;
+}
+
+
+.socialAuth .connect-options2 button .auth-container {
+    display: inline-block;
+    padding: 15px;
+    border-radius: 64px;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: all 0.2s ease 0s;
+    -moz-transition: all 0.2s ease 0s;
+    -ms-transition: all 0.2s ease 0s;
+    -o-transition: all 0.2s ease 0s;
+    transition: all 0.2s ease 0s;
+     
+    color: white;
+    margin: -5px -200px; 
+    position:relative;
+    top:50%; 
+    left:50%;
+}
+
+@media (max-width: 992px) {
+    .socialAuth .btn-outline {
+        padding: 15px 20px;
+    }
+
+    .socialAuth section.header {
+        padding-top: 70px;
+    }
+
+    .socialAuth section.header .badges {
+        padding: 2px;
+        margin-bottom: 15px;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .socialAuth section.header .badges .badge-link {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+
+    .socialAuth section.header h2 {
+        font-size: 70px;
+    }
+
+    .row.row-eq-height {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+    .socialAuth section.features .device-container {
+        margin-bottom: 0;
+    }
+
+    .socialAuth section.features .device-container,
+    .socialAuth section.features .feature-item {
+        max-width: none;
+    }
+}
