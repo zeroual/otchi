@@ -2,15 +2,14 @@
     <div class="row">
         <div class="col-md-12">
             <div>
-                <p class="text-muted">
-                    Add the first instruction, then if you want to add more
-                    click on plus button
+                <p class="text-muted"
+                    translate="publisher.recipe.instructions.tips">
                 </p>
                 <form class="form-horizontal">
                     <div class="form-group" ng-repeat="instruction in $ctrl.instructions">
                         <div class="col-md-10 col-sm-10 col-xs-10">
                                 <textarea ng-model="instruction.content" type="text" class="form-control"
-                                          placeholder="Put direction to follow here "
+                                          placeholder="{{'publisher.recipe.instructions.text-placeholder'|translate}}"
                                 />
                         </div>
                         <div class="col-md-1 col-sm-2 col-xs-1">
@@ -34,11 +33,15 @@
             <button class="btn btn-primary btn-default pull-left"
                     type="button"
                     ng-click="$ctrl.previousStep()"
-                    ui-sref="addIngredients">previous</button>
+                    ui-sref="addIngredients"
+                    translate="publisher.recipe.back-to-ingredients-button"
+            />
             <button class="btn btn-primary btn-default pull-right"
                     type="button"
                     ng-click="$ctrl.nextStep()"
-                    ui-sref="addImages">images</button>
+                    ui-sref="addImages"
+                    translate="publisher.recipe.add-images-button"
+            />
         </div>
     </div>
 

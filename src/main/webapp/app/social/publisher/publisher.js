@@ -2,8 +2,17 @@
 angular.module('publisher')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('createRecipe', {
+            .state('publisher', {
                 parent: 'main',
+                abstract: true,
+                resolve: {
+                    translatePartialLoader: function ($translatePartialLoader) {
+                        $translatePartialLoader.addPart('publisher');
+                    }
+                }
+            })
+            .state('createRecipe', {
+                parent: 'publisher',
                 url: "/recipe/create",
                 data: {
                     pageTitle: 'Create new recipe'
@@ -15,7 +24,7 @@ angular.module('publisher')
                 }
             })
             .state('addIngredients', {
-                parent: 'main',
+                parent: 'publisher',
                 url: "/recipe/ingredients",
                 data: {
                     pageTitle: 'Create new recipe'
@@ -27,7 +36,7 @@ angular.module('publisher')
                 }
             })
             .state('addInstructions', {
-                parent: 'main',
+                parent: 'publisher',
                 url: "/recipe/instructions",
                 data: {
                     pageTitle: 'Create new recipe'
@@ -39,7 +48,7 @@ angular.module('publisher')
                 }
             })
             .state('addImages', {
-                parent: 'main',
+                parent: 'publisher',
                 url: "/recipe/images",
                 data: {
                     pageTitle: 'Create new recipe'
@@ -51,7 +60,7 @@ angular.module('publisher')
                 }
             })
             .state('newStory', {
-                parent: 'main',
+                parent: 'publisher',
                 url: "/story/new",
                 data: {
                     pageTitle: 'Publish new story'

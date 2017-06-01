@@ -1,0 +1,34 @@
+{
+  "publisher": {
+    "story": {
+      "share-button": "Publier",
+      "content-placeholder": "Partage ton quotidien avec tous ceux que tu aimes"
+    },
+    "recipe": {
+      "title": "Titre",
+      "title-placeholder": "Le titre de ta recette",
+      "description": "Description",
+      "description-placeholder": "Rédige une brève description de ta recette",
+      "preparation-time": "Temps de préparation",
+      "cook-time": "Temps de cuisson",
+      "add-ingredients-button": "Ajouter des ingrédients",
+      "ingredients": {
+        "tips": "Choisissez les ingrédients dont vous avez besoin pour votre recette.",
+        "name-placeholder": "Ingrédient",
+        "quantity-placeholder": "Quantité",
+        "unit-placeholder": "Unité"
+      },
+      "instructions": {
+        "tips": "Créez votre recette étape par étape.",
+        "text-placeholder": "Tapez vos instructions ici"
+      },
+      "add-instructions-button": "Ajouter des instructions",
+      "back-to-summary-button": "Retour à la recette",
+      "back-to-ingredients-button": "Retour aux ingrédients",
+      "back-to-instructions-button": "Retour aux instructions",
+      "add-images-button":"Ajouter des images",
+      "images-tips":"Ajouter des images pour montrer votre recette",
+      "share-button": "Publier votre recette"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "publisher": {
+    "story": {
+      "share-button": "Share",
+      "content-placeholder": "what in your mind ?"
+    },
+    "recipe": {
+      "title": "Recipe title",
+      "title-placeholder": "What is the name of your recipe ?",
+      "description": "Description",
+      "description-placeholder": "Write a brief description about your recipe",
+      "preparation-time": "Preparation time",
+      "cook-time": "Cook time",
+      "ingredients": {
+        "tips": "Add the first ingredient, then if you want to add more click on plus button",
+        "name-placeholder": "Put your ingredient name here",
+        "quantity-placeholder": "Quantity",
+        "unit-placeholder": "Measurement"
+      },
+      "instructions": {
+        "tips": "Add the first instruction, then if you want to add more click on plus button",
+        "text": "Put direction to follow here"
+      },
+      "add-instructions-button": "Add instructions",
+      "back-to-summary-button": "Back to recipe summary",
+      "back-to-ingredients-button": "Back to ingredients",
+      "back-to-instructions-button": "Back to instructions",
+      "add-images-button": "Add images",
+      "images-tips": "Add images to show your recipe",
+      "share-button": "Share your recipe"
+    }
+  }
+}

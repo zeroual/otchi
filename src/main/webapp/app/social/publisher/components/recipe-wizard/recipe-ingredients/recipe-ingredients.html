@@ -2,15 +2,15 @@
     <div class="row">
         <div class="col-md-12">
             <div>
-                <p class="text-muted">
-                    Add the first ingredient, then if you want to add more click on plus button
+                <p class="text-muted"
+                   translate="publisher.recipe.ingredients.tips">
                 </p>
                 <form class="form-horizontal">
                     <div class="form-group" ng-repeat="ingredient in $ctrl.ingredients">
                         <div class="col-md-5 col-sm-6 col-xs-12">
                             <input type="text"
                                    ng-model="ingredient.name"
-                                   placeholder="Put your ingredient name here"
+                                   placeholder="{{'publisher.recipe.ingredients.name-placeholder'|translate}}"
                                    uib-typeahead="ingredient for ingredient in $ctrl.ingredientsDictionary | filter:$viewValue | limitTo:8"
                                    class="form-control"
                             />
@@ -21,11 +21,11 @@
                                 <input ng-model="ingredient.quantity"
                                        type="number"
                                        class="form-control"
-                                       placeholder="quantity">
+                                       placeholder="{{'publisher.recipe.ingredients.quantity-placeholder'|translate}}">
                                 <span class="input-group-btn"></span>
                                 <input ng-model="ingredient.unit" type="text"
                                        class="form-control"
-                                       placeholder="measurement">
+                                       placeholder="{{'publisher.recipe.ingredients.unit-placeholder'|translate}}">
                             </div>
                         </div>
                         <div class="col-md-1 col-sm-1 col-xs-2">
@@ -47,14 +47,13 @@
         <div class="col-md-12">
             <button class="btn btn-primary btn-default pull-left"
                     type="button"
-                    ng-click="$ctrl.previousStep()">
-                Previous
-            </button>
+                    ng-click="$ctrl.previousStep()"
+                    translate="publisher.recipe.back-to-summary-button"/>
+
             <button class="btn btn-primary btn-default pull-right"
                     type="button"
-                    ng-click="$ctrl.nextStep()">
-                Add instructions
-            </button>
+                    ng-click="$ctrl.nextStep()"
+                    translate="publisher.recipe.add-instructions-button"/>
         </div>
     </div>
 </div>
