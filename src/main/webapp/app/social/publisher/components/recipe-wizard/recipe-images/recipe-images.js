@@ -1,7 +1,7 @@
 angular.module("publisher")
     .component('recipeImages', {
         templateUrl: 'app/social/publisher/components/recipe-wizard/recipe-images/recipe-images.html',
-        controller: function (localStorageService, ShareService, ToasterService, Upload, $state) {
+        controller: function (localStorageService, ShareService, ToasterService, ImageBase64Encoder, $state) {
 
             var ctrl = this;
             ctrl.$onInit = function () {
@@ -14,35 +14,25 @@ angular.module("publisher")
                 }
 
                 ctrl.images = [];
-                var dataUrls = localStorageService.get('recipe-images');
-                if (dataUrls != undefined) {
-                    dataUrls.forEach(function (dataurl) {
-                        var blob = Upload.dataUrltoBlob(dataurl, name);
-                        ctrl.images.push(blob);
+                var imagesBase64 = localStorageService.get('recipe-images');
+                if (imagesBase64 != undefined) {
+                    imagesBase64.forEach(function (imageBase64) {
+                        var image = ImageBase64Encoder.decode(imageBase64);
+                        ctrl.images.push(image);
                     });
                 }
 
             };
 
-            ctrl.saveImages = function () {
-                Upload.base64DataUrl(ctrl.images).then(function (b64) {
-                    localStorageService.set('recipe-images', b64);
-                });
-            };
-
-
             ctrl.previousStep = function () {
-                ctrl.saveImages();
                 $state.go('addInstructions');
             };
 
             ctrl.shareRecipe = function () {
-                ctrl.saveImages();
                 ctrl.recipe.pictures = ctrl.images;
                 ShareService.publishRecipe(ctrl.recipe).then(function (feed) {
                     localStorageService.set('recipe', {});
-                    localStorageService.set('recipe-images', []);
-                    console.log("recipe has been published");
+                    ctrl.images = [];
                     $state.go('showFeed', {feedId: feed.id});
                 }).catch(function () {
                     ToasterService.error('post.recipe.failed');
@@ -52,6 +42,13 @@ angular.module("publisher")
             ctrl.deleteImage = function (image) {
                 var index = ctrl.images.indexOf(image);
                 ctrl.images.splice(index, 1);
+            };
+
+            ctrl.$onDestroy = function () {
+                localStorageService.set('recipe-images', []);
+                ImageBase64Encoder.encode(ctrl.images).then(function (imagesBase64) {
+                    localStorageService.set('recipe-images', imagesBase64);
+                });
             };
         }
     });
