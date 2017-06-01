@@ -1,0 +1,48 @@
+.social-register {
+    height: 100%;
+    width: 100%;
+}
+
+.social-register {
+    font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif';
+}
+
+.social-register h1,
+.social-register h2,
+.social-register h3,
+.social-register h4,
+.social-register h5,
+.social-register h6 {
+    font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
+.social-register section {
+    padding: 100px 0;
+}
+
+.social-register section h2 {
+    font-size: 50px;
+}
+
+.social-register .bg-primary {
+    background: #fdcc52;
+    background: -webkit-linear-gradient(#fdcc52, #fdc539);
+    background: linear-gradient(#fdcc52, #fdc539);
+}
+
+.social-register .text-primary {
+    color: #fdcc52;
+}
+
+.social-register .button-actions button .auth-container{
+    display: inline-block;
+    padding: 15px;
+    color: white;
+    margin: -5px -200px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
+
