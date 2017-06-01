@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <a ngf-select ng-model="$ctrl.story.images" ngf-multiple="true" ngf-keep="true"
+            <a ngf-select ng-model="$ctrl.images" ngf-multiple="true" ngf-keep="true"
                ngf-pattern="'image/*'" ngf-accept="'image/*'">
                 <i class="glyphicon glyphicon-camera"
                    style="font-size: xx-large;">
@@ -18,6 +18,6 @@
         </div>
     </div>
     <div class="row">
-        <images-upload-preview images="$ctrl.story.images" on-delete="$ctrl.deleteImage(image)"/>
+        <images-upload-preview images="$ctrl.images" on-delete="$ctrl.deleteImage(image)"/>
     </div>
 </div>
