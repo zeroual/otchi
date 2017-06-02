@@ -9,7 +9,7 @@ angular.module('socialAuthentication')
                     pageTitle: 'Social Sing up'
                 },
                 views: {
-                    'content@': {
+                    'main@': {
                         templateUrl: app_dir + "social-authentication/views/social-register.html",
                         controller: 'SocialRegisterController'
                     }

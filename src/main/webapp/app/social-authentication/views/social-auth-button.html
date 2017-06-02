@@ -3,7 +3,12 @@
     <input name="_csrf" type="hidden" value="{{csrf}}"/>
     <button title="{{provider}}" type="submit" class="{{provider}}-auth">
        <span class="auth-container">
-           <img src="/assets/images/icons/{{provider}}.svg" alt="{{provider}}">
+           <img ng-if="!label"
+                src="/assets/images/icons/{{provider}}.svg"
+                alt="{{provider}}">
+           <span ng-if="label">
+             {{label}}
+        </span>
        </span>
     </button>
 </form>
