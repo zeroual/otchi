@@ -5,7 +5,8 @@ angular.module('socialAuthentication')
         return {
             restrict: 'E',
             scope: {
-                provider: "@ngProvider"
+                provider: "@ngProvider",
+                label: "@"
             },
             templateUrl: 'app/social-authentication/views/social-auth-button.html',
             link: function (scope) {
