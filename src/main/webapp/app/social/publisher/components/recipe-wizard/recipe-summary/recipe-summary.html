@@ -4,21 +4,21 @@
             <form class="form-horizontal">
                 <div class="form-group">
                     <div class="col-md-12">
-                        <label>Recipe title</label>
+                        <label translate="publisher.recipe.title"/>
                         <input ng-model="$ctrl.recipe.title"
                                type="text"
                                class="form-control input--textbox"
                                id="title"
-                               placeholder="What is the name of your recipe ?"/>
+                               placeholder="{{'publisher.recipe.title-placeholder'|translate}}"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-12">
-                        <label>Description</label>
+                        <label translate="publisher.recipe.description"/>
                         <textarea ng-model="$ctrl.recipe.description"
                                   class="form-control"
                                   id="description"
-                                  placeholder="Write a brief description about your recipe"
+                                  placeholder="{{'publisher.recipe.description-placeholder'|translate}}"
                                   style="height: 10em;"/>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
     <div class="row">
         <div class="form-group">
             <div class="col-md-6">
-                <label>Cook time</label>
+                <label translate="publisher.recipe.cook-time"/>
                 <div class="input-group">
                     <input ng-model="$ctrl.recipe.cookTime"
                            type="number"
@@ -39,7 +39,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <label>Preparation time</label>
+                <label translate="publisher.recipe.preparation-time"/>
                 <div class="input-group">
                     <input ng-model="$ctrl.recipe.preparationTime"
                            type="number"
@@ -54,9 +54,8 @@
         <div class="col-md-12">
             <button class="btn btn-primary btn-default pull-right"
                     type="button"
-                    ng-click="$ctrl.nextStep()">
-                Add ingredients
-            </button>
+                    ng-click="$ctrl.nextStep()"
+                    translate="publisher.recipe.add-ingredients-button"/>
         </div>
     </div>
 

@@ -2,7 +2,7 @@
     <div class="row" style="margin-bottom: 15px;">
         <div class="col-md-12">
             <textarea class="form-control input--textbox" ng-model="$ctrl.story.content"
-                      placeholder="what in your mind ?"></textarea>
+                      placeholder="{{'publisher.story.content-placeholder'|translate}}"></textarea>
         </div>
     </div>
     <div class="row">
@@ -13,7 +13,12 @@
                    style="font-size: xx-large;">
                 </i>
             </a>
-            <span> <a class="btn btn-follow pull-right" ng-click="$ctrl.shareStory()">Share</a> </span>
+            <span>
+                <a class="btn btn-follow pull-right"
+                   ng-click="$ctrl.shareStory()"
+                   translate="publisher.story.share-button">
+                </a>
+            </span>
             <span class="clearfix"></span>
         </div>
     </div>
