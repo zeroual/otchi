@@ -73,6 +73,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .authorizeRequests()
                     .antMatchers(ResourcesPath.URL_PREFIXE + "**").authenticated()
                 .and()
+                    .rememberMe()
+                    .key("IHD9329742#DJDJ38+3DDHSZD")
+                    .rememberMeParameter("remember-me")
+                .and()
                     .csrf()
                 .and()
                     .addFilterAfter(new CsrfCookieGeneratorFilter(), CsrfFilter.class);
