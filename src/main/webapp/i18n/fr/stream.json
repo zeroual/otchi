@@ -1,0 +1,26 @@
+{
+  "stream": {
+    "feed": {
+      "actions": {
+        "remove": "Supprimer",
+        "edit": "Modifier (en cours de réalisation)",
+        "signal": "Signaler (en cours de réalisation)"
+      },
+      "likes": "Miams",
+      "comments": "Commentaires",
+      "user-likes": "Les utilisateurs qui ont miamé cette publication",
+      "start-discussion": "Commenter",
+      "comment": {
+        "send-button": "Envoyer",
+        "comment-placeholder": "Ajouter un commentaire"
+      },
+      "recipe": {
+        "preparation-time": "Temps de préparation",
+        "cook-time": "Temps de cuisson",
+        "ingredients": "Ingrédients",
+        "instructions": "Instructions",
+        "minutes":"m"
+      }
+    }
+  }
+}

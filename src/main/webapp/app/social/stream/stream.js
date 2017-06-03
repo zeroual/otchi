@@ -2,8 +2,29 @@
 angular.module('stream')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('showRecipe', {
+            .state('stream', {
                 parent: 'main',
+                abstract: true,
+                resolve: {
+                    translatePartialLoader: function ($translatePartialLoader) {
+                        $translatePartialLoader.addPart('stream');
+                    }
+                }
+            })
+            .state('feed', {
+                url: "/feed",
+                parent: 'stream',
+                data: {
+                    pageTitle: 'Feed'
+                },
+                views: {
+                    'content@': {
+                        template:'<timeline/>'
+                    }
+                }
+            })
+            .state('showRecipe', {
+                parent: 'stream',
                 url: "/recipe/:feedId",
                 data: {
                     pageTitle: 'Recipe details'
@@ -23,7 +44,7 @@ angular.module('stream')
                 }
             })
             .state('showFeed', {
-                parent: 'main',
+                parent: 'stream',
                 url: "/feed/:feedId",
                 data: {
                     pageTitle: 'Feed details'
@@ -44,7 +65,7 @@ angular.module('stream')
 
             })
             .state('showPost', {
-                parent: 'main',
+                parent: 'stream',
                 url: "/post/:postId",
                 data: {
                     pageTitle: 'Post details'

@@ -1,0 +1,19 @@
+{
+  "stream": {
+    "feed": {
+      "actions": {
+        "remove": "Delete",
+        "edit": "Edit (not implemented yet )",
+        "signal": "Signal (not implemented yet )"
+      },
+      "likes": "Miams",
+      "comments": "Comments",
+      "user-likes": "People Who Like This",
+      "start-discussion": "Start discussion",
+      "comment": {
+        "send-button": "Send",
+        "comment-placeholder": "Your comment"
+      }
+    }
+  }
+}

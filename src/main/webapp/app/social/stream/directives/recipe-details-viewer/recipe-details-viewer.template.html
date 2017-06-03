@@ -12,10 +12,15 @@
                         <div class="prepTime">
 
                             <i class="fa fa-hourglass-half" aria-hidden="true"></i>
-                            <span class="prepTime_item"> Cook time : {{recipe.cookTime}} m</span>
-
+                            <span class="prepTime_item">
+                                <span translate="stream.feed.recipe.cook-time"/> : {{recipe.cookTime}}
+                                <span translate="stream.feed.recipe.minutes"/>
+                            </span>
                             <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <span class="prepTime_item"> Preparation time : {{recipe.preparationTime}} m </span>
+                            <span class="prepTime_item">
+                                 <span translate="stream.feed.recipe.cook-time"/> : {{recipe.preparation-time}}
+                                 <span translate="stream.feed.recipe.minutes"/>
+                            </span>
                             <div class="chef-profile">
                                 <div>
                                     <img ng-src="{{feed.author.picture}}"
@@ -39,7 +44,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="col-md-6 col-xs-12 no-padding">
-                <h3>Ingredients</h3>
+                <h3 translate="stream.feed.recipe.ingredients"/>
                 <ol class="recipe-ingredients-list">
                     <li class="step" ng-repeat="ingredient in recipe.ingredients">
                         <div> {{ingredient.quantity}} {{ingredient.unit}}- {{ingredient.name}}</div>
@@ -47,7 +52,7 @@
                 </ol>
             </div>
             <div class="col-md-6 col-xs-12 no-padding">
-                <h3>Instructions</h3>
+                <h3 translate="stream.feed.recipe.instructions"/>
                 <ol class="recipe-directions-list">
                     <li class="step" ng-repeat="instruction in recipe.instructions">
                         <div>

@@ -23,8 +23,17 @@ angular.module('authentication', ['ngResource', 'LocalStorageModule', 'ui.router
         $httpProvider.interceptors.push('authExpiredInterceptor');
 
         $stateProvider
+            .state('authentication', {
+                abstract: true,
+                resolve: {
+                    translatePartialLoader: function ($translatePartialLoader) {
+                        $translatePartialLoader.addPart('authentication');
+                    }
+                }
+            })
             .state('login', {
                 url: "/login",
+                parent: 'authentication',
                 data: {
                     pageTitle: 'Login'
                 },
@@ -34,18 +43,20 @@ angular.module('authentication', ['ngResource', 'LocalStorageModule', 'ui.router
                         controller: 'LoginController'
                     }
                 }
-            }).state('register', {
-            url: "/register",
-            data: {
-                pageTitle: 'register'
-            },
-            views: {
-                'main@': {
-                    templateUrl: app_dir + "authentication/views/register.html",
-                    controller: 'RegisterController'
+            })
+            .state('register', {
+                url: "/register",
+                parent: 'authentication',
+                data: {
+                    pageTitle: 'register'
+                },
+                views: {
+                    'main@': {
+                        templateUrl: app_dir + "authentication/views/register.html",
+                        controller: 'RegisterController'
+                    }
                 }
-            }
-        });
+            });
     })
     .constant('LOGIN_URL', '/rest/v1/login')
     .constant('LOGOUT_URL', '/rest/v1/logout')

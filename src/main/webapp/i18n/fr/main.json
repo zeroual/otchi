@@ -1,0 +1,9 @@
+{
+  "actions": {
+    "close": "Fermer",
+    "login": "Se connecter",
+    "share": "Publier"
+  },
+  "recipe": "Recette",
+  "story": "Story"
+}

@@ -1,0 +1,9 @@
+{
+  "actions": {
+    "close": "Close",
+    "login": "Login",
+    "share": "Share"
+  },
+  "recipe": "Recipe",
+  "story": "Story"
+}

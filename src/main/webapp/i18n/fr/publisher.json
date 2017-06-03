@@ -13,22 +13,22 @@
       "cook-time": "Temps de cuisson",
       "add-ingredients-button": "Ajouter des ingrédients",
       "ingredients": {
-        "tips": "Choisissez les ingrédients dont vous avez besoin pour votre recette.",
+        "tips": "Choisis les ingrédients dont tu as besoin pour ta recette.",
         "name-placeholder": "Ingrédient",
         "quantity-placeholder": "Quantité",
         "unit-placeholder": "Unité"
       },
       "instructions": {
-        "tips": "Créez votre recette étape par étape.",
-        "text-placeholder": "Tapez vos instructions ici"
+        "tips": "Créez ta recette étape par étape.",
+        "text-placeholder": "Tape tes instructions ici"
       },
       "add-instructions-button": "Ajouter des instructions",
       "back-to-summary-button": "Retour à la recette",
       "back-to-ingredients-button": "Retour aux ingrédients",
       "back-to-instructions-button": "Retour aux instructions",
-      "add-images-button":"Ajouter des images",
-      "images-tips":"Ajouter des images pour montrer votre recette",
-      "share-button": "Publier votre recette"
+      "add-images-button": "Ajouter des images",
+      "images-tips": "Ajouter des images pour montrer ta recette",
+      "share-button": "Publier ta recette"
     }
   }
 }

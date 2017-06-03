@@ -13,27 +13,30 @@
                     <time class="bullet text-gray">{{$ctrl.feed.createdTime |timeAgo}}</time>
 
                     <div class="btn-group pull-right">
-                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown"
+                        <button type="button"
+                                class="btn btn-default btn-sm dropdown-toggle"
+                                data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                             <span class="glyphicon glyphicon-menu-down"></span>
                         </button>
                         <ul class="dropdown-menu">
                             <li>
                                 <a>
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                    Edit (not implemented yet )
+                                    <span class="glyphicon glyphicon-pencil"/>
+                                    <span translate="stream.feed.actions.edit"/>
+
                                 </a>
                             </li>
                             <li ng-if="$ctrl.feed.canBeRemoved">
                                 <a href="" ng-click="$ctrl.remove()">
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                    Delete
+                                    <span class="glyphicon glyphicon-trash"/>
+                                    <span translate="stream.feed.actions.remove"/>
                                 </a>
                             </li>
                             <li>
                                 <a>
-                                    <span class="glyphicon glyphicon-eye-close"></span>
-                                    Signal (not implemented yet )
+                                    <span class="glyphicon glyphicon-eye-close"/>
+                                    <span translate="stream.feed.actions.signal"/>
                                 </a>
                             </li>
                         </ul>
@@ -60,21 +63,23 @@
         <div class="panel-footer">
             <div>
                 <div class="pull-left">
-                    <a class="button-link text-muted" ng-click="showComments=!showComments">
+                    <a class="button-link text-muted"
+                       ng-click="showComments=!showComments">
                         <i class="glyphicon glyphicon-bullhorn"/>
                         <span ng-if="$ctrl.feed.comments.length > 0">
-                        {{$ctrl.feed.comments.length}} &nbsp;Comments
+                            &nbsp;{{$ctrl.feed.comments.length}}
+                            <span translate="stream.feed.comments"/>
                     </span>
-                        <span ng-if="$ctrl.feed.comments.length === 0">
-                        Start discussion
-                    </span>
+                        <span ng-if="$ctrl.feed.comments.length === 0"
+                              translate="stream.feed.start-discussion"/>
                     </a>
                 </div>
 
                 <div ng-switch="$ctrl.feed.liked" class="pull-right">
                     <span ng-if="$ctrl.feed.likesCount > 0">
                         <a href="" class="button-link text-muted" ng-click="$ctrl.showLikes()">
-                            {{$ctrl.feed.likesCount}} Likes
+                            {{$ctrl.feed.likesCount}}
+                            <span translate="stream.feed.likes"/>
                         </a>
                     </span>
                     <a href="" class="btn btn-like" ng-switch-when="false" ng-click="$ctrl.like()">
