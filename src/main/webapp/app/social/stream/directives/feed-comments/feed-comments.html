@@ -2,13 +2,17 @@
     <form ng-submit="$ctrl.commentOnFeed()">
         <div class="form-group">
             <div class="input-group">
-                <input type="text" name="commentContent" ng-model="$ctrl.commentContent" class="form-control"
-                       placeholder="Your comment" required/>
-                            <span class="input-group-btn">
-                              <button class="btn btn-default" type="submit">
-                                  Send <i class="glyphicon glyphicon-send"></i>
-                              </button>
-                            </span>
+                <input type="text" name="commentContent"
+                       ng-model="$ctrl.commentContent"
+                       class="form-control"
+                       placeholder="{{'stream.feed.comment.comment-placeholder'|translate}}" required/>
+                <span class="input-group-btn">
+                       <button class="btn btn-default"
+                               type="submit"
+                               translate="stream.feed.comment.send-button">
+                           <i class="glyphicon glyphicon-send"></i>
+                       </button>
+                 </span>
             </div>
         </div>
     </form>

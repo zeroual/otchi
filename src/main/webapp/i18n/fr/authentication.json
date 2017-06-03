@@ -1,0 +1,42 @@
+{
+  "login": {
+    "title": "Connecte toi pour continuer",
+    "or-by-email": "Ou par email",
+    "form": {
+      "email-placeholder": "Email",
+      "password-placeholder": "Mot de passe",
+      "remember-me": "Se rappeler de moi",
+      "login-button": "Je me connecte",
+      "register-button": "Créer un compte"
+    },
+    "messages": {
+      "error": {
+        "authentication": "<strong>Erreur d'authentification!</strong> vérifie bien tes identifiants de connexion."
+      }
+    }
+  },
+  "register": {
+    "title": "S'inscrire par",
+    "or-by-email": "Ou par email",
+    "form": {
+      "first-name-placeholder": "Prénom",
+      "last-name-placeholder": "Nom",
+      "email": "Email",
+      "password": "Mot de passe",
+      "register-button": "Créer mon compte",
+      "login-button": "Compte déjà créé?"
+    },
+    "messages": {
+      "validate": {
+        "firstName": "Ton prénom doit contenir plus d'un caractère",
+        "lastName": "Ton nom doit contenir plus d'un caractère",
+        "email": "Ton adresse mail n'est pas valide.",
+        "password": "Ton mot de passe doit contenir plus que 8 caractères"
+      },
+      "error": {
+        "fail": "<strong>Compte non créé!</strong> Merci d'essayer à nouveau plus tard.",
+        "emailexists": "<strong>Cet E-mail est déjà utilisé!</strong> L'adresse email que tu as spécifiée est déjà utilisée. (As-tu déjà un compte?)"
+      }
+    }
+  }
+}

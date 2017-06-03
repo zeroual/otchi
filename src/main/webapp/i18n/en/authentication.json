@@ -1,0 +1,42 @@
+{
+  "login": {
+    "title": "Log in to continue",
+    "or-by-email": "Or via email",
+    "form": {
+      "email-placeholder": "E-mail",
+      "password-placeholder": "Password",
+      "remember-me": "Remember me",
+      "login-button": "Login",
+      "register-button": "Need an account"
+    },
+    "messages": {
+      "error": {
+        "authentication": "<strong>Failed to sign in!</strong> Please check your credentials and try again."
+      }
+    }
+  },
+  "register": {
+    "title": "Sign up with",
+    "or-by-email": "Or via email",
+    "form": {
+      "first-name-placeholder": "First name",
+      "last-name-placeholder": "Last name",
+      "email": "E-mail",
+      "password": "Password",
+      "register-button": "Sing up",
+      "login-button": "have an account?"
+    },
+    "messages": {
+      "validate": {
+        "firstName": "Your First name must contain at least tow characters.",
+        "lastName": "Your Last name must contain at least tow characters.",
+        "email": "Your email address is not valid.",
+        "password": "Your password must contain at least eight characters."
+      },
+      "error": {
+        "fail": "<strong>Registration failed!</strong> Please try again later.",
+        "emailexists": "<strong>E-mail is already in use!</strong> The e-mail address you specified is already in use. (Do you already have an account?)"
+      }
+    }
+  }
+}

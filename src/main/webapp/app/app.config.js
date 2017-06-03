@@ -27,18 +27,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 'navbar@': {
                     template:'<navbar/>'
                 }
-            }
-        })
-
-        .state('feed', {
-            url: "/feed",
-            parent: 'main',
-            data: {
-                pageTitle: 'Feed'
             },
-            views: {
-                'content@': {
-                    template:'<timeline/>'
+            resolve: {
+                translatePartialLoader: function ($translatePartialLoader) {
+                    $translatePartialLoader.addPart('main');
                 }
             }
         })

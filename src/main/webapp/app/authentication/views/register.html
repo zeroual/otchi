@@ -2,11 +2,10 @@
     <div class="row card">
 
         <div class="alert alert-danger" ng-show="errorEmailExists">
-            <strong>E-mail is already in use!</strong>
-            The e-mail address you specified is already in use. (Do you already have an account?)
+            <span translate="register.messages.error.emailexists"/>
         </div>
         <div class="alert alert-danger" ng-show="error">
-            <strong>Registration failed!</strong> Please try again later.
+            <span translate="register.messages.error.fail"/>
         </div>
 
         <div class="col-md-4 col-md-offset-4">
@@ -14,16 +13,18 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title text-center">Sign up with</h3>
+                    <h3 class="panel-title text-center"
+                     translate="register.title"/>
                 </div>
                 <div class="panel-body">
                     <div class="connect-options row">
-                        <social-auth-button ng-provider="facebook"></social-auth-button>
-                        <social-auth-button ng-provider="twitter"></social-auth-button>
-                        <social-auth-button ng-provider="google"></social-auth-button>
+                        <social-auth-button ng-provider="facebook"/>
+                        <social-auth-button ng-provider="twitter"/>
+                        <social-auth-button ng-provider="google"/>
                     </div>
                     <div class="text-center">
-                        <h5 class="text-muted">Or via email</h5>
+                        <h5 class="text-muted"
+                            translate="register.or-by-email"/>
                     </div>
                     <form role="form" name="form">
                         <fieldset>
@@ -31,62 +32,90 @@
                                  ng-class="{'has-error': form.firstName.$invalid && form.firstName.$dirty,
                                             'has-success':form.firstName.$valid}">
 
-                                <input class="form-control" placeholder="First name" name="firstName" type="text"
-                                       ng-model="account.firstName" minlength="2" maxlength="50" ng-required="true">
+                                <input class="form-control"
+                                       placeholder="{{'register.form.first-name-placeholder'|translate}}"
+                                       name="firstName"
+                                       type="text"
+                                       ng-model="account.firstName"
+                                       minlength="2"
+                                       maxlength="50"
+                                       ng-required="true">
                                 <span class="glyphicon  form-control-feedback" aria-hidden="true"
                                       ng-class="{'glyphicon-ok':form.firstName.$valid,
                                                  'glyphicon-remove':form.firstName.$invalid && form.firstName.$dirty }">
                                 </span>
                                 <small class="help-block" ng-if="form.firstName.$invalid && form.firstName.$dirty">
-                                    Your First name must contain at least tow characters.
+                                   <span translate="register.messages.validate.firstName"/>
                                 </small>
                             </div>
                             <div class="form-group has-feedback"
                                  ng-class="{'has-error': form.lastName.$invalid && form.lastName.$dirty,
                                             'has-success':form.lastName.$valid}">
-                                <input class="form-control" placeholder="Last name" name="lastName" type="text"
-                                       ng-model="account.lastName" minlength="2" maxlength="50" ng-required="true">
+                                <input class="form-control"
+                                       placeholder="{{'register.form.last-name-placeholder'|translate}}"
+                                       name="lastName"
+                                       type="text"
+                                       ng-model="account.lastName"
+                                       minlength="2"
+                                       maxlength="50"
+                                       ng-required="true">
                                 <span class="glyphicon  form-control-feedback" aria-hidden="true"
                                       ng-class="{'glyphicon-ok':form.lastName.$valid,
                                                  'glyphicon-remove':form.lastName.$invalid && form.lastName.$dirty }">
                                 </span>
                                 <small class="help-block" ng-if="form.lastName.$invalid && form.lastName.$dirty">
-                                        Your Last name must contain at least tow characters.
+                                    <span translate="register.messages.validate.lastName"/>
                                 </small>
                             </div>
                             <div class="form-group has-feedback"
                                  ng-class="{'has-error': form.email.$invalid && form.email.$dirty,
                                             'has-success':form.email.$valid}">
-                                <input class="form-control" placeholder="E-mail" name="email" type="text"
-                                       ng-model="account.email" minlength="5" maxlength="100" ng-required="true">
+                                <input class="form-control"
+                                       placeholder="{{'login.form.email-placeholder'|translate}}"
+                                       name="email"
+                                       type="text"
+                                       ng-model="account.email"
+                                       minlength="5"
+                                       maxlength="100"
+                                       ng-required="true">
                                  <span class="glyphicon  form-control-feedback" aria-hidden="true"
                                        ng-class="{'glyphicon-ok':form.email.$valid,
                                                  'glyphicon-remove':form.email.$invalid && form.email.$dirty }">
                                 </span>
                                 <small class="help-block" ng-if="form.email.$invalid && form.email.$dirty">
-                                    Your email address is not valid.
+                                    <span translate="register.messages.validate.email"/>
                                 </small>
                             </div>
                             <div class="form-group has-feedback"
                                  ng-class="{'has-error': form.password.$invalid && form.password.$dirty,
                                             'has-success':form.password.$valid}">
-                                <input class="form-control" placeholder="Password" name="password" type="password"
-                                       ng-model="account.password" minlength="8" maxlength="100" ng-required="true">
+                                <input class="form-control"
+                                       placeholder="{{'login.form.password-placeholder'|translate}}"
+                                       name="password"
+                                       type="password"
+                                       ng-model="account.password"
+                                       minlength="8"
+                                       maxlength="100"
+                                       ng-required="true">
                                  <span class="glyphicon  form-control-feedback" aria-hidden="true"
                                        ng-class="{'glyphicon-ok':form.password.$valid,
                                                  'glyphicon-remove':form.password.$invalid && form.password.$dirty }">
                                 </span>
                                 <small class="help-block" ng-if="form.password.$invalid && form.password.$dirty">
-                                    Your password must contain at least eight characters.
+                                    <span translate="register.messages.validate.password"/>
                                 </small>
                             </div>
                             <hr/>
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <button class="btn signup" ng-click="register()" ng-disabled="form.$invalid">
-                                        Sing up
-                                    </button>
-                                    <a ui-sref="login" class="btn btn-secondary"> have an account ?</a>
+                                    <button class="btn signup"
+                                            ng-click="register()"
+                                            ng-disabled="form.$invalid"
+                                            translate="register.form.register-button"/>
+                                    <a ui-sref="login"
+                                       class="btn btn-secondary"
+                                       translate="register.form.login-button"
+                                    />
                                 </div>
                             </div>
                         </fieldset>
