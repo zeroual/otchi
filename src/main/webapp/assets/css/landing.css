@@ -173,6 +173,12 @@
     background: linear-gradient(#fdcc52, #fdc539);
 }
 
+.landing {
+    background: #fdcc52;
+    background: -webkit-linear-gradient(#fdcc52, #fdc539);
+    background: linear-gradient(#fdcc52, #fdc539);
+}
+
 .landing .text-primary {
     color: #fdcc52;
 }
@@ -280,4 +286,12 @@
     .landing section.features .feature-item {
         max-width: none;
     }
+}
+
+.language-options-box {
+    padding-right: 5px;
+}
+
+.language-options-box img {
+    margin: 2px
 }
