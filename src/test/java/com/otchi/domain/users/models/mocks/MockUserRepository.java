@@ -30,4 +30,9 @@ public class MockUserRepository extends MockCrudRepository<User, Long> implement
         return StreamSupport.stream(findAll().spliterator(), true).filter(user -> !ids.contains(user.getId())).collect(Collectors.toList());
     }
 
+    @Override
+    public Optional<User> findOneById(Long id) {
+        return StreamSupport.stream(findAll().spliterator(), true).filter(user -> user.getId().equals(id)).findFirst();
+    }
+
 }

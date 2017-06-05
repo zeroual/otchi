@@ -23,15 +23,19 @@
             <div class="media">
                 <div class="media-left">
                     <a href="">
-                        <img class="media-object" ng-src="{{comment.author.picture}}" width="45">
+                        <img class="media-object"
+                             ui-sref="showProfile({chefId:comment.author.id})"
+                             ng-src="{{comment.author.picture}}"
+                             width="45">
                     </a>
                 </div>
                 <div class="media-body">
                     <div>
                         <small class="pull-right text-muted">{{comment.createdOn | timeAgo }}</small>
-                        <h5 class="margin-top-none">
+                        <a class="margin-top-none"
+                           ui-sref="showProfile({chefId:comment.author.id})">
                             {{comment.author.firstName}} {{comment.author.lastName}}
-                        </h5>
+                        </a>
                     </div>
                     <p class="margin-none">{{comment.content}}</p>
                 </div>

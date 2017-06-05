@@ -5,11 +5,15 @@
                 <div class="media-left media-middle">
                     <a href="#">
                         <img class="media-object img-circle"
+                             ui-sref="showProfile({chefId:$ctrl.feed.author.id})"
                              ng-src="{{$ctrl.feed.author.picture}}" width="35">
                     </a>
                 </div>
                 <div class="media-body">
-                    <span class="media-heading"> {{$ctrl.feed.author.firstName}}  {{$ctrl.feed.author.lastName}}</span>
+                    <a class="media-heading"
+                       ui-sref="showProfile({chefId:$ctrl.feed.author.id})">
+                        {{$ctrl.feed.author.firstName}} {{$ctrl.feed.author.lastName}}
+                    </a>
                     <time class="bullet text-gray">{{$ctrl.feed.createdTime |timeAgo}}</time>
 
                     <div class="btn-group pull-right">

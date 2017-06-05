@@ -7,6 +7,7 @@ public class UserBuilder {
     private String lastName;
     private String email;
     private String language;
+    private String picture;
 
     public static UserBuilder asUser() {
         return new UserBuilder();
@@ -39,7 +40,13 @@ public class UserBuilder {
     }
 
     public User build() {
-        return new User(username, email, firstName, lastName, language);
+        User user = new User(username, email, firstName, lastName, language);
+        user.setPicture(picture);
+        return user;
     }
 
+    public UserBuilder withPicture(String picture) {
+        this.picture = picture;
+        return this;
+    }
 }
