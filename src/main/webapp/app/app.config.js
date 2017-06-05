@@ -33,20 +33,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                     $translatePartialLoader.addPart('main');
                 }
             }
-        })
-        .state('showProfile', {
-            url: "/profile/:profileId",
-            parent: 'main',
-            data: {
-                pageTitle: 'User profile'
-            },
-            views: {
-                'content@': {
-                    templateUrl: app_dir + "social/profile/views/profile.html",
-                    controller: 'ProfileController'
-                }
-            }
-
         });
 }).config(function ($translateProvider) {
 
