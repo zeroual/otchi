@@ -14,10 +14,6 @@
                     <h2 class="section-heading" translate="landing.proposition-value"/>
                     <p translate="landing.how"/>
                     <div class="badges">
-                        <a href=""
-                           ng-click="scrollTo('features')"
-                           class="btn-more btn-outline"
-                           translate="landing.more"/>
                         <a ui-sref="feed"
                            class="btn-outline btn-get-started"
                            translate="landing.get-started"
@@ -39,7 +35,7 @@
         </div>
     </section>
 
-    <section id="features" class="features" style="padding-top: 20px;background-color: white">
+    <section id="features" class="features">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -51,38 +47,38 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="row row-eq-height">
-                <div class="col-md-4 bg-info">
-                    <div class="feature-item">
-                        <i class="fa fa-search"></i>
-                        <h3 translate="landing.what-1"/>
-                        <p translate="landing.what-description-1"
-                           class="text-muted"/>
-                    </div>
+        <div class="line"/>
+        <div class="container">
+            <div class="feature-item row">
+                <div class="feature-item-icon col-md-6 col-xs-12">
+                    <img src="/assets/images/map.png"/>
                 </div>
-                <div class="col-md-4 bg-primary">
-                    <div class="feature-item">
-                        <i class="fa fa-fire"></i>
-                        <h3 translate="landing.what-2"/>
-                        <p translate="landing.what-description-2"
-                           class="text-muted"/>
-                    </div>
-                </div>
-                <div class="col-md-4 bg-success">
-                    <div class="feature-item">
-                        <i class="fa fa-bullhorn"></i>
-                        <h3 translate="landing.what-3"/>
-                        <p translate="landing.what-description-3"
-                           class="text-muted"/>
-                    </div>
+                <div class="col-md-6 col-xs-12">
+                    <h3 translate="landing.what-1"/>
+                    <p translate="landing.what-description-1"
+                       class="text-muted"/>
                 </div>
             </div>
-            <div class="row">
-                <div class="badges">
-                    <a ui-sref="feed"
-                       translate="landing.get-started"
-                       class="btn-more btn-outline btn-more-xl btn-get-started"/>
+            <div class="line"/>
+            <div class="feature-item row">
+                <div class="col-md-6 col-xs-12">
+                    <h3 translate="landing.what-2"/>
+                    <p translate="landing.what-description-2"
+                       class="text-muted"/>
+                </div>
+                <div class="feature-item-icon col-md-6">
+                    <img src="/assets/images/places.png"/>
+                </div>
+            </div>
+            <div class="line"/>
+            <div class="feature-item row">
+                <div class="feature-item-icon col-md-6 col-xs-12">
+                    <img src="/assets/images/friends.png"/>
+                </div>
+                <div class="col-md-6 col-xs-12">
+                    <h3 translate="landing.what-3"/>
+                    <p translate="landing.what-description-3"
+                       class="text-muted"/>
                 </div>
             </div>
         </div>
