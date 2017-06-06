@@ -17,7 +17,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.csrf.CsrfFilter;
 
-import static com.otchi.infrastructure.config.ResourcesPath.FEED;
+import static com.otchi.infrastructure.config.ResourcesPath.*;
 import static org.springframework.http.HttpMethod.GET;
 
 @Configuration
@@ -47,9 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .mvcMatchers(GET, FEED+"/**")
+                .mvcMatchers(GET, FEED+"/**",CHEF+"/**")
                 .permitAll()
-                .antMatchers(ResourcesPath.REGISTER)
+                .antMatchers(REGISTER)
                 .permitAll()
                 .and()
                     .exceptionHandling()

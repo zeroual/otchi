@@ -19,4 +19,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
     List<User> findAllByIdNotLike(Long id);
 
     List<User> findAllByIdNotIn(Collection<Long> ids);
+
+    Optional<User> findOneById(Long id);
 }

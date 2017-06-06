@@ -3,6 +3,7 @@ package com.otchi.api.facades.exceptions;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
 import com.otchi.domain.social.exceptions.ResourceNotAuthorizedException;
 import com.otchi.domain.users.exceptions.AccountAlreadyExistsException;
+import com.otchi.domain.users.exceptions.UserNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -21,7 +22,7 @@ public class ExceptionHandlerAdvice {
     private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionHandlerAdvice.class);
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler({NoSuchElementException.class, ResourceNotFoundException.class})
+    @ExceptionHandler({NoSuchElementException.class, ResourceNotFoundException.class, UserNotFoundException.class})
     public final void handleNotFound() {
     }
 
