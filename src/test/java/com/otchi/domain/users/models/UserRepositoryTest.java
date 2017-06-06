@@ -61,4 +61,15 @@ public class UserRepositoryTest extends AbstractIntegrationTest {
         assertThat((users)).extracting(user -> user.getId()).doesNotContain(1L);
         assertThat((users)).extracting(user -> user.getId()).doesNotContain(2L);
     }
+
+    @Test
+    @DatabaseSetup("/dbunit/users/users.xml")
+    public void shouldFindUserById() {
+        Optional<User> foundUser = userRepository.findOneById(1L);
+        assertThat(foundUser).isPresent();
+
+        foundUser = userRepository.findOneById(293L);
+        assertThat(foundUser.isPresent()).isFalse();
+    }
+
 }

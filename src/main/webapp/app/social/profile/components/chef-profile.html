@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div id="header-profile">
+                <div class="picture-profile">
+                    <img class="img-circle"
+                         ng-src="{{$ctrl.chef.picture}}"
+                         width="150"
+                         height="150"/>
+                </div>
+                <div class="cover-profile">
+
+                </div>
+
+                <div class="row profile-summary">
+                    <div class="profile-summary-left">
+                        <span id="profile-name">
+                            {{$ctrl.chef.firstName}} {{$ctrl.chef.lastName}}
+                        </span>
+                    </div>
+                    <div class="profile-summary-right">
+                        <span id="profile-followers-total">10K followers</span></span>
+                        <button class="btn btn-follow">Follow</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        to add more information here
+    </div>
+</div>
