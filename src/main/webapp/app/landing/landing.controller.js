@@ -1,13 +1,7 @@
 angular.module('otchi')
-    .controller('LandingController', function ($scope, $translate, $location, $anchorScroll) {
+    .controller('LandingController', function ($scope, $translate) {
 
         $scope.changeLanguage = function (langKey) {
             $translate.use(langKey);
         };
-
-        $scope.scrollTo = function (id) {
-            $location.hash(id);
-            $anchorScroll();
-        };
-
     });
