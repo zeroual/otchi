@@ -1,5 +1,5 @@
 angular.module('helpers', []);
-angular.module('publisher', ['ui.router', 'ngResource', 'ngFileUpload', 'toaster', 'ngTagsInput', 'LocalStorageModule']);
+angular.module('publisher', ['ui.router', 'ngResource', 'ngFileUpload', 'toaster', 'ngTagsInput', 'LocalStorageModule','ng-mfb']);
 angular.module('stream', ['ngResource', 'helpers', 'authentication', 'ui.bootstrap']);
 angular.module('profile', ['ngResource']);
 var app = angular.module("otchi", ['publisher', 'stream', 'authentication', 'ui.router',
