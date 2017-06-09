@@ -1,34 +1,16 @@
-<div id="publisher-actions">
-    <div class="fab btn-group show-on-hover dropup">
-        <div data-toggle="tooltip"
-             data-placement="left"
-             title="{{'actions.share'|translate}}">
-            <button type="button" class="btn btn-danger btn-io dropdown-toggle"
-                    data-toggle="dropdown">
-                         <span class="fa-stack fa-2x">
-                             <i class="fa fa-circle fa-stack-2x fab-backdrop"></i>
-                             <i class="fa fa-plus fa-stack-1x fa-inverse fab-primary"></i>
-                             <i class="fa fa-pencil fa-stack-1x fa-inverse fab-secondary"></i>
-                         </span>
-            </button>
-        </div>
-        <ul class="dropdown-menu dropdown-menu-right" role="menu">
-            <li>
-                <a ui-sref="createRecipe"
-                   data-toggle="tooltip"
-                   data-placement="left"
-                   title="{{'recipe'|translate}}">
-                    <i class="fa fa-cutlery"></i>
-                </a>
-            </li>
-            <li>
-                <a ui-sref="newStory"
-                   data-toggle="tooltip"
-                   data-placement="left"
-                   title="{{'story'|translate}}">
-                    <i class="fa fa-commenting-o"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>
+<nav mfb-menu
+     position="br"
+     effect="fountain"
+     resting-icon="glyphicon glyphicon-plus"
+     active-icon="glyphicon glyphicon-remove"
+     toggling-method="hover">
+
+    <button mfb-button
+            icon="fa fa-cutlery"
+            ui-sref="createRecipe"
+            label="{{'recipe'|translate}}"/>
+    <button mfb-button
+            icon="fa fa-quote-left"
+            ui-sref="newStory"
+            label="{{'story'|translate}}"></button>
+</nav>
