@@ -1,0 +1,35 @@
+{
+  "publisher": {
+    "story": {
+      "share-button": "شارك",
+      "content-placeholder": "لدي فكرة !"
+    },
+    "recipe": {
+      "title": "إسم الوصفة",
+      "title-placeholder": "ما هو إسم الوصفة ؟",
+      "description": "نبذة عن الوصفة",
+      "description-placeholder": "معلومات مقتضبة عن الوصفة",
+      "preparation-time": "مدة التحضير",
+      "cook-time": "مدة الطبخ",
+      "ingredients": {
+        "tips": "أضف المقادير، إضغط على الزر جانبه لإضافة مقادير أخرى",
+        "name-placeholder": "أكتب إسم المكون",
+        "quantity-placeholder": "الكمية",
+        "unit-placeholder": "وحدة القياس"
+      },
+      "instructions": {
+        "tips": "طريقة التحضير، خطوة بخطوة",
+        "text-placeholder": "أكتب الخطوة التالية هنا"
+      },
+      "add-instructions-button": "طريقة التحضير",
+      "add-ingredients-button": " المقادير",
+      "back-to-summary-button": "معلومات عن الوصفة",
+      "back-to-ingredients-button": "المقادير",
+      "back-to-instructions-button": "طريقة التحضير",
+      "add-images-button": "أضف الصور",
+      "images-tips": "الصور",
+      "share-button": "شارك الوصفة",
+      "time-unit": "د"
+    }
+  }
+}

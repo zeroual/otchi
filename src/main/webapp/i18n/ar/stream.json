@@ -2,17 +2,24 @@
   "stream": {
     "feed": {
       "actions": {
-        "remove": "Delete",
-        "edit": "Edit (not implemented yet )",
-        "signal": "Signal (not implemented yet )"
+        "remove": "حذف",
+        "edit": "تحديث (قيد الإنجاز)",
+        "signal": "إبلاغ (قيد الإنجاز)"
       },
-      "likes": "Miams",
-      "comments": "Comments",
-      "user-likes": "People Who Like This",
-      "start-discussion": "Start discussion",
+      "likes": "بنين",
+      "comments": "تعليق",
+      "user-likes": "أعجبوا به",
+      "start-discussion": "أكتب تعليقا",
       "comment": {
-        "send-button": "Send",
-        "comment-placeholder": "Your comment"
+        "send-button": "أضف",
+        "comment-placeholder": "أضف تعليقا"
+      },
+      "recipe": {
+        "preparation-time": "مدة التحضير",
+        "cook-time": "مدة الطبخ",
+        "ingredients": "المقادير",
+        "instructions": "طريقة التحضير",
+        "minutes":"د"
       }
     }
   }

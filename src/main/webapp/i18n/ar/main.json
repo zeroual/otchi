@@ -1,9 +1,9 @@
 {
   "actions": {
-    "close": "Close",
-    "login": "Login",
-    "share": "Share"
+    "close": "خروج",
+    "login": "تسجيل الدخول",
+    "share": "شارك"
   },
-  "recipe": "Recipe",
-  "story": "Story"
+  "recipe": "وصفات",
+  "story": "تجارب"
 }
