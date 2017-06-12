@@ -274,9 +274,6 @@
 }
 
 @media (max-width: 992px) {
-    .landing .btn-outline {
-        padding: 15px 20px;
-    }
 
     .landing section.header {
         padding-top: 70px;
