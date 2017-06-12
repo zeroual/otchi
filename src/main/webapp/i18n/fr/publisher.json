@@ -23,12 +23,14 @@
         "text-placeholder": "Tape tes instructions ici"
       },
       "add-instructions-button": "Ajouter des instructions",
+      "add-ingredients-button": "Ajouter des ingredients",
       "back-to-summary-button": "Retour à la recette",
       "back-to-ingredients-button": "Retour aux ingrédients",
       "back-to-instructions-button": "Retour aux instructions",
       "add-images-button": "Ajouter des images",
       "images-tips": "Ajouter des images pour montrer ta recette",
-      "share-button": "Publier ta recette"
+      "share-button": "Publier ta recette",
+      "time-unit": "min"
     }
   }
 }

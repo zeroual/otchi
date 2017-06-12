@@ -1,41 +1,41 @@
 {
   "login": {
-    "title": "Log in to continue",
-    "or-by-email": "Or via email",
+    "title": "سجل الدخول",
+    "or-by-email": "البريد الإلكتروني",
     "form": {
-      "email-placeholder": "E-mail",
-      "password-placeholder": "Password",
-      "remember-me": "Remember me",
-      "login-button": "Login",
-      "register-button": "Need an account"
+      "email-placeholder": "البريد الإلكتروني",
+      "password-placeholder": "كلمة السر",
+      "remember-me": "تذكر بياناتي",
+      "login-button": "تسجيل الدخول",
+      "register-button": "إنشاء حساب جديد"
     },
     "messages": {
       "error": {
-        "authentication": "<strong>Failed to sign in!</strong> Please check your credentials and try again."
+        "authentication": "<strong>المرجو التأكد من البريد الإ لكروني أو كلمة السر</strong>"
       }
     }
   },
   "register": {
-    "title": "Sign up with",
-    "or-by-email": "Or via email",
+    "title": "سجل الدخول عن طريق",
+    "or-by-email": "البريد الإلكتروني",
     "form": {
-      "first-name-placeholder": "First name",
-      "last-name-placeholder": "Last name",
-      "email": "E-mail",
-      "password": "Password",
-      "register-button": "Sing up",
-      "login-button": "have an account?"
+      "first-name-placeholder": "الإسم",
+      "last-name-placeholder": "اللقب",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة السر",
+      "register-button": "تسجيل",
+      "login-button": "لدي حساب؟"
     },
     "messages": {
       "validate": {
-        "firstName": "Your First name must contain at least tow characters.",
-        "lastName": "Your Last name must contain at least tow characters.",
-        "email": "Your email address is not valid.",
-        "password": "Your password must contain at least eight characters."
+        "firstName": "الإسم يجب أن يتكون من حرفين على الأقل",
+        "lastName": "اللقب يجب أن يتكون من حرفين على الأقل",
+        "email": " البريد الإلكتروني غير صحيح",
+        "password": "كلمة السر يجب أن تتكون من 6 أحرف على الأقل"
       },
       "error": {
-        "fail": "<strong>Registration failed!</strong> Please try again later.",
-        "emailexists": "<strong>E-mail is already in use!</strong> The e-mail address you specified is already in use. (Do you already have an account?)"
+        "fail": "عملية التسجيل لم تتم:  المرجو المحاولة !",
+        "emailexists": "البريد الإلكروني مسجل لدينا. هل لديك حساب مسبقا ؟"
       }
     }
   }
