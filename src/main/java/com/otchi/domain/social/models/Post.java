@@ -27,7 +27,7 @@ public class Post {
         this.createdTime = createdTime;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "POST_LIKES",
             joinColumns = {@JoinColumn(name = "POST_ID", referencedColumnName = "ID")},
             inverseJoinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")}
