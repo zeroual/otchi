@@ -192,7 +192,98 @@
 
     </changeSet>
 
-    <changeSet id="201704011736" author="Abdellah" >
+    <changeSet id="201706140158" author="abdellah">
+
+        <addForeignKeyConstraint baseColumnNames="USER_ID"
+                                 baseTableName="ACCOUNT"
+                                 constraintName="FK_ACCOUNT_USERS"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="USERS"/>
+
+        <addForeignKeyConstraint baseColumnNames="RECIPE_ID"
+                                 baseTableName="INSTRUCTION"
+                                 constraintName="FK_RECIPE_INSTRUCTION"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="RECIPE"/>
+
+        <addForeignKeyConstraint baseColumnNames="SENDER_ID"
+                                 baseTableName="NOTIFICATION"
+                                 constraintName="FK_NOTIFICATION_USERS_SENDER"
+                                 referencedColumnNames="USERNAME"
+                                 referencedTableName="USERS"/>
+
+        <addForeignKeyConstraint baseColumnNames="USERNAME"
+                                 baseTableName="NOTIFICATION"
+                                 constraintName="FK_NOTIFICATION_USERS_RECIEVER"
+                                 referencedColumnNames="USERNAME"
+                                 referencedTableName="USERS"/>
+
+
+        <addForeignKeyConstraint baseColumnNames="POST_ID"
+                                 baseTableName="NOTIFICATION"
+                                 constraintName="FK_NOTIFICATION_POST"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="POST"/>
+
+        <addForeignKeyConstraint baseColumnNames="AUTHOR_ID"
+                                 baseTableName="POST"
+                                 constraintName="FK_POST_AUTHOR"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="USERS"/>
+
+        <addForeignKeyConstraint baseColumnNames="POST_ID"
+                                 baseTableName="POST_COMMENT"
+                                 constraintName="FK_COMMENT_POST"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="POST"/>
+
+        <addForeignKeyConstraint baseColumnNames="AUTHOR_ID"
+                                 baseTableName="POST_COMMENT"
+                                 constraintName="FK_COMMENT_AUTHOR"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="USERS"/>
+
+        <addForeignKeyConstraint baseColumnNames="POST_ID"
+                                 baseTableName="POST_IMAGES"
+                                 constraintName="FK_POST_IMAGES"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="POST"/>
+
+        <addForeignKeyConstraint baseColumnNames="POST_ID"
+                                 baseTableName="POST_LIKES"
+                                 constraintName="FK_POST_LIKES"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="POST"/>
+
+        <addForeignKeyConstraint baseColumnNames="USER_ID"
+                                 baseTableName="POST_LIKES"
+                                 constraintName="FK_POST_LIKES_AUTHOR"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="USERS"/>
+
+
+        <addForeignKeyConstraint baseColumnNames="RECIPE_ID"
+                                 baseTableName="RECIPE_INGREDIENT"
+                                 constraintName="FK_RECIPE_INGREDIENT1"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="RECIPE"/>
+
+
+        <addForeignKeyConstraint baseColumnNames="INGREDIENT_ID"
+                                 baseTableName="RECIPE_INGREDIENT"
+                                 constraintName="FK_RECIPE_INGREDIENT2"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="INGREDIENT"/>
+
+        <addForeignKeyConstraint baseColumnNames="RECIPE_ID"
+                                 baseTableName="RECIPE_TAGS"
+                                 constraintName="FK_RECIPE_TAGS"
+                                 referencedColumnNames="ID"
+                                 referencedTableName="RECIPE"/>
+
+    </changeSet>
+
+    <changeSet id="201704011736" author="Abdellah" context="dev">
 
         <loadData encoding="UTF-8"
                   file="database/data/users.csv"
