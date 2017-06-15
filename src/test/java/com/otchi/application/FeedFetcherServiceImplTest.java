@@ -8,7 +8,9 @@ import com.otchi.domain.users.models.User;
 import org.assertj.core.groups.Tuple;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,11 +18,14 @@ import static com.otchi.domain.users.models.UserBuilder.asUser;
 import static java.time.LocalDateTime.parse;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.when;
 
 public class FeedFetcherServiceImplTest {
 
     private PostRepository postRepository = new MockPostRepository();
-    private FeedFetcherService feedFetcherService = new FeedFetcherServiceImpl(postRepository);
+    private PostMonitorService postMonitorService = Mockito.mock(PostMonitorService.class);
+    private FeedFetcherService feedFetcherService = new FeedFetcherServiceImpl(postMonitorService, postRepository);
 
     @Before
     public void setUp() {
@@ -48,7 +53,7 @@ public class FeedFetcherServiceImplTest {
         assertThat(foundFeeds)
                 .extracting(Feed::getCreatedTime)
                 .containsExactly(parse("2016-02-28T00:00:00"), parse("2016-02-27T00:00:00"))
-                .isSortedAccordingTo((o1, o2) -> o2.compareTo(o1));
+                .isSortedAccordingTo(Comparator.reverseOrder());
     }
 
     @Test
@@ -76,5 +81,13 @@ public class FeedFetcherServiceImplTest {
 
         feedOptional = feedFetcherService.getFeed(99L, "");
         assertThat(feedOptional).isEmpty();
+    }
+
+    @Test
+    public void shouldSetFeedViewCount() {
+        when(postMonitorService.getViewsCountOf(anyLong())).thenReturn(3);
+        Optional<Feed> feedOptional = feedFetcherService.getFeed(1L, "");
+        assertThat(feedOptional).isPresent();
+        assertThat(feedOptional.get().getViews()).isEqualTo(3);
     }
 }

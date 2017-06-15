@@ -19,7 +19,7 @@ angular.module('stream')
                 },
                 views: {
                     'content@': {
-                        template:'<timeline/>'
+                        template: '<timeline/>'
                     }
                 }
             })

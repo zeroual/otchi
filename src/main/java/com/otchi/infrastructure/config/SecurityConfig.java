@@ -47,10 +47,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .mvcMatchers(GET, FEED+"/**",CHEF+"/**")
-                .permitAll()
-                .antMatchers(REGISTER)
-                .permitAll()
+                    .mvcMatchers(GET, FEED+"/**",CHEF+"/**").permitAll()
+                    .mvcMatchers(POST, ANALYTICS+"/**").permitAll()
+                    .antMatchers(REGISTER).permitAll()
                 .and()
                     .exceptionHandling()
                     .accessDeniedHandler(accessDeniedHandler)

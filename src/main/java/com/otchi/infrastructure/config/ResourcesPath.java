@@ -14,5 +14,6 @@ public final class ResourcesPath {
     public static final String ME = URL_PREFIXE + "me";
     public static final String ACCOUNT = URL_PREFIXE + "account";
     public static final String CHEF = URL_PREFIXE + "chef";
+    public static final String ANALYTICS = URL_PREFIXE + "analytics";
     public static final String REGISTER = ACCOUNT + URL_SEPARATOR + "register";
 }
