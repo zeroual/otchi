@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.zeros</groupId>
     <artifactId>otchi</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${version.number}</version>
     <packaging>jar</packaging>
 
     <name>otchi</name>
@@ -17,7 +18,15 @@
         <version>1.5.2.RELEASE</version>
     </parent>
 
+    <scm>
+        <connection>scm:git:https://github.com/zeroual/otchi.git</connection>
+        <url>scm:git:https://github.com/zeroual/otchi.git</url>
+        <developerConnection>scm:git:https://github.com/zeroual/otchi.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
     <properties>
+        <version.number>${git.commit.time}.${git.commit.id.abbrev}</version.number>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
         <h2.version>1.4.187</h2.version>
@@ -50,6 +59,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
         <dependency>
@@ -89,7 +103,7 @@
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
-        <!--reactor and  netty used for rabbitMQ stomp , plz don't remove them-->
+        <!--reactor and netty used for rabbitMQ stomp , plz don't remove them -->
 
         <dependency>
             <groupId>io.projectreactor</groupId>
@@ -161,12 +175,14 @@
             <version>${spring-test-dbunit.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.dbunit</groupId>
             <artifactId>dbunit</artifactId>
             <version>${dbunit.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
@@ -214,12 +230,14 @@
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-spring</artifactId>
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-junit</artifactId>
@@ -232,6 +250,26 @@
     <build>
         <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
+
+            <!-- Use the Commit Hash as the Version Number -->
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <dateFormat>yyyyMMdd-HHmmss</dateFormat>
+                    <dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+                    <generateGitPropertiesFile>false</generateGitPropertiesFile>
+                </configuration>
+            </plugin>
 
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

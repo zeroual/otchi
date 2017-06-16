@@ -1,3 +1,24 @@
+git:
+  tags: @git.tags@
+  branch: @git.branch@
+  remote:
+    origin:
+      url: @git.remote.origin.url@
+  commit:
+    id:
+      abbrev: @git.commit.id.abbrev@
+      describe: @git.commit.id.describe@
+    user:
+      name: @git.commit.user.name@
+    message:
+      short: @git.commit.message.short@
+    time: @git.commit.time@
+
+info:
+  app:
+    name: Otchi
+    description: Food network
+    version: @git.commit.time@.@git.commit.id.abbrev@
 
 spring:
     social:
