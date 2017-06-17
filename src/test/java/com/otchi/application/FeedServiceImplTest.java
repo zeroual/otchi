@@ -5,6 +5,7 @@ import com.otchi.application.utils.Clock;
 import com.otchi.domain.notifications.events.DomainEvents;
 import com.otchi.domain.notifications.events.LikePostEvent;
 import com.otchi.domain.notifications.events.PostCommentedEvent;
+import com.otchi.domain.social.events.PostDeletedEvent;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
 import com.otchi.domain.social.exceptions.ResourceNotAuthorizedException;
 import com.otchi.domain.social.models.Comment;
@@ -42,6 +43,11 @@ public class FeedServiceImplTest {
 
     @Captor
     private ArgumentCaptor<LikePostEvent> likePostEventArgumentCaptor;
+
+
+    @Captor
+    private ArgumentCaptor<PostDeletedEvent> postDeletedEventArgumentCaptor;
+
 
     @Before
     public void setUp() {
@@ -180,6 +186,15 @@ public class FeedServiceImplTest {
 
     @Test(expected = ResourceNotAuthorizedException.class)
     public void shouldNotDeletePostIfUserIsNotOwner() {
-        feedService.deletePost(1L, "toto");
+        feedService.deletePost(1L, "removePostViewsCount");
+    }
+
+    @Test
+    public void shouldRaiseEventWhenPostIsRemoved() {
+        feedService.deletePost(1L, "user1@fofo.com");
+        verify(domainEvents).raise(postDeletedEventArgumentCaptor.capture());
+        PostDeletedEvent postDeletedEvent = postDeletedEventArgumentCaptor.getValue();
+        assertThat(postDeletedEvent.getPostId()).isEqualTo(1);
+
     }
 }

@@ -6,6 +6,7 @@ import com.otchi.application.utils.Clock;
 import com.otchi.domain.notifications.events.DomainEvents;
 import com.otchi.domain.notifications.events.LikePostEvent;
 import com.otchi.domain.notifications.events.PostCommentedEvent;
+import com.otchi.domain.social.events.PostDeletedEvent;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
 import com.otchi.domain.social.exceptions.ResourceNotAuthorizedException;
 import com.otchi.domain.social.models.Comment;
@@ -86,6 +87,7 @@ public class FeedServiceImpl implements FeedService {
             throw new ResourceNotAuthorizedException("Sorry ! this content is private.");
         }
         postRepository.delete(post);
+        domainEvents.raise(new PostDeletedEvent(postId));
     }
 
 

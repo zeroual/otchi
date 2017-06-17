@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 public interface PostViewRepository extends CrudRepository<PostView, ViewId> {
 
     Integer countByViewPostId(Long postId);
+
+    void deleteByViewPostId(Long postId);
+
 }
