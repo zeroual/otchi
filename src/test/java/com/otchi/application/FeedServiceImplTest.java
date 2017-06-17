@@ -5,8 +5,8 @@ import com.otchi.application.utils.Clock;
 import com.otchi.domain.notifications.events.DomainEvents;
 import com.otchi.domain.notifications.events.LikePostEvent;
 import com.otchi.domain.notifications.events.PostCommentedEvent;
-import com.otchi.domain.notifications.services.NotifierService;
 import com.otchi.domain.social.exceptions.PostNotFoundException;
+import com.otchi.domain.social.exceptions.ResourceNotAuthorizedException;
 import com.otchi.domain.social.models.Comment;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.repositories.PostRepository;
@@ -33,7 +33,6 @@ public class FeedServiceImplTest {
     private PostRepository postRepository = new MockPostRepository();
     private UserService userService = Mockito.mock(UserService.class);
     private Clock clock = Mockito.mock(Clock.class);
-    private NotifierService notifierService = mock(NotifierService.class);
     private DomainEvents domainEvents = mock(DomainEvents.class);
     private FeedService feedService;
 
@@ -171,5 +170,16 @@ public class FeedServiceImplTest {
         assertThat(postCommentedEvent.getCommentOwner()).isEqualTo(commentOwner);
         assertThat(postCommentedEvent.getPost()).isEqualTo(post);
 
+    }
+
+    @Test
+    public void shouldDeletePostFromDataBase() {
+        feedService.deletePost(1L, "user1@fofo.com");
+        assertThat(postRepository.findOne(1L)).isNull();
+    }
+
+    @Test(expected = ResourceNotAuthorizedException.class)
+    public void shouldNotDeletePostIfUserIsNotOwner() {
+        feedService.deletePost(1L, "toto");
     }
 }
