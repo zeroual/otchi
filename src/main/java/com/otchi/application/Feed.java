@@ -30,6 +30,7 @@ public class Feed {
 
     private final Integer likesCount;
     private final boolean liked;
+    private Integer views;
 
     public Feed(Post post, String username) {
         this.id = post.getId();
@@ -83,5 +84,13 @@ public class Feed {
 
     public boolean isLiked() {
         return liked;
+    }
+
+    public Integer getViews() {
+        return views;
+    }
+
+    public void setViews(Integer views) {
+        this.views = views;
     }
 }

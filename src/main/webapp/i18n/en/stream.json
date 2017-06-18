@@ -13,6 +13,14 @@
       "comment": {
         "send-button": "Send",
         "comment-placeholder": "Your comment"
+      },
+      "recipe": {
+        "preparation-time": "preparation time",
+        "cook-time": "cook time",
+        "ingredients": "ingredients",
+        "instructions": "instructions",
+        "minutes":"m",
+        "views": "views"
       }
     }
   }

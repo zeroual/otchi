@@ -4,7 +4,7 @@ angular.module("stream")
             feed: '<'
         },
         templateUrl: 'app/social/stream/directives/feed-details-viewer/feed-details-viewer.html',
-        controller: function () {
-
+        controller: function (AnalyticsService) {
+            AnalyticsService.incrementFeedViews(this.feed);
         }
     });

@@ -2,6 +2,7 @@ package com.otchi.application.impl;
 
 import com.otchi.application.Feed;
 import com.otchi.application.FeedFetcherService;
+import com.otchi.application.PostMonitorService;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +12,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
+import static java.util.Optional.ofNullable;
 import static java.util.stream.Collectors.toList;
 
 @Service
 public class FeedFetcherServiceImpl implements FeedFetcherService {
 
-    private PostRepository postRepository;
+    private final PostMonitorService postMonitorService;
+
+    private final PostRepository postRepository;
 
     @Autowired
-    public FeedFetcherServiceImpl(PostRepository postRepository) {
+    public FeedFetcherServiceImpl(PostMonitorService postMonitorService, PostRepository postRepository) {
+        this.postMonitorService = postMonitorService;
         this.postRepository = postRepository;
     }
 
@@ -39,7 +44,10 @@ public class FeedFetcherServiceImpl implements FeedFetcherService {
             return Optional.empty();
         } else {
             Feed feed = new Feed(post, username);
-            return Optional.ofNullable(feed);
+            Integer viewsCount = postMonitorService.getViewsCountOf(id);
+            feed.setViews(viewsCount);
+            return ofNullable(feed);
         }
     }
+
 }

@@ -21,7 +21,7 @@ public class FeedDTO {
     private boolean canBeRemoved = false;
     private List<String> images;
     private Integer likesCount;
-
+    private Integer views;
 
     private FeedDTO() {
 
@@ -42,6 +42,7 @@ public class FeedDTO {
         this.canBeRemoved = feed.canBeRemoved();
         this.images = feed.images();
         this.liked = feed.isLiked();
+        this.views = feed.getViews();
 
     }
 
@@ -89,4 +90,9 @@ public class FeedDTO {
     public Integer getLikesCount() {
         return likesCount;
     }
+
+    public Integer getViews() {
+        return views;
+    }
+
 }

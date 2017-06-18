@@ -19,7 +19,8 @@
         "cook-time": "Temps de cuisson",
         "ingredients": "Ingrédients",
         "instructions": "Instructions",
-        "minutes":"m"
+        "minutes":"m",
+        "views": "vues"
       }
     }
   }

@@ -1,6 +1,7 @@
 package com.otchi.infrastructure.config;
 
 import com.google.common.eventbus.EventBus;
+import com.otchi.domain.analytics.events.PostDeletedEventHandler;
 import com.otchi.domain.notifications.events.CommentedNotificationEventHandler;
 import com.otchi.domain.notifications.events.DomainEvents;
 import com.otchi.domain.notifications.events.LikeNotificationEventHandler;
@@ -30,10 +31,12 @@ public class InfrastructureConfig {
 
     @Bean
     EventBus createEventBus(CommentedNotificationEventHandler commentedNotificationEventHandler,
-                            LikeNotificationEventHandler likeNotificationEventHandler) {
+                            LikeNotificationEventHandler likeNotificationEventHandler,
+                            PostDeletedEventHandler postDeletedEventHandler) {
         EventBus eventBus = new EventBus();
         eventBus.register(commentedNotificationEventHandler);
         eventBus.register(likeNotificationEventHandler);
+        eventBus.register(postDeletedEventHandler);
         return eventBus;
     }
 
