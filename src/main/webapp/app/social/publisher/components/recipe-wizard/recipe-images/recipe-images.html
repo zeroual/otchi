@@ -6,7 +6,9 @@
         </div>
         <div class="recipe-images-uploader" align="center">
             <a href="" ngf-select ng-model="$ctrl.images" ngf-multiple="true" ngf-keep="true"
-               ngf-pattern="'image/*'" ngf-accept="'image/*'">
+               ngf-pattern="'image/*'"
+               ngf-max-size="10MB"
+               ngf-accept="'image/*'">
                 <i class="glyphicon glyphicon-camera" style="font-size: 10em;"></i>
             </a>
         </div>
