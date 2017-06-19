@@ -2,7 +2,9 @@
 spring:
     social:
         redirectAfterSignInUrl: "/#/feed"
-
+    http:
+        multipart:
+          max-file-size: 10MB
 liquibase:
     contexts: test
     change-log: classpath:/database/db.changelog-master.xml

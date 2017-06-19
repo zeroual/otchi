@@ -1,28 +1,37 @@
 <div class="container no-padding">
-    <div class="row" style="margin-bottom: 15px;">
-        <div class="col-md-12">
-            <textarea class="form-control input--textbox" ng-model="$ctrl.story.content"
+    <form name="publisher">
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-md-12">
+            <textarea class="form-control input--textbox"
+                      required
+                      name="content"
+                      ng-model="$ctrl.story.content"
                       placeholder="{{'publisher.story.content-placeholder'|translate}}"></textarea>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <a ngf-select ng-model="$ctrl.images" ngf-multiple="true" ngf-keep="true"
-               ngf-pattern="'image/*'" ngf-accept="'image/*'">
-                <i class="glyphicon glyphicon-camera"
-                   style="font-size: xx-large;">
-                </i>
-            </a>
-            <span>
-                <a class="btn btn-follow pull-right"
-                   ng-click="$ctrl.shareStory()"
-                   translate="publisher.story.share-button">
+        <div class="row">
+            <div class="col-md-12">
+                <a ngf-select ng-model="$ctrl.images"
+                   ngf-multiple="true" ngf-keep="true"
+                   ngf-max-size="10MB"
+                   ngf-pattern="'image/*'"
+                   ngf-accept="'image/*'">
+                    <i class="glyphicon glyphicon-camera"
+                       style="font-size: xx-large;">
+                    </i>
                 </a>
+                <span>
+                <button class="btn btn-follow pull-right"
+                   ng-click="$ctrl.shareStory()"
+                   ng-disabled="publisher.$invalid"
+                   translate="publisher.story.share-button">
+                </button>
             </span>
-            <span class="clearfix"></span>
+                <span class="clearfix"></span>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <images-upload-preview images="$ctrl.images" on-delete="$ctrl.deleteImage(image)"/>
-    </div>
+        <div class="row">
+            <images-upload-preview images="$ctrl.images" on-delete="$ctrl.deleteImage(image)"/>
+        </div>
+    </form>
 </div>
