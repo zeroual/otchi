@@ -9,6 +9,7 @@
                     <div class="form-group" ng-repeat="ingredient in $ctrl.ingredients">
                         <div class="col-md-5 col-sm-6 col-xs-12">
                             <input type="text"
+                                   maxlength="255"
                                    ng-model="ingredient.name"
                                    placeholder="{{'publisher.recipe.ingredients.name-placeholder'|translate}}"
                                    uib-typeahead="ingredient for ingredient in $ctrl.ingredientsDictionary | filter:$viewValue | limitTo:8"
@@ -21,9 +22,11 @@
                                 <input ng-model="ingredient.quantity"
                                        type="number"
                                        class="form-control"
+                                       min="0"
                                        placeholder="{{'publisher.recipe.ingredients.quantity-placeholder'|translate}}">
                                 <span class="input-group-btn"></span>
                                 <input ng-model="ingredient.unit" type="text"
+                                       maxlength="25"
                                        class="form-control"
                                        placeholder="{{'publisher.recipe.ingredients.unit-placeholder'|translate}}">
                             </div>

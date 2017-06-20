@@ -8,7 +8,10 @@
                 <form class="form-horizontal">
                     <div class="form-group" ng-repeat="instruction in $ctrl.instructions">
                         <div class="col-md-10 col-sm-10 col-xs-10">
-                                <textarea ng-model="instruction.content" type="text" class="form-control"
+                                <textarea ng-model="instruction.content"
+                                          maxlength="255"
+                                          type="text"
+                                          class="form-control"
                                           placeholder="{{'publisher.recipe.instructions.text-placeholder'|translate}}"
                                 />
                         </div>
