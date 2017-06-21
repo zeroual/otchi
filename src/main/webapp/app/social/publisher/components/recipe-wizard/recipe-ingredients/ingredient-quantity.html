@@ -1,0 +1,45 @@
+<div ng-form="form_quantity">
+    <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">
+            {{ingredient}}
+        </h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <div align="center">
+            <div class="input-group">
+                <input ng-model="quantity"
+                       name="quantity"
+                       type="number"
+                       class="form-control"
+                       required
+                       autofocus
+                       min="0"
+                       placeholder="{{'publisher.recipe.ingredients.quantity-placeholder'|translate}}">
+                <span class="input-group-btn"></span>
+
+                <select class="form-control"
+                        ng-model="unit">
+                    <option value="g"
+                            translate="units.g"/>
+                    <option value="kg"
+                            translate="units.kg"/>
+                    <option value="cl"
+                            translate="units.cl"/>
+                    <option value="l"
+                            translate="units.l"/>
+                    <option value="spoon"
+                            translate="units.spoon"/>
+                    <option value="units"
+                            translate="units.units"/>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary"
+                ng-disabled="form_quantity.$invalid"
+                type="button"
+                ng-click="ok()">OK
+        </button>
+    </div>
+</div>

@@ -28,7 +28,8 @@
       "add-images-button": "Add images",
       "images-tips": "Add images to show your recipe",
       "share-button": "Share your recipe",
-      "time-unit": "min"
+      "time-unit": "min",
+      "my-ingredients":"My ingredients"
     }
   }
 }

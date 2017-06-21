@@ -5,5 +5,13 @@
     "share": "Share"
   },
   "recipe": "Recipe",
-  "story": "Story"
+  "story": "Story",
+  "units": {
+    "g": "g",
+    "kg": "kg",
+    "cl": "cl",
+    "l": "l",
+    "spoon": "spoon",
+    "units": "units"
+  }
 }
