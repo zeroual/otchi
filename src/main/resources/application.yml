@@ -1,3 +1,8 @@
+git:
+  commit:
+    hash: @buildNumber@
+    link: https://github.com/zeroual/otchi/commit/@buildNumber@
+
 info:
   app:
     name: Otchi

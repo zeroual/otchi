@@ -6,7 +6,7 @@
 
 	<groupId>com.zeros</groupId>
 	<artifactId>otchi</artifactId>
-	<version>${buildNumber}</version>
+	<version>${version.number}</version>
 	<packaging>jar</packaging>
 
 	<name>otchi</name>
@@ -26,6 +26,8 @@
 	</scm>
 
 	<properties>
+	   <version.number>${git.commit.time}.${git.commit.id.abbrev}</version.number>
+	
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<h2.version>1.4.187</h2.version>
@@ -246,11 +248,32 @@
 		<plugins>
 
 			<!-- Use the Commit Hash as the Version Number -->
-			
+			<plugin>
+				<groupId>pl.project13.maven</groupId>
+				<artifactId>git-commit-id-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>revision</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<dateFormat>yyyyMMdd-HHmmss</dateFormat><!-- human-readable part of 
+						the version number -->
+					<dotGitDirectory>${project.basedir}/../.git</dotGitDirectory>
+					<generateGitPropertiesFile>false</generateGitPropertiesFile><!-- somehow 
+						necessary. otherwise the variables are not available in the pom -->
+				</configuration>
+			</plugin>
+
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>buildnumber-maven-plugin</artifactId>
-				<version>1.1</version>
+				<version>1.4</version>
 				<executions>
 					<execution>
 						<phase>validate</phase>
