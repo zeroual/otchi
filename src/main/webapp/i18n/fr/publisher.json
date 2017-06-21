@@ -20,7 +20,7 @@
       },
       "instructions": {
         "tips": "Créez ta recette étape par étape.",
-        "text-placeholder": "Tape tes instructions ici"
+        "text-placeholder": "Tape les instructions pour cette étape"
       },
       "add-instructions-button": "Ajouter des instructions",
       "add-ingredients-button": "Ajouter des ingredients",
