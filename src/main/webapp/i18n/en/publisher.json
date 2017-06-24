@@ -19,7 +19,9 @@
       },
       "instructions": {
         "tips": "Add the first instruction, then if you want to add more click on plus button",
-        "text": "Put direction to follow here"
+        "text-placeholder": "Put direction to follow here",
+        "add-step-button": "Add new step",
+        "step": "Step"
       },
       "add-instructions-button": "Add instructions",
       "back-to-summary-button": "Back to recipe summary",

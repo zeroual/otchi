@@ -20,7 +20,9 @@
       },
       "instructions": {
         "tips": "Créez ta recette étape par étape.",
-        "text-placeholder": "Tape les instructions pour cette étape"
+        "text-placeholder": "Tape les instructions pour cette étape",
+        "add-step-button": "Ajouter une étape",
+        "step": "Etape"
       },
       "add-instructions-button": "Ajouter des instructions",
       "add-ingredients-button": "Ajouter des ingredients",
@@ -31,7 +33,7 @@
       "images-tips": "Ajouter des images pour montrer ta recette",
       "share-button": "Publier ta recette",
       "time-unit": "min",
-      "my-ingredients":"Mes ingredients"
+      "my-ingredients": "Mes ingredients"
     }
   }
 }

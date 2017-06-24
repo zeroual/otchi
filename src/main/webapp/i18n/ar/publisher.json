@@ -19,7 +19,9 @@
       },
       "instructions": {
         "tips": "طريقة التحضير، خطوة بخطوة",
-        "text-placeholder": "أكتب الخطوة التالية هنا"
+        "text-placeholder": "أكتب الخطوة التالية هنا",
+        "add-step-button": "إضافة خطوة",
+        "step": "خطوة"
       },
       "add-instructions-button": "طريقة التحضير",
       "add-ingredients-button": " المقادير",
