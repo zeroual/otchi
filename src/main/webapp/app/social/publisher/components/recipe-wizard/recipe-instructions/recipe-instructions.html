@@ -1,36 +1,35 @@
 <div class="container">
     <div class="row">
+        <p class="text-muted"
+           translate="publisher.recipe.instructions.tips">
+        </p>
         <div class="col-md-12">
-            <div>
-                <p class="text-muted"
-                    translate="publisher.recipe.instructions.tips">
-                </p>
-                <form class="form-horizontal">
-                    <div class="form-group" ng-repeat="instruction in $ctrl.instructions">
-                        <div class="col-md-10 col-sm-10 col-xs-10">
-                                <textarea ng-model="instruction.content"
-                                          maxlength="255"
-                                          type="text"
-                                          class="form-control"
-                                          placeholder="{{'publisher.recipe.instructions.text-placeholder'|translate}}"
-                                />
-                        </div>
-                        <div class="col-md-1 col-sm-2 col-xs-1">
-                            <button class='btn btn-danger glyphicon glyphicon-minus'
-                                    ng-click="$ctrl.removeInstruction($index)"
-                                    ng-if="!$last">
-                            </button>
-                            <button class='btn btn-success glyphicon glyphicon-plus'
-                                    ng-click="$ctrl.addInstruction()"
-                                    ng-if="$last">
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <form class="form-horizontal" name="instructions_form">
+
+                <div class="form-group" ng-repeat="instruction in $ctrl.instructions">
+                    <label>Etape {{$index+1}}
+                    </label>
+                    <button ng-click="$ctrl.removeInstruction($index)"
+                            class="btn btn-circle btn-warning pull-right">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                    <textarea ng-model="instruction.content"
+                              maxlength="255"
+                              required
+                              ng-focus="true"
+                              type="text"
+                              class="form-control input-lg"
+                              placeholder="{{'publisher.recipe.instructions.text-placeholder'|translate}}"
+                    />
+                </div>
+            </form>
+        </div>
+        <div>
+            <button ng-click="$ctrl.addInstruction()"
+                    class="btn btn-success">Ajouter une étape</button>
         </div>
     </div>
-
+    <hr/>
     <div class="row wizard-nav">
         <div class="col-md-12">
             <button class="btn btn-primary btn-default pull-left"

@@ -1,12 +1,12 @@
 angular.module("publisher")
     .component('recipeIngredients', {
         templateUrl: 'app/social/publisher/components/recipe-wizard/recipe-ingredients/recipe-ingredients.html',
-        controller: function ($scope, $http, localStorageService, $state) {
+        controller: function ($scope, $http, localStorageService, $state, $uibModal) {
             var ctrl = this;
             var recipe;
 
             ctrl.$onInit = function () {
-                ctrl.ingredients = [{}];
+                ctrl.ingredients = [];
                 recipe = localStorageService.get('recipe');
                 if (recipe == undefined) {
                     recipe = {};
@@ -30,12 +30,35 @@ angular.module("publisher")
                 localStorageService.set('recipe', recipe);
             };
 
-            ctrl.addIngredient = function () {
-                ctrl.ingredients.push({});
-            };
-
             ctrl.removeIngredient = function (index) {
                 ctrl.ingredients.splice(index, 1);
+            };
+
+            ctrl.addIngredient = function () {
+                $uibModal.open({
+                    animation: true,
+                    ariaLabelledBy: 'modal-title',
+                    ariaDescribedBy: 'modal-body',
+                    templateUrl: 'app/social/publisher/components/recipe-wizard/recipe-ingredients/ingredient-quantity.html',
+                    size: 'md',
+                    controller: function ($scope, $uibModalInstance) {
+                        $scope.ingredient = ctrl.name;
+                        $scope.ok = function () {
+                            var ingredient = {
+                                name: ctrl.name,
+                                quantity: $scope.quantity,
+                                unit: $scope.unit
+                            };
+                            ctrl.ingredients.push(ingredient);
+                            ctrl.name = '';
+                            $uibModalInstance.dismiss('ok');
+                        };
+
+                        $scope.cancel = function () {
+                            $uibModalInstance.dismiss('cancel');
+                        }
+                    }
+                });
             };
 
             loadIngredients = function () {
@@ -47,15 +70,5 @@ angular.module("publisher")
             };
 
             ctrl.ingredientsDictionary = loadIngredients();
-            extractTags = function () {
-                return ctrl.tags.map(function (tag) {
-                    return tag.text;
-                });
-            };
-
-
-            ctrl.addInstructionsStep = function () {
-                ctrl.saveIngredients();
-            };
         }
     });

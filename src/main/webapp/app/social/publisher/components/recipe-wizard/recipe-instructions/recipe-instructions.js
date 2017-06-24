@@ -7,8 +7,7 @@ angular.module("publisher")
             var recipe;
 
             ctrl.$onInit = function () {
-                ctrl.instructions = [{}];
-
+                ctrl.instructions = [{}, {}, {}];
                 recipe = localStorageService.get('recipe');
                 if (recipe == undefined) {
                     recipe = {}
@@ -17,21 +16,14 @@ angular.module("publisher")
                 }
             };
 
-            ctrl.nextStep = function () {
-                ctrl.saveRecipeInstructions();
+            ctrl.previousStep = function () {
                 $state.go('addIngredients');
             };
 
             ctrl.nextStep = function () {
-                ctrl.saveRecipeInstructions();
                 $state.go('addImages');
             };
 
-
-            ctrl.saveRecipeInstructions = function () {
-                recipe.instructions = ctrl.instructions;
-                localStorageService.set('recipe', recipe);
-            };
 
             ctrl.addInstruction = function () {
                 ctrl.instructions.push({})
@@ -41,8 +33,11 @@ angular.module("publisher")
                 ctrl.instructions.splice(index, 1);
             };
 
-            ctrl.addImagesStep = function () {
-                ctrl.saveInstructions();
+            ctrl.$onDestroy = function () {
+                recipe.instructions = ctrl.instructions.filter(function (instruction) {
+                    return instruction.content != undefined && instruction.content != '';
+                });
+                localStorageService.set('recipe', recipe);
             };
         }
     });

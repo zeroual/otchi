@@ -52,7 +52,9 @@
                 <h3 translate="stream.feed.recipe.ingredients"/>
                 <ol class="recipe-ingredients-list">
                     <li class="step" ng-repeat="ingredient in recipe.ingredients">
-                        <div> {{ingredient.quantity}} {{ingredient.unit}}- {{ingredient.name}}</div>
+                        <div> {{ingredient.quantity}}
+                            <span translate="units.{{ingredient.unit}}"/>
+                            - {{ingredient.name}}</div>
                     </li>
                 </ol>
             </div>
