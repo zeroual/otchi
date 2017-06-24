@@ -7,7 +7,7 @@
             <form class="form-horizontal" name="instructions_form">
 
                 <div class="form-group" ng-repeat="instruction in $ctrl.instructions">
-                    <label>Etape {{$index+1}}
+                    <label>{{publisher.recipe.instructions.step|translate}} {{$index+1}}
                     </label>
                     <button ng-click="$ctrl.removeInstruction($index)"
                             class="btn btn-circle btn-warning pull-right">
@@ -26,7 +26,8 @@
         </div>
         <div>
             <button ng-click="$ctrl.addInstruction()"
-                    class="btn btn-success">Ajouter une étape</button>
+                    class="btn btn-success"
+                    translate="publisher.recipe.instructions.add-step-button"/>
         </div>
     </div>
     <hr/>
