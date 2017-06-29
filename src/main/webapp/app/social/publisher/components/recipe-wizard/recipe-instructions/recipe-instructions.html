@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
-        <p class="text-muted"
-           translate="publisher.recipe.instructions.tips">
-        </p>
-        <div class="col-md-12">
+        <div class="col-md-8 col-md-push-2 col-xs-12">
+            <p class="text-muted"
+               translate="publisher.recipe.instructions.tips">
+            </p>
             <form class="form-horizontal" name="instructions_form">
 
                 <div class="form-group" ng-repeat="instruction in $ctrl.instructions">
-                    <label>{{publisher.recipe.instructions.step|translate}} {{$index+1}}
+                    <label>{{'publisher.recipe.instructions.step'|translate}} {{$index+1}}
                     </label>
                     <button ng-click="$ctrl.removeInstruction($index)"
                             class="btn btn-circle btn-warning pull-right">
@@ -18,21 +18,21 @@
                               required
                               ng-focus="true"
                               type="text"
-                              class="form-control input-lg"
+                              class="form-control"
                               placeholder="{{'publisher.recipe.instructions.text-placeholder'|translate}}"
                     />
                 </div>
             </form>
         </div>
-        <div>
-            <button ng-click="$ctrl.addInstruction()"
-                    class="btn btn-success"
-                    translate="publisher.recipe.instructions.add-step-button"/>
-        </div>
     </div>
-    <hr/>
-    <div class="row wizard-nav">
-        <div class="col-md-12">
+    <div class="row col-md-8 col-md-push-2 col-xs-12">
+        <button ng-click="$ctrl.addInstruction()"
+                class="btn btn-success">
+            <i class="glyphicon glyphicon-plus"></i>
+        </button>
+    </div>
+    <div class="row">
+        <div class="wizard-nav col-md-8 col-md-push-2 col-xs-12">
             <button class="btn btn-primary btn-default pull-left"
                     type="button"
                     ng-click="$ctrl.previousStep()"

@@ -1,24 +1,27 @@
 <div class="container">
 
     <div class="row">
-        <div align="center">
-            <label translate="publisher.recipe.images-tips"/>
-        </div>
-        <div class="recipe-images-uploader" align="center">
-            <a href="" ngf-select ng-model="$ctrl.images" ngf-multiple="true" ngf-keep="true"
-               ngf-pattern="'image/*'"
-               ngf-max-size="10MB"
-               ngf-accept="'image/*'">
-                <i class="glyphicon glyphicon-camera" style="font-size: 10em;"></i>
-            </a>
-        </div>
-        <div>
-            <images-upload-preview images="$ctrl.images" on-delete="$ctrl.deleteImage()"/>
+        <div class="col-md-8 col-md-push-2 col-xs-12">
+            <div align="center">
+                <label translate="publisher.recipe.images-tips"/>
+            </div>
+            <div class="recipe-images-uploader" align="center">
+                <a href="" ngf-select ng-model="$ctrl.images" ngf-multiple="true" ngf-keep="true"
+                   ngf-pattern="'image/*'"
+                   ngf-max-size="10MB"
+                   ngf-accept="'image/*'">
+                    <i class="glyphicon glyphicon-camera" style="font-size: 10em;"></i>
+                </a>
+            </div>
+            <div>
+                <images-upload-preview images="$ctrl.images" on-delete="$ctrl.deleteImage()"/>
+            </div>
+
         </div>
     </div>
 
-    <div class="row wizard-nav">
-        <div class="col-md-12">
+    <div class="row">
+        <div class="wizard-nav col-md-8 col-md-push-2 col-xs-12">
             <button class="btn btn-primary btn-default pull-left"
                     type="button"
                     ng-click="$ctrl.previousStep()"

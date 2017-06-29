@@ -1,6 +1,6 @@
 <div class="container no-padding">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8 col-md-push-2 col-xs-12">
             <div>
                 <p class="text-muted"
                    translate="publisher.recipe.ingredients.tips">
@@ -35,8 +35,8 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6 col-md-push-2 col-xs-12">
+    <div class="row" ng-if="$ctrl.ingredients.length>0">
+        <div class="col-md-8 col-md-push-2 col-xs-12">
             <h5 translate="publisher.recipe.my-ingredients"/>
             <ul class="list-group">
                 <li class="list-group-item"
@@ -52,8 +52,8 @@
             </ul>
         </div>
     </div>
-    <div class="row wizard-nav">
-        <div class="col-md-12">
+    <div class="row">
+        <div class="wizard-nav col-md-8 col-md-push-2 col-xs-12">
             <button class="btn btn-primary btn-default pull-left"
                     type="button"
                     ng-click="$ctrl.previousStep()"

@@ -182,3 +182,15 @@ a, button {
 .google-auth .auth-container {
     background-color: #D34836;
 }
+
+.btn-primary {
+    color: #fff;
+    background-color: #FB3;
+    border-color: transparent;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    color: #fff;
+    background-color: #fa0;
+    border-color: transparent;
+}
