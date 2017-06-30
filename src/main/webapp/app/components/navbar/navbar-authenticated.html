@@ -46,8 +46,8 @@
                                             your post
                                         </strong>
                                         <p class="notification-desc">
-                                            <!--FIXME show post summary-->
-                                            i think that we should show something about post here :D </p>
+                                            {{notification.postPreview}}
+                                        </p>
 
                                         <div class="notification-meta">
                                             <small class="timestamp">{{notification.createdAt| timeAgo}}</small>

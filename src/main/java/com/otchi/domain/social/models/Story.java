@@ -25,4 +25,7 @@ public class Story extends PostContent {
         return content;
     }
 
+    public String getPreview(){
+        return content;
+    }
 }

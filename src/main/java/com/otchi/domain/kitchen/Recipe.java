@@ -88,6 +88,7 @@ public class Recipe extends PostContent{
         return instructions;
     }
 
+    public void setTitle( String title) { this.title = title; }
 
     public String getTitle() {
         return title;
@@ -109,4 +110,5 @@ public class Recipe extends PostContent{
         this.tags = tags;
     }
 
+    public String getPreview() { return title; }
 }

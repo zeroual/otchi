@@ -15,13 +15,16 @@ public class WebNotification {
     private LocalDateTime createdAt;
     private Long postId;
 
-    public WebNotification(Notification notification, UserDTO sender) {
+    private String postPreview;
+
+    public WebNotification(Notification notification, UserDTO sender, String postPreview) {
         this.id = notification.getId();
         this.to = notification.getUsername();
         this.type = notification.getType();
         this.createdAt = notification.getCreationDate();
         this.postId = notification.postId();
         this.sender = sender;
+        this.postPreview = postPreview;
     }
 
     public WebNotification() {
@@ -76,6 +79,8 @@ public class WebNotification {
     public void setPostId(Long postId) {
         this.postId = postId;
     }
+
+    public String getPostPreview() { return postPreview; }
 
     @Override
     public boolean equals(Object o) {

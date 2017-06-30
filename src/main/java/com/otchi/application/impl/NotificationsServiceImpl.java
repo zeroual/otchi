@@ -7,6 +7,8 @@ import com.otchi.domain.notifications.models.Notification;
 import com.otchi.domain.notifications.models.NotificationsRepository;
 import com.otchi.domain.notifications.services.NotificationsService;
 import com.otchi.domain.notifications.services.WebNotification;
+import com.otchi.domain.social.models.Post;
+import com.otchi.domain.social.repositories.PostRepository;
 import com.otchi.domain.users.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,12 +23,14 @@ public class NotificationsServiceImpl implements NotificationsService {
 
     private NotificationsRepository notificationsRepository;
     private UserService userService;
+    private PostRepository postRepository;
 
     @Autowired
     public NotificationsServiceImpl(NotificationsRepository notificationsRepository,
-                                    UserService userService) {
+                                    UserService userService, PostRepository postRepository) {
         this.notificationsRepository = notificationsRepository;
         this.userService = userService;
+        this.postRepository = postRepository;
     }
 
     @Override
@@ -71,11 +75,23 @@ public class NotificationsServiceImpl implements NotificationsService {
     private Function<Notification, WebNotification> notificationWithSenderTransformer() {
         return notification -> {
             User sender = getSenderOfThisNotification(notification);
-            return new WebNotification(notification, new UserDTO(sender));
+            String postContentPreview = getPostFromNotification(notification);
+            return new WebNotification(notification, new UserDTO(sender), postContentPreview);
         };
     }
 
     private User getSenderOfThisNotification(Notification notification) {
         return userService.findUserByUsername(notification.senderId()).get();
+    }
+
+    private String getPostFromNotification( Notification notification ){
+        Post post = postRepository.findOne(notification.postId());
+        String postContentPreview;
+        if (post != null) {
+            postContentPreview = post.getPostContent().getPreview();
+        } else {
+            postContentPreview = "";
+        }
+        return postContentPreview;
     }
 }

@@ -7,7 +7,9 @@ import com.otchi.application.impl.NotificationsServiceImpl;
 import com.otchi.domain.notifications.models.Notification;
 import com.otchi.domain.notifications.models.NotificationsRepository;
 import com.otchi.domain.notifications.services.NotificationsService;
+import com.otchi.domain.social.repositories.PostRepository;
 import com.otchi.domain.social.repositories.mocks.MockNotificationsRepository;
+import com.otchi.domain.social.repositories.mocks.MockPostRepository;
 import com.otchi.utils.mocks.MockCrudRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +23,7 @@ public class NotificationsUnreadStateTest {
 
     private NotificationsRepository notificationsRepository = new MockNotificationsRepository();
     private UserService userService = mock(UserService.class);
+    private PostRepository postRepository = new MockPostRepository();
     private NotificationsService notificationsService;
     private Notification notification;
     private String notificationOwner = "user1";
@@ -29,7 +32,7 @@ public class NotificationsUnreadStateTest {
     public void setUp() {
         MockCrudRepository.clearDatabase();
 
-        notificationsService = new NotificationsServiceImpl(notificationsRepository, userService);
+        notificationsService = new NotificationsServiceImpl(notificationsRepository, userService, postRepository);
         notification = new Notification(notificationOwner, "user2", 1L, LIKED);
         notificationsRepository.save(asList(notification));
     }
