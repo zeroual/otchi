@@ -184,13 +184,14 @@ a, button {
 }
 
 .btn-primary {
+    transition: all 250ms ease-in-out;
+    background-color: #2e9fff;
     color: #fff;
-    background-color: #FB3;
     border-color: transparent;
 }
 
 .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #2e87e7;
     color: #fff;
-    background-color: #fa0;
-    border-color: transparent;
+    transition: all 250ms ease-in-out
 }
