@@ -1,36 +1,36 @@
 <div class="container" ng-form="form">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8 col-lg-push-2">
             <form class="form-horizontal">
                 <div class="form-group">
-                    <div class="col-md-12">
-                        <label translate="publisher.recipe.title"/>
-                        <input ng-model="$ctrl.recipe.title"
-                               maxlength="255"
-                               type="text"
-                               class="form-control input--textbox"
-                               id="title"
-                               placeholder="{{'publisher.recipe.title-placeholder'|translate}}"/>
-                    </div>
+                    <label translate="publisher.recipe.title"/>
+                    <input ng-model="$ctrl.recipe.title"
+                           maxlength="255"
+                           type="text"
+                           class="form-control input--textbox"
+                           id="title"
+                           placeholder="{{'publisher.recipe.title-placeholder'|translate}}"
+                          />
+
                 </div>
                 <div class="form-group">
-                    <div class="col-md-12">
-                        <label translate="publisher.recipe.description"/>
-                        <textarea ng-model="$ctrl.recipe.description"
-                                  maxlength="255"
-                                  class="form-control"
-                                  id="description"
-                                  placeholder="{{'publisher.recipe.description-placeholder'|translate}}"
-                                  style="height: 10em;"/>
-                    </div>
+                    <label translate="publisher.recipe.description"/>
+                    <textarea ng-model="$ctrl.recipe.description"
+                              maxlength="255"
+                              class="form-control"
+                              id="description"
+                              placeholder="{{'publisher.recipe.description-placeholder'|translate}}"
+                              style="height: 10em;"
+                            />
+
                 </div>
             </form>
         </div>
     </div>
 
     <div class="row">
-        <div class="form-group">
-            <div class="col-md-6">
+        <div class="col-md-8 col-md-push-2 col-xs-12 no-padding">
+            <div class="form-group col-md-6">
                 <label translate="publisher.recipe.cook-time"/>
                 <div class="input-group">
                     <input ng-model="$ctrl.recipe.cookTime"
@@ -42,7 +42,7 @@
                     <span class="input-group-addon" translate="publisher.recipe.time-unit">min</span>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="form-group col-md-6">
                 <label translate="publisher.recipe.preparation-time"/>
                 <div class="input-group">
                     <input ng-model="$ctrl.recipe.preparationTime"
@@ -56,8 +56,8 @@
             </div>
         </div>
     </div>
-    <div class="row wizard-nav">
-        <div class="col-md-12">
+    <div class="row">
+        <div class="wizard-nav col-md-8 col-md-push-2 col-xs-12 no-padding">
             <button class="btn btn-primary btn-default pull-right"
                     type="button"
                     ng-click="$ctrl.nextStep()"

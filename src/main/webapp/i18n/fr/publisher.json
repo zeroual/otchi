@@ -6,9 +6,9 @@
     },
     "recipe": {
       "title": "Titre",
-      "title-placeholder": "Le titre de ta recette",
+      "title-placeholder": "Personnalise le titre de ta recette",
       "description": "Description",
-      "description-placeholder": "Rédige une brève description de ta recette",
+      "description-placeholder": "Laisse un commentaire personnel sur ta recette ! Mettez-nous l'eau à la bouche !",
       "preparation-time": "Temps de préparation",
       "cook-time": "Temps de cuisson",
       "add-ingredients-button": "Ajouter des ingrédients",

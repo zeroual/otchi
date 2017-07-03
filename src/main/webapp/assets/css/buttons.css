@@ -182,3 +182,16 @@ a, button {
 .google-auth .auth-container {
     background-color: #D34836;
 }
+
+.btn-primary {
+    transition: all 250ms ease-in-out;
+    background-color: #2e9fff;
+    color: #fff;
+    border-color: transparent;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #2e87e7;
+    color: #fff;
+    transition: all 250ms ease-in-out
+}
