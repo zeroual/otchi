@@ -1,4 +1,14 @@
+git:
+  commit:
+    hash: @buildNumber@
+    link: https://github.com/zeroual/otchi/commit/@buildNumber@
 
+info:
+  app:
+    name: Otchi
+    description: Food network
+    version: @buildNumber@
+    
 spring:
     social:
         redirectAfterSignInUrl: "/#/feed"
