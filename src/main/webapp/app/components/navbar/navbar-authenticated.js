@@ -13,7 +13,8 @@ angular.module('otchi').component('navbarAuthenticated', {
 
         ctrl.readNotification = function (notification) {
             NotificationsService.markNotificationAsRead(notification.id).then(function () {
-                notification.unread = false;
+                var index = ctrl.notifications.indexOf(notification);
+                ctrl.notifications.splice(index, 1);
                 $state.go('showPost', {postId: notification.postId});
             });
         };
