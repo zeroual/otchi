@@ -85,15 +85,15 @@ a, button {
 }
 
 .btn-like {
-    background-color: #5cb767;
-    border-color: #5cb767;
-    color: #fff;
+    border-color: #cce9ff;
+    color: #2e9fff;
     text-align: left;
 }
 
 .btn-like:hover {
-    color: #fff;
-    background-color: #5e9164;
+    border-color: #2e9fff;
+    background-color: #f2f9ff;
+    color: #2e87e7;
     box-shadow: none;
     transition: all 250ms ease-in-out
 }
