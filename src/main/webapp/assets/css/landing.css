@@ -24,20 +24,6 @@
     font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif';
 }
 
-.landing a {
-    -webkit-transition: all 0.35s;
-    -moz-transition: all 0.35s;
-    transition: all 0.35s;
-    color: #fdcc52;
-    text-decoration: none;
-}
-
-.landing a:hover,
-.landing a:focus {
-    background-color: #f1652c;
-    border: 1px solid #f1652c
-}
-
 .landing h1,
 .landing h2,
 .landing h3,
@@ -45,8 +31,6 @@
 .landing h5,
 .landing h6 {
     font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-    font-weight: 200;
-    letter-spacing: 1px;
 }
 
 .landing p {
@@ -168,10 +152,16 @@
 }
 
 .landing footer {
-    background-color: #222222;
-    padding: 25px 0;
-    color: rgba(255, 255, 255, 0.3);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 15px 0;
+    color: #546673;
+    border-top: 1px solid rgba(0,0,0,.06);
     text-align: center;
+    overflow: hidden;
+    min-height: 50px;
+    background: rgba(238,241,246,.3)
 }
 
 .landing footer p {
@@ -181,11 +171,19 @@
 
 .landing footer ul {
     margin-bottom: 0;
+    padding: 0px;
 }
-
+.landing footer ul li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
 .landing footer ul li a {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.3);
+    color: #96A3B6;
 }
 
 .landing footer ul li a:hover,
@@ -194,38 +192,18 @@
 .landing footer ul li a.active {
     text-decoration: none;
 }
-
-.landing .bg-primary {
-    background: #fdcc52;
-    background: -webkit-linear-gradient(#fdcc52, #fdc539);
-    background: linear-gradient(#fdcc52, #fdc539);
-}
-
-.landing {
-    background: #fdcc52;
-    background: -webkit-linear-gradient(#fdcc52, #fdc539);
-    background: linear-gradient(#fdcc52, #fdc539);
-}
-
-.landing .text-primary {
-    color: #fdcc52;
-}
-
 .landing .no-gutter > [class*='col-'] {
     padding-right: 0;
     padding-left: 0;
 }
 
-.landing .btn-outline {
-    color: white;
-    border-color: white;
-    border: 1px solid;
-}
 
 .landing .btn-get-started {
     letter-spacing: 2px;
-    background: #ee2761;
-    border: 1px solid #ee2761;
+    border-color: #2e9fff;
+    border-radius: 50px;
+    background-color: #2e9fff;
+    color: #fff;
     font-size: 1rem;
     line-height: 1.5;
     padding: 10px;
@@ -234,8 +212,9 @@
 }
 
 .landing .btn-get-started:hover {
-    background: #af1e48;
-    color: white;
+    background-color: #164b78;
+    border-color: #164b78;
+    color: #fff;
 }
 
 .landing .btn-outline {
@@ -247,28 +226,6 @@
     display: inline-block;
 }
 
-.landing ::-moz-selection {
-    color: white;
-    text-shadow: none;
-    background: #222222;
-}
-
-.landing ::selection {
-    color: white;
-    text-shadow: none;
-    background: #222222;
-}
-
-.landing img::selection {
-    color: white;
-    background: transparent;
-}
-
-.landing img::-moz-selection {
-    color: white;
-    background: transparent;
-}
-
 .landing {
     webkit-tap-highlight-color: #222222;
 }
@@ -276,7 +233,7 @@
 @media (max-width: 992px) {
 
     .landing section.header {
-        padding-top: 70px;
+        padding-top: 5%;
     }
 
     .landing section.header .badges {
