@@ -46,13 +46,14 @@ describe('NavBarController Tests', function () {
 
         describe('mark as read', function () {
 
-            it('should change notification state to read', function () {
+            it('should change notification state to read and delete it ', function () {
 
                 var notification = {id: 3, postId: 3, unread: true};
+                expect(ctrl.notifications.length).toBe(2);
                 ctrl.readNotification(notification);
                 expect(NotificationsService.markNotificationAsRead).toHaveBeenCalledWith(3);
                 $rootScope.$apply();
-                expect(notification.unread).toBeFalsy();
+                expect(ctrl.notifications.length).toBe(1);
             });
 
             it('should redirect user to a specific page to display post ', function () {
