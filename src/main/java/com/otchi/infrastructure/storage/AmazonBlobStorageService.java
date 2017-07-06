@@ -54,7 +54,7 @@ public class AmazonBlobStorageService implements BlobStorageService {
                 try {
 
                     final File fileToUpload = fileUtilsService.getFileFrom(file);
-                    String key = generateObjectUniqueKey();
+                    String key = generateObjectUniqueKey() + getFileExtension(file.getOriginalFilename());
                     putObject(bucketName, fileToUpload, key);
                     String url = generateURLFrom(key);
                     objectURLList.add(url);
@@ -133,5 +133,14 @@ public class AmazonBlobStorageService implements BlobStorageService {
 
     private String generateObjectUniqueKey() {
         return UUID.randomUUID().toString();
+    }
+
+    private String getFileExtension(final String originalFileName){
+        String extension = "";
+        int i = originalFileName.lastIndexOf('.');
+        if (i > 0) {
+            extension = originalFileName.substring(i);
+        }
+        return extension;
     }
 }
