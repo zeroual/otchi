@@ -10,6 +10,7 @@ import com.amazonaws.services.s3.transfer.Upload;
 import com.amazonaws.services.s3.transfer.model.UploadResult;
 import com.otchi.infrastructure.utils.FileUtilsServiceImpl;
 import com.otchi.infrastructure.utils.UnableToGetFileException;
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
@@ -54,7 +55,7 @@ public class AmazonBlobStorageService implements BlobStorageService {
                 try {
 
                     final File fileToUpload = fileUtilsService.getFileFrom(file);
-                    String key = generateObjectUniqueKey() + getFileExtension(file.getOriginalFilename());
+                    String key = generateObjectUniqueKey() + "." + FilenameUtils.getExtension(file.getOriginalFilename());
                     putObject(bucketName, fileToUpload, key);
                     String url = generateURLFrom(key);
                     objectURLList.add(url);
@@ -135,12 +136,4 @@ public class AmazonBlobStorageService implements BlobStorageService {
         return UUID.randomUUID().toString();
     }
 
-    private String getFileExtension(final String originalFileName){
-        String extension = "";
-        int i = originalFileName.lastIndexOf('.');
-        if (i > 0) {
-            extension = originalFileName.substring(i);
-        }
-        return extension;
-    }
 }
