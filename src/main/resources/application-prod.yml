@@ -49,7 +49,7 @@ amazon:
         access-key-secret: 2Sfr8ojAl9TmC7+h57/7OnyodQQ4yzT0FjwFmLvL
         availabilty-zone : eu-central-1
     s3:
-      default-bucket: otchi
+      default-bucket: otchi-images
       url: s3.amazonaws.com
 otchi:
    url: http://www.otchi.io

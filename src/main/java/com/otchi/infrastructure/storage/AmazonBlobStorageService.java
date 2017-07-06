@@ -22,10 +22,12 @@ import java.util.UUID;
 //TODO refactor this class and test it
 public class AmazonBlobStorageService implements BlobStorageService {
 
+    public static final String RESIZED_SUFFIX = "-resized";
     private final Logger log = LoggerFactory.getLogger(AmazonBlobStorageService.class);
 
 
     private String bucketName;
+    private String bucketNameForResized;
     private String s3EndpointURL;
     private final AmazonS3Client amazonS3Client;
     private TransferManager transferManager;
@@ -37,6 +39,7 @@ public class AmazonBlobStorageService implements BlobStorageService {
         this.s3EndpointURL = s3EndpointURL;
         this.fileUtilsService = fileUtilsService;
         this.transferManager = new TransferManager(this.amazonS3Client);
+        this.bucketNameForResized = bucketName + RESIZED_SUFFIX;
     }
 
     @Override
@@ -79,7 +82,7 @@ public class AmazonBlobStorageService implements BlobStorageService {
     }
 
     private String generateURLFrom(String key) {
-        return "https://" + bucketName + "." + s3EndpointURL + "/" + key;
+        return "https://" + bucketNameForResized + "." + s3EndpointURL + "/" + key;
     }
 
     private boolean doestBucketExist(String bucketName) {
