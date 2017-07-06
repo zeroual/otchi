@@ -18,8 +18,7 @@ angular.module("publisher")
                 if (imagesBase64 != undefined) {
                     imagesBase64.forEach(function (imageBase64) {
                         var image = ImageBase64Encoder.decode(imageBase64);
-                        var resizedImage = ImageBase64Encoder.resizedImage(image);
-                        ctrl.images.push(resizedImage);
+                        ctrl.images.push(image);
                     });
                 }
 
@@ -51,6 +50,5 @@ angular.module("publisher")
                     localStorageService.set('recipe-images', imagesBase64);
                 });
             };
-
         }
     });
