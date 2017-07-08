@@ -141,3 +141,6 @@
 .left-divider {
     border-left: 1px solid #ebeef2;;
 }
+.navbar-brand > img {
+    display: inline-block;
+}
