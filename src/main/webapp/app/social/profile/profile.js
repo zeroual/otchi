@@ -7,13 +7,13 @@ angular.module('stream')
                 abstract: true,
                 resolve: {
                     translatePartialLoader: function ($translatePartialLoader) {
-                        $translatePartialLoader.addPart('profile');
+                        $translatePartialLoader.addPart('stream');
                     }
                 }
             })
             .state('showProfile', {
                 url: '/chef/:chefId',
-                parent: 'main',
+                parent: 'profile',
                 data: {
                     pageTitle: 'Chef profile'
                 },
@@ -26,10 +26,10 @@ angular.module('stream')
                         resolve: {
                             chef: function ($stateParams, $resource) {
                                 var params = {id: $stateParams.chefId};
-                                return $resource('/rest/v1/chef/:id', {id: '@id'}).get(params);
+                                return $resource('/rest/v1/chef/:id', {id: '@id'}).get(params).$promise;
                             }
                         }
                     }
-                },
+                }
             });
     });

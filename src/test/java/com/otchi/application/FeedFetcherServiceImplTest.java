@@ -5,6 +5,9 @@ import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.repositories.PostRepository;
 import com.otchi.domain.social.repositories.mocks.MockPostRepository;
 import com.otchi.domain.users.models.User;
+import com.otchi.domain.users.models.UserRepository;
+import com.otchi.domain.users.models.mocks.MockUserRepository;
+import com.otchi.utils.mocks.MockCrudRepository;
 import org.assertj.core.groups.Tuple;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,25 +27,32 @@ import static org.mockito.Mockito.when;
 public class FeedFetcherServiceImplTest {
 
     private PostRepository postRepository = new MockPostRepository();
+    private UserRepository userRepository = new MockUserRepository();
     private PostMonitorService postMonitorService = Mockito.mock(PostMonitorService.class);
     private FeedFetcherService feedFetcherService = new FeedFetcherServiceImpl(postMonitorService, postRepository);
+    private String userName1, userName2;
 
     @Before
     public void setUp() {
-        postRepository.deleteAll();
+        MockCrudRepository.clearDatabase();
+
         Post post1 = new Post(parse("2016-02-27T00:00:00"));
-        User user1 = asUser().withUsername("author")
+        userName1 = "author";
+        User user1 = asUser().withUsername(userName1)
                 .withFirstName("firstName")
                 .withLastName("lastName")
                 .build();
+        userRepository.save(user1);
         post1.setAuthor(user1);
 
         Post post2 = new Post(parse("2016-02-28T00:00:00"));
-        User user2 = asUser().withUsername("another author")
+        userName2 = "another author";
+        User user2 = asUser().withUsername(userName2)
                 .withFirstName("firstName")
                 .withLastName("lastName")
                 .build();
         post2.setAuthor(user2);
+        userRepository.save(user2);
         postRepository.save(asList(post1, post2));
     }
 
@@ -58,18 +68,18 @@ public class FeedFetcherServiceImplTest {
 
     @Test
     public void shouldIndicateIfUserCanOrNoRemoveFeeds() {
-        List<Feed> foundFeeds = feedFetcherService.fetchAllFeeds("author");
+        List<Feed> foundFeeds = feedFetcherService.fetchAllFeeds(userName1);
         assertThat(foundFeeds)
                 .extracting(feed -> feed.getAuthor().getUsername(), Feed::canBeRemoved)
-                .contains(new Tuple("author", true), new Tuple("another author", false));
+                .contains(new Tuple(userName1, true), new Tuple(userName2, false));
     }
 
     @Test
     public void shouldIndicateIfUserCanOrNoRemoveFeed() {
-        Optional<Feed> foundFeed = feedFetcherService.getFeed(1L, "author");
+        Optional<Feed> foundFeed = feedFetcherService.getFeed(1L, userName1);
         assertThat(foundFeed.get().canBeRemoved()).isTrue();
 
-        foundFeed = feedFetcherService.getFeed(2L, "author");
+        foundFeed = feedFetcherService.getFeed(2L, userName1);
         assertThat(foundFeed.get().canBeRemoved()).isFalse();
     }
 
@@ -89,5 +99,14 @@ public class FeedFetcherServiceImplTest {
         Optional<Feed> feedOptional = feedFetcherService.getFeed(1L, "");
         assertThat(feedOptional).isPresent();
         assertThat(feedOptional.get().getViews()).isEqualTo(3);
+    }
+
+    @Test
+    public void shouldGetFeedsOfUser() {
+        List<Feed> user1Feeds = feedFetcherService.fetchAllFeedsForUser(1L);
+        assertThat(user1Feeds)
+                .hasSize(1)
+                .extracting(feed -> feed.getId())
+                .containsExactly(1L);
     }
 }

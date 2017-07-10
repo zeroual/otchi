@@ -16,8 +16,6 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.stream.Collectors.toList;
-
 @RestController
 @RequestMapping(value = ResourcesPath.FEED)
 public class FeedResource {
@@ -38,11 +36,9 @@ public class FeedResource {
         if (principal != null) {
             username = principal.getName();
         }
+        List<Feed> feedList = feedFetcherService.fetchAllFeeds(username);
 
-        return feedFetcherService.fetchAllFeeds(username)
-                .stream()
-                .map(FeedDTO::new)
-                .collect(toList());
+        return FeedDTO.constructFeedDTOListFromFeedList(feedList);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -89,4 +85,5 @@ public class FeedResource {
         String username = principal.getName();
         feedService.deletePost(postId, username);
     }
+
 }
