@@ -2,12 +2,6 @@
   "name": "otchi",
   "scripts": {},
   "env": {
-    "DATABASE_URL": {
-      "required": true
-    },
-    "CLOUDAMQP_URL": {
-      "required": true
-    }
   },
   "formation": {},
   "addons": [
