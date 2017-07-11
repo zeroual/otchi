@@ -59,8 +59,9 @@
                           ng-if="$ctrl.feed.content.type==='STORY'"
             />
             <div class="no-padding" ng-if="$ctrl.feed.images">
-                <img class="feed-image"
-                     ng-src="{{$ctrl.feed.images[0]}}">
+                <div  ng-if="$ctrl.feed.images[0]"
+                        class="feed-images-box"
+                      ng-style="{'background':'url({{$ctrl.feed.images[0]}})'}"/>
             </div>
         </div>
         <div class="panel-footer">

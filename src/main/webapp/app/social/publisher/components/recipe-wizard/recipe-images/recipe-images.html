@@ -9,6 +9,8 @@
                 <a href="" ngf-select ng-model="$ctrl.images" ngf-multiple="true" ngf-keep="true"
                    ngf-pattern="'image/*'"
                    ngf-max-size="10MB"
+                   ngf-resize-if="$width > 1024 || $height > 1000"
+                   ngf-resize="{width: 1024, height: 800}"
                    ngf-accept="'image/*'">
                     <i class="glyphicon glyphicon-camera" style="font-size: 10em;"></i>
                 </a>
