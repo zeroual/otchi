@@ -10,18 +10,21 @@
                       placeholder="{{'publisher.story.content-placeholder'|translate}}"></textarea>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <a ngf-select ng-model="$ctrl.images"
-                       ngf-multiple="true" ngf-keep="true"
-                       ngf-max-size="10MB"
-                       ngf-pattern="'image/*'"
-                       ngf-accept="'image/*'">
-                        <i class="glyphicon glyphicon-camera"
-                           style="font-size: xx-large;">
-                        </i>
-                    </a>
-                    <span>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <a ngf-select ng-model="$ctrl.images"
+                   ngf-multiple="true" ngf-keep="true"
+                   ngf-max-size="10MB"
+                   ngf-resize-if="$width > 1024 || $height > 1000"
+                   ngf-resize="{width: 1024, height: 800}"
+                   ngf-pattern="'image/*'"
+                   ngf-accept="'image/*'">
+                    <i class="glyphicon glyphicon-camera"
+                       style="font-size: xx-large;">
+                    </i>
+                </a>
+                <span>
                 <button class="btn btn-follow pull-right"
                         ng-click="$ctrl.shareStory()"
                         ng-disabled="publisher.$invalid"
