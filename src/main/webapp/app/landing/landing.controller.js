@@ -10,4 +10,8 @@ angular.module('otchi')
             }
             $translate.use(langKey);
         };
+
+        $scope.usedLanguage = function () {
+            return $translate.use();
+        };
     });

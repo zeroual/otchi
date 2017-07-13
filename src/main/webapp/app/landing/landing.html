@@ -39,6 +39,18 @@
     <footer>
         <div class="container">
 
+            <div class="pull-left">
+                <ul>
+                    <li>
+                        <a href=""
+                           ng-if="usedLanguage()!='fr'"
+                           ng-click="changeLanguage('fr')">Français</a>
+                        <a href=""
+                           ng-if="usedLanguage()!='ar'"
+                           ng-click="changeLanguage('ar')">العربية</a>
+                    </li>
+                </ul>
+            </div>
             <div class="pull-right">
                 <ul>
                     <li>
