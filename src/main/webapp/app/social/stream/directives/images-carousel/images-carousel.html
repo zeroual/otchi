@@ -1,0 +1,12 @@
+<div>
+    <div uib-carousel
+         active="0"
+         interval="$ctrl.interval">
+        <div uib-slide
+             ng-repeat="slide in $ctrl.slides track by slide.id"
+             index="slide.id">
+            <div class="feed-images-box"
+                 ng-style="{'background':'url({{slide.image}})'}"/>
+        </div>
+    </div>
+</div>
