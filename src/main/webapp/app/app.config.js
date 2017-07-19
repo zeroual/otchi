@@ -21,11 +21,29 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             }
         })
+        .state('about', {
+                url: "/about",
+                data: {
+                    pageTitle: 'Otchi Beta'
+                },
+
+                views: {
+                    'main@': {
+                        templateUrl: app_dir + "landing/about.html"
+                    }
+                },
+                resolve: {
+                    translatePartialLoader: function ($translatePartialLoader) {
+                        $translatePartialLoader.addPart('landing');
+                    }
+                }
+            }
+        )
         .state('main', {
             'abstract': true,
             views: {
                 'navbar@': {
-                    template:'<navbar/>'
+                    template: '<navbar/>'
                 }
             },
             resolve: {
@@ -42,6 +60,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $translateProvider.preferredLanguage('fr');
     $translateProvider.useSanitizeValueStrategy('escaped');
     $translateProvider.useCookieStorage();
-}).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+}).config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
 }]);

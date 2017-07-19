@@ -7,27 +7,22 @@ a, button {
     color: #2e87e7
 }
 
-.btn-follow {
-    border-radius: 3px;
-    border: 0;
+.btn{
+    display: inline-block;
     font-size: 14px;
+    text-align: center;
+    border-radius: 3px;
+    -webkit-transition: all 0.2s ease 0s;
+    -moz-transition: all 0.2s ease 0s;
+    -o-transition: all 0.2s ease 0s;
     line-height: 1.4em;
     font-weight: 500;
     padding: 6px 11px 7px;
     min-width: 36px;
     position: relative;
-    display: inline-block;
     overflow: hidden;
     height: auto;
     transition: all 250ms ease-in-out;
-    background-color: #2e9fff;
-    color: #fff;
-}
-
-.btn-follow:hover {
-    background-color: #2e87e7;
-    color: #fff;
-    transition: all 250ms ease-in-out
 }
 
 .button-link {
@@ -55,32 +50,9 @@ a, button {
     border-radius: 15px;
 }
 
-.signup {
-    border-radius: 3px;
-    padding: 8px 12px;
-    background: #2e9fff;
-    color: #fff;
-    border: 1px solid #2e9fff;
-    box-shadow: none;
-    width: 47.5%;
-    text-align: center;
-    font-weight: 600;
-    position: relative;
-}
 
 .btn-secondary {
-    width: 47.5%;
-    display: inline-block;
-    font-size: 14px;
-    padding: 8px 12px;
-    text-align: center;
-    border-radius: 3px;
     color: #2e9fff;
-    -webkit-transition: all 0.2s ease 0s;
-    -moz-transition: all 0.2s ease 0s;
-    -ms-transition: all 0.2s ease 0s;
-    -o-transition: all 0.2s ease 0s;
-    transition: all 0.2s ease 0s;
     border: 1px solid rgba(46, 159, 255, 0.5);
 }
 
@@ -194,4 +166,8 @@ a, button {
     background-color: #2e87e7;
     color: #fff;
     transition: all 250ms ease-in-out
+}
+
+.btn-singup{
+    width: 47.5%;
 }

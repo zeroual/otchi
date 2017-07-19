@@ -91,7 +91,7 @@
     font-size: 30px;
     line-height: 40px;
     text-align: center;
-    margin: 70px auto 30px;
+    margin: 30px auto 30px;
 }
 
 .landing section.features .device-container,
@@ -199,31 +199,12 @@
 
 
 .landing .btn-get-started {
-    letter-spacing: 2px;
-    border-color: #2e9fff;
-    border-radius: 50px;
-    background-color: #2e9fff;
-    color: #fff;
-    font-size: 1rem;
-    line-height: 1.5;
-    padding: 10px;
-    cursor: pointer;
-    font-weight: 600;
+    padding: 8px 12px;
+    width: 200px;
 }
 
-.landing .btn-get-started:hover {
-    background-color: #164b78;
-    border-color: #164b78;
-    color: #fff;
-}
-
-.landing .btn-outline {
-    font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    padding: 15px 45px;
-    font-size: 11px;
-    display: inline-block;
+.landing .btn-more {
+    padding: 8px 12px;
 }
 
 .landing {
