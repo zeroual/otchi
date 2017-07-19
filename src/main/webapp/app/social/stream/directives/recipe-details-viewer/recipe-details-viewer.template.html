@@ -1,79 +1,79 @@
 <div class="row">
-    <div class="col-md-12 card no-padding">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4 col-sm-12 no-padding">
-                        <img class="recipe-image"
-                             ng-src="{{feed.images[0]}}">
-                    </div>
-                    <div class="col-md-8 col-sm-12">
-                        <h4 class="text-center">{{recipe.title}} </h4>
-                        <div class="text-center" >
+    <div class="col-md-push-2 col-md-7 col-xs-12 no-padding">
+        <images-carousel images="feed.images"/>
+        <div class="card no-padding">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="">
+                            <h4 class="text-center">{{recipe.title}} </h4>
+                            <div class="text-center">
                             <span class="label label-primary">
                                 {{feed.views}} <i translate="stream.feed.recipe.views"> views</i>
                             </span>
-                        </div>
-                        <div class="prepTime">
-
-                            <i class="fa fa-hourglass-half" aria-hidden="true"></i>
-                            <span class="prepTime_item">
+                            </div>
+                            <div class="prepTime">
+                                <i class="fa fa-hourglass-half" aria-hidden="true"></i>
+                                <span class="prepTime_item">
                                 <span translate="stream.feed.recipe.cook-time"/> : {{recipe.cookTime}}
                                 <span translate="stream.feed.recipe.minutes"/>
                             </span>
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <span class="prepTime_item">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                <span class="prepTime_item">
                                  <span translate="stream.feed.recipe.cook-time"/> : {{recipe.preparation-time}}
                                  <span translate="stream.feed.recipe.minutes"/>
                             </span>
-                            <div class="chef-profile">
-                                <div>
-                                    <img ng-src="{{feed.author.picture}}"
-                                         width="45"
-                                         class="img-circle">
+                                <div class="chef-profile">
+                                    <div>
+                                        <img ng-src="{{feed.author.picture}}"
+                                             width="45"
+                                             class="img-circle">
+                                    </div>
+                                    <small><a href="">{{feed.author.firstName}} {{feed.author.lastName}}</a></small>
                                 </div>
-                                <small><a href="">{{feed.author.firstName}} {{feed.author.lastName}}</a></small>
                             </div>
+                            <p class="recipe-description">
+                                {{recipe.description}}
+                            </p>
                         </div>
-                        <p class="recipe-description">
-                            {{recipe.description}}
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="row card">
 
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="col-md-6 col-xs-12 no-padding">
-                <h3 translate="stream.feed.recipe.ingredients"/>
-                <ol class="recipe-ingredients-list">
-                    <li class="step" ng-repeat="ingredient in recipe.ingredients">
-                        <div> {{ingredient.quantity}}
-                            <span translate="units.{{ingredient.unit}}"/>
-                            - {{ingredient.name}}</div>
-                    </li>
-                </ol>
+        <div class="card">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-md-6 col-xs-12 no-padding">
+                        <h3 translate="stream.feed.recipe.ingredients"/>
+                        <ol class="recipe-ingredients-list">
+                            <li class="step" ng-repeat="ingredient in recipe.ingredients">
+                                <div> {{ingredient.quantity}}
+                                    <span translate="units.{{ingredient.unit}}"/>
+                                    - {{ingredient.name}}
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="col-md-6 col-xs-12 no-padding">
+                        <h3 translate="stream.feed.recipe.instructions"/>
+                        <ol class="recipe-directions-list">
+                            <li class="step" ng-repeat="instruction in recipe.instructions">
+                                <div>
+                                    {{instruction.content}}
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 col-xs-12 no-padding">
-                <h3 translate="stream.feed.recipe.instructions"/>
-                <ol class="recipe-directions-list">
-                    <li class="step" ng-repeat="instruction in recipe.instructions">
-                        <div>
-                            {{instruction.content}}
-                        </div>
-                    </li>
-                </ol>
-            </div>
+
+        </div>
+
+        <div style="padding: 5px;">
+            <feed-comments feed="feed"/>
         </div>
     </div>
+</div>
 
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <feed-comments feed="feed"/>
-    </div>
-</div>
+
