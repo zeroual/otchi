@@ -1,11 +1,9 @@
-angular.module("stream")
+angular.module('stream')
     .component('feedsStreamer', {
         templateUrl: 'app/social/stream/directives/feeds-streamer/feeds.streamer.html',
+        bindings: { feeds : '=' },
         controller: function (FeedsService) {
-
             var ctrl = this;
-            ctrl.feeds = FeedsService.fetchAllFeeds();
-
             ctrl.removeFeed = function (feed) {
                 var removeFeedFromStream = function () {
                     //TODO add this function as array extension

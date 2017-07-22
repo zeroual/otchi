@@ -16,14 +16,9 @@ describe("Feed streamer", function () {
         $rootScope = _$rootScope_;
 
         spyOn(FeedsService, 'fetchAllFeeds').and.returnValue(feeds);
-        ctrl = $componentController('feedsStreamer', null, {});
+        var bindings = {};
+        ctrl = $componentController('feedsStreamer', null, bindings);
     }));
-
-    describe('on initialization', function () {
-        it('should load all feeds from the server to show them', function () {
-            expect(ctrl.feeds).toEqualData(feeds);
-        });
-    });
 
     describe('Remove feed from the stream', function () {
 

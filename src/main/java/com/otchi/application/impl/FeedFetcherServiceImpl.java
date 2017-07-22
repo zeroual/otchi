@@ -50,4 +50,13 @@ public class FeedFetcherServiceImpl implements FeedFetcherService {
         }
     }
 
+    @Override
+    public List<Feed> fetchAllFeedsForUser(Long userId) {
+
+        return StreamSupport
+                .stream(postRepository.findAllByAuthorId(userId).spliterator(), true)
+                .map(post -> new Feed(post, post.getAuthor().getUsername()))
+                .sorted((p1, p2) -> p2.getCreatedTime().compareTo(p1.getCreatedTime()))
+                .collect(toList());
+    }
 }

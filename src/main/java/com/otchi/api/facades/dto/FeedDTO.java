@@ -27,6 +27,12 @@ public class FeedDTO {
 
     }
 
+    public static List<FeedDTO> constructFeedDTOListFromFeedList(List<Feed> feedList){
+        return feedList.stream()
+                .map(FeedDTO::new)
+                .collect(toList());
+    }
+
     public FeedDTO(Feed feed) {
         this.id = feed.getId();
         this.author = new AuthorDTO(feed.getAuthor());
