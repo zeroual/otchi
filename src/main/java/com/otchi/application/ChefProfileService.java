@@ -1,5 +1,7 @@
 package com.otchi.application;
 
+import com.otchi.domain.kitchen.Chef;
+
 import java.util.List;
 
 public interface ChefProfileService {

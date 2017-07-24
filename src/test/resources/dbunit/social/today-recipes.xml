@@ -1,0 +1,84 @@
+<dataset>
+    <recipe ID="1"
+            TITLE="RECIPE_TITLE_1"/>
+
+    <recipe ID="2"
+            TITLE="RECIPE_TITLE_2"/>
+
+    <POST ID="1"
+          CREATED_AT="2017-02-28"
+          POST_CONTENT_ID="1"
+          AUTHOR_ID="1"/>
+
+    <POST ID="2"
+          CREATED_AT="2015-02-28"
+          POST_CONTENT_ID="2"
+          AUTHOR_ID="1"/>
+
+    <POST_LIKES USER_ID="1"
+                POST_ID="1"
+    />
+    <POST_LIKES USER_ID="2"
+                POST_ID="1"
+    />
+    <POST_LIKES USER_ID="3"
+                POST_ID="1"
+    />
+
+    <POST_LIKES USER_ID="1"
+                POST_ID="2"
+    />
+    <POST_LIKES USER_ID="2"
+                POST_ID="2"
+    />
+
+    <!--recipes have the same likes count-->
+    <recipe ID="3"
+            TITLE="RECIPE_TITLE_3"/>
+
+    <recipe ID="4"
+            TITLE="RECIPE_TITLE_4"/>
+
+    <STORY ID="5"
+           CONTENT="my story"/>
+
+
+    <POST ID="3"
+          CREATED_AT="2017-03-28"
+          POST_CONTENT_ID="3"
+          AUTHOR_ID="1"/>
+
+    <POST ID="4"
+          CREATED_AT="2015-03-28"
+          POST_CONTENT_ID="4"
+          AUTHOR_ID="1"/>
+
+    <POST ID="5"
+          CREATED_AT="2015-03-28"
+          POST_CONTENT_ID="5"
+          AUTHOR_ID="1"/>
+
+
+
+
+    <POST_LIKES USER_ID="1"
+                POST_ID="3"
+    />
+
+    <POST_LIKES USER_ID="1"
+                POST_ID="4"
+    />
+
+    <POST_LIKES USER_ID="1"
+                POST_ID="5"
+    />
+
+    <POST_LIKES USER_ID="2"
+                POST_ID="5"
+    />
+    <POST_LIKES USER_ID="3"
+                POST_ID="5"
+    />
+
+
+</dataset>

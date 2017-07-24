@@ -10,6 +10,8 @@ import org.assertj.core.groups.Tuple;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDateTime;
+
 import static java.time.LocalDateTime.parse;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -61,5 +63,22 @@ public class PostRepositoryTest extends AbstractIntegrationTest {
         assertThat((savedPost.getPostContent()).getId()).isNotNull();
 
     }
+
+    @Test
+    @DatabaseSetup(value = {"/dbunit/social/today-recipes.xml"})
+    public void shouldFindRecipeTheMostViewedAfterADate() {
+        LocalDateTime yesterday = LocalDateTime.parse("2017-02-27T00:00:00");
+        Post recipePostMostLiked = postRepository.findFirstRecipePostMostLikedAfter(yesterday).get();
+        assertThat(recipePostMostLiked.getId()).isEqualTo(1L);
+    }
+
+    @Test
+    @DatabaseSetup(value = {"/dbunit/social/today-recipes.xml"})
+    public void shouldFindRecipeTheMostViewedAndReturnOnlyOne() {
+        LocalDateTime yesterday = LocalDateTime.parse("2017-03-01T00:00:00");
+        Post recipePostMostLiked = postRepository.findFirstRecipePostMostLikedAfter(yesterday).get();
+        assertThat(recipePostMostLiked.getId()).isEqualTo(3L);
+    }
+
 
 }

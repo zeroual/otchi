@@ -36,6 +36,6 @@ Feature: posting story
       },
       "likes": [],
       "comments": [],
-      "liked": false,
+      "liked": false
     }
     """

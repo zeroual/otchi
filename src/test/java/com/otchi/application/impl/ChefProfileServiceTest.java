@@ -1,6 +1,7 @@
 package com.otchi.application.impl;
 
 import com.otchi.application.*;
+import com.otchi.domain.kitchen.Chef;
 import com.otchi.domain.users.exceptions.UserNotFoundException;
 import com.otchi.domain.users.models.User;
 import com.otchi.domain.users.models.UserBuilder;

@@ -3,6 +3,10 @@ package api.stepsDefinition;
 import com.otchi.application.utils.Clock;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import static java.time.LocalDateTime.parse;
+import static java.time.format.DateTimeFormatter.ofPattern;
 
 public class MocakableClock implements Clock {
     private LocalDateTime now = LocalDateTime.now();
@@ -19,7 +23,9 @@ public class MocakableClock implements Clock {
         return now;
     }
 
-    public void setNowTimeTo(LocalDateTime newDate) {
-        this.now = newDate;
+    public LocalDateTime setNowTimeTo(String dateString) {
+        DateTimeFormatter dateTimeFormatter = ofPattern("yyyy-MM-dd HH:mm:ss");
+        now = parse(dateString, dateTimeFormatter);
+        return now;
     }
 }

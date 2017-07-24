@@ -1,0 +1,15 @@
+<h3 translate="landing.today-recipe">Today's Recipe</h3>
+<div>
+    <div  ui-sref="showFeed({feedId:$ctrl.recipe.postId})">
+        <img class="img-responsive"
+             style="border-radius: 12px;"
+             ng-src="{{$ctrl.recipe.image}}"
+        />
+        <h4>"{{$ctrl.recipe.title}}"</h4>
+    </div>
+    <div  ui-sref="showProfile({chefId:$ctrl.recipe.chef.id})">
+        <img class="img-circle"
+             ng-src="{{$ctrl.recipe.chef.picture}}"/>
+        <a>{{$ctrl.recipe.chef.firstName}} {{$ctrl.recipe.chef.lastName}}</a>
+    </div>
+</div>

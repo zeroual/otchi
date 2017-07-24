@@ -1,0 +1,28 @@
+<dataset>
+
+    <USERS
+            ID="1"
+            EMAIL="zeroual.abde@gmail.com"
+            USERNAME="zeroual.abde@gmail.com"
+            FIRST_NAME="Abdellah"
+            LAST_NAME="ZEROUAL"
+            PICTURE="picture1.jpg"
+    />
+
+    <TODAY_RECIPE
+            POST_ID="24"
+            IMAGE="image.jpg"
+            TITLE="7 Light and Bright Summer Dishes"
+            CHEF_ID="1"
+            DATE="2017-07-24"
+    />
+
+    <TODAY_RECIPE
+            POST_ID="63"
+            IMAGE="image.jpg"
+            TITLE="RECIPE_title"
+            CHEF_ID="1"
+            DATE="2017-07-23"
+    />
+
+</dataset>
