@@ -1,6 +1,9 @@
 package com.otchi.application.impl;
 
 import com.otchi.application.*;
+import com.otchi.application.ChefProfileService;
+import com.otchi.application.UserService;
+import com.otchi.domain.kitchen.Chef;
 import com.otchi.domain.users.exceptions.UserNotFoundException;
 import com.otchi.domain.users.models.User;
 import org.springframework.beans.factory.annotation.Autowired;

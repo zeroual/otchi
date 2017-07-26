@@ -14,13 +14,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 @Configuration
 @Import({WebConfigurer.class, SecurityConfig.class, DatabaseConfig.class, SocialConfig.class, BlobStorageConfig.class,
         ThymeleafConfig.class, MailerConfig.class, WebsocketConfig.class, JacksonConfig.class})
 @ComponentScan({"com.otchi.api"})
-
+@EnableScheduling
 public class InfrastructureConfig {
 
     @Bean

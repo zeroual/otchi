@@ -40,7 +40,7 @@
 }
 
 .landing section {
-    padding: 100px 0;
+    padding: 50px 0;
 }
 
 .landing section h2 {
@@ -48,7 +48,6 @@
 }
 
 .landing section.header {
-    padding: 150px 0;
     position: relative;
 }
 
@@ -231,7 +230,7 @@
     }
 
     .landing section.header h2 {
-        font-size: 70px;
+        font-size: 50px;
     }
 
     .row.row-eq-height {

@@ -2,9 +2,9 @@ package com.otchi.api;
 
 
 import com.otchi.api.facades.dto.FeedDTO;
-import com.otchi.application.Chef;
 import com.otchi.application.ChefProfileService;
 import com.otchi.application.Feed;
+import com.otchi.domain.kitchen.Chef;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
