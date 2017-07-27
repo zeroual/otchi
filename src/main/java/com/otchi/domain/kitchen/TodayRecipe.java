@@ -31,10 +31,11 @@ public class TodayRecipe {
     private Chef chef;
 
 
-    public TodayRecipe(Long postId, String image, String title, Chef chef) {
+    public TodayRecipe(Long postId, String image, String title, LocalDate date, Chef chef) {
         this.postId = postId;
         this.image = image;
         this.title = title;
+        this.date = date;
         this.chef = chef;
     }
 
