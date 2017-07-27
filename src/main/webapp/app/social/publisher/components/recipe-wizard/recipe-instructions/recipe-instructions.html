@@ -4,23 +4,34 @@
             <p class="text-muted"
                translate="publisher.recipe.instructions.tips">
             </p>
+            <div ng-if="$ctrl.ingredients">
+                <h4>Ingredients</h4>
+                <span ng-repeat="ingredient in $ctrl.ingredients"
+                      style="margin: 2px"
+                      class="badge">
+                    {{ingredient.name}}
+                </span>
+            </div>
             <form class="form-horizontal" name="instructions_form">
 
                 <div class="form-group" ng-repeat="instruction in $ctrl.instructions">
                     <label>{{'publisher.recipe.instructions.step'|translate}} {{$index+1}}
                     </label>
-                    <button ng-click="$ctrl.removeInstruction($index)"
-                            class="btn btn-circle btn-warning pull-right">
-                        <i class="glyphicon glyphicon-remove"></i>
-                    </button>
-                    <textarea ng-model="instruction.content"
-                              maxlength="255"
-                              required
-                              ng-focus="true"
-                              type="text"
-                              class="form-control"
-                              placeholder="{{'publisher.recipe.instructions.text-placeholder'|translate}}"
-                    />
+                    <div class="instruction-input">
+                        <textarea ng-model="instruction.content"
+                                  maxlength="255"
+                                  required
+                                  ng-focus="true"
+                                  type="text"
+                                  class="form-control"
+                                  placeholder="{{'publisher.recipe.instructions.text-placeholder'|translate}}"
+                        />
+                        <a ng-click="$ctrl.removeInstruction($index)"
+                                class="close-button-x">
+                            <i class="glyphicon glyphicon-remove"></i>
+                        </a>
+                    </div>
+
                 </div>
             </form>
         </div>

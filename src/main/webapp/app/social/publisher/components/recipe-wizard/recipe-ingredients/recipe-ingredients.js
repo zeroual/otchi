@@ -1,7 +1,7 @@
 angular.module("publisher")
     .component('recipeIngredients', {
         templateUrl: 'app/social/publisher/components/recipe-wizard/recipe-ingredients/recipe-ingredients.html',
-        controller: function ($scope, $http, localStorageService, $state, $uibModal) {
+        controller: function ($scope, $http, localStorageService, $state) {
             var ctrl = this;
             var recipe;
 
@@ -35,40 +35,13 @@ angular.module("publisher")
             };
 
             ctrl.addIngredient = function () {
-                $uibModal.open({
-                    animation: true,
-                    ariaLabelledBy: 'modal-title',
-                    ariaDescribedBy: 'modal-body',
-                    templateUrl: 'app/social/publisher/components/recipe-wizard/recipe-ingredients/ingredient-quantity.html',
-                    size: 'md',
-                    controller: function ($scope, $uibModalInstance) {
-                        $scope.ingredient = ctrl.name;
-                        $scope.ok = function () {
-                            var ingredient = {
-                                name: ctrl.name,
-                                quantity: $scope.quantity,
-                                unit: $scope.unit
-                            };
-                            ctrl.ingredients.push(ingredient);
-                            ctrl.name = '';
-                            $uibModalInstance.dismiss('ok');
-                        };
-
-                        $scope.cancel = function () {
-                            $uibModalInstance.dismiss('cancel');
-                        }
-                    }
-                });
+                var ingredient = {
+                    name: ctrl.name,
+                    quantity: 1,
+                    unit: 'units'
+                };
+                ctrl.ingredients.push(ingredient);
+                ctrl.name = '';
             };
-
-            loadIngredients = function () {
-                $http.get('/data/ingredients_dictionary.json').then(function (res) {
-                    ctrl.ingredientsDictionary = res.data.map(function (obj) {
-                        return obj.name;
-                    });
-                });
-            };
-
-            ctrl.ingredientsDictionary = loadIngredients();
         }
     });

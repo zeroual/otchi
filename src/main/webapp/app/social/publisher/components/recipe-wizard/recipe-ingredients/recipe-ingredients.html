@@ -17,7 +17,6 @@
                                        maxlength="255"
                                        ng-model="$ctrl.name"
                                        placeholder="{{'publisher.recipe.ingredients.name-placeholder'|translate}}"
-                                       uib-typeahead="ingredient for ingredient in $ctrl.ingredientsDictionary | filter:$viewValue | limitTo:8"
                                        class="form-control"
                                 />
                                 <span class="input-group-btn">
@@ -41,13 +40,48 @@
             <ul class="list-group">
                 <li class="list-group-item"
                     ng-repeat="ingredient in $ctrl.ingredients">
-                    <a class="badge"
-                       ng-click="$ctrl.removeIngredient($index)">
-                        <i class="glyphicon glyphicon-remove"></i>
-                    </a>
-                    {{ingredient.quantity}}
-                    <span translate="units.{{ingredient.unit}}"/>
-                    {{ingredient.name}}
+
+                    <form class="row">
+                        <div class="col-xs-6 padding3×3">
+                            <p class="text-center">
+                                {{ingredient.name}}
+                            </p>
+                        </div>
+                        <div class="col-xs-2 padding3×3">
+                            <input ng-model="ingredient.quantity"
+                                   name="quantity"
+                                   type="number"
+                                   class="form-control input-sm text-center"
+                                   required
+                                   autofocus
+                                   min="0"
+                                   placeholder="{{'publisher.recipe.ingredients.quantity-placeholder'|translate}}">
+                        </div>
+
+                        <div class="col-xs-3 padding3×3">
+                            <select class="form-control input-sm"
+                                    ng-model="ingredient.unit">
+                                <option value="g"
+                                        translate="units.g"/>
+                                <option value="kg"
+                                        translate="units.kg"/>
+                                <option value="cl"
+                                        translate="units.cl"/>
+                                <option value="l"
+                                        translate="units.l"/>
+                                <option value="spoon"
+                                        translate="units.spoon"/>
+                                <option value="units"
+                                        translate="units.units"/>
+                            </select>
+                        </div>
+                        <div class="col-xs-1 padding3×3">
+                            <a class="" style="color: #f05f70;"
+                               ng-click="$ctrl.removeIngredient($index)">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </a>
+                        </div>
+                    </form>
                 </li>
             </ul>
         </div>

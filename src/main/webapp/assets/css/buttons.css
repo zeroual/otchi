@@ -1,6 +1,7 @@
 a, button {
     text-decoration: none;
     color: #2e9fff;
+    cursor: pointer;
 }
 
 .a:hover {
@@ -170,4 +171,11 @@ a, button {
 
 .btn-singup{
     width: 47.5%;
+}
+
+.close-button-x {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color:#f05f70;
 }

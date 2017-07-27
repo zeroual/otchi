@@ -14,6 +14,7 @@ angular.module("publisher")
                 } else if (recipe.instructions) {
                     ctrl.instructions = recipe.instructions;
                 }
+                ctrl.ingredients = recipe.ingredients;
             };
 
             ctrl.previousStep = function () {
