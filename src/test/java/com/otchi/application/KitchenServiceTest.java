@@ -71,7 +71,7 @@ public class KitchenServiceTest {
 
         when(postRepository.findFirstRecipePostMostLikedAfter(yesterday)).thenReturn(of(recipePost));
         kitchenService.updateTodayRecipeAtMidNight();
-        verify(todayRecipeRepository).save(new TodayRecipe(73L, "recipe-image1", "recipe-image1", any()));
+        verify(todayRecipeRepository).save(new TodayRecipe(73L, "recipe-image1", "recipe-image1",today.toLocalDate(), any()));
 
     }
 
