@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -42,13 +43,15 @@ public class KitchenService {
         return foundPost.flatMap(
                 post -> {
                     Recipe recipe = (Recipe) post.getPostContent();
-                    TodayRecipe todayRecipe = new TodayRecipe(post.getId(), post.images().get(0), recipe.getTitle(), new Chef(post.getAuthor()));
+                    TodayRecipe todayRecipe = new TodayRecipe(post.getId(), post.images().get(0), recipe.getTitle(),
+                            now.toLocalDate(), new Chef(post.getAuthor()));
                     return of(todayRecipe);
                 }
         );
     }
 
     @Scheduled(cron = "00 00 * * * *")
+    @Transactional
     public void updateTodayRecipeAtMidNight() {
         Optional<TodayRecipe> todayRecipe = getTodayRecipe();
         todayRecipe.ifPresent(todayRecipeRepository::save);
