@@ -1,6 +1,7 @@
 package com.otchi.application.impl;
 
 import com.otchi.application.*;
+import com.otchi.domain.analytics.ProfileViewRepository;
 import com.otchi.domain.kitchen.Chef;
 import com.otchi.domain.users.exceptions.UserNotFoundException;
 import com.otchi.domain.users.models.User;
@@ -16,9 +17,11 @@ import static org.springframework.test.util.ReflectionTestUtils.setField;
 
 public class ChefProfileServiceTest {
 
-    private UserService userService = Mockito.mock(UserService.class);
+	private ProfileViewRepository profileViewRepository = Mockito.mock(ProfileViewRepository.class);
+	private UserService userService = Mockito.mock(UserService.class);
     private FeedFetcherService feedFetchService = Mockito.mock(FeedFetcherService.class);
-    private ChefProfileService chefProfileService = new ChefProfileServiceImpl(userService, feedFetchService);
+    private ChefProfileService chefProfileService = new ChefProfileServiceImpl(userService, feedFetchService,
+    		profileViewRepository);
 
     @Test
     public void shouldMapUserInfoInToChef() {

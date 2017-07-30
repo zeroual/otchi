@@ -28,7 +28,7 @@ public class ChefResource {
 
     @GetMapping("/{id}/feeds")
     @ResponseStatus(HttpStatus.OK)
-    public List<FeedDTO> getChefFeeds(@PathVariable(name = "id") Long id){
+    public List<FeedDTO> getChefFeeds(@PathVariable(name = "id") Long id) {
         List<Feed> feedList = chefProfileService.fetchChefFeeds(id);
         return FeedDTO.constructFeedDTOListFromFeedList(feedList);
     }

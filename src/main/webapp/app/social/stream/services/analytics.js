@@ -9,4 +9,8 @@ angular.module("stream")
                 feed.views++;
             });
         };
+        
+        this.incremenetChefViews = function (chefId) {
+            return $resource('/rest/v1/analytics/views/profile/:id', {id : '@id'}).save({id:chefId}).$promise;
+        };
     });

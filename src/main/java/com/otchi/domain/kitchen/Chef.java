@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
@@ -27,6 +28,9 @@ public class Chef {
 
     @Column(name = "PICTURE")
     private String picture;
+    
+    @Transient
+    private Integer views;
 
 
     private Chef() {
@@ -55,8 +59,18 @@ public class Chef {
     public String getPicture() {
         return picture;
     }
+    
+    
 
-    public Chef(Long id, String firstName, String lastName, String picture) {
+    public Integer getViews() {
+		return views;
+	}
+
+	public void setViews(Integer views) {
+		this.views = views;
+	}
+
+	public Chef(Long id, String firstName, String lastName, String picture) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -71,11 +85,12 @@ public class Chef {
         return Objects.equals(id, chef.id) &&
                 Objects.equals(firstName, chef.firstName) &&
                 Objects.equals(lastName, chef.lastName) &&
-                Objects.equals(picture, chef.picture);
+                Objects.equals(picture, chef.picture)&&
+                Objects.equals(views, chef.views);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, picture);
+        return Objects.hash(id, firstName, lastName, picture, views);
     }
 }
