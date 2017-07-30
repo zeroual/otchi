@@ -14,3 +14,7 @@
     border-top: 1px solid #c2c9d4;
     padding: 10px;
 }
+
+div.instruction-input{
+    position: relative;
+}
