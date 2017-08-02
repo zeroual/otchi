@@ -13,5 +13,18 @@
     "l": "l",
     "spoon": "cuillère",
     "units": "unités"
+  },
+  "navBar": {
+    "myProfile": "Ma page",
+    "setting": "Paramètres",
+    "logout": "Déconnexion",
+    "notifications": {
+      "displayAll": "Voir tout",
+      "empty": "Vous n'avez aucune notification non lue",
+      "yourPost": "votre post",
+      "alsoCommented": "a également répondu à",
+      "commentedOn": "commenté sur",
+      "likes": "aime"
+    }
   }
 }

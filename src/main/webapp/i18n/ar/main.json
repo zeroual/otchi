@@ -13,5 +13,18 @@
     "l": "لتر",
     "spoon": "ملعقة",
     "units": "قطع"
+  },
+  "navBar": {
+    "myProfile": "صفحتي",
+    "setting": "الإعدادات",
+    "logout": "تسجيل الخروج",
+    "notifications": {
+      "displayAll": "عرض الكل",
+      "empty": "ليس لديك أي إشعارات غير مقروءة",
+      "yourPost":"منشورك",
+      "alsoCommented":"أجاب أيضا",
+      "commentedOn":"علق على",
+      "likes":"اعجب"
+    }
   }
 }
