@@ -70,7 +70,12 @@
                              ng-src="{{$ctrl.account.picture}}" width="35"/>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="glyphicon glyphicon-user"></i> Profile</a></li>
+                        <li>
+                            <a ui-sref="showProfile({chefId:$ctrl.account.id})">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Profile
+                            </a>
+                        </li>
                         <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Setting</a></li>
                         <li class="divider"></li>
                         <li><a href="" ng-click="$ctrl.logout()"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
