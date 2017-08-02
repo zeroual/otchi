@@ -27,4 +27,5 @@ public class UserServiceImpl implements UserService {
     public Optional<User> findUserById(Long id) {
         return userRepository.findOneById(id);
     }
+
 }

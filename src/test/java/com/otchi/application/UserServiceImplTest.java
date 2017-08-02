@@ -1,6 +1,7 @@
 package com.otchi.application;
 
 import com.otchi.application.impl.UserServiceImpl;
+import com.otchi.domain.analytics.ProfileViewRepository;
 import com.otchi.domain.users.models.User;
 import com.otchi.domain.users.models.UserRepository;
 import com.otchi.domain.users.models.mocks.MockUserRepository;
@@ -11,6 +12,7 @@ import org.junit.Test;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 public class UserServiceImplTest {
 
@@ -39,4 +41,5 @@ public class UserServiceImplTest {
         assertThat(foundUser).isPresent();
         assertThat(foundUser.get().getFirstName()).isEqualTo("firstName_test");
     }
+    
 }

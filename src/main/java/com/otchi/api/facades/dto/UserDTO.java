@@ -12,7 +12,6 @@ public class UserDTO {
     private String picture;
     private String langKey;
 
-
     public UserDTO() {
     }
 
