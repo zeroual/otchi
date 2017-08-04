@@ -13,5 +13,18 @@
     "l": "l",
     "spoon": "spoon",
     "units": "units"
+  },
+  "navBar": {
+    "myProfile": "My profile",
+    "setting": "Setting",
+    "logout": "Logout",
+    "notifications": {
+      "displayAll": "View All",
+      "empty": "You have no unread notifications",
+      "yourPost": "your post",
+      "alsoCommented": "also replied to",
+      "commentedOn": "commented on",
+      "likes": "likes"
+    }
   }
 }

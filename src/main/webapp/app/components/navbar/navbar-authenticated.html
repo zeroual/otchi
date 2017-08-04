@@ -21,7 +21,7 @@
                             <li class="notification" ng-if="$ctrl.notifications.length==0">
                                 <div>
                                     <strong class="notification-title">
-                                        You have no unread notifications
+                                        <span translate="navBar.notifications.empty"/>
                                     </strong>
                                 </div>
                             </li>
@@ -37,14 +37,21 @@
                                     </div>
                                     <div class="media-body">
                                         <strong class="notification-title">
-                                            <a href="#">{{notification.sender.firstName}}
-                                                {{notification.sender.lastName}}</a>
+                                            <a>
+                                                {{notification.sender.firstName}}
+                                                {{notification.sender.lastName}}
+                                            </a>
                                             <span ng-switch="notification.type">
-                                                <span ng-switch-when="LIKED"> likes </span>
-                                                <span ng-switch-when="COMMENT_ON_POST"> commented on </span>
-                                                <span ng-switch-when="ALSO_COMMENTED"> also replied to</span>
+                                                <span ng-switch-when="LIKED"
+                                                      translate="navBar.notifications.likes"/>
+
+                                                <span ng-switch-when="COMMENT_ON_POST"
+                                                      translate="navBar.notifications.commentedOn"/>
+
+                                                <span ng-switch-when="ALSO_COMMENTED"
+                                                      translate="navBar.notifications.alsoCommented"/>
                                             </span>
-                                            your post
+                                            <span translate="navBar.notifications.yourPost"/>
                                         </strong>
                                         <p class="notification-desc">
                                             {{notification.postPreview}}
@@ -58,7 +65,9 @@
                             </li>
                         </ul>
                         <div class="dropdown-footer text-center">
-                            <a href="#">View All</a>
+                            <a href="#">
+                                <span translate="navBar.notifications.displayAll"/>
+                            </a>
                         </div>
                     </ul>
                 </div>
@@ -73,12 +82,21 @@
                         <li>
                             <a ui-sref="showProfile({chefId:$ctrl.account.id})">
                                 <i class="glyphicon glyphicon-user"></i>
-                                Profile
+                                <span translate="navBar.myProfile"/>
                             </a>
                         </li>
-                        <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Setting</a></li>
+                        <li>
+                            <a href="#"><i class="glyphicon glyphicon-cog"></i>
+                                <span translate="navBar.setting"/>
+                            </a>
+                        </li>
                         <li class="divider"></li>
-                        <li><a href="" ng-click="$ctrl.logout()"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+                        <li>
+                            <a ng-click="$ctrl.logout()">
+                                <i class="glyphicon glyphicon-off"></i>
+                                <span translate="navBar.logout"/>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
