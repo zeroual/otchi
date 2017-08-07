@@ -2,7 +2,10 @@ body {
     color: #546673;
     font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-
+.main-container{
+    padding-top: 70px;
+    width:100%;
+}
 .no-padding {
     padding: 0px;
 }
