@@ -15,6 +15,11 @@
     margin-left:auto;
     margin-right:auto;
 }
+@media (max-width: 767px) {
+    .profile-header-panel{
+        max-width:100%;
+    }
+}
 
 #header-profile .picture-profile {
     position:absolute;
@@ -54,6 +59,7 @@
 
 #header-profile #profile-name {
     font-size:2.5em;
+    color: #292f33;
 }
 
 #header-profile #profile-followers-total {
