@@ -1,7 +1,9 @@
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container no-padding">
         <div class="navbar-header">
-            <a class="navbar-brand padding-bottom-none padding-top-none" ui-sref="feed">
+            <a class="navbar-brand padding-bottom-none padding-top-none"
+               onclick="track('charge-feeds');"
+               ui-sref="feed">
                 <img height="55" src="/assets/images/logo-minion.png" alt="Otchi"/>
                 Otchi
             </a>
@@ -80,19 +82,23 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a ui-sref="showProfile({chefId:$ctrl.account.id})">
+                            <a ui-sref="showProfile({chefId:$ctrl.account.id})"
+                               onclick="track('go-my-profile');">
                                 <i class="glyphicon glyphicon-user"></i>
                                 <span translate="navBar.myProfile"/>
                             </a>
                         </li>
                         <li>
-                            <a href="#"><i class="glyphicon glyphicon-cog"></i>
+                            <a href="#"
+                               onclick="track('go-setting');">
+                                <i class="glyphicon glyphicon-cog"></i>
                                 <span translate="navBar.setting"/>
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a ng-click="$ctrl.logout()">
+                            <a ng-click="$ctrl.logout()"
+                               onclick="track('logout');">
                                 <i class="glyphicon glyphicon-off"></i>
                                 <span translate="navBar.logout"/>
                             </a>

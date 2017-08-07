@@ -15,13 +15,14 @@
                     <div class="badges">
 
                         <a ui-sref="about"
+                           onclick="track('more');"
                            class="btn btn-secondary btn-more">
                             <span translate="landing.more"></span>
                         </a>
 
                         <a ui-sref="feed"
                            class="btn btn-primary btn-get-started"
-                           onclick="ga('send', 'event', 'buttons', 'click', 'get-started');">
+                           onclick="track('get-started');">
                             <span translate="landing.get-started"></span>
                         </a>
                     </div>
@@ -69,6 +70,7 @@
 
                     <li>
                         <a href="https://www.instagram.com/otchi.io/"
+                           onclick="track('go-instagram');"
                            target="_blank">
                             <i style="font-size: 2em;"
                                class="fa fa-instagram"
@@ -77,6 +79,7 @@
                     </li>
                     <li>
                         <a href="https://www.facebook.com/otchi.io"
+                           onclick="track('go-facebook');"
                            target="_blank">
                             <i style="font-size: 2em;"
                                class="fa fa-facebook-square"

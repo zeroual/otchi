@@ -15,9 +15,12 @@
                 </div>
                 <div class="panel-body">
                     <div class="connect-options row">
-                        <social-auth-button ng-provider="facebook"></social-auth-button>
-                        <social-auth-button ng-provider="twitter"></social-auth-button>
-                        <social-auth-button ng-provider="google"></social-auth-button>
+                        <social-auth-button ng-provider="facebook"
+                                            onclick="track('login-facebook');"/>
+                        <social-auth-button ng-provider="twitter"
+                                            onclick="track('login-twitter');"/>
+                        <social-auth-button ng-provider="google"
+                                            onclick="track('login-google');"/>
                     </div>
                     <hr/>
                     <div class="text-center">
@@ -25,8 +28,7 @@
                             translate="login.or-by-email"/>
                     </div>
                     <div>
-                        <form role="form"git
-                              ng-submit="login()">
+                        <form ng-submit="login()">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control"
@@ -53,13 +55,15 @@
                                 <hr/>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button type="submit"
-                                           class="btn btn-primary btn-singup"
-                                           ng-click="login()"
-                                           translate="login.form.login-button"/>
+                                        <button
+                                                class="btn btn-primary btn-singup"
+                                                ng-click="login()"
+                                                translate="login.form.login-button"
+                                                onclick="track('login');"/>
                                         <a ui-sref="register"
                                            class="btn btn-secondary btn-singup"
-                                           translate="login.form.register-button"/>
+                                           translate="login.form.register-button"
+                                           onclick="track('go-register');"/>
                                     </div>
                                 </div>
                             </fieldset>

@@ -8,9 +8,11 @@
     <button mfb-button
             icon="fa fa-cutlery"
             ui-sref="createRecipe"
-            label="{{'recipe'|translate}}"/>
+            label="{{'recipe'|translate}}"
+            onclick="track('add-recipe');"/>
     <button mfb-button
             icon="fa fa-quote-left"
             ui-sref="newStory"
-            label="{{'story'|translate}}"></button>
+            label="{{'story'|translate}}"
+            onclick="track('add-story');"/>
 </nav>
