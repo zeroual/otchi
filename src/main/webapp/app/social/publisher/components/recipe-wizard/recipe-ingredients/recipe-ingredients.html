@@ -91,12 +91,14 @@
             <button class="btn btn-primary btn-default pull-left"
                     type="button"
                     ng-click="$ctrl.previousStep()"
-                    translate="publisher.recipe.back-to-summary-button"/>
+                    translate="publisher.recipe.back-to-summary-button"
+                    onclick="track('back-to-summary-button');"/>
 
             <button class="btn btn-primary btn-default pull-right"
                     type="button"
                     ng-click="$ctrl.nextStep()"
-                    translate="publisher.recipe.add-instructions-button"/>
+                    translate="publisher.recipe.add-instructions-button"
+                    onclick="track('add-instructions-button');"/>
         </div>
     </div>
 </div>

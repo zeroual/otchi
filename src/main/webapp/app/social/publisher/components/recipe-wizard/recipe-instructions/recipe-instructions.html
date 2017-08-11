@@ -49,12 +49,14 @@
                     ng-click="$ctrl.previousStep()"
                     ui-sref="addIngredients"
                     translate="publisher.recipe.back-to-ingredients-button"
+                    onclick="track('back-to-ingredients-button');"
             />
             <button class="btn btn-primary btn-default pull-right"
                     type="button"
                     ng-click="$ctrl.nextStep()"
                     ui-sref="addImages"
                     translate="publisher.recipe.add-images-button"
+                    onclick="track('add-images-button');"
             />
         </div>
     </div>

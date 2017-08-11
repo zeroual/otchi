@@ -14,19 +14,22 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title text-center"
-                     translate="register.title"/>
+                        translate="register.title"/>
                 </div>
                 <div class="panel-body">
                     <div class="connect-options row">
-                        <social-auth-button ng-provider="facebook"/>
-                        <social-auth-button ng-provider="twitter"/>
-                        <social-auth-button ng-provider="google"/>
+                        <social-auth-button ng-provider="facebook"
+                                            onclick="track('login-facebook');"/>
+                        <social-auth-button ng-provider="twitter"
+                                            onclick="track('login-twitter');"/>
+                        <social-auth-button ng-provider="google"
+                                            onclick="track('login-google');"/>
                     </div>
                     <div class="text-center">
                         <h5 class="text-muted"
                             translate="register.or-by-email"/>
                     </div>
-                    <form role="form" name="form">
+                    <form name="form">
                         <fieldset>
                             <div class="form-group has-feedback"
                                  ng-class="{'has-error': form.firstName.$invalid && form.firstName.$dirty,
@@ -45,7 +48,7 @@
                                                  'glyphicon-remove':form.firstName.$invalid && form.firstName.$dirty }">
                                 </span>
                                 <small class="help-block" ng-if="form.firstName.$invalid && form.firstName.$dirty">
-                                   <span translate="register.messages.validate.firstName"/>
+                                    <span translate="register.messages.validate.firstName"/>
                                 </small>
                             </div>
                             <div class="form-group has-feedback"
@@ -78,8 +81,8 @@
                                        minlength="5"
                                        maxlength="100"
                                        ng-required="true">
-                                 <span class="glyphicon  form-control-feedback" aria-hidden="true"
-                                       ng-class="{'glyphicon-ok':form.email.$valid,
+                                <span class="glyphicon  form-control-feedback" aria-hidden="true"
+                                      ng-class="{'glyphicon-ok':form.email.$valid,
                                                  'glyphicon-remove':form.email.$invalid && form.email.$dirty }">
                                 </span>
                                 <small class="help-block" ng-if="form.email.$invalid && form.email.$dirty">
@@ -97,8 +100,8 @@
                                        minlength="8"
                                        maxlength="100"
                                        ng-required="true">
-                                 <span class="glyphicon  form-control-feedback" aria-hidden="true"
-                                       ng-class="{'glyphicon-ok':form.password.$valid,
+                                <span class="glyphicon  form-control-feedback" aria-hidden="true"
+                                      ng-class="{'glyphicon-ok':form.password.$valid,
                                                  'glyphicon-remove':form.password.$invalid && form.password.$dirty }">
                                 </span>
                                 <small class="help-block" ng-if="form.password.$invalid && form.password.$dirty">
@@ -111,10 +114,13 @@
                                     <button class="btn btn-primary btn-singup"
                                             ng-click="register()"
                                             ng-disabled="form.$invalid"
-                                            translate="register.form.register-button"/>
+                                            translate="register.form.register-button"
+                                            onclick="track('register');"
+                                    />
                                     <a ui-sref="login"
                                        class="btn btn-secondary btn-singup"
                                        translate="register.form.login-button"
+                                       onclick="track('go-login');"
                                     />
                                 </div>
                             </div>

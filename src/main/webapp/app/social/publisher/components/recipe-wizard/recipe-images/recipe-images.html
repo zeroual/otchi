@@ -27,12 +27,14 @@
             <button class="btn btn-primary btn-default pull-left"
                     type="button"
                     ng-click="$ctrl.previousStep()"
-                    translate="publisher.recipe.back-to-instructions-button"/>
+                    translate="publisher.recipe.back-to-instructions-button"
+                    onclick="track('back-to-instructions-button');"/>
 
             <button class="btn btn-primary btn-success pull-right"
                     type="button"
                     ng-click="$ctrl.shareRecipe()"
-                    translate="publisher.recipe.share-button"/>
+                    translate="publisher.recipe.share-button"
+                    onclick="track('recipe.share-button');"/>
         </div>
     </div>
 
