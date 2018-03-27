@@ -22,6 +22,6 @@ public class MockNotificationsRepository extends MockCrudRepository<Notification
     public List<Notification> findAllByUsernameAndUnreadTrue(String username) {
         return this.findAllByUsername(username)
                 .stream()
-                .filter(notification -> notification.isUnread()).collect(toList());
+                .filter(Notification::isUnread).collect(toList());
     }
 }

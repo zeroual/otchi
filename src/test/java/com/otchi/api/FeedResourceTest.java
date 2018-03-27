@@ -4,6 +4,7 @@ package com.otchi.api;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.otchi.domain.social.models.Post;
 import com.otchi.domain.social.repositories.PostRepository;
+import com.otchi.domain.users.models.User;
 import com.otchi.infrastructure.config.ResourcesPath;
 import com.otchi.utils.AbstractIntegrationTest;
 import org.junit.Test;
@@ -38,7 +39,7 @@ public class FeedResourceTest extends AbstractIntegrationTest {
         Post post = postRepository.findOne(1L);
         assertThat(post.getLikes()).hasSize(1);
         assertThat(post.getLikes())
-                .extracting(user -> user.getFirstName())
+                .extracting(User::getFirstName)
                 .contains("Abdellah");
     }
 
