@@ -22,7 +22,7 @@ public class NotificationsStepDef {
     private NotificationsRepository notificationsRepository;
 
     @Given("^those notifications:$")
-    public void thoseNotifications(DataTable dataTable) throws Throwable {
+    public void thoseNotifications(DataTable dataTable){
 
         dataTable.asList(NotificationCucumber.class)
                 .stream()
@@ -31,19 +31,19 @@ public class NotificationsStepDef {
     }
 
     @And("^notification with id \"([^\"]*)\" is marked as read$")
-    public void notificationWithIdIsMarkedAsRead(Long id) throws Throwable {
+    public void notificationWithIdIsMarkedAsRead(Long id){
         Notification notification = notificationsRepository.findOne(id);
         assertThat(notification.isUnread()).isFalse();
     }
 
     @And("^notification with id \"([^\"]*)\" is marked as unread$")
-    public void notificationWithIdIsMarkedAsUnread(Long id) throws Throwable {
+    public void notificationWithIdIsMarkedAsUnread(Long id){
         Notification notification = notificationsRepository.findOne(id);
         assertThat(notification.isUnread()).isTrue();
     }
 
     @And("^commented on post notification was sent to post author \"([^\"]*)\"$")
-    public void verifyThatCommentedOnPostNotificationWasSentToPostAuthor(String author) throws Throwable {
+    public void verifyThatCommentedOnPostNotificationWasSentToPostAuthor(String author){
         Notification notification = notificationsRepository.findOne(1L);
         assertThat(notification.getUsername()).isEqualTo(author);
         assertThat(notification.getType()).isEqualTo(COMMENT_ON_POST);

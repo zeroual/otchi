@@ -24,7 +24,7 @@ public class PostsStepdefs {
 
     //FIXME Abdellah : we don't need to give post such information about user
     @Given("^those stories$")
-    public void thoseStories(DataTable dataTable) throws Throwable {
+    public void thoseStories(DataTable dataTable) {
 
         dataTable.asList(StoryCucumber.class).forEach(
                 storyCucumber -> {
@@ -36,7 +36,7 @@ public class PostsStepdefs {
     }
 
     @And("^the comment of \"([^\"]*)\" should be attached to the post with id \"([^\"]*)\"$")
-    public void verifyThatUserCommentedOnPost(String username, Long postId) throws Throwable {
+    public void verifyThatUserCommentedOnPost(String username, Long postId){
         Post post = postRepository.findOne(postId);
         boolean thisUserCommentOnThisPost = post.getComments().stream()
                 .anyMatch(comment -> comment.getAuthor().getUsername().equals(username));
@@ -44,7 +44,7 @@ public class PostsStepdefs {
     }
 
     @And("^the post with id (\\d+) is removed$")
-    public void verifyThatPostIsNotFound(Long postId) throws Throwable {
+    public void verifyThatPostIsNotFound(Long postId){
         Post post = postRepository.findOne(postId);
         assertThat(post).isNull();
     }

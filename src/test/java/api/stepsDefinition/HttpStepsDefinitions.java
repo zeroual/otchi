@@ -54,12 +54,12 @@ public class HttpStepsDefinitions {
 
 
     @And("^I sign in as \"([^\"]*)\"$")
-    public void iSignInAs(String username) throws Throwable {
+    public void iSignInAs(String username){
         this.clientUsername = username;
     }
 
     @Given("^client upload those files :$")
-    public void clientUploadThoseFiles(DataTable dataTable) throws Throwable {
+    public void clientUploadThoseFiles(DataTable dataTable){
         this.uploadedFiles = dataTable.asList(CucumberMultipartFile.class)
                 .stream()
                 .map(CucumberMultipartFile::toMockMultipartFile)
@@ -67,7 +67,7 @@ public class HttpStepsDefinitions {
     }
 
     @And("^upload json file \"([^\"]*)\" with following content$")
-    public void uploadJsonFileWithFollowingContent(String fileName, String jsonContent) throws Throwable {
+    public void uploadJsonFileWithFollowingContent(String fileName, String jsonContent){
         MockMultipartFile jsonFile = new MockMultipartFile(fileName, "", contentType, jsonContent.getBytes());
         this.uploadedFiles.add(jsonFile);
     }

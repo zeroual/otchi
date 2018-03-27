@@ -15,7 +15,7 @@ public class AccountCreationStepsDefinitions {
     private AccountService accountService;
 
     @Given("^following users exist:$")
-    public void followingUsersExist(DataTable dataTable) throws Throwable {
+    public void followingUsersExist(DataTable dataTable){
         dataTable.asList(CucumberAccount.class)
                 .stream()
                 .map(CucumberAccount::toDomainAccount)

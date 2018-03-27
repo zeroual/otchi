@@ -10,7 +10,7 @@ public class CommonStepsDefinitions {
 
 
     @Given("^time now is \"([^\"]*)\"$")
-    public void timeNowIs(String dateString) throws Throwable {
+    public void timeNowIs(String dateString){
         mocakableClock.setNowTimeTo(dateString);
     }
 }
