@@ -73,14 +73,12 @@ public class SocialAccountService {
             username = userProfile.getUsername();
         }
         String temporalPassword = generateRandomPassword();
-        Account account = new Account(userProfile.getFirstName(), userProfile.getLastName(), email, username, temporalPassword, langKey);
-        return account;
+        return new Account(userProfile.getFirstName(), userProfile.getLastName(), email, username, temporalPassword, langKey);
     }
 
     private String generateRandomPassword() {
         SecureRandom random = new SecureRandom();
-        String temporalPassword = new BigInteger(130, random).toString(32);
-        return temporalPassword;
+        return new BigInteger(130, random).toString(32);
     }
 
     private void saveSocialConnection(String login, Connection<?> connection) {

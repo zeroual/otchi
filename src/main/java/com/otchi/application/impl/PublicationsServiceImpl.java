@@ -66,8 +66,7 @@ public class PublicationsServiceImpl implements PublicationsService {
     }
 
     private List<String> saveImages(List<MultipartFile> images) {
-        List<String> imagesURL = blobStorageService.save(images);
-        return imagesURL;
+        return blobStorageService.save(images);
     }
 
     private User getAuthor(String authorUsername) {

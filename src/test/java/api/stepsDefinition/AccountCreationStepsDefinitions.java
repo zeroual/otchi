@@ -37,8 +37,7 @@ public class AccountCreationStepsDefinitions {
         private String lastName;
 
         public Account toDomainAccount() {
-            Account account = new Account(firstName, lastName, username, "password", "en");
-            return account;
+            return new Account(firstName, lastName, username, "password", "en");
         }
     }
 }

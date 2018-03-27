@@ -31,11 +31,8 @@ public class CommentedNotificationEventHandlerTest {
 
     @Test
     public void shouldSendCommentedNotificationIfAuthorIsNotTheCommenter() {
-
         Notification notification = buildNotification();
-
         PostCommentedEvent postCommentedEvent = buildCommentedNotificationEvent("postOwner", "commenter");
-
         when(notificationSaver.createCommentedNotificationFrom(postCommentedEvent)).thenReturn(notification);
 
         commentedNotificationEventHandler.sendCommentedNotificationToPostAuthor(postCommentedEvent);
@@ -64,9 +61,7 @@ public class CommentedNotificationEventHandlerTest {
     private PostCommentedEvent buildCommentedNotificationEvent(String postOwner, String commenter) {
         Post post = new Post(LocalDateTime.now());
         post.setAuthor(new User(postOwner));
-        PostCommentedEvent postLikedEvent = new PostCommentedEvent(post, commenter);
-        return postLikedEvent;
-
+        return new PostCommentedEvent(post, commenter);
     }
 
 }

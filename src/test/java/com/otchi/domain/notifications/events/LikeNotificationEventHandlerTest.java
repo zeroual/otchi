@@ -64,9 +64,7 @@ public class LikeNotificationEventHandlerTest {
     private LikePostEvent buildLikeNotificationEvent(String postOwner, String likeOwner) {
         Post likedPost = new Post(LocalDateTime.now());
         likedPost.setAuthor(new User(postOwner));
-        LikePostEvent postLikedEvent = new LikePostEvent(likedPost, likeOwner);
-        return postLikedEvent;
-
+        return new LikePostEvent(likedPost, likeOwner);
     }
 
 }
