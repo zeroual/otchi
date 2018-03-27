@@ -46,7 +46,7 @@ public class SocialAccountService {
         Account account = this.generateAccountFrom(userProfile, langKey, providerId);
 
         Optional<File> socialPicture = Optional.empty();
-        if (connection.getImageUrl() != null && connection.getImageUrl().isEmpty() == false) {
+        if (connection.getImageUrl() != null && !connection.getImageUrl().isEmpty()) {
             try {
                 URL pictureURL = new URL(connection.getImageUrl());
                 socialPicture = of(fileUtilsService.getFileFrom(pictureURL));
