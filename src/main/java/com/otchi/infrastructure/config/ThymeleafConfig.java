@@ -1,7 +1,5 @@
 package com.otchi.infrastructure.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Description;
@@ -10,7 +8,6 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 @Configuration
 public class ThymeleafConfig {
 
-    private final Logger log = LoggerFactory.getLogger(ThymeleafConfig.class);
 
     @Bean
     @Description("Thymeleaf template resolver serving HTML 5 emails")
