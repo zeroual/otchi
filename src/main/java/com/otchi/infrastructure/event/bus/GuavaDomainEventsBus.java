@@ -1,4 +1,4 @@
-package com.otchi.infrastructure.eventBus;
+package com.otchi.infrastructure.event.bus;
 
 import com.google.common.eventbus.EventBus;
 import com.otchi.domain.notifications.events.DomainEvents;

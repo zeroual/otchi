@@ -22,20 +22,20 @@ public class AccountServiceImpl implements AccountService {
     private final PasswordEncoder passwordEncoder;
     private final MailService mailService;
     private final BlobStorageService blobStorageService;
-    private final String DEFAULT_USER_PICTURE;
+    private final String defaultUserPicture;
 
     @Autowired
     public AccountServiceImpl(AccountRepository accountRepository,
                               PasswordEncoder passwordEncoder,
                               MailService mailService,
                               BlobStorageService blobStorageService,
-                              @Value("${otchi.user.default-picture}") String DEFAULT_USER_PICTURE) {
+                              @Value("${otchi.user.default-picture}") String defaultUserPicture) {
 
         this.accountRepository = accountRepository;
         this.passwordEncoder = passwordEncoder;
         this.mailService = mailService;
         this.blobStorageService = blobStorageService;
-        this.DEFAULT_USER_PICTURE = DEFAULT_USER_PICTURE;
+        this.defaultUserPicture = defaultUserPicture;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class AccountServiceImpl implements AccountService {
             String pictureURL = blobStorageService.save(file);
             account.setPicture(pictureURL);
         } else {
-            account.setPicture(DEFAULT_USER_PICTURE);
+            account.setPicture(defaultUserPicture);
         }
 
         Account savedAccount = this.accountRepository.save(account);

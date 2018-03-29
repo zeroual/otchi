@@ -29,8 +29,8 @@ public class AccountResource {
     @ResponseStatus(HttpStatus.CREATED)
     public void registerAccount(@RequestBody @Valid AccountDTO accountDTO) throws AccountAlreadyExistsException {
         Account account = accountDTO.toDomain();
-        Optional<File> NO_PICTURE = Optional.empty();
-        accountService.createAccount(account, NO_PICTURE);
+        Optional<File> noPicture = Optional.empty();
+        accountService.createAccount(account, noPicture);
     }
 
 }

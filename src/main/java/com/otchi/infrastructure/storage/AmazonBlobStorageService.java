@@ -66,16 +66,16 @@ public class AmazonBlobStorageService implements BlobStorageService {
 
     @Override
     public String save(File file) {
-        String ObjectURL = "";
+        String objectURL = "";
         // check bucket
         if (!doestBucketExist(bucketName)) {
             log.debug("operation aborted due to bucket not found");
         } else {
             String key = generateObjectUniqueKey();
             putObject(bucketName, file, key);
-            ObjectURL = generateURLFrom(key);
+            objectURL = generateURLFrom(key);
         }
-        return ObjectURL;
+        return objectURL;
     }
 
     private String generateURLFrom(String key) {

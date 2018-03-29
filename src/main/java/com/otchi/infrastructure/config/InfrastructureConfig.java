@@ -7,7 +7,7 @@ import com.otchi.domain.notifications.events.DomainEvents;
 import com.otchi.domain.notifications.events.LikeNotificationEventHandler;
 import com.otchi.infrastructure.config.database.DatabaseConfig;
 import com.otchi.infrastructure.config.storage.BlobStorageConfig;
-import com.otchi.infrastructure.eventBus.GuavaDomainEventsBus;
+import com.otchi.infrastructure.event.bus.GuavaDomainEventsBus;
 import com.otchi.infrastructure.utils.FileUtilsServiceImpl;
 import com.otchi.infrastructure.web.WebConfigurer;
 import org.springframework.context.annotation.Bean;

@@ -17,10 +17,10 @@ import static org.apache.commons.io.FileUtils.deleteDirectory;
 public class LocalBlobStorageService implements BlobStorageService {
 
     private final String storageFolder;
-    private final String path = "/assets/blob/";
+    private static final String PATH = "/assets/blob/";
 
     public LocalBlobStorageService(ServletContext servletContext) {
-        this.storageFolder = servletContext.getRealPath(path);
+        this.storageFolder = servletContext.getRealPath(PATH);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class LocalBlobStorageService implements BlobStorageService {
             String originalFilename = multipartFile.getOriginalFilename();
             File newFile = new File(storageFolder + separator + originalFilename);
             copyInputStreamToFile(multipartFile.getInputStream(), newFile);
-            return path + multipartFile.getOriginalFilename();
+            return PATH + multipartFile.getOriginalFilename();
         } catch (IOException e) {
             throw new RuntimeException("Opps , Otchi can not create new file in the assets directory :(", e);
         }

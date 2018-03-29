@@ -29,11 +29,11 @@ public class MailNotifier {
         mailNotification.setPostId(notification.postId());
         mailNotification.setType(notification.getType());
 
-        Optional<User> reciever = userService.findUserByUsername(notification.getUsername());
+        Optional<User> receiver = userService.findUserByUsername(notification.getUsername());
         Optional<User> sender = userService.findUserByUsername(notification.senderId());
 
         mailNotification.setFrom(sender.get());
-        mailNotification.setTo(reciever.get());
+        mailNotification.setTo(receiver.get());
         mailService.sendNotificationMail(mailNotification);
     }
 }
