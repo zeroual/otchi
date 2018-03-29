@@ -13,7 +13,6 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.SimpleCommandLinePropertySource;
 
 import javax.annotation.PostConstruct;
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -62,7 +61,7 @@ public class OtchiApplicationStarter {
      */
 
     @PostConstruct
-    public void initApplication() throws IOException {
+    public void initApplication() {
         if (env.getActiveProfiles().length == 0) {
             log.warn("No Spring profile configured, running with default configuration");
         } else {

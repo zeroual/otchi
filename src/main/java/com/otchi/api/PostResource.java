@@ -8,7 +8,6 @@ import com.otchi.application.PublicationsService;
 import com.otchi.domain.kitchen.Recipe;
 import com.otchi.domain.social.models.Story;
 import com.otchi.infrastructure.config.ResourcesPath;
-import com.otchi.infrastructure.storage.BlobObjectPutException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +28,7 @@ public class PostResource {
     @ResponseStatus(HttpStatus.CREATED)
     public FeedDTO publishNewRecipeAsPost(@RequestPart("pictures") List<MultipartFile> pictures,
                                           @RequestPart("recipe") RecipeDTO recipeDTO,
-                                          Principal principal) throws BlobObjectPutException {
+                                          Principal principal) {
         Recipe recipe = recipeDTO.toDomain();
         Feed feed = publicationsService.publishRecipe(recipe, pictures, principal.getName());
         return new FeedDTO(feed);

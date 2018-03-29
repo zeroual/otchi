@@ -40,7 +40,7 @@ public class AmazonBlobStorageService implements BlobStorageService {
     }
 
     @Override
-    public List<String> save(List<MultipartFile> files) throws BlobObjectPutException {
+    public List<String> save(List<MultipartFile> files) {
 
         List objectURLList = new ArrayList<>();
         // check bucket

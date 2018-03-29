@@ -107,7 +107,7 @@ public class SocialConfig implements SocialConfigurer {
     @Bean
     public ProviderSignInController providerSignInController(ConnectionFactoryLocator connectionFactoryLocator,
                                                              UsersConnectionRepository usersConnectionRepository,
-                                                             SignInAdapter signInAdapter) throws Exception {
+                                                             SignInAdapter signInAdapter){
         ProviderSignInController providerSignInCtrl = new ProviderSignInController(connectionFactoryLocator, usersConnectionRepository, signInAdapter);
         providerSignInCtrl.setSignUpUrl(SOCIAL_SIGN_UP_URL);
         return providerSignInCtrl;
